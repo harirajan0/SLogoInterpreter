@@ -77,10 +77,10 @@ We decided that the best way to have our frontend and backend interact was to in
 
 Team Responsibilities
 -------------------
-*Alex: Backend - TurtleModel, TurtleInfo, Executor, SLogoModel, Controller
-*Belal: Frontend- TurtleView, MenuBarView, SLogoView
-*Daniel: CommandPromptView, VariablesView, SLogoView
-*Hari: Backend - TurtleCommand Interface (and subclasses), VariableCommandInterface (and subclasses), Controller, Variable
+* Alex: Backend - TurtleModel, TurtleInfo, Executor, SLogoModel, Controller
+* Belal: Frontend- TurtleView, MenuBarView, SLogoView
+* Daniel: CommandPromptView, VariablesView, SLogoView
+* Hari: Backend - TurtleCommand Interface (and subclasses), VariableCommandInterface (and subclasses), Controller, Variable
 
 We will complete a little bit at a time and try to integrate often. We will each have our own Git branch to push to before merging to master or Dev or another branch. 
 

@@ -44,16 +44,19 @@ API Example Code
 
 Fd 50: 
 Executor.parse(SlogoView.getCommandPromptViewNode().getCurrentCommand())
--> CommandFactory.getCommand(String userInput) -> Command.execute(String userInput) -> TurtleModel.update() -> variables.update() -> SlogoView.update( TurtleInfo)
+-> TurtleCommandFactory.getCommand(String userInput) -> TurtleCommand.execute(String userInput) -> TurtleModel.update() -> variables.update() -> SlogoView.update( TurtleInfo)
 
 XCOR:
 Executor.parse(SlogoView.getCommandPromptViewNode().getCurrentCommand())
--> CommandFactory.getCommand(String userInput) -> Command.execute(String userInput) -> TurtleModel.update() -> variables.update() - > SlogoView.update(TurtleInfo)]
+-> TurtleCommandFactory.getCommand(String userInput) -> TurtleCommand.execute(String userInput) -> TurtleModel.update() -> variables.update() - > SlogoView.update(TurtleInfo)]
 
 BK 50:
 Exectuor.parse(SlogoView.getCommandPromptViewNode().getCurrentCommand())
--> CommandFactory.getCommand(String userInput) -> Command.execute(String userInput) -> TurtleModel.update() -> variables.update() - >SLogoView.update(TurtleInfo)
+-> TurtleCommandFactory.getCommand(String userInput) -> TurtleCommand.execute(String userInput) -> TurtleModel.update() -> variables.update() - >SLogoView.update(TurtleInfo)
 
+SET myNum 12:
+Exectuor.parse(SlogoView.getCommandPromptViewNode().getCurrentCommand())
+-> VariableCommandFactory.getCommand(String userInput) -> VariableCommand.execute(String userInput) -> TurtleModel.update() -> variables.update() - >SLogoView.update(TurtleInfo)
 
 Clicking options:
 [SLogoController]SLogoView.getMenuBarViewNode().displayOptions();

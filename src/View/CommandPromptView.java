@@ -2,6 +2,7 @@ package View;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -25,13 +26,16 @@ public class CommandPromptView{
     private Button execute;
     private boolean textIsEntered;
     private String actualCommand="";
+    private ComboBox<String> history;
 	
 		public void createUI(Group parent){
 			BorderPane pane=new BorderPane();
 			initializeCommandEntry(pane);
-			execute=new Button("execute command");
+			initializeHistory(pane);
+			execute=new Button("execute");
 			execute.setOnAction(action -> {
 				actualCommand=commandEntry.getText();
+                history.getItems().add(actualCommand);
 				initializeCommandEntry(pane);
 			});
 			//just clearing up the last command displayed
@@ -42,21 +46,32 @@ public class CommandPromptView{
 	
 	private void initializeCommandEntry(BorderPane pane){
 		commandEntry=new TextField();
-		commandEntry.setPromptText("enter command");
+		commandEntry.setPromptText("enter your command");
 		commandEntry.setOnKeyReleased(event -> {
             if (event.getCode().equals(KeyCode.ENTER))
             {
                 actualCommand=commandEntry.getText();
+                history.getItems().add(actualCommand);
                 initializeCommandEntry(pane);
             }
 		});
 
 		pane.setLeft(commandEntry);
 	}
+	
+	private void initializeHistory(BorderPane pane){
+		ObservableList<String> listOfCommands = 
+			    FXCollections.observableArrayList();
+			history = new ComboBox<String>(listOfCommands);
+			history.setPromptText("select a previous command");
+			pane.setBottom(history);
+			history.setOnAction((event) ->{
+				commandEntry.setText(history.getSelectionModel().getSelectedItem());
+			});
+	}
 		
     public String getCurrentCommand(){ //back end uses this to get last command input **EXTERNAL**
-    	//will only return the command if user presses enter or clicks on the button
-    	
+    	//actual command only changes after the user actually enters a new command (not while still typing)
     	return actualCommand;
     }
     

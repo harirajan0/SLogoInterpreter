@@ -20,6 +20,10 @@ public class ViewInitializer {
 		root = new Group();
 		CommandPromptView commandBox=new CommandPromptView();
 		commandBox.createUI(root);
+		
+		Point initialPoint = new Point(SIZE/2, SIZE/2);
+		TurtleView myTurtle = new TurtleView(initialPoint, root);
+		
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);
 		s.setScene(myScene);

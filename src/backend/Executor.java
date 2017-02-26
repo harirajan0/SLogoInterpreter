@@ -27,11 +27,9 @@ public class Executor {
 			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
 				Command cmd = commandFactory.getString(parser.getSymbol(input.get(0)));
 				return new ArrayList<>(Arrays.asList(cmd.execute(parseText(input.subList(1, input.size()), lang))));
-			} 
-			else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
+			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
 				// look in variables map return
-			} 
-			else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
+			} else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
 				List<Double> list = parseText(input.subList(1, input.size()), lang);
 				list.add(Double.parseDouble(input.get(0)));
 				return list;

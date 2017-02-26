@@ -12,18 +12,12 @@ import java.util.Set;
  */
 public class Resources {
 	
-	private ResourceBundle myResources;
-	
-	public Resources(String lang) {
-		myResources = ResourceBundle.getBundle("resources.languages/" + lang);
-	}
-	
-	public String getString(String key) {
-		return myResources.getString(key);
+	public static String getString(String lang, String key) {
+		return ResourceBundle.getBundle("resources.languages/" + lang).getString(key);
 	} 
 	
-	public Set<String> getKeys() {
-		return myResources.keySet();
+	public static Set<String> getKeys(String lang) {
+		return ResourceBundle.getBundle("resources.languages/" + lang).keySet();
 	}
 
 }

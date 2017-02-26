@@ -27,13 +27,13 @@ public class TurtleView {
 		initializeTurtle(myRoot);
 	}
 	
-	public void updateTurtle(Command myCommand){
-		Point newPoint = new Point(myCommand.getX(), myCommand.getY());
+	public void updateTurtle(int x, int y){
+		Point newPoint = new Point(x,y);
 		
-		updatePen(myCommand.getPenStatus());
-		updateVisibility(myCommand.getVisibility());
+		//updatePen(myCommand.getPenStatus());
+		//updateVisibility(myCommand.getVisibility());
 		setTurtleLocation(newPoint);
-		setTurtleRotation(myCommand.getRotate());
+		//setTurtleRotation(myCommand.getRotate());
 	}
 	
 	private void setTurtleLocation(Point newPoint){

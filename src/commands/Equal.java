@@ -5,22 +5,29 @@ package commands;
 
 import java.util.List;
 
+import resources.languages.Constants;
+import resources.languages.Resources;
+
 /**
  * @author harirajan
  *
  */
-public class Product implements Command {
+public class Equal implements Command {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
 	public double execute(List<Double> input) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					"%s command takes exactly %d argument, %d given", "Product", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Equal", 2, input.size()));
 		}
-		return input.get(0) * input.get(1);
+		if (input.get(0).equals(input.get(1))) {
+			return Constants.TRUE;
+		} else {
+			return Constants.FALSE;
+		}
 	}
+
 }

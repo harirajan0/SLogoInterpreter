@@ -5,22 +5,25 @@ package commands;
 
 import java.util.List;
 
+import resources.languages.Resources;
+
 /**
  * @author harirajan
  *
  */
-public class Product implements Command {
-
+public class Tangent implements Command {
+	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (input.size() != 2) {
+		if (input.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					"%s command takes exactly %d argument, %d given", "Product", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
 		}
-		return input.get(0) * input.get(1);
+		
+		return Math.toDegrees(Math.tan(Math.toRadians(input.get(0))));
 	}
 }

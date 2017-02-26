@@ -5,6 +5,8 @@ package commands;
 
 import java.util.List;
 
+import resources.languages.Resources;
+
 /**
  * @author harirajan
  *
@@ -18,12 +20,10 @@ public class Forward implements Command {
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		if (input.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					"%s command takes exactly %d argument, %d given", "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
 		}
 		//turtle.movejjhfughreo
 		return input.get(0);
 	}
-	
-	
 
 }

@@ -32,9 +32,8 @@ public class ProgramParser {
 
     // adds the given resource file to this language's recognized types
     public void addPatterns (String lang) {
-        Resources resources = new Resources(lang);
-        for (String key : resources.getKeys()) {
-            String regex = resources.getString(key);
+        for (String key : Resources.getKeys(lang)) {
+            String regex = Resources.getString(lang, key);
             mySymbols.add(new SimpleEntry<>(key,
                            // THIS IS THE IMPORTANT LINE
                            Pattern.compile(regex, Pattern.CASE_INSENSITIVE)));

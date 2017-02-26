@@ -30,8 +30,8 @@ public class Executor {
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
 				// look in variables map return
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
-				List<Double> list = parseText(input.subList(1, input.size()), lang);
-				list.add(Double.parseDouble(input.get(0)));
+				List<Double> list = new ArrayList<>(Arrays.asList(Double.parseDouble(input.get(0))));
+				list.addAll(parseText(input.subList(1, input.size()), lang));
 				return list;
 
 			} else {

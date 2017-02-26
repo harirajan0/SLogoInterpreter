@@ -18,6 +18,16 @@ public class Point {
 		return myY;
 	}
 	
+	public int getXCoord(){
+		//TODO: find out how to calculate so that center of screen is 0,0
+		return 0;
+	}
+	
+	public int getYCoord(){
+		//TODO: find out how to calculate so that center of screen is 0,0
+		return 0;
+	}
+	
 	public Point goPointUp(int amount){
 		Point newPoint = new Point(this.myX, this.myY+amount);
 		return newPoint;

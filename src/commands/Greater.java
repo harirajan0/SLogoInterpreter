@@ -22,7 +22,7 @@ public class Greater implements Command {
 		// TODO Auto-generated method stub
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Greater", 2, input.size()));
 		}
 		if (input.get(0) > input.get(1)) {
 			return Constants.TRUE;

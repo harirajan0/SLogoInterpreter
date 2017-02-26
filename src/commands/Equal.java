@@ -21,7 +21,7 @@ public class Equal implements Command {
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Equal", 2, input.size()));
 		}
 		if (input.get(0).equals(input.get(1))) {
 			return Constants.TRUE;

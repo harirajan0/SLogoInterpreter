@@ -22,7 +22,7 @@ public class Not implements Command {
 		// TODO Auto-generated method stub
 		if (input.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Not", 1, input.size()));
 		}
 		if (input.get(0) == 0.0) {
 			return Constants.TRUE;
@@ -30,5 +30,5 @@ public class Not implements Command {
 			return Constants.FALSE;
 		}
 	}
-
+	
 }

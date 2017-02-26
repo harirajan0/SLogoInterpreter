@@ -25,7 +25,5 @@ public class Forward implements Command {
 		//turtle.movejjhfughreo
 		return input.get(0);
 	}
-	
-	
 
 }

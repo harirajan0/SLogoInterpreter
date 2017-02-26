@@ -23,5 +23,4 @@ public class Product implements Command {
 		}
 		return input.get(0) * input.get(1);
 	}
-
 }

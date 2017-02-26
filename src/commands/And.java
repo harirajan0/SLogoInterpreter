@@ -22,7 +22,7 @@ public class And implements Command {
 		// TODO Auto-generated method stub
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "And", 2, input.size()));
 		}
 		if (input.get(0) == 1.0 && input.get(1) == 1.0) {
 			return Constants.TRUE;
@@ -32,3 +32,5 @@ public class And implements Command {
 	}
 
 }
+
+

@@ -19,7 +19,9 @@ public class ViewInitializer {
 	public Stage getInitializedStage(Stage s){
 		root = new Group();
 		CommandPromptView commandBox=new CommandPromptView();
-		commandBox.createUI(root);
+		commandBox.createUI(root, SIZE);
+		VariablesView variables=new VariablesView();
+		variables.createUI(root);
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);
 		s.setScene(myScene);

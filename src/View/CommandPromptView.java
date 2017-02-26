@@ -5,13 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -24,11 +20,10 @@ public class CommandPromptView{
     */
     private TextField commandEntry;
     private Button execute;
-    private boolean textIsEntered;
     private String actualCommand="";
     private ComboBox<String> history;
 	
-		public void createUI(Group parent){
+		public void createUI(Group parent, int screenSize){
 			BorderPane pane=new BorderPane();
 			initializeCommandEntry(pane);
 			initializeHistory(pane);
@@ -40,6 +35,7 @@ public class CommandPromptView{
 			});
 			//just clearing up the last command displayed
 			pane.setRight(execute);
+			pane.setLayoutY(screenSize-100);
 			parent.getChildren().add(pane);
 			
 		}

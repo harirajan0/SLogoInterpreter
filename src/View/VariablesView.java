@@ -53,6 +53,8 @@ public class VariablesView{
 		currentVars=new ArrayList<Variable>();
 		Variable var1=new Variable("x", "20");
 		Variable var2=new Variable("y", "30.4");
+		
+		
 		currentVars.add(var1);
 		currentVars.add(var2);
 		BorderPane pane=new BorderPane();
@@ -79,7 +81,7 @@ public class VariablesView{
 	                Alert alert = new Alert(AlertType.INFORMATION);
 	                alert.setTitle("Variable update");
 	                alert.setHeaderText(null);
-	                alert.setContentText("You successfully changed the value of the variable");
+	                alert.setContentText("You changed the value of the variable");
 	                alert.showAndWait();
             }
 		});

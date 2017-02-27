@@ -22,6 +22,12 @@ public class ViewInitializer {
 		commandBox.createUI(root, SIZE);
 		VariablesView variables=new VariablesView();
 		variables.createUI(root);
+		Point initialPoint = new Point(SIZE/2, SIZE/2);
+		TurtleView myTurtle = new TurtleView(initialPoint, root);
+		
+		//just a test case to move the turtle a bit:
+		//myTurtle.updateTurtle(50, 50); 
+		
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);
 		s.setScene(myScene);

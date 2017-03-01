@@ -1,8 +1,15 @@
 package View;
 
+import java.awt.Color;
+
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
 public class TurtleView {
@@ -10,6 +17,9 @@ public class TurtleView {
 	public static final int SIZE = 300;
 
 	public static final String TURTLE_IMAGE = "turtle.png";
+	public static final int TURTLE_SIZE = 50;
+	public static final int BUFFER = TURTLE_SIZE/2;
+	public static final String BACKGROUND_COLOR = Color.WHITE.toString();
 	
 	private ImageView turtleImage;
 	private Point currentCoords;
@@ -18,6 +28,8 @@ public class TurtleView {
 	private boolean penDown;
 	private boolean isVisible;
 	private Group myRoot;
+	private BorderPane turtlePane;
+	
 	
 	public TurtleView(Point initialPoint, Group root){
 		currentCoords = initialPoint;
@@ -25,6 +37,7 @@ public class TurtleView {
 		penDown = true;
 		myRoot = root;
 		initializeTurtle(myRoot);
+		initializeTurtlePane(myRoot);
 	}
 	
 	public void updateTurtle(int x, int y){
@@ -34,6 +47,7 @@ public class TurtleView {
 		//updateVisibility(myCommand.getVisibility());
 		setTurtleLocation(newPoint);
 		//setTurtleRotation(myCommand.getRotate());
+		wrap(checkIfOutOfBounds());
 	}
 	
 	private void setTurtleLocation(Point newPoint){
@@ -70,7 +84,7 @@ public class TurtleView {
 		int oldY = currentCoords.getY();
 		int currentX = nextCoords.getX();
 		int currentY = nextCoords.getY();
-		Line lineToDraw = new Line(oldX, oldY, currentX, currentY);
+		Line lineToDraw = new Line(oldX, oldY, currentX + BUFFER, currentY + BUFFER);
 		root.getChildren().add(lineToDraw);
 	}
 	
@@ -81,12 +95,30 @@ public class TurtleView {
 		int startingY = currentCoords.getY();
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream("turtle.png"));
         turtleImage = new ImageView(image);
-        turtleImage.setFitHeight(100);
-        turtleImage.setFitWidth(100);
+        turtleImage.setFitHeight(TURTLE_SIZE);
+        turtleImage.setFitWidth(TURTLE_SIZE);
         turtleImage.setX(startingX);
         turtleImage.setY(startingY);
         turtleImage.setRotate(myRotation);
         root.getChildren().add(turtleImage);
+	}
+	
+	private void wrap(boolean isOutOfBounds){
+		
+	}
+	
+	private boolean checkIfOutOfBounds(){
+		boolean isOut = false;
+		
+		return isOut;
+	}
+	
+	private void initializeTurtlePane(Group root){
+		Pane turtlePane = new BorderPane();
+		BackgroundFill color = new BackgroundFill(Paint.valueOf(Color.WHITE.toString()), null, null);
+		Background myBackground = new Background(color);
+		turtlePane.setBackground(myBackground);
+		root.getChildren().add(turtlePane);
 	}
 	
 }

@@ -20,8 +20,8 @@ public class ViewInitializer {
 		root = new Group();
 		CommandPromptView commandBox=new CommandPromptView(root);
 		VariablesView variables=new VariablesView(root);
-		ExceptionListener errorBox=new ExceptionListener();
-		MenuView menuBar=new MenuView(root, s);
+		//ExceptionListener errorBox=new ExceptionListener();
+		//MenuView menuBar=new MenuView(root, s);
 		Point initialPoint = new Point(SIZE/2, SIZE/2);
 		TurtleView myTurtle = new TurtleView(initialPoint, root);
 		
@@ -29,14 +29,14 @@ public class ViewInitializer {
 		commandBox.setCoordinates(0, SIZE-100);
 		
 		//just a test case to move the turtle a bit:
-		//myTurtle.updateTurtle(50, 50); 
+		myTurtle.updateTurtle(0,0); 
 		
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);
 		s.setScene(myScene);
 		s.setTitle(TITLE);
 		s.show();
-		errorBox.receiveAndDisplayError(new NullPointerException()); //test case
+		
 
 		return s;
 	}

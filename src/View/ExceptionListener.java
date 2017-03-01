@@ -9,6 +9,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
 public class ExceptionListener {
+	public ExceptionListener(Exception e){
+		receiveAndDisplayError(e);
+	}
+	public ExceptionListener(){
+	}
 
 	public void receiveAndDisplayError(Exception e){
 		Alert alert = new Alert(AlertType.ERROR);

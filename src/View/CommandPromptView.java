@@ -23,7 +23,7 @@ public class CommandPromptView{
     private String actualCommand="";
     private ComboBox<String> history;
 	
-		public void createUI(Group parent, int screenSize){
+		public CommandPromptView(Group parent, int screenSize){
 			BorderPane pane=new BorderPane();
 			initializeCommandEntry(pane);
 			initializeHistory(pane);

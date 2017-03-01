@@ -47,7 +47,7 @@ public class VariablesView{
     
     
     
-	public void createUI(Group parent){
+	public VariablesView(Group parent){
 		root=parent;
 		//create test list of variables
 		currentVars=new ArrayList<Variable>();

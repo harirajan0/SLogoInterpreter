@@ -18,10 +18,9 @@ public class ViewInitializer {
 	
 	public Stage getInitializedStage(Stage s){
 		root = new Group();
-		CommandPromptView commandBox=new CommandPromptView();
-		commandBox.createUI(root, SIZE);
-		VariablesView variables=new VariablesView();
-		variables.createUI(root);
+		CommandPromptView commandBox=new CommandPromptView(root, SIZE);
+		VariablesView variables=new VariablesView(root);
+		ExceptionListener errorBox=new ExceptionListener();
 		Point initialPoint = new Point(SIZE/2, SIZE/2);
 		TurtleView myTurtle = new TurtleView(initialPoint, root);
 		
@@ -33,6 +32,8 @@ public class ViewInitializer {
 		s.setScene(myScene);
 		s.setTitle(TITLE);
 		s.show();
+		errorBox.receiveAndDisplayError(new NullPointerException()); //test case
+
 		return s;
 	}
 

@@ -13,13 +13,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
 public class TurtleView {
-	
-	public static final int SIZE = 300;
 
 	public static final String TURTLE_IMAGE = "turtle.png";
 	public static final int TURTLE_SIZE = 50;
 	public static final int BUFFER = TURTLE_SIZE/2;
-	public static final String BACKGROUND_COLOR = Color.WHITE.toString();
 	
 	private ImageView turtleImage;
 	private Point currentCoords;
@@ -104,21 +101,28 @@ public class TurtleView {
 	}
 	
 	private void wrap(boolean isOutOfBounds){
-		
+		if(isOutOfBounds){
+			updateTurtle(100,100);
+		}
 	}
 	
 	private boolean checkIfOutOfBounds(){
 		boolean isOut = false;
-		
+		int currentX = currentCoords.getX();
+		int currentY = currentCoords.getY();
+		if(currentX < 0 || currentX > 100){
+			isOut = true;
+		}
+		if(currentY < 0 || currentY > 100){
+			isOut = true;
+		}
 		return isOut;
 	}
 	
 	private void initializeTurtlePane(Group root){
 		Pane turtlePane = new BorderPane();
-		BackgroundFill color = new BackgroundFill(Paint.valueOf(Color.WHITE.toString()), null, null);
-		Background myBackground = new Background(color);
-		turtlePane.setBackground(myBackground);
-		root.getChildren().add(turtlePane);
+		
+		
 	}
 	
 }

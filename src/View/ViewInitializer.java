@@ -29,7 +29,7 @@ public class ViewInitializer {
 		commandBox.setCoordinates(0, SIZE-100);
 		
 		//just a test case to move the turtle a bit:
-		myTurtle.updateTurtle(0,0); 
+		myTurtle.updateTurtle(-200,0); 
 		
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);

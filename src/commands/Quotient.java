@@ -11,7 +11,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Quotient implements Command {
+public class Quotient extends LogicCommand {
 
 	
 	/* (non-Javadoc)

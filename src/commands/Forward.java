@@ -17,13 +17,14 @@ public class Forward implements Command {
 	 * @see commands.Command#execute(java.lang.Double[])
 	 */
 	@Override
-	public double execute(List<Double> input) throws IllegalArgumentException {
-		if (input.size() != 1) {
+	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
+		if (arguments.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, arguments.size()));
 		}
-		//turtle.movejjhfughreo
-		return input.get(0);
+		double fwdAmount = arguments.get(0);
+		turtle.setX(turtle.getX() + fwdAmount);
+		return fwdAmount;
 	}
 
 }

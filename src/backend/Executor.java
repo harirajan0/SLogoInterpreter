@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import commands.Command;
+import commands.TurtleInfo;
 
 /**
  * @author harirajan
@@ -15,8 +16,16 @@ import commands.Command;
  */
 public class Executor {
 
-	private CommandFactory commandFactory = new CommandFactory();
-	private ProgramParser syntaxParser = new ProgramParser("Syntax");
+	private CommandFactory commandFactory;
+	private ProgramParser syntaxParser;
+	private TurtleInfo myTurtleInfo;
+	
+	public Executor(TurtleInfo turtleInfo) {
+		myTurtleInfo = turtleInfo;
+		commandFactory = new CommandFactory();
+		syntaxParser = new ProgramParser("Syntax");
+	}
+	
 
 	public List<Double> parseText(List<String> input, String lang) throws IllegalArgumentException {
 		ProgramParser parser = new ProgramParser(lang);
@@ -25,8 +34,8 @@ public class Executor {
 			return new ArrayList<Double>();
 		} else {
 			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
-				Command cmd = commandFactory.getString(parser.getSymbol(input.get(0)));
-				return new ArrayList<>(Arrays.asList(cmd.execute(parseText(input.subList(1, input.size()), lang))));
+				Command cmd = commandFactory.getCommand(parser.getSymbol(input.get(0)));
+				return new ArrayList<>(Arrays.asList(cmd.execute(parseText(input.subList(1, input.size()), lang), myTurtleInfo)));
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
 				// look in variables map return
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
@@ -43,9 +52,9 @@ public class Executor {
 	}
 
 	public static void main(String[] args) {
-		String userInput = "fd fd product 5 fd 30";
+		String userInput = "fd difference 25 sum 10 quotient 750 product 5 fd 30";
 
-		Executor executor = new Executor();
+		Executor executor = new Executor(new TurtleInfo());
 		System.out.println(executor.parseText(new ArrayList<String>(Arrays.asList(userInput.split(" "))), "English"));
 	}
 }

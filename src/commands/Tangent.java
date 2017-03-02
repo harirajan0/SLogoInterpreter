@@ -11,7 +11,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Tangent implements Command {
+public class Tangent extends LogicCommand {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

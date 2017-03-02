@@ -33,7 +33,7 @@ import commands.Tangent;
  */
 public class CommandFactory {
 
-	public Command getString(String commandString) {
+	public Command getCommand(String commandString) {
 		switch (commandString) {
 		case "Forward" : return new Forward();
 //		case "Backward" : return new ;

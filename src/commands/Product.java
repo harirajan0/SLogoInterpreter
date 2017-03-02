@@ -9,7 +9,7 @@ import java.util.List;
  * @author harirajan
  *
  */
-public class Product implements Command {
+public class Product extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

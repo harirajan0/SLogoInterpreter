@@ -12,7 +12,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Equal implements Command {
+public class Equal extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

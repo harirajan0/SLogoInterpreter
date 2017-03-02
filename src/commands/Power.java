@@ -9,7 +9,7 @@ import java.util.List;
  * @author harirajan
  *
  */
-public class Power implements Command {
+public class Power extends LogicCommand{
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

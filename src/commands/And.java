@@ -5,8 +5,7 @@ package commands;
 
 import java.util.List;
 
-import resources.languages.Constants;
-import resources.languages.Resources;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -21,8 +20,7 @@ public class And extends LogicCommand {
 	public double execute(List<Double> arguments) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		if (arguments.size() != 2) {
-			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "And", 2, arguments.size()));
+			throw new IllegalArgumentException();
 		}
 		if (arguments.get(0) == 1.0 && arguments.get(1) == 1.0) {
 			return Constants.TRUE;

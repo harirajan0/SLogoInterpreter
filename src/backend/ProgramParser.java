@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import resources.languages.Resources;
+import languages.LanguageFacotry;
 
 
 /**
@@ -32,8 +32,8 @@ public class ProgramParser {
 
     // adds the given resource file to this language's recognized types
     public void addPatterns (String lang) {
-        for (String key : Resources.getKeys(lang)) {
-            String regex = Resources.getString(lang, key);
+        for (String key : LanguageFacotry.getLang(lang).getKeys()) {
+            String regex = LanguageFacotry.getLang(lang).getString(key);
             mySymbols.add(new SimpleEntry<>(key,
                            // THIS IS THE IMPORTANT LINE
                            Pattern.compile(regex, Pattern.CASE_INSENSITIVE)));

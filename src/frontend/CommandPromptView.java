@@ -1,4 +1,4 @@
-package View;
+package frontend;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

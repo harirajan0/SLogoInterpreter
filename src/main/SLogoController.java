@@ -3,7 +3,9 @@
  */
 package main;
 
+import backend.SLogoModel;
 import backend.TurtleInfo;
+import frontend.SLogoView;
 import javafx.stage.Stage;
 
 /**

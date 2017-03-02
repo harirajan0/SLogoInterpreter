@@ -1,9 +1,10 @@
 /**
  * 
  */
-package View;
+package frontend;
 
 import backend.TurtleInfo;
+import constants.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -15,6 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -29,40 +31,35 @@ public class TurtleWindowView {
 	public static final int BUFFER = TURTLE_SIZE/2;
 
 	private Group myRoot;
-//	private ScrollPane myScrollPane;
 	private Rectangle myRectangle;
 	private ImageView myTurtle;
 	
 	private TurtleInfo currentTurtleInfo;
 	private TurtleInfo nextTurtleInfo;
 	
-	private Color penColor;
+	private Paint penColor;
 
 	public TurtleWindowView() {
-		myRectangle = new Rectangle(400, 400, Color.WHITE);
 		myRoot = new Group();
-//		myScrollPane = new ScrollPane();
-//		myScrollPane.setPrefSize(400, 400);
-//		myScrollPane.setContent(myRectangle);
-		myTurtle = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(TURTLE_IMAGE)));
-		myTurtle.setFitWidth(40);
-		myTurtle.setFitHeight(40);
-//		myScrollPane.setContent(myTurtle);
-		myTurtle.setX(200);
-		myTurtle.setY(200);
+		setUpTurtleWindowView();
 		myRoot.getChildren().addAll(myRectangle, myTurtle);
-		
+	}
+	
+	private void setUpTurtleWindowView() {
+		myRectangle = new Rectangle(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_COLOR);
+		myTurtle = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
+		myTurtle.setFitWidth(Constants.TURTLE_SIZE);
+		myTurtle.setFitHeight(Constants.TURTLE_SIZE);
 		currentTurtleInfo = new TurtleInfo();
-		currentTurtleInfo.setX(200);
-		currentTurtleInfo.setY(200);
-		penColor = Color.BLACK; //TODO: Add some chooser
-
+		currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE / 2);
+		currentTurtleInfo.setY(Constants.TURTLE_WINDOW_SIZE / 2);
+		myTurtle.setX(currentTurtleInfo.getX());
+		myTurtle.setY(currentTurtleInfo.getY());
+		penColor = Constants.DEFAULT_PENCOLOR; //TODO: Add some chooser
 	}
 	
 	public void updateTurtlePosition(TurtleInfo newTurtleInfo) {
 		nextTurtleInfo = newTurtleInfo;
-		System.out.println(currentTurtleInfo);
-		System.out.println(nextTurtleInfo);
 		moveTurtle();
 		myTurtle.setVisible(nextTurtleInfo.isVisible());
 		currentTurtleInfo = new TurtleInfo(nextTurtleInfo);
@@ -75,6 +72,7 @@ public class TurtleWindowView {
 		if (nextTurtleInfo.isPenDown()) {
 			drawLine();
 		}
+		myTurtle.setRotate(nextTurtleInfo.getHeading());
 	}
 	
 	private void drawLine() {

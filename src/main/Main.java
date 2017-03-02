@@ -21,9 +21,6 @@ public class Main extends Application {
 		
 		SLogoController myController = new SLogoController(s);
 		
-		s = myController.getView().getInitializedStage(s);
-		s.show();
-		
 	}
 	
 	public static void main(String[] args) {

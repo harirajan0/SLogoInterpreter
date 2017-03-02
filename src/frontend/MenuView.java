@@ -1,4 +1,4 @@
-package View;
+package frontend;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import languages.Language;
 
 public class MenuView {
 
@@ -21,27 +22,14 @@ public class MenuView {
 	public MenuView(Stage myStage) {
 		myMenuBar = new MenuBar();
 		myMenuBar.prefWidthProperty().bind(myStage.widthProperty()); //make sure menu bar is full screen width
-		Menu helpMenu=new Menu("Help");
-		Menu optionMenu=new Menu("Options");
+		Menu helpMenu = new Menu("Help");
+		Menu optionMenu = new Menu("Options");
 		Menu languageMenu = new Menu("Language");
-		languageMenu.getItems().addAll(  
-				//TODO:
-				//how to check only one at a time? how to have english as default?
-				//there must be a better way to do this with enumerated types.
-	        new RadioMenuItem("English"),
-	        new RadioMenuItem("French"),
-	        new RadioMenuItem("German"),
-	        new RadioMenuItem("Italian"),
-	        new RadioMenuItem("Portuguese"),
-	        new RadioMenuItem("Russian"),
-	        new RadioMenuItem("Spanish"));
-		
+		for (Language lang : Language.values()) languageMenu.getItems().add(new RadioMenuItem(lang.getLang()));
 	    optionMenu.getItems().add(languageMenu);
-	    MenuItem help=new MenuItem("See a list of commands");
+	    MenuItem help = new MenuItem("See a list of commands");
 	    help.setOnAction(actionEvent ->  {
 			try {
-				
-				//TODO: replace by our own formatted page
 				Desktop.getDesktop().browse(new URL("http://www.cs.duke.edu/courses/compsci308/spring17/assign/03_slogo/commands.php").toURI());
 			} catch (IOException | URISyntaxException e) {
 				new ExceptionListener(e);

@@ -5,8 +5,6 @@ package commands;
 
 import java.util.List;
 
-import resources.languages.Resources;
-
 /**
  * @author harirajan
  *
@@ -20,8 +18,7 @@ public class Remainder extends LogicCommand {
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		if (input.size() != 2) {
-			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Remainder", 2, input.size()));
+			throw new IllegalArgumentException();
 		}
 		double result = input.get(0);
 		while ((result - input.get(1)) >= 0.0) result -= input.get(1);

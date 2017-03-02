@@ -1,9 +1,6 @@
-package main;
+package frontend;
 
-import View.CommandPromptView;
-import View.MenuView;
-import View.TurtleWindowView;
-import View.VariablesView;
+import constants.Constants;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,11 +18,9 @@ public class SLogoView {
 	
 	public static final String TITLE = "SLogo";
 	public static final int SIZE = 800;
-	public static final Paint BACKGROUND = Color.WHITE;
 	
 	private BorderPane myBorderPane;
 	private Scene myScene;
-	private Stage myStage;
 	private Group myRoot;
 //	private TurtleView myTurtle;
 	
@@ -33,6 +28,7 @@ public class SLogoView {
 	private VariablesView myVariables;
 	private TurtleWindowView myTurtleWindow;
 	private MenuView myMenuBar;
+	private VBox topVBox;
 	
 	public SLogoView(Stage s) {
 		myRoot = new Group();
@@ -40,34 +36,34 @@ public class SLogoView {
 		myVariables = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
-		VBox topVBox = new VBox();
-		Text header = new Text("SLogo Interpreter");
-		header.setFont(new Font("Courier New", 36));
+		topVBox = new VBox();
+		Text header = new Text(Constants.APPLICATION_TITLE);
+		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
 		myMenuBar = new MenuView(s);
-		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(new Rectangle(200, 200, Color.GRAY)); // to fill space on left 
-		myBorderPane.setRight(myVariables.getNode());
-		myBorderPane.setCenter(myTurtleWindow.getNode());
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
-		myBorderPane.setTop(topVBox);
+		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);
+		displayStage(s);
 		
 //		ExceptionListener errorBox=new ExceptionListener();
 	}
 	
-	public Stage getInitializedStage(Stage s){
-		
-		
-
-		myStage = s;
-		myScene = new Scene(myRoot, SIZE, SIZE, Color.GRAY);
+	private void setUpBorderPane() {
+		myBorderPane.setBottom(myCommandPrompt.getNode());
+		myBorderPane.setLeft(new Rectangle(Constants.WINDOW_SIZE / 4, Constants.WINDOW_SIZE / 4, Constants.BACKGROUND_COLOR)); // to fill space on left 
+		myBorderPane.setRight(myVariables.getNode());
+		myBorderPane.setCenter(myTurtleWindow.getNode());
+		myBorderPane.setTop(topVBox);
+	}
+	
+	private void displayStage(Stage s){
+		myScene = new Scene(myRoot, Constants.WINDOW_SIZE, Constants.WINDOW_SIZE, Constants.BACKGROUND_COLOR);
 		s.setScene(myScene);
 		s.setTitle(TITLE);
 		s.show();
-		
-
-		return s;
 	}
+	
+	
 	
 	//FIX THIS
 	

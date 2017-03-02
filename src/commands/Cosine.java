@@ -5,8 +5,6 @@ package commands;
 
 import java.util.List;
 
-import resources.languages.Resources;
-
 /**
  * @author harirajan
  *
@@ -20,8 +18,7 @@ public class Cosine extends LogicCommand {
 	public double execute(List<Double> arguments) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		if (arguments.size() != 1) {
-			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Cosine", 1, arguments.size()));
+			throw new IllegalArgumentException();
 		}
 		
 		return Math.toDegrees(Math.cos(Math.toRadians(arguments.get(0))));

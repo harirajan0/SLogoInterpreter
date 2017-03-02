@@ -5,8 +5,7 @@ package commands;
 
 import java.util.List;
 
-import resources.languages.Constants;
-import resources.languages.Resources;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -21,8 +20,7 @@ public class Not extends LogicCommand {
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		if (input.size() != 1) {
-			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Not", 1, input.size()));
+			throw new IllegalArgumentException();
 		}
 		if (input.get(0) == 0.0) {
 			return Constants.TRUE;

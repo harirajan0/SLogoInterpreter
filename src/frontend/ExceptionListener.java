@@ -1,4 +1,4 @@
-package View;
+package frontend;
 
 import java.util.Arrays;
 

@@ -3,71 +3,82 @@
  */
 package backend;
 
+import constants.Constants;
+
 /**
  * @author harirajan
  *
  */
-public class TurtleInfo {
-	public static final int BOUNDS = 99999;
-	public static final int NEG_BOUNDS = -99999;
-	
-	private double x;
-	private double y;
-	private double heading;
-	private boolean penDown;
-	private boolean visible;
+public class TurtleInfo {	
+	private double myX;
+	private double myY;
+	private double myHeading;
+	private boolean isPenDown;
+	private boolean isVisible;
 	
 	public TurtleInfo() {
-		x = 0;
-		y = 0;
-		heading = 0;
-		penDown = true;
-		visible = true;
+		myX = 0;
+		myY = 0;
+		myHeading = 0;
+		isPenDown = true;
+		isVisible = true;
 	}
+	
+	public TurtleInfo(TurtleInfo toCopy) {
+		myX = toCopy.getX();
+		myY = toCopy.getY();
+		myHeading = toCopy.getHeading();
+		isPenDown = toCopy.isPenDown();
+		isVisible = toCopy.isVisible();
+	}
+	
 	public double getX() {
-		return x;
+		return myX;
 	}
 	public double getY() {
-		return y;
+		return myY;
 	}
 	public double getHeading() {
-		return heading;
+		return myHeading;
 	}
 	public boolean isPenDown() {
-		return penDown;
+		return isPenDown;
 	}
 	public boolean isVisible() {
-		return visible;
+		return isVisible;
 	}
 	public void setX(double newX) {
-		if (newX >= NEG_BOUNDS && newX <= BOUNDS) {
-			x = newX;
+		if (newX >= 0 && newX <= Constants.TURTLE_WINDOW_SIZE) {
+			myX = newX;
 		} else {
-			x = BOUNDS;
+			myX = newX % Constants.TURTLE_WINDOW_SIZE;
+			if (myX < 0) myX += Constants.TURTLE_WINDOW_SIZE;
 		}
 	}
 	public void setY(double newY) {
-		if (newY >= NEG_BOUNDS && newY <= BOUNDS) {
-			y = newY;
+		if (newY >= 0 && newY <= Constants.TURTLE_WINDOW_SIZE) {
+			System.out.println(newY);
+			myY = newY;
 		} else {
-			y = BOUNDS;
+			myY = newY % Constants.TURTLE_WINDOW_SIZE;
+			if (myY < 0) myY += Constants.TURTLE_WINDOW_SIZE;
 		}
 	}
 	public void setHeading(double newHeading) {
 		if (newHeading >= 0) {
-			heading = newHeading % 360;
+			myHeading = newHeading % 360;
 		} else {
-			heading = 360 + newHeading;
+			myHeading = 360 + newHeading;
 		}
 	}
 	public void setPenDown(boolean upOrDown) {
-		penDown = upOrDown;
+		isPenDown = upOrDown;
 	}
 	public void setVisible(boolean hiddenOrShown) {
-		visible = hiddenOrShown;
+		isVisible = hiddenOrShown;
 	}
 	
 	public String toString() {
-		return String.format("X: %f; Y: %f, Heading: %f; penDown: %b; visible: %b", x, y, heading, penDown, visible);
+		return String.format("X: %f; Y: %f, Heading: %f; penDown: %b; visible: %b", myX, myY, myHeading, isPenDown, isVisible);
 	}
 }

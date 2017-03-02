@@ -3,7 +3,6 @@ package commands;
 import java.util.List;
 
 import backend.TurtleInfo;
-import resources.languages.Resources;
 
 /**
  * 
@@ -15,11 +14,11 @@ public class Back implements Command{
 	@Override
 	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
 		if (arguments.size() != 1) {
-			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Back", 1, arguments.size()));
+			throw new IllegalArgumentException();
 		}
 		double backAmount = arguments.get(0);
-		turtle.setX(turtle.getX() - backAmount);
+		turtle.setX(turtle.getX() - backAmount*Math.sin(Math.toRadians(turtle.getHeading())));
+		turtle.setY(turtle.getY() + backAmount*Math.cos(Math.toRadians(turtle.getHeading())));
 		return backAmount;
 	}
 

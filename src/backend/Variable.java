@@ -1,4 +1,4 @@
-package View;
+package backend;
 
 //class containing a variable and its value
 public class Variable {
@@ -6,7 +6,7 @@ public class Variable {
 	private String value;
 	
 	//constructor
-	Variable(String n, String v){
+	public Variable(String n, String v){
 		name=n;
 		value=v;
 	}

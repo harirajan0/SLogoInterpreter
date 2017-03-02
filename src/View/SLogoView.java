@@ -41,7 +41,5 @@ public class SLogoView extends Application {
 	public void start(Stage s) {
 		s=new ViewInitializer().getInitializedStage(s);
 		s.show();
-
 	}
-
 }

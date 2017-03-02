@@ -22,9 +22,10 @@ public class CommandPromptView{
     private Button execute;
     private String actualCommand="";
     private ComboBox<String> history;
+    private BorderPane pane;
 	
-		public void createUI(Group parent, int screenSize){
-			BorderPane pane=new BorderPane();
+		public CommandPromptView(Group parent){
+			pane=new BorderPane();
 			initializeCommandEntry(pane);
 			initializeHistory(pane);
 			execute=new Button("execute");
@@ -35,9 +36,13 @@ public class CommandPromptView{
 			});
 			//just clearing up the last command displayed
 			pane.setRight(execute);
-			pane.setLayoutY(screenSize-100);
 			parent.getChildren().add(pane);
 			
+		}
+		
+		public void setCoordinates(int x, int y){
+			pane.setLayoutX(x);
+			pane.setLayoutY(y);
 		}
 	
 	private void initializeCommandEntry(BorderPane pane){

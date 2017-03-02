@@ -47,7 +47,7 @@ public class VariablesView{
     
     
     
-	public void createUI(Group parent){
+	public VariablesView(Group parent){
 		root=parent;
 		//create test list of variables
 		currentVars=new ArrayList<Variable>();
@@ -88,8 +88,12 @@ public class VariablesView{
 			variableGrid.add(t, 1, v);
 			variableGrid.add(t2, 2, v);
 		}
-		variableGrid.setLayoutX(500);
 		parent.getChildren().add(variableGrid);
+	}
+	
+	public void setCoordinates(int x, int y){
+		variableGrid.setLayoutX(x);
+		variableGrid.setLayoutY(y);
 	}
     
   }

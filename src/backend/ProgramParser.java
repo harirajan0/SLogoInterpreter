@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import languages.Language;
 import languages.LanguageFacotry;
 
 
@@ -23,17 +24,20 @@ public class ProgramParser {
     // "types" and the regular expression patterns that recognize those types
     // note, it is a list because order matters (some patterns may be more generic)
     private List<Entry<String, Pattern>> mySymbols;
+    
+    private Language myLang;
 
 
-    public ProgramParser (String lang) {
+    public ProgramParser (Language lang) {
         mySymbols = new ArrayList<>();
-        addPatterns(lang);
+        myLang = lang;
+        addPatterns(myLang);
     }
 
     // adds the given resource file to this language's recognized types
-    public void addPatterns (String lang) {
-        for (String key : LanguageFacotry.getLang(lang).getKeys()) {
-            String regex = LanguageFacotry.getLang(lang).getString(key);
+    public void addPatterns (Language lang) {
+        for (String key : lang.getKeys()) {
+            String regex = lang.getString(key);
             mySymbols.add(new SimpleEntry<>(key,
                            // THIS IS THE IMPORTANT LINE
                            Pattern.compile(regex, Pattern.CASE_INSENSITIVE)));
@@ -56,4 +60,6 @@ public class ProgramParser {
         // THIS IS THE KEY LINE
         return regex.matcher(text).matches();
     }
+    
+
 }

@@ -25,10 +25,6 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public class TurtleWindowView {
-	
-	public static final String TURTLE_IMAGE = "turtle.png";
-	public static final int TURTLE_SIZE = 50;
-	public static final int BUFFER = TURTLE_SIZE/2;
 
 	private Group myRoot;
 	private Rectangle myRectangle;
@@ -51,8 +47,8 @@ public class TurtleWindowView {
 		myTurtle.setFitWidth(Constants.TURTLE_SIZE);
 		myTurtle.setFitHeight(Constants.TURTLE_SIZE);
 		currentTurtleInfo = new TurtleInfo();
-		currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE / 2);
-		currentTurtleInfo.setY(Constants.TURTLE_WINDOW_SIZE / 2);
+		currentTurtleInfo.setX((Constants.TURTLE_WINDOW_SIZE / 2) - Constants.BUFFER);
+		currentTurtleInfo.setY((Constants.TURTLE_WINDOW_SIZE / 2) - Constants.BUFFER);
 		myTurtle.setX(currentTurtleInfo.getX());
 		myTurtle.setY(currentTurtleInfo.getY());
 		penColor = Constants.DEFAULT_PENCOLOR; //TODO: Add some chooser
@@ -76,7 +72,8 @@ public class TurtleWindowView {
 	}
 	
 	private void drawLine() {
-		Line line = new Line(currentTurtleInfo.getX() + BUFFER, currentTurtleInfo.getY() + BUFFER, nextTurtleInfo.getX() + BUFFER, nextTurtleInfo.getY() + BUFFER);
+		Line line = new Line(currentTurtleInfo.getX() + Constants.BUFFER, currentTurtleInfo.getY() + Constants.BUFFER, 
+				nextTurtleInfo.getX() + Constants.BUFFER, nextTurtleInfo.getY() + Constants.BUFFER);
 		line.setFill(penColor);
 		myRoot.getChildren().add(line);
 	}

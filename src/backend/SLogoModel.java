@@ -6,6 +6,8 @@ package backend;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import languages.Language;
+
 /**
  * @author harirajan
  *
@@ -14,16 +16,20 @@ public class SLogoModel {
 	
 	TurtleInfo myTurtleInfo;
 	Executor myExecutor;
-	String myLang;
+	Language myLang;
 	
-	public SLogoModel(String lang, TurtleInfo turtleInfo) {
+	public SLogoModel(TurtleInfo turtleInfo) {
 		myTurtleInfo = turtleInfo;
 		myExecutor = new Executor(myTurtleInfo);
+	}
+	
+	public void setLanguage(Language lang) {
 		myLang = lang;
+		myExecutor.setLanguage(lang);
 	}
 	
 	public void parse(String input) {
-		myExecutor.parseText(new ArrayList<String>(Arrays.asList(input.split(" "))), myLang);
+		myExecutor.parseText(new ArrayList<String>(Arrays.asList(input.split(" "))));
 	}
 	
 	public TurtleInfo getTurtleInfo() {

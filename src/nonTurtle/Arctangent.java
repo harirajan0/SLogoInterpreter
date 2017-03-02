@@ -1,33 +1,31 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
-import resources.languages.Constants;
+import commands.Command;
 import resources.languages.Resources;
 
 /**
  * @author harirajan
  *
  */
-public class Equal implements Command {
+public class Arctangent extends NonTurtleCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
 	public double execute(List<Double> input) throws IllegalArgumentException {
-		if (input.size() != 2) {
+		// TODO Auto-generated method stub
+		if (input.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Equal", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Arctangent", 1, input.size()));
 		}
-		if (input.get(0).equals(input.get(1))) {
-			return Constants.TRUE;
-		} else {
-			return Constants.FALSE;
-		}
+		
+		return Math.toDegrees(Math.atan(Math.toRadians(input.get(0))));
 	}
 
 }

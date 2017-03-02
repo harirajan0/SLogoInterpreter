@@ -1,7 +1,7 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Or implements Command {
+public class And extends NonTurtleCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
@@ -22,9 +22,9 @@ public class Or implements Command {
 		// TODO Auto-generated method stub
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Or", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "And", 2, input.size()));
 		}
-		if (input.get(0) == 1.0 || input.get(1) == 1.0) {
+		if (input.get(0) == 1.0 && input.get(1) == 1.0) {
 			return Constants.TRUE;
 		} else {
 			return Constants.FALSE;
@@ -32,3 +32,5 @@ public class Or implements Command {
 	}
 
 }
+
+

@@ -1,15 +1,17 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
+
+import commands.Command;
 
 /**
  * @author harirajan
  *
  */
-public class Power implements Command {
+public class Power extends NonTurtleCommand {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

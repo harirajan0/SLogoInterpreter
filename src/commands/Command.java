@@ -3,14 +3,10 @@
  */
 package commands;
 
-import java.util.List;
-
 /**
- * @author harirajan
+ * @author Alex Boss
  *
  */
-public interface Command {
-	
-	public double execute(List<Double> input) throws IllegalArgumentException;
+public abstract class Command {
 
 }

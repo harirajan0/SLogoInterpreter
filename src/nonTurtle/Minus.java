@@ -1,17 +1,18 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
+import commands.Command;
 import resources.languages.Resources;
 
 /**
  * @author harirajan
  *
  */
-public class Quotient implements Command {
+public class Minus extends NonTurtleCommand {
 
 	
 	/* (non-Javadoc)
@@ -20,11 +21,11 @@ public class Quotient implements Command {
 	@Override
 	public double execute(List<Double> input) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (input.size() != 2) {
+		if (input.size() != 1) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Quotient", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "Minus", 1, input.size()));
 		}
 		
-		return input.get(0) / input.get(1);
+		return 0 - input.get(0);
 	}
 }

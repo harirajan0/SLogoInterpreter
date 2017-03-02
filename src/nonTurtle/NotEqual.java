@@ -1,17 +1,20 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
+import commands.Command;
+import resources.languages.Constants;
 import resources.languages.Resources;
 
 /**
  * @author harirajan
  *
  */
-public class Difference implements Command {
+public class NotEqual extends NonTurtleCommand {
+
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
@@ -20,9 +23,13 @@ public class Difference implements Command {
 		// TODO Auto-generated method stub
 		if (input.size() != 2) {
 			throw new IllegalArgumentException(String.format(
-					Resources.getString("English", "IllegalArgumentException"), "Difference", 2, input.size()));
+					Resources.getString("English", "IllegalArgumentException"), "NotEqual", 2, input.size()));
 		}
-		
-		return input.get(0) - input.get(1);
+		if (!input.get(0).equals(input.get(1))) {
+			return Constants.TRUE;
+		} else {
+			return Constants.FALSE;
+		}
 	}
+
 }

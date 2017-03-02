@@ -16,16 +16,16 @@ import commands.Command;
 public class Executor {
 
 	private CommandFactory commandFactory = new CommandFactory();
-	private ProgramParser syntaxParser = new ProgramParser("Syntax");
+	private RegexParser syntaxParser = new RegexParser("Syntax");
 
 	public List<Double> parseText(List<String> input, String lang) throws IllegalArgumentException {
-		ProgramParser parser = new ProgramParser(lang);
+		RegexParser parser = new RegexParser(lang);
 
 		if (input.size() == 0) {
 			return new ArrayList<Double>();
 		} else {
 			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
-				Command cmd = commandFactory.getString(parser.getSymbol(input.get(0)));
+				Command cmd = commandFactory.getCommand(parser.getSymbol(input.get(0)));
 				return new ArrayList<>(Arrays.asList(cmd.execute(parseText(input.subList(1, input.size()), lang))));
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
 				// look in variables map return

@@ -1,18 +1,19 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
+import commands.Command;
 import resources.languages.Resources;
 
 /**
  * @author harirajan
  *
  */
-public class Tangent implements Command {
-	
+public class Sine extends NonTurtleCommand {
+
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
@@ -24,6 +25,6 @@ public class Tangent implements Command {
 					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, input.size()));
 		}
 		
-		return Math.toDegrees(Math.tan(Math.toRadians(input.get(0))));
+		return Math.toDegrees(Math.sin(Math.toRadians(input.get(0))));
 	}
 }

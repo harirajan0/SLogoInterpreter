@@ -16,16 +16,17 @@ import resources.languages.Resources;
 
 /**
  * @author harirajan
+ * @author Alex Boss
  *
  */
 
-public class ProgramParser {
+public class RegexParser {
     // "types" and the regular expression patterns that recognize those types
     // note, it is a list because order matters (some patterns may be more generic)
     private List<Entry<String, Pattern>> mySymbols;
 
 
-    public ProgramParser (String lang) {
+    public RegexParser (String lang) {
         mySymbols = new ArrayList<>();
         addPatterns(lang);
     }

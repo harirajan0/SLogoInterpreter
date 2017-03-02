@@ -1,10 +1,11 @@
 /**
  * 
  */
-package commands;
+package nonTurtle;
 
 import java.util.List;
 
+import commands.Command;
 import resources.languages.Constants;
 import resources.languages.Resources;
 
@@ -12,7 +13,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Less implements Command {
+public class Less extends NonTurtleCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

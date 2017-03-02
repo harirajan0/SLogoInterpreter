@@ -3,28 +3,28 @@
  */
 package backend;
 
-import commands.And;
-import commands.Arctangent;
 import commands.Command;
-import commands.Cosine;
-import commands.Difference;
-import commands.Equal;
-import commands.Forward;
-import commands.Greater;
-import commands.Less;
-import commands.Log;
-import commands.Minus;
-import commands.Not;
-import commands.NotEqual;
-import commands.Or;
-import commands.Power;
-import commands.Product;
-import commands.Quotient;
-import commands.Random;
-import commands.Remainder;
-import commands.Sine;
-import commands.Sum;
-import commands.Tangent;
+import nonTurtle.And;
+import nonTurtle.Arctangent;
+import nonTurtle.Cosine;
+import nonTurtle.Difference;
+import nonTurtle.Equal;
+import nonTurtle.Greater;
+import nonTurtle.Less;
+import nonTurtle.Log;
+import nonTurtle.Minus;
+import nonTurtle.Not;
+import nonTurtle.NotEqual;
+import nonTurtle.Or;
+import nonTurtle.Power;
+import nonTurtle.Product;
+import nonTurtle.Quotient;
+import nonTurtle.Random;
+import nonTurtle.Remainder;
+import nonTurtle.Sine;
+import nonTurtle.Sum;
+import nonTurtle.Tangent;
+import turtle.Forward;
 
 
 /**
@@ -33,9 +33,9 @@ import commands.Tangent;
  */
 public class CommandFactory {
 
-	public Command getString(String commandString) {
+	public Command getCommand(String commandString) {
 		switch (commandString) {
-		case "Forward" : return new Forward();
+//		case "Forward" : return new Forward();
 //		case "Backward" : return new ;
 //		case "Left" : return new ;
 //		case "Right" : return new ;

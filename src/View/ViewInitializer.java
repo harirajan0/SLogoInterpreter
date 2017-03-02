@@ -1,5 +1,6 @@
 package View;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,20 +17,22 @@ public class ViewInitializer {
 	private Stage myStage;
 	private Group root;
 	
+	
 	public Stage getInitializedStage(Stage s){
 		root = new Group();
 		CommandPromptView commandBox=new CommandPromptView(root);
 		VariablesView variables=new VariablesView(root);
-		//ExceptionListener errorBox=new ExceptionListener();
-		//MenuView menuBar=new MenuView(root, s);
-		Point initialPoint = new Point(SIZE/2, SIZE/2);
+		ExceptionListener errorBox=new ExceptionListener();
+		MenuView menuBar=new MenuView(root, s);
+		Point2D initialPoint = new Point2D(SIZE/2, SIZE/2);
 		TurtleView myTurtle = new TurtleView(initialPoint, root);
 		
 		variables.setCoordinates(SIZE-300, 100);
 		commandBox.setCoordinates(0, SIZE-100);
 		
+		
 		//just a test case to move the turtle a bit:
-		myTurtle.updateTurtle(-200,0); 
+		myTurtle.updateTurtle(30, 30); 
 		
 		myStage = s;
 		myScene = new Scene(root, SIZE, SIZE, Color.PALEGREEN);

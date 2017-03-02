@@ -1,23 +1,26 @@
 /**
  * 
  */
-package backend;
+package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import backend.Executor;
+import backend.TurtleInfo;
 
 /**
  * @author harirajan
  *
  */
-public class SlogoModel {
+public class SLogoModel {
 	
 	TurtleInfo myTurtleInfo;
 	Executor myExecutor;
 	String myLang;
 	
-	public SlogoModel(String lang) {
-		myTurtleInfo = new TurtleInfo();
+	public SLogoModel(String lang, TurtleInfo turtleInfo) {
+		myTurtleInfo = turtleInfo;
 		myExecutor = new Executor(myTurtleInfo);
 		myLang = lang;
 	}
@@ -34,14 +37,14 @@ public class SlogoModel {
 		myTurtleInfo = newTurtleInfo;
 	}
 
-	public static void main(String[] args) {
-		String userInput = "towards 0 1";
-		SlogoModel test = new SlogoModel("English");
-		test.parse(userInput);
-		System.out.println(test.getTurtleInfo().toString());
-//		userInput = "fd 50";
+//	public static void main(String[] args) {
+//		String userInput = "towards 0 1";
+//		SlogoModel test = new SlogoModel("English");
 //		test.parse(userInput);
 //		System.out.println(test.getTurtleInfo().toString());
-	}
+////		userInput = "fd 50";
+////		test.parse(userInput);
+////		System.out.println(test.getTurtleInfo().toString());
+//	}
 	
 }

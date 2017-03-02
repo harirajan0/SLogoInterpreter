@@ -24,6 +24,15 @@ public class TurtleInfo {
 		penDown = true;
 		visible = true;
 	}
+	
+	public TurtleInfo(TurtleInfo toCopy) {
+		x = toCopy.getX();
+		y = toCopy.getY();
+		heading = toCopy.getHeading();
+		penDown = toCopy.isPenDown();
+		visible = toCopy.isVisible();
+	}
+	
 	public double getX() {
 		return x;
 	}

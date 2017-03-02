@@ -87,6 +87,10 @@ public class SLogoView {
 		return myCommandPrompt.getUserInput();
 	}
 	
+	public void addCommandToHistory(String cmd) {
+		myCommandPrompt.addCommandToHistory(cmd);
+	} 
+	
 	public void clearCommandPrompt() {
 		myCommandPrompt.setCommandPromptText("");
 	}

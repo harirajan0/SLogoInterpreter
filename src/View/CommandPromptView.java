@@ -35,6 +35,8 @@ public class CommandPromptView {
 	private VBox myVBox;
 	private TextArea myCommandEntry;
 	
+	ObservableList<String> listOfCommands;
+	
 
 	public CommandPromptView() {
 		myBorderPane = new BorderPane();
@@ -61,7 +63,7 @@ public class CommandPromptView {
 	}
 	
 	private void setUpCommandHistory() {
-		ObservableList<String> listOfCommands = FXCollections.observableArrayList();
+		listOfCommands = FXCollections.observableArrayList();
 		myCommandHistory = new ComboBox<String>(listOfCommands);
 		myCommandHistory.setPromptText("Previous Commands");
 		myCommandHistory.setOnAction((event) -> {
@@ -69,11 +71,8 @@ public class CommandPromptView {
 		});
 	}
 	
-
-	public void runExecute() {
-		actualCommand = myCommandEntry.getText();
-		myCommandHistory.getItems().add(actualCommand);
-		myCommandEntry.setPromptText("enter command input here");
+	public void addCommandToHistory(String cmd) {
+		listOfCommands.add(cmd);
 	}
 
 	public String getUserInput() {

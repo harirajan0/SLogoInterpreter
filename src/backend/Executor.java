@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import commands.Command;
-import commands.TurtleInfo;
 
 /**
  * @author harirajan
@@ -49,12 +48,5 @@ public class Executor {
 		}
 		return null;
 
-	}
-
-	public static void main(String[] args) {
-		String userInput = "fd difference 25 sum 10 quotient 750 product 5 fd 30";
-
-		Executor executor = new Executor(new TurtleInfo());
-		System.out.println(executor.parseText(new ArrayList<String>(Arrays.asList(userInput.split(" "))), "English"));
 	}
 }

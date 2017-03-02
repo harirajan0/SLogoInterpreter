@@ -5,6 +5,7 @@ package commands;
 
 import java.util.List;
 
+import backend.TurtleInfo;
 import resources.languages.Resources;
 
 /**
@@ -23,7 +24,8 @@ public class Forward implements Command {
 					Resources.getString("English", "IllegalArgumentException"), "Forward", 1, arguments.size()));
 		}
 		double fwdAmount = arguments.get(0);
-		turtle.setX(turtle.getX() + fwdAmount);
+		turtle.setX(turtle.getX() + fwdAmount*Math.sin(Math.toRadians(turtle.getHeading())));
+		turtle.setY(turtle.getY() + fwdAmount*Math.cos(Math.toRadians(turtle.getHeading())));
 		return fwdAmount;
 	}
 

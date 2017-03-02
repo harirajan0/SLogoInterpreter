@@ -2,6 +2,7 @@ package commands;
 
 import java.util.List;
 
+import backend.TurtleInfo;
 import resources.languages.Resources;
 
 public class Towards implements Command{
@@ -14,6 +15,11 @@ public class Towards implements Command{
 		}
 		double x = arguments.get(0);
 		double y = arguments.get(1);
+		if (y >= turtle.getY()) {
+			turtle.setHeading(Math.toDegrees(Math.atan((x - turtle.getX()) / (y - turtle.getY()))));
+		} else {
+			turtle.setHeading(Math.toDegrees(Math.atan((x - turtle.getX()) / (y - turtle.getY()))) + 180);
+		}
 		return 0.0;
 		
 		/*

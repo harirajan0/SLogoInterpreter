@@ -1,15 +1,15 @@
 /**
  * 
  */
-package commands;
+package backend;
 
 /**
  * @author harirajan
  *
  */
 public class TurtleInfo {
-	public static final int BOUNDS = 100;
-	public static final int NEG_BOUNDS = 0;
+	public static final int BOUNDS = 99999;
+	public static final int NEG_BOUNDS = -99999;
 	
 	private double x;
 	private double y;
@@ -54,10 +54,10 @@ public class TurtleInfo {
 		}
 	}
 	public void setHeading(double newHeading) {
-		if (newHeading >= 0 && newHeading <= 360) {
-			heading = newHeading;
-		} else {
+		if (newHeading >= 0) {
 			heading = newHeading % 360;
+		} else {
+			heading = 360 + newHeading;
 		}
 	}
 	public void setPenDown(boolean upOrDown) {
@@ -65,5 +65,9 @@ public class TurtleInfo {
 	}
 	public void setVisible(boolean hiddenOrShown) {
 		visible = hiddenOrShown;
+	}
+	
+	public String toString() {
+		return String.format("X: %f; Y: %f, Heading: %f; penDown: %b; visible: %b", x, y, heading, penDown, visible);
 	}
 }

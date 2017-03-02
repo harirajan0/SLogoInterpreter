@@ -2,6 +2,7 @@ package commands;
 
 import java.util.List;
 
+import backend.TurtleInfo;
 import resources.languages.Resources;
 
 public class Left implements Command {

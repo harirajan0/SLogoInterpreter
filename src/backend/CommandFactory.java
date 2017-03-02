@@ -5,26 +5,37 @@ package backend;
 
 import commands.And;
 import commands.Arctangent;
+import commands.Back;
 import commands.Command;
 import commands.Cosine;
 import commands.Difference;
 import commands.Equal;
 import commands.Forward;
+import commands.Goto;
 import commands.Greater;
+import commands.HideTurtle;
+import commands.Home;
+import commands.Left;
 import commands.Less;
 import commands.Log;
 import commands.Minus;
 import commands.Not;
 import commands.NotEqual;
 import commands.Or;
+import commands.PenDown;
+import commands.PenUp;
 import commands.Power;
 import commands.Product;
 import commands.Quotient;
 import commands.Random;
 import commands.Remainder;
+import commands.Right;
+import commands.SetHeading;
+import commands.ShowTurtle;
 import commands.Sine;
 import commands.Sum;
 import commands.Tangent;
+import commands.Towards;
 
 
 /**
@@ -36,18 +47,17 @@ public class CommandFactory {
 	public Command getCommand(String commandString) {
 		switch (commandString) {
 		case "Forward" : return new Forward();
-//		case "Backward" : return new ;
-//		case "Left" : return new ;
-//		case "Right" : return new ;
-//		case "SetHeading" : return new ;
-//		case "SetTowards" : return new ;
-//		case "SetPosition" : return new ;
-//		case "PenDown" : return new ;
-//		case "PenUp" : return new ;
-//		case "ShowTurtle" : return new ;
-//		case "HideTurtle" : return new ;
-//		case "Forwards" : return new ;
-//		case "Home" : return new ;
+		case "Backward" : return new Back();
+		case "Left" : return new Left();
+		case "Right" : return new Right();
+		case "SetHeading" : return new SetHeading();
+		case "SetTowards" : return new Towards();
+		case "SetPosition" : return new Goto();
+		case "PenDown" : return new PenDown();
+		case "PenUp" : return new PenUp();
+		case "ShowTurtle" : return new ShowTurtle();
+		case "HideTurtle" : return new HideTurtle();
+		case "Home" : return new Home();
 //		case "ClearScreen" : return new ;
 //		case "XCoordinate" : return new ;
 //		case "YCoordinate" : return new ;

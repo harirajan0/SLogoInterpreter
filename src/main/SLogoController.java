@@ -26,11 +26,10 @@ public class SLogoController {
 		mySlogoModel = new SLogoModel(new TurtleInfo(mySlogoView.getTurtleWindow().getTurtleInfo()));
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput());
-			mySlogoView.addCommandToHistory(mySlogoView.getUserInput().trim());
+			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
+			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
-			System.out.println("BUTTON CLICKED");
 		});
 	}
 	

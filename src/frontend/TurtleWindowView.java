@@ -55,7 +55,9 @@ public class TurtleWindowView {
 	}
 	
 	public void updateTurtlePosition(TurtleInfo newTurtleInfo) {
-		nextTurtleInfo = newTurtleInfo;
+		nextTurtleInfo = new TurtleInfo(newTurtleInfo);
+		System.out.println(currentTurtleInfo);
+		System.out.println(newTurtleInfo);
 		moveTurtle();
 		myTurtle.setVisible(nextTurtleInfo.isVisible());
 		currentTurtleInfo = new TurtleInfo(nextTurtleInfo);

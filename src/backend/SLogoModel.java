@@ -40,14 +40,5 @@ public class SLogoModel {
 		myTurtleInfo = newTurtleInfo;
 	}
 
-//	public static void main(String[] args) {
-//		String userInput = "towards 0 1";
-//		SlogoModel test = new SlogoModel("English");
-//		test.parse(userInput);
-//		System.out.println(test.getTurtleInfo().toString());
-////		userInput = "fd 50";
-////		test.parse(userInput);
-////		System.out.println(test.getTurtleInfo().toString());
-//	}
 	
 }

@@ -12,7 +12,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Or implements Command {
+public class Or extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

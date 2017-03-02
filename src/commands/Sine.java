@@ -11,7 +11,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Sine implements Command {
+public class Sine extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

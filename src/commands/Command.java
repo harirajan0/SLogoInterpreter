@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface Command {
 	
-	public double execute(List<Double> input) throws IllegalArgumentException;
-
+	public double execute(List<Double> arguments, TurtleInfo turtleInfo) throws IllegalArgumentException;
+	
 }

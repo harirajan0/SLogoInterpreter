@@ -12,7 +12,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Less implements Command {
+public class Less extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

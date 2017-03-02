@@ -11,7 +11,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Sum implements Command {
+public class Sum extends LogicCommand {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

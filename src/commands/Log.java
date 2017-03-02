@@ -9,7 +9,7 @@ import java.util.List;
  * @author harirajan
  *
  */
-public class Log implements Command {
+public class Log extends LogicCommand {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

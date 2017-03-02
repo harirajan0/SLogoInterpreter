@@ -11,7 +11,7 @@ import resources.languages.Resources;
  * @author harirajan
  *
  */
-public class Minus implements Command {
+public class Minus extends LogicCommand {
 
 	
 	/* (non-Javadoc)

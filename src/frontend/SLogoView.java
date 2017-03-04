@@ -90,5 +90,9 @@ public class SLogoView {
 	public void clearCommandPrompt() {
 		myCommandPrompt.setCommandPromptText("");
 	}
+	
+	public MenuView getMenuOptions(){
+		return myMenuBar;
+	}
 
 }

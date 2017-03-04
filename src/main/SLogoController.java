@@ -18,11 +18,11 @@ public class SLogoController {
 	private SLogoView mySlogoView;
 	private SLogoModel mySlogoModel;
 	
-	private Language myLang;
+	private static Language myLang;
 	
 	public SLogoController(Stage s) {
-		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
+		myLang = Language.ENGLISH; //DEFAULT
 		mySlogoModel = new SLogoModel(new TurtleInfo(mySlogoView.getTurtleWindow().getTurtleInfo()));
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
@@ -30,6 +30,9 @@ public class SLogoController {
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
+			
+			System.out.println("language is" + myLang);
+			
 		});
 	}
 	
@@ -39,6 +42,12 @@ public class SLogoController {
 	
 	public SLogoModel getModel() {
 		return mySlogoModel;
+	}
+	
+	
+	public static void changeLanguage(Language newLanguage){
+		myLang=newLanguage;
+		System.out.println("languageChanged");
 	}
 	
 

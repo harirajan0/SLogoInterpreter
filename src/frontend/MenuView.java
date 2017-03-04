@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Menu;
@@ -15,10 +17,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import languages.Language;
+import main.SLogoController;
 
 public class MenuView {
 
 	MenuBar myMenuBar;
+	Language myLanguage;
+
 	
 	public MenuView(Stage myStage) {
 		myMenuBar = new MenuBar();
@@ -31,6 +36,11 @@ public class MenuView {
 			RadioMenuItem languageItem=new RadioMenuItem(lang.getLang());
 			languageMenu.getItems().add(languageItem);
 			languageItem.setToggleGroup(languageSelection);
+			languageItem.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override public void handle(ActionEvent e) {
+			    	SLogoController.changeLanguage(lang);
+			    }
+			});
 		}
 	    optionMenu.getItems().add(languageMenu);
 	    MenuItem help = new MenuItem("See a list of commands");
@@ -50,5 +60,9 @@ public class MenuView {
 
 	public MenuBar getNode() {
 		return myMenuBar;
+	}
+	
+	public Language getLanguage(){
+		return myLanguage;
 	}
 }

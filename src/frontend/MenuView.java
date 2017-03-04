@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import javafx.scene.Group;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -25,7 +26,12 @@ public class MenuView {
 		Menu helpMenu = new Menu("Help");
 		Menu optionMenu = new Menu("Options");
 		Menu languageMenu = new Menu("Language");
-		for (Language lang : Language.values()) languageMenu.getItems().add(new RadioMenuItem(lang.getLang()));
+		ToggleGroup languageSelection = new ToggleGroup();
+		for (Language lang : Language.values()){
+			RadioMenuItem languageItem=new RadioMenuItem(lang.getLang());
+			languageMenu.getItems().add(languageItem);
+			languageItem.setToggleGroup(languageSelection);
+		}
 	    optionMenu.getItems().add(languageMenu);
 	    MenuItem help = new MenuItem("See a list of commands");
 	    help.setOnAction(actionEvent ->  {
@@ -37,7 +43,8 @@ public class MenuView {
 		});
 	    helpMenu.getItems().add(help);
 	
-	
+	    optionMenu.getItems().add(new Menu("Display Options"));
+	    
 		myMenuBar.getMenus().addAll(helpMenu, optionMenu);
 	}
 

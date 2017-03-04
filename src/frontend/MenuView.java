@@ -35,6 +35,7 @@ public class MenuView {
 		for (Language lang : Language.values()){
 			RadioMenuItem languageItem=new RadioMenuItem(lang.getLang());
 			languageMenu.getItems().add(languageItem);
+			languageItem.setSelected(true);
 			languageItem.setToggleGroup(languageSelection);
 			languageItem.setOnAction(new EventHandler<ActionEvent>() {
 			    @Override public void handle(ActionEvent e) {
@@ -42,6 +43,7 @@ public class MenuView {
 			    }
 			});
 		}
+		
 	    optionMenu.getItems().add(languageMenu);
 	    MenuItem help = new MenuItem("See a list of commands");
 	    help.setOnAction(actionEvent ->  {

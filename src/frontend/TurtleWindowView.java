@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * @author harirajan
+ * @author Daniel
  *
  */
 public class TurtleWindowView {
@@ -34,7 +35,8 @@ public class TurtleWindowView {
 	private TurtleInfo currentTurtleInfo;
 	private TurtleInfo nextTurtleInfo;
 	
-	private Paint penColor;
+	//private Paint penColor;
+	private Pen myPen;
 
 	public TurtleWindowView() {
 		myRoot = new Group();
@@ -52,7 +54,8 @@ public class TurtleWindowView {
 		currentTurtleInfo.setY((Constants.TURTLE_WINDOW_SIZE / 2) - Constants.BUFFER);
 		myTurtle.setX(currentTurtleInfo.getX());
 		myTurtle.setY(currentTurtleInfo.getY());
-		penColor = Constants.DEFAULT_PENCOLOR; //TODO: Add some chooser
+		myPen=new Pen();
+		//penColor = Constants.DEFAULT_PENCOLOR; //TODO: Add some chooser
 	}
 	
 	public void updateTurtlePosition(TurtleInfo newTurtleInfo) {
@@ -69,21 +72,22 @@ public class TurtleWindowView {
 		myTurtle.setX(nextTurtleInfo.getX());
 		myTurtle.setY(nextTurtleInfo.getY());
 		if (nextTurtleInfo.isPenDown()) {
-			drawLine();
+			myRoot.getChildren().add(myPen.drawLine(currentTurtleInfo.getX(), currentTurtleInfo.getY(), nextTurtleInfo.getX(), nextTurtleInfo.getY()));
+			//drawLine();
 		}
 		myTurtle.setRotate(nextTurtleInfo.getHeading());
 	}
 	
-	private void drawLine() {
-		Line line = new Line(currentTurtleInfo.getX() + Constants.BUFFER, currentTurtleInfo.getY() + Constants.BUFFER, 
-				nextTurtleInfo.getX() + Constants.BUFFER, nextTurtleInfo.getY() + Constants.BUFFER);
-		line.setFill(penColor);
-		myRoot.getChildren().add(line);
-	}
-	
-	private void updatePenColor(Color newColor){
-		penColor = newColor;
-	}
+//	private void drawLine() {
+//		Line line = new Line(currentTurtleInfo.getX() + Constants.BUFFER, currentTurtleInfo.getY() + Constants.BUFFER, 
+//				nextTurtleInfo.getX() + Constants.BUFFER, nextTurtleInfo.getY() + Constants.BUFFER);
+//		line.setFill(penColor);
+//		myRoot.getChildren().add(line);
+//	}
+//	
+//	private void updatePenColor(Color newColor){
+//		penColor = newColor;
+//	}
 	
 	public Group getNode() {
 		return myRoot;

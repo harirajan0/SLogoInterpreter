@@ -11,6 +11,7 @@ import languages.Language;
 
 /**
  * @author harirajan
+ * @author Daniel
  *
  */
 public class SLogoController {
@@ -29,10 +30,7 @@ public class SLogoController {
 			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
-			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
-			
-			System.out.println("language is" + myLang);
-			
+			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());			
 		});
 	}
 	
@@ -47,7 +45,7 @@ public class SLogoController {
 	
 	public static void changeLanguage(Language newLanguage){
 		myLang=newLanguage;
-		System.out.println("languageChanged");
+		//System.out.println("languageChanged");
 	}
 	
 

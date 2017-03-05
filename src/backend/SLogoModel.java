@@ -38,6 +38,7 @@ public class SLogoModel {
 	
 	public void setTurtleInfo(TurtleInfo newTurtleInfo) {
 		myTurtleInfo = newTurtleInfo;
+		myExecutor.setTurtleInfo(myTurtleInfo);
 	}
 
 	

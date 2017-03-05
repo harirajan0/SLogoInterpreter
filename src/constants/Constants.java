@@ -22,7 +22,7 @@ public class Constants {
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
 	
 	public static final String TURTLE_IMAGE = "turtle.png";
-	public static final int TURTLE_SIZE = 35;
+	public static final int TURTLE_SIZE = 20;
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
 	

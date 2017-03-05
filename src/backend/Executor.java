@@ -56,4 +56,8 @@ public class Executor {
 	public void setLanguage(Language lang) {
 		myLang = lang;
 	}
+	
+	public void setTurtleInfo(TurtleInfo turtleInfo) {
+		myTurtleInfo = turtleInfo;
+	}
 }

@@ -17,11 +17,11 @@ public class Forward implements Command {
 	 * @see commands.Command#execute(java.lang.Double[])
 	 */
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 1) {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
+		if ( arg2 != null || arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		double fwdAmount = arguments.get(0);
+		double fwdAmount = arg1.evaluate();
 		turtle.setX(turtle.getX() + fwdAmount*Math.sin(Math.toRadians(turtle.getHeading())));
 		turtle.setY(turtle.getY() - fwdAmount*Math.cos(Math.toRadians(turtle.getHeading())));
 		return fwdAmount;

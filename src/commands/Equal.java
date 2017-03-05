@@ -17,11 +17,11 @@ public class Equal extends LogicCommand {
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(List<Double> input) throws IllegalArgumentException {
-		if (input.size() != 2) {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
+		if ( arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		if (input.get(0).equals(input.get(1))) {
+		if (arg1.evaluate() == arg2.evaluate()) {
 			return Constants.TRUE;
 		} else {
 			return Constants.FALSE;

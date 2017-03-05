@@ -17,12 +17,12 @@ public class And extends LogicCommand {
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(List<Double> arguments) throws IllegalArgumentException {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (arguments.size() != 2) {
+		if ( arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		if (arguments.get(0) == 1.0 && arguments.get(1) == 1.0) {
+		if ( arg1.evaluate() == 1.0 && arg2.evaluate() == 1.0) {
 			return Constants.TRUE;
 		} else {
 			return Constants.FALSE;

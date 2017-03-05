@@ -2,24 +2,24 @@ package backend;
 
 //class containing a variable and its value
 public class Variable {
-	private String name;
-	private String value;
+	private String myName;
+	private double myValue;
 	
 	//constructor
-	public Variable(String n, String v){
-		name=n;
-		value=v;
+	public Variable(String name, double value){
+		myName = name;
+		myValue = value;
 	}
 	
 	public String getName(){
-		return name;
+		return myName;
 	}
 	
-	public String getValue(){
-		return value;
+	public double getValue(){
+		return myValue;
 	}
 	
-	public void updateValue(String newVal){
-		value=newVal;
+	public void updateValue(double newVal){
+		myValue = newVal;
 	}
 }

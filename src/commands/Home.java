@@ -7,7 +7,7 @@ import backend.TurtleInfo;
 public class Home implements Command {
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
 		if (arguments.size() != 2) {
 			throw new IllegalArgumentException();
 		}

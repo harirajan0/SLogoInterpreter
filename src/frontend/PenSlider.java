@@ -1,12 +1,15 @@
 package frontend;
 
 import constants.Constants;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,7 +24,7 @@ public class PenSlider extends Stage{
     mySlider.setMin(0);
     
     // The maximum value.
-    mySlider.setMax(100);
+    mySlider.setMax(40);
      
     // Current value
     mySlider.setValue(Pen.getWidth());
@@ -30,19 +33,19 @@ public class PenSlider extends Stage{
     mySlider.setShowTickMarks(true);
      
     mySlider.setBlockIncrement(2);
-    
-    borderPaneOptionPane.setCenter(mySlider); // For example
-
-    Button closeButton = new Button("Close");
-    closeButton.setOnAction(event -> {
-        this.hide();
+    mySlider.valueProperty().addListener(new ChangeListener<Number>() {
+        public void changed(ObservableValue<? extends Number> ov,
+            Number old_val, Number new_val) {
+            Pen.changeWidth(new_val.doubleValue());
+        }
     });
-
+    borderPaneOptionPane.setTop(new Label("Select pen width:"));
+    borderPaneOptionPane.setCenter(mySlider);
     borderPaneOptionPane.setPadding(new Insets(5));
 
     Scene s = new Scene(borderPaneOptionPane);
     this.setScene(s);
-	//Label myLabel = new Label("Select pen width:");
+    this.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
     
     // The minimum value.
 

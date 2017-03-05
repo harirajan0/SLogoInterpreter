@@ -9,8 +9,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
+/**
+ * @author Daniel
+ *
+ */
+
 public class Pen {
-	private Paint penColor;
+	private static Paint penColor;
 	private boolean isDown;
 	private static double penWidth;
 	private double screenSize=Constants.TURTLE_WINDOW_SIZE;
@@ -41,6 +46,10 @@ public class Pen {
 	
 	public static void changeWidth(double newWidth){
 		penWidth=newWidth;
+	}
+	
+	public static void setColor(Color newColor){
+		penColor=newColor;
 	}
 
 }

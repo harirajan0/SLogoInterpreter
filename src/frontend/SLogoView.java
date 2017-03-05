@@ -15,6 +15,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * @author Daniel
+ *
+ */
+
 public class SLogoView {
 	
 	public static final String TITLE = "SLogo";

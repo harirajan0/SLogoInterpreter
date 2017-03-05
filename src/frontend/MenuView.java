@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import PenObjects.PenColorChooser;
+import PenObjects.PenSlider;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -26,14 +29,21 @@ import javafx.stage.StageStyle;
 import languages.Language;
 import main.SLogoController;
 
+/**
+ * @author Daniel
+ *
+ */
+
 public class MenuView {
 
-	MenuBar myMenuBar;
-	Language myLanguage;
-
+	private MenuBar myMenuBar;
+	private Language myLanguage;
+	private PenSlider myPenSlider;
+	private PenColorChooser colorPicker;
 	
 	public MenuView(Stage myStage) {
-		PenSlider myPenSlider=new PenSlider();
+		myPenSlider=new PenSlider();
+   	    colorPicker = new PenColorChooser();
 		myMenuBar = new MenuBar();
 		myMenuBar.prefWidthProperty().bind(myStage.widthProperty()); //make sure menu bar is full screen width
 		Menu helpMenu = new Menu("Help");
@@ -67,10 +77,15 @@ public class MenuView {
 	    
 	    Menu penMenu=new Menu("Pen Properties");
 	    MenuItem penThickness=new MenuItem("Adjust pen thickness");
+	    MenuItem penColor=new MenuItem("Change pen color");
+	    penColor.setOnAction(event -> {
+	    	 colorPicker.show();
+	    });
 	    penThickness.setOnAction(event -> {
 	    	myPenSlider.show();
 	    });
 	    penMenu.getItems().add(penThickness);
+	    penMenu.getItems().add(penColor);
 	    optionMenu.getItems().add(penMenu);
 		myMenuBar.getMenus().addAll(helpMenu, optionMenu);
 	}

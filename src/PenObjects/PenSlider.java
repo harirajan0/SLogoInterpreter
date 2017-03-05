@@ -1,6 +1,7 @@
-package frontend;
+package PenObjects;
 
 import constants.Constants;
+import frontend.Pen;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -13,6 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+/**
+ * @author Daniel
+ *
+ */
 
 public class PenSlider extends Stage{
 	public PenSlider(){

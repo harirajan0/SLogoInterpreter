@@ -8,6 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
+/**
+ * @author Daniel
+ *
+ */
+
 public class ExceptionListener {
 	public ExceptionListener(Exception e){
 		receiveAndDisplayError(e);

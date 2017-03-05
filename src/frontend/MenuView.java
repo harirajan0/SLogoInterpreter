@@ -8,14 +8,21 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import languages.Language;
 import main.SLogoController;
 
@@ -26,6 +33,7 @@ public class MenuView {
 
 	
 	public MenuView(Stage myStage) {
+		PenSlider myPenSlider=new PenSlider();
 		myMenuBar = new MenuBar();
 		myMenuBar.prefWidthProperty().bind(myStage.widthProperty()); //make sure menu bar is full screen width
 		Menu helpMenu = new Menu("Help");
@@ -57,6 +65,13 @@ public class MenuView {
 	
 	    optionMenu.getItems().add(new Menu("Display Options"));
 	    
+	    Menu penMenu=new Menu("Pen Properties");
+	    MenuItem penThickness=new MenuItem("Adjust pen thickness");
+	    penThickness.setOnAction(event -> {
+	    	myPenSlider.show();
+	    });
+	    penMenu.getItems().add(penThickness);
+	    optionMenu.getItems().add(penMenu);
 		myMenuBar.getMenus().addAll(helpMenu, optionMenu);
 	}
 

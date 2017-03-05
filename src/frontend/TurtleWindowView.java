@@ -71,11 +71,11 @@ public class TurtleWindowView {
 	private void moveTurtle() {
 		myTurtle.setX(nextTurtleInfo.getX());
 		myTurtle.setY(nextTurtleInfo.getY());
+		myTurtle.setRotate(nextTurtleInfo.getHeading());
 		if (nextTurtleInfo.isPenDown()) {
-			myRoot.getChildren().add(myPen.drawLine(currentTurtleInfo.getX(), currentTurtleInfo.getY(), nextTurtleInfo.getX(), nextTurtleInfo.getY()));
+			myRoot.getChildren().addAll(myPen.drawLine(currentTurtleInfo.getX(), currentTurtleInfo.getY(), nextTurtleInfo.getX(), nextTurtleInfo.getY(), nextTurtleInfo.getHeading()));
 			//drawLine();
 		}
-		myTurtle.setRotate(nextTurtleInfo.getHeading());
 	}
 	
 //	private void drawLine() {

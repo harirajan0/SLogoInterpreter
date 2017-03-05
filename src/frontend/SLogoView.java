@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class SLogoView {
 	
 	public static final String TITLE = "SLogo";
-	public static final int SIZE = 800;
+	public static final int SIZE = Constants.WINDOW_SIZE;
 	
 	private BorderPane myBorderPane;
 	private Scene myScene;

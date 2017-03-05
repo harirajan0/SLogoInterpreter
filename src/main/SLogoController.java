@@ -30,7 +30,7 @@ public class SLogoController {
 			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
-			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());			
+			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
 		});
 	}
 	

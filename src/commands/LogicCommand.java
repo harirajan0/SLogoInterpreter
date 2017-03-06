@@ -14,9 +14,9 @@ import backend.TurtleInfo;
 public abstract class LogicCommand implements Command {
 	
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtleInfo) throws IllegalArgumentException {
-		return execute(arguments);
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtleInfo) throws IllegalArgumentException {
+		return execute(arg1, arg2, arg3, arg4);
 	}
 
-	public abstract double execute(List<Double> input) throws IllegalArgumentException;
+	public abstract double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException;
 }

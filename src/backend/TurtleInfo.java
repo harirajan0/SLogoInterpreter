@@ -4,24 +4,30 @@
 package backend;
 
 import constants.Constants;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * @author harirajan
  *
  */
 public class TurtleInfo {	
+	
 	private double myX;
 	private double myY;
 	private double myHeading;
 	private boolean isPenDown;
 	private boolean isVisible;
 	
+	private Color penColor;
+		
 	public TurtleInfo() {
 		myX = 0;
 		myY = 0;
 		myHeading = 0;
 		isPenDown = true;
 		isVisible = true;
+		penColor = Color.BLACK;
 	}
 	
 	public TurtleInfo(TurtleInfo toCopy) {
@@ -30,6 +36,7 @@ public class TurtleInfo {
 		myHeading = toCopy.getHeading();
 		isPenDown = toCopy.isPenDown();
 		isVisible = toCopy.isVisible();
+		penColor = toCopy.getColor();
 	}
 	
 	public double getX() {
@@ -48,22 +55,12 @@ public class TurtleInfo {
 		return isVisible;
 	}
 	public void setX(double newX) {
-		if (newX >= 0 && newX <= Constants.TURTLE_WINDOW_SIZE) {
-			myX = newX;
-		} else {
-			myX = newX % Constants.TURTLE_WINDOW_SIZE;
-			if (myX < 0) myX += Constants.TURTLE_WINDOW_SIZE;
-		}
+		myX = newX;
 	}
 	public void setY(double newY) {
-		if (newY >= 0 && newY <= Constants.TURTLE_WINDOW_SIZE) {
-			System.out.println(newY);
-			myY = newY;
-		} else {
-			myY = newY % Constants.TURTLE_WINDOW_SIZE;
-			if (myY < 0) myY += Constants.TURTLE_WINDOW_SIZE;
-		}
+		myY = newY;
 	}
+	
 	public void setHeading(double newHeading) {
 		if (newHeading >= 0) {
 			myHeading = newHeading % 360;
@@ -76,6 +73,14 @@ public class TurtleInfo {
 	}
 	public void setVisible(boolean hiddenOrShown) {
 		isVisible = hiddenOrShown;
+	}
+	
+	public void setColor(Color newColor) {
+		penColor = newColor;
+	}
+	
+	public Color getColor() {
+		return penColor;
 	}
 	
 	public String toString() {

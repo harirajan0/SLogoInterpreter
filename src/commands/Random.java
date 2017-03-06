@@ -16,14 +16,14 @@ public class Random extends LogicCommand {
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(List<Double> input) throws IllegalArgumentException {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (input.size() != 1) {
+		if ( arg2 != null || arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		if (input.get(0) < 0.0) {
+		if (arg1.evaluate() < 0.0) {
 			throw new IllegalArgumentException("Random only takes in a positive number, negative number given");
 		}
-		return Math.random() * input.get(0);
+		return Math.random() * arg1.evaluate();
 	}
 }

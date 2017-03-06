@@ -13,6 +13,7 @@ import backend.TurtleInfo;
  */
 public interface Command {
 	
-	public double execute(List<Double> arguments, TurtleInfo turtleInfo) throws IllegalArgumentException;
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4,
+			TurtleInfo turtleInfo) throws IllegalArgumentException;
 	
 }

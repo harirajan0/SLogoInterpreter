@@ -16,12 +16,12 @@ public class Minus extends LogicCommand {
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(List<Double> input) throws IllegalArgumentException {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (input.size() != 1) {
+		if ( arg2 != null || arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
 		
-		return 0 - input.get(0);
+		return 0 - arg1.evaluate();
 	}
 }

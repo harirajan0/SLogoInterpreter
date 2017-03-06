@@ -12,11 +12,11 @@ import backend.TurtleInfo;
 public class Back implements Command{
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 1) {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
+		if (  arg2 != null || arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		double backAmount = arguments.get(0);
+		double backAmount = arg1.evaluate();
 		turtle.setX(turtle.getX() - backAmount*Math.sin(Math.toRadians(turtle.getHeading())));
 		turtle.setY(turtle.getY() + backAmount*Math.cos(Math.toRadians(turtle.getHeading())));
 		return backAmount;

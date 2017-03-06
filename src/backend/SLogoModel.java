@@ -5,7 +5,9 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import frontend.TurtleView;
 import languages.Language;
 
 /**
@@ -14,13 +16,15 @@ import languages.Language;
  */
 public class SLogoModel {
 	
-	TurtleInfo myTurtleInfo;
+	List<TurtleView> myTurtles;
+//	TurtleInfo myTurtleInfo;
 	Executor myExecutor;
 	Language myLang;
 	
-	public SLogoModel(TurtleInfo turtleInfo) {
-		myTurtleInfo = turtleInfo;
-		myExecutor = new Executor(myTurtleInfo);
+	public SLogoModel(List<TurtleView> turtles) {
+		myTurtles = turtles;
+//		myTurtleInfo = turtleInfo;
+		myExecutor = new Executor();
 	}
 	
 	public void setLanguage(Language lang) {
@@ -30,15 +34,15 @@ public class SLogoModel {
 	
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
-		myExecutor.parseText().evaluate();
+		for (TurtleView turtle : myTurtles) myExecutor.parseText(turtle.getTurtleInfo()).evaluate();
 	}
 	
-	public TurtleInfo getTurtleInfo() {
-		return myTurtleInfo;
+	public List<TurtleView> getTurtles() {
+		return myTurtles;
 	}
 	
-	public void setTurtleInfo(TurtleInfo newTurtleInfo) {
-		myTurtleInfo = newTurtleInfo;
-		myExecutor.setTurtleInfo(myTurtleInfo);
-	}
+//	public void setTurtleInfo(TurtleInfo newTurtleInfo) {
+//		myTurtleInfo = newTurtleInfo;
+//		myExecutor.setTurtleInfo(myTurtleInfo);
+//	}
 }

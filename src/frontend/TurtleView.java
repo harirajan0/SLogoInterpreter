@@ -65,4 +65,8 @@ public class TurtleView {
 		return myTurtleModel;
 	}
 	
+	public void prepareForNextCommand() {
+		myTurtleModel.prepareForNextCommand();
+	}
+	
 }

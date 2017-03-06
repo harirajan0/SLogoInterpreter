@@ -138,8 +138,10 @@ public class TurtleWindowView {
 		return myTurtles.get(0).getTurtleInfo(); //FIXTHIS!!!!!!!! this wont work when we have multiple turtles
 	}
 	
-	public void updateTurtle(TurtleInfo turtleInfo) {
-		for (TurtleView turtle : myTurtles) turtle.setNext(turtleInfo);
+	public void updateTurtle(List<TurtleView> newTurtles) {
+		for (int i = 0; i < myTurtles.size(); i++ ) {
+			myTurtles.get(i).setNext(newTurtles.get(i).getTurtleInfo());
+		}
 		displayTurtles();
 	}
 

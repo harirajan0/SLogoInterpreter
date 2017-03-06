@@ -27,7 +27,7 @@ public class SLogoController {
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			mySlogoModel.setTurtleInfo(new TurtleInfo(mySlogoView.getTurtleWindow().getTurtleInfo()));
-			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
+			for (String input : mySlogoView.getUserInput().trim().split("\n")) mySlogoModel.parse(input);
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 			mySlogoView.getTurtleWindow().updateTurtle(mySlogoModel.getTurtleInfo());

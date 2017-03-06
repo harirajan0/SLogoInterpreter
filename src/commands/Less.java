@@ -18,10 +18,10 @@ public class Less extends LogicCommand {
 	 */
 	@Override
 	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
-		if (input.size() != 2) {
+		if ( arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		if (input.get(0) < input.get(1)) {
+		if (arg1.evaluate() < arg2.evaluate()) {
 			return Constants.TRUE;
 		} else {
 			return Constants.FALSE;

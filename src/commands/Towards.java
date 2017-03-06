@@ -8,11 +8,11 @@ public class Towards implements Command{
 
 	@Override
 	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 2) {
+		if (  arg3 != null || arg4 != null ) {
 			throw new IllegalArgumentException();
 		}
-		double x = arguments.get(0);
-		double y = arguments.get(1);
+		double x = arg1.evaluate();
+		double y = arg2.evaluate();
 		if (y >= turtle.getY()) {
 			turtle.setHeading(Math.toDegrees(Math.atan((x - turtle.getX()) / (y - turtle.getY()))));
 		} else {

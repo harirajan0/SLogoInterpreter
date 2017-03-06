@@ -29,7 +29,8 @@ public class SLogoModel {
 	}
 	
 	public void parse(String input) {
-		myExecutor.parseText(new ArrayList<String>(Arrays.asList(input.split(" "))));
+		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
+		myExecutor.parseText().evaluate();
 	}
 	
 	public TurtleInfo getTurtleInfo() {
@@ -40,6 +41,4 @@ public class SLogoModel {
 		myTurtleInfo = newTurtleInfo;
 		myExecutor.setTurtleInfo(myTurtleInfo);
 	}
-
-	
 }

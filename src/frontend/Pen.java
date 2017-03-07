@@ -34,7 +34,7 @@ public class Pen {
 	}
 
 	private Line generateLine(double currentX, double currentY, double nextX, double nextY, double headingAngle) {
-		Line myLine=new Line(currentX, currentY, nextX, nextY);
+		Line myLine=new Line(currentX + Constants.BUFFER, currentY + Constants.BUFFER, nextX + Constants.BUFFER, nextY + Constants.BUFFER);
 		myLine.setStroke(penColor);
 		myLine.setStrokeWidth(penWidth);
 		return myLine;

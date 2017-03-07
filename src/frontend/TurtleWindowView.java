@@ -24,7 +24,7 @@ import javafx.scene.shape.Rectangle;
 /**
  * @author harirajan
  * @author Daniel
- *
+ * @author Belal Taher
  */
 public class TurtleWindowView {
 
@@ -38,14 +38,14 @@ public class TurtleWindowView {
 	//private Paint penColor;
 	private Pen myPen;
 
-	public TurtleWindowView() {
-		myRoot = new Group();
+	public TurtleWindowView(Group root) {
+		myRoot = root;
 		setUpTurtleWindowView();
-		myRoot.getChildren().addAll(myRectangle, myTurtle);
+		myRoot.getChildren().add(myTurtle);
 	}
 	
 	private void setUpTurtleWindowView() {
-		myRectangle = new Rectangle(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_COLOR);
+
 		myTurtle = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 		myTurtle.setFitWidth(Constants.TURTLE_SIZE);
 		myTurtle.setFitHeight(Constants.TURTLE_SIZE);
@@ -88,9 +88,10 @@ public class TurtleWindowView {
 //	private void updatePenColor(Color newColor){
 //		penColor = newColor;
 //	}
+
 	
-	public Group getNode() {
-		return myRoot;
+	public Pen getPen(){
+		return myPen;
 	}
 	
 	

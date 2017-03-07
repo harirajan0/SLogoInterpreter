@@ -24,13 +24,13 @@ public class SLogoController {
 	public SLogoController(Stage s) {
 		mySlogoView = new SLogoView(s);
 		myLang = Language.ENGLISH; //DEFAULT
-		mySlogoModel = new SLogoModel(new TurtleInfo(mySlogoView.getTurtleWindow().getTurtleInfo()));
+		mySlogoModel = new SLogoModel(new TurtleInfo(mySlogoView.getTurtleBox().getCurrentTurtle().getTurtleInfo()));
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
-			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
+			mySlogoView.getTurtleBox().getCurrentTurtle().updateTurtlePosition(mySlogoModel.getTurtleInfo());
 		});
 	}
 	

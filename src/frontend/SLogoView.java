@@ -32,7 +32,7 @@ public class SLogoView {
 	
 	private CommandPromptView myCommandPrompt;
 	private VariablesView myVariables;
-	private TurtleWindowView myTurtleWindow;
+	private TurtleBox myTurtleBox;
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	
@@ -41,7 +41,7 @@ public class SLogoView {
 		myCommandPrompt = new CommandPromptView();
 		myVariables = new VariablesView();
 		myBorderPane = new BorderPane();
-		myTurtleWindow = new TurtleWindowView();
+		myTurtleBox = new TurtleBox();
 		topVBox = new VBox();
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
@@ -58,7 +58,7 @@ public class SLogoView {
 		myBorderPane.setBottom(myCommandPrompt.getNode());
 		myBorderPane.setLeft(new Rectangle(Constants.WINDOW_SIZE / 4, Constants.WINDOW_SIZE / 4, Constants.BACKGROUND_COLOR)); // to fill space on left 
 		myBorderPane.setRight(myVariables.getNode());
-		myBorderPane.setCenter(myTurtleWindow.getNode());
+		myBorderPane.setCenter(myTurtleBox.getNode());
 		myBorderPane.setTop(topVBox);
 	}
 	
@@ -78,8 +78,8 @@ public class SLogoView {
 		return myCommandPrompt;
 	}
 	
-	public TurtleWindowView getTurtleWindow() {
-		return myTurtleWindow;
+	public TurtleBox getTurtleBox() {
+		return myTurtleBox;
 	}
 	
 	public Button getExecuteButton() {

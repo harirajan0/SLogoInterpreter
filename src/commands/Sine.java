@@ -24,4 +24,5 @@ public class Sine extends LogicCommand {
 		
 		return Math.toDegrees(Math.sin(Math.toRadians(arg1.evaluate())));
 	}
+	
 }

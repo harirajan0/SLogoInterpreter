@@ -28,6 +28,5 @@ public class Greater extends LogicCommand {
 			return Constants.FALSE;
 		}
 	}
-
 	
 }

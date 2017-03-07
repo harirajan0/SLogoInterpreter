@@ -5,6 +5,7 @@ package commands;
 
 import java.util.List;
 
+import turtle.Turtle;
 import turtle.TurtleInfo;
 
 /**
@@ -14,7 +15,7 @@ import turtle.TurtleInfo;
 public abstract class LogicCommand implements Command {
 	
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtleInfo) throws IllegalArgumentException {
+	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtle) throws IllegalArgumentException {
 		return execute(arg1, arg2, arg3, arg4);
 	}
 

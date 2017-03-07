@@ -22,8 +22,8 @@ public class TurtleInfo {
 	private Color penColor;
 		
 	public TurtleInfo() {
-		myX = 0;
-		myY = 0;
+		myX = Constants.TURTLE_WINDOW_SIZE / 2;
+		myY = Constants.TURTLE_WINDOW_SIZE / 2;
 		myHeading = 0;
 		isPenDown = true;
 		isVisible = true;
@@ -68,11 +68,11 @@ public class TurtleInfo {
 			myHeading = 360 + newHeading;
 		}
 	}
-	public void setPenDown(boolean upOrDown) {
-		isPenDown = upOrDown;
+	public void setPenDown(boolean newPenDown) {
+		isPenDown = newPenDown;
 	}
-	public void setVisible(boolean hiddenOrShown) {
-		isVisible = hiddenOrShown;
+	public void setVisible(boolean newVisible) {
+		isVisible = newVisible;
 	}
 	
 	public void setColor(Color newColor) {

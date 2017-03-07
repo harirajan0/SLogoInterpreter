@@ -25,4 +25,5 @@ public class Quotient extends LogicCommand {
 		
 		return arg1.evaluate() / arg2.evaluate();
 	}
+
 }

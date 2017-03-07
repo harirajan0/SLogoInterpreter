@@ -3,6 +3,7 @@
  */
 package commands;
 
+import turtle.Turtle;
 import turtle.TurtleInfo;
 
 /**
@@ -15,7 +16,7 @@ public class For implements Command {
 	 * @see commands.Command#execute(commands.ASTNode, commands.ASTNode, commands.ASTNode, commands.ASTNode, backend.TurtleInfo)
 	 */
 	@Override
-	public double execute(ASTNode arg1, ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtleInfo)
+	public double execute(ASTNode arg1, ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtleInfo)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		while (arg1.evaluate() < arg2.evaluate()) {
@@ -24,5 +25,4 @@ public class For implements Command {
 		}
 		return 0;
 	}
-
 }

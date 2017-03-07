@@ -7,23 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
-import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import turtle.Turtle;
 import turtle.TurtleInfo;
-import turtle.TurtleView;
 
 /**
  * @author harirajan
@@ -35,7 +23,6 @@ public class TurtleWindowView {
 	private Rectangle myRectangle;
 	
 	private List<Turtle> myTurtles;
-//	private TurtleView myTurtle;
 
 
 	public TurtleWindowView() {
@@ -43,25 +30,22 @@ public class TurtleWindowView {
 		myRectangle = new Rectangle(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE,
 				Constants.TURTLE_WINDOW_COLOR);
 		myRoot.getChildren().add(myRectangle);
-		myTurtles = new ArrayList<>();
-		Turtle firstTurtle = new Turtle();
-		myTurtles.add(firstTurtle);
-		firstTurtle.setUpDisplay();
-		myRoot.getChildren().add(firstTurtle.getNode());
 	}
 	
-	private void displayTurtles() {
-//		myTurtles = new ArrayList<>();
-//		myTurtles.add(myTurtle);
+	public void setTurtles(List<Turtle> turtles) {
+		myTurtles = turtles;
+		for (Turtle turtle : turtles) turtle.display();
+	}
+	
+	public Group getRoot() {
+		return myRoot;
+	}
+	
+	public void displayTurtles() {
 		for (Turtle turtle : myTurtles) {
-			myRoot.getChildren().remove(turtle.getNode());
 			for (Line l : turtle.getLinesToDraw()) {
-//				System.out.println(l);
 				myRoot.getChildren().add(l);
 			}
-			turtle.prepareForNextCommand();
-			turtle.setUpDisplay();
-			myRoot.getChildren().add(turtle.getNode());
 		}
 	}
 	

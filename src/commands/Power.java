@@ -22,5 +22,6 @@ public class Power extends LogicCommand{
 		}
 		return Math.pow(arg1.evaluate(), arg2.evaluate());
 	}
+	
 
 }

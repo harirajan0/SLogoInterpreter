@@ -18,13 +18,11 @@ import turtle.TurtleView;
 public class SLogoModel {
 	
 	List<Turtle> myTurtles;
-//	TurtleInfo myTurtleInfo;
 	Executor myExecutor;
 	Language myLang;
 	
-	public SLogoModel(List<Turtle> turtles) {
-		myTurtles = turtles;
-//		myTurtleInfo = turtleInfo;
+	public SLogoModel(Turtle firstTurtle) {
+		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
 		myExecutor = new Executor();
 	}
 	
@@ -35,7 +33,7 @@ public class SLogoModel {
 	
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
-		for (Turtle turtle : myTurtles) myExecutor.parseText(turtle.getTurtleInfo()).evaluate();
+		for (Turtle turtle : myTurtles) myExecutor.parseText(turtle).evaluate();
 	}
 	
 	public List<Turtle> getTurtles() {

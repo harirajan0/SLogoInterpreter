@@ -24,4 +24,5 @@ public class Sum extends LogicCommand {
 		return arg1.evaluate() + arg2.evaluate();
 	}
 
+
 }

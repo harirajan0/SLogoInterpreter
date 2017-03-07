@@ -22,4 +22,5 @@ public class Tangent extends LogicCommand {
 		
 		return Math.toDegrees(Math.tan(Math.toRadians(arg1.evaluate())));
 	}
+
 }

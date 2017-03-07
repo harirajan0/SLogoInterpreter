@@ -24,4 +24,5 @@ public class Remainder extends LogicCommand {
 		while ((result - arg2.evaluate()) >= 0.0) result -= arg2.evaluate();
 		return result;
 	}
+	
 }

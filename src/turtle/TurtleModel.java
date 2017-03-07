@@ -21,30 +21,9 @@ public class TurtleModel {
 	
 	public TurtleModel() {
 		currentTurtleInfo = new TurtleInfo();
-		nextTurtleInfo = null;
 		currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE / 2);
 		currentTurtleInfo.setY(Constants.TURTLE_WINDOW_SIZE / 2);
-	}
-	
-	
-	public double getX() {
-		return currentTurtleInfo.getX();
-	}
-	
-	public double getY() {
-		return currentTurtleInfo.getY();
-	}
-	
-	public double getHeading() {
-		return currentTurtleInfo.getHeading();
-	}
-	
-	public boolean isVisible() {
-		return currentTurtleInfo.isVisible();
-	}
-	
-	public boolean isPenDown() {
-		return currentTurtleInfo.isPenDown();
+		nextTurtleInfo = new TurtleInfo();
 	}
 	
 	public List<Line> calculateLinesToDraw() {
@@ -154,8 +133,12 @@ public class TurtleModel {
 				nextTurtleInfo.getY() <= Constants.TURTLE_WINDOW_SIZE;			
 	}
 	
-	public TurtleInfo getTurtleInfo() {
+	public TurtleInfo getCurrentTurtleInfo() {
 		return currentTurtleInfo;
+	}
+	
+	public TurtleInfo getNextTurtleInfo() {
+		return nextTurtleInfo;
 	}
 	
 	public void setNext(TurtleInfo turtleInfo) {
@@ -164,7 +147,7 @@ public class TurtleModel {
 	
 	public void prepareForNextCommand() {
 		currentTurtleInfo = new TurtleInfo(nextTurtleInfo);
-		nextTurtleInfo = null;
+//		nextTurtleInfo = null;
 	}
 
 

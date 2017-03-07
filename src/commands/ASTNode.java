@@ -4,6 +4,7 @@
 package commands;
 
 import backend.Variable;
+import turtle.Turtle;
 import turtle.TurtleInfo;
 
 /**
@@ -19,12 +20,12 @@ public class ASTNode {
 	private ASTNode myArg2;
 	private ASTNode myArg3;
 	private ASTNode myArg4;
-	private TurtleInfo myTurtleInfo;
+	private Turtle myTurtle;
 	
 //	ASTNode[] myArgs = { myArg1, myArg2, myArg3, myArg4 };
 	
 	public ASTNode(Command command, Variable variable, double value,
-			ASTNode arg1, ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtleInfo) {
+			ASTNode arg1, ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtle) {
 		myCommand = command;
 		myVariable = variable;
 		myValue = value;
@@ -32,13 +33,13 @@ public class ASTNode {
 		myArg2 = arg2;
 		myArg3 = arg3;
 		myArg4 = arg4;
-		myTurtleInfo = turtleInfo;
+		myTurtle = turtle;
 	}
 	
 	public double evaluate() {
 		if (myVariable != null) return myVariable.getValue();
 		if (myCommand == null) return myValue;
-		return myCommand.execute(myArg1,  myArg2, myArg3, myArg4, myTurtleInfo);
+		return myCommand.execute(myArg1,  myArg2, myArg3, myArg4, myTurtle);
 	}
 	
 	public Command getCommand() {

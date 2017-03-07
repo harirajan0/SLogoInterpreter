@@ -22,7 +22,6 @@ public class SLogoView {
 	private BorderPane myBorderPane;
 	private Scene myScene;
 	private Group myRoot;
-//	private TurtleView myTurtle;
 	
 	private CommandPromptView myCommandPrompt;
 	private VariablesView myVariables;

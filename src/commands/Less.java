@@ -27,5 +27,5 @@ public class Less extends LogicCommand {
 			return Constants.FALSE;
 		}
 	}
-
+	
 }

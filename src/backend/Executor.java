@@ -11,6 +11,7 @@ import java.util.Queue;
 import commands.ASTNode;
 import commands.Command;
 import languages.Language;
+import turtle.Turtle;
 import turtle.TurtleInfo;
 
 /**
@@ -34,7 +35,7 @@ public class Executor {
 		myInput = input;
 	}
 
-	public ASTNode parseText(TurtleInfo turtleInfo) throws IllegalArgumentException {
+	public ASTNode parseText(Turtle turtle) throws IllegalArgumentException {
 		ProgramParser parser = new ProgramParser(myLang);
 
 		if (myInput.size() == 0) {
@@ -43,19 +44,19 @@ public class Executor {
 			if (syntaxParser.getSymbol(myInput.get(0)).equals("Command")) {
 				Command cmd = commandFactory.getCommand(parser.getSymbol(myInput.get(0)));
 				myInput.remove(0);
-				ASTNode arg1 = parseText(turtleInfo);
-				ASTNode arg2 = parseText(turtleInfo);
-				ASTNode arg3 = parseText(turtleInfo);
-				ASTNode arg4 = parseText(turtleInfo);
-				return new ASTNode(cmd, null, 0, arg1, arg2, arg3, arg4, turtleInfo);
+				ASTNode arg1 = parseText(turtle);
+				ASTNode arg2 = parseText(turtle);
+				ASTNode arg3 = parseText(turtle);
+				ASTNode arg4 = parseText(turtle);
+				return new ASTNode(cmd, null, 0, arg1, arg2, arg3, arg4, turtle);
 			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Variable")) {
 				Variable var = null; // get the variable
 				myInput.remove(0);
-				return new ASTNode(null, var, 0, null, null, null, null, turtleInfo);
+				return new ASTNode(null, var, 0, null, null, null, null, turtle);
 			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Constant")) {
 				double value = Double.parseDouble(myInput.get(0));
 				myInput.remove(0);
-				return new ASTNode(null, null, value, null, null, null, null, turtleInfo);
+				return new ASTNode(null, null, value, null, null, null, null, turtle);
 			} else {
 				return null;
 			}

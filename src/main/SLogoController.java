@@ -29,19 +29,14 @@ public class SLogoController {
 	public SLogoController(Stage s) {
 		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
-		Turtle firstTurtle = new Turtle();
-		firstTurtle.setNext(mySlogoView.getTurtleWindow().getTurtleInfo());
-		firstTurtle.prepareForNextCommand();
-		List<Turtle> turtles = new ArrayList<>();
-		turtles.add(firstTurtle);
-		mySlogoModel = new SLogoModel(turtles);
+		mySlogoModel = new SLogoModel(new Turtle(mySlogoView.getTurtleWindow().getRoot()));
+		mySlogoView.getTurtleWindow().setTurtles(mySlogoModel.getTurtles());
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
 				mySlogoModel.parse(input);
 				mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 				mySlogoView.clearCommandPrompt();
-				mySlogoView.getTurtleWindow().updateTurtle(mySlogoModel.getTurtles());
 			}
 		});
 	}

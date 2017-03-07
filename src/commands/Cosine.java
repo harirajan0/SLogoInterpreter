@@ -23,4 +23,5 @@ public class Cosine extends LogicCommand {
 		
 		return Math.toDegrees(Math.cos(Math.toRadians(arg1.evaluate())));
 	}
+
 }

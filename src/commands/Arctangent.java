@@ -24,5 +24,5 @@ public class Arctangent extends LogicCommand {
 		
 		return Math.toDegrees(Math.atan(Math.toRadians(arg1.getValue())));
 	}
-
+	
 }

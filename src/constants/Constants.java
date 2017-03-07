@@ -25,6 +25,8 @@ public class Constants {
 	public static final int TURTLE_SIZE = 20;
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
+	public static final double DEFAULT_PEN_WIDTH=4;
+
 	
 	public static final double TRUE = 1.0;
 	public static final double FALSE = 0.0;

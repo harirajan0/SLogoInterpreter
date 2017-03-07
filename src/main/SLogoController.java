@@ -8,11 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import backend.SLogoModel;
-import backend.TurtleInfo;
 import frontend.SLogoView;
-import frontend.TurtleView;
 import javafx.stage.Stage;
 import languages.Language;
+import turtle.Turtle;
+import turtle.TurtleInfo;
+import turtle.TurtleView;
 
 /**
  * @author harirajan
@@ -28,10 +29,10 @@ public class SLogoController {
 	public SLogoController(Stage s) {
 		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
-		TurtleView firstTurtle = new TurtleView();
+		Turtle firstTurtle = new Turtle();
 		firstTurtle.setNext(mySlogoView.getTurtleWindow().getTurtleInfo());
 		firstTurtle.prepareForNextCommand();
-		List<TurtleView> turtles = new ArrayList<>();
+		List<Turtle> turtles = new ArrayList<>();
 		turtles.add(firstTurtle);
 		mySlogoModel = new SLogoModel(turtles);
 		mySlogoModel.setLanguage(myLang);

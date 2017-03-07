@@ -3,8 +3,8 @@
  */
 package commands;
 
-import backend.TurtleInfo;
 import backend.Variable;
+import turtle.TurtleInfo;
 
 /**
  * @author harirajan

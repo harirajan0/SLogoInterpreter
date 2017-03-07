@@ -29,6 +29,7 @@ import commands.Product;
 import commands.Quotient;
 import commands.Random;
 import commands.Remainder;
+import commands.Repeat;
 import commands.Right;
 import commands.SetHeading;
 import commands.ShowTurtle;
@@ -84,6 +85,7 @@ public class CommandFactory {
 		case "And" : return new And();
 		case "Or" : return new Or();
 		case "Not" : return new Not();
+		case "Repeat" : return new Repeat();
 		default: throw new IllegalArgumentException();
 		}
 	}

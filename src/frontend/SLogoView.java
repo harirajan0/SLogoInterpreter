@@ -17,6 +17,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ *  @author Daniel Rubinstein
+ *  @author Belal Taher
+ */
+
 public class SLogoView {
 	
 	public static final String TITLE = "SLogo";
@@ -100,8 +105,19 @@ public class SLogoView {
 		colorThreeField.setPrefHeight(10);
 		TextArea colorFourField = new TextArea("Color 4");
 		colorFourField.setPrefHeight(10);
-		textFields.getChildren().addAll(colorOneField, colorTwoField, colorThreeField, colorFourField);
+		Button changeColors = new Button("Change colors");
+		changeColors.setOnAction((event) -> {
+			updateColors(colorOneField.getText(), colorTwoField.getText(), colorThreeField.getText(), colorFourField.getText());
+		});
+		textFields.getChildren().addAll(colorOneField, colorTwoField, colorThreeField, colorFourField, changeColors);
 		newRoot.getChildren().add(textFields);
+	}
+	
+	private void updateColors(String c1, String c2, String c3, String c4){
+		myPaletteView.setColorOne(c1);
+		myPaletteView.setColorTwo(c2);
+		myPaletteView.setColorThree(c3);
+		myPaletteView.setColorFour(c4);
 	}
 	
 	//FIX THIS

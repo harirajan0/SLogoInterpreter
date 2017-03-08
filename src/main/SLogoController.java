@@ -37,6 +37,7 @@ public class SLogoController {
 		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
 										new TurtleInfo(250, 200, 0, true, true, Color.BLACK), 2);
 		mySlogoData.addTurtle(secondTurtle);
+		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
 				mySlogoModel.parse(input);

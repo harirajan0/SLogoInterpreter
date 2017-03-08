@@ -25,9 +25,12 @@ public class SLogoModel implements Observer {
 	Executor myExecutor;
 	
 	public SLogoModel() {
-		myExecutor = new Executor(mySlogoData.getLanguage());
+		myExecutor = new Executor();
 	}
 	
+	public void setLanguage(Language lang) {
+		myExecutor.setLanguage(lang);
+	}
 	
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
@@ -46,7 +49,7 @@ public class SLogoModel implements Observer {
 	@Override
 	public void update(Observable slogoData, Object arg) {
 		mySlogoData = (SLogoData) slogoData;
-		myExecutor.setLanguage(mySlogoData.getLanguage());
+		setLanguage(mySlogoData.getLanguage());
 	}
 
 }

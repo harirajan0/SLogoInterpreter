@@ -31,7 +31,7 @@ public class SLogoData extends Observable {
 		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
 		myVariables = new ArrayList<>();
 		myLanguage = Language.ENGLISH;
-		myBackgroundColorIndex = 1; // black
+		myBackgroundColorIndex = 0; // black
 	}
 
 	public double runCommand(TurtleCommand cmd, List<Double> params) {

@@ -98,7 +98,7 @@ public class SLogoView {
 		Group newRoot = new Group();
 		displayPaletteTextFields(newRoot);
 		Stage paletteColorPicker = new Stage();
-		paletteColorPicker.setTitle(Constants.PALETTE_PICKER_NAME);
+		paletteColorPicker.setTitle(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePickerName"));
 		paletteColorPicker.setScene(new Scene(newRoot, Constants.PALETTE_PICKER_SIZE, Constants.PALETTE_PICKER_SIZE, Constants.BACKGROUND_COLOR));
 		paletteColorPicker.show();
 	}

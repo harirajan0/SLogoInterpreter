@@ -43,12 +43,6 @@ public class Constants {
 	public static final int PALETTE_SIZE = 100;
 	public static final int PALETTE_TOP_PADDING = 50;
 	
-	//Palette Functionality constants
-	public static final String COLOR_DELIMITER = "rgb";
-	public static final String FIRST_COLOR = "(0,0,0)";
-	public static final String SECOND_COLOR = "(0,0,255)";
-	public static final String THIRD_COLOR = "(255,0,0)";
-	public static final String FOURTH_COLOR = "(0,255,0)";
 	
 	//Palette Picker constants
 	public static final String PALETTE_PICKER_NAME = "Pick new colors for the palette";

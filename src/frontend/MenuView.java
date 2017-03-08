@@ -24,6 +24,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import languages.Language;
@@ -65,11 +67,15 @@ public class MenuView {
 	    optionMenu.getItems().add(languageMenu);
 	    MenuItem help = new MenuItem("See a list of commands");
 	    help.setOnAction(actionEvent ->  {
-			try {
-				Desktop.getDesktop().browse(new URL("http://www.cs.duke.edu/courses/compsci308/spring17/assign/03_slogo/commands.php").toURI());
-			} catch (IOException | URISyntaxException e) {
-				new ExceptionListener(e);
-			}
+//			try {
+//				Desktop.getDesktop().browse(new URL("http://www.cs.duke.edu/courses/compsci308/spring17/assign/03_slogo/commands.php").toURI());
+//			} catch (IOException | URISyntaxException e) {
+//				new ExceptionListener(e);
+//			}
+	        WebView webView = new WebView();
+	        WebEngine webEngine = webView.getEngine();
+	            URL urlHello = getClass().getResource("listOfCommands.html");
+	            webEngine.load(urlHello.toExternalForm());
 		});
 	    helpMenu.getItems().add(help);
 	

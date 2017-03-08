@@ -24,6 +24,11 @@ public class Turtle {
 		myTurtleView = new TurtleView(root);
 	}
 	
+	public Turtle(Group root, TurtleInfo turtleInfo) {
+		myTurtleModel = new TurtleModel(turtleInfo); 
+		myTurtleView = new TurtleView(root);
+	}
+	
 	public void setNext(TurtleInfo turtleInfo) {
 		myTurtleModel.setNext(turtleInfo);
 	}

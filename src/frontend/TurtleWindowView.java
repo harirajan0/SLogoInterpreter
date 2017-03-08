@@ -53,9 +53,9 @@ public class TurtleWindowView {
 		return myRoot;
 	}
 
-	public TurtleInfo getTurtleInfo() {
-		return myTurtles.get(0).getTurtleInfo(); //FIXTHIS!!!!!!!! this wont work when we have multiple turtles
-	}
+//	public TurtleInfo getTurtleInfo() {
+//		return myTurtles.get(0).getTurtleInfo(); //FIXTHIS!!!!!!!! this wont work when we have multiple turtles
+//	}
 	
 	public void updateTurtle(List<Turtle> newTurtles) {
 		for (int i = 0; i < myTurtles.size(); i++ ) {

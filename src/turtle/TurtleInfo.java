@@ -18,7 +18,7 @@ public class TurtleInfo {
 	private double myHeading;
 	private boolean isPenDown;
 	private boolean isVisible;
-	private Color penColor;
+	private Color myPenColor;
 		
 	public TurtleInfo() {
 		myX = Constants.TURTLE_WINDOW_SIZE / 2;
@@ -26,16 +26,20 @@ public class TurtleInfo {
 		myHeading = 0;
 		isPenDown = true;
 		isVisible = true;
-		penColor = Color.BLACK;
+		myPenColor = Color.BLACK;
+	}
+	
+	public TurtleInfo(double X, double Y, double heading, boolean penDown, boolean visible, Color penColor) {
+		myX = X;
+		myY = Y;
+		myHeading = heading;
+		isPenDown = penDown;
+		isVisible = visible;
+		myPenColor = penColor;
 	}
 	
 	public TurtleInfo(TurtleInfo toCopy) {
-		myX = toCopy.getX();
-		myY = toCopy.getY();
-		myHeading = toCopy.getHeading();
-		isPenDown = toCopy.isPenDown();
-		isVisible = toCopy.isVisible();
-		penColor = toCopy.getColor();
+		this(toCopy.getX(), toCopy.getY(), toCopy.getHeading(), toCopy.isPenDown(), toCopy.isVisible(), toCopy.getColor());
 	}
 	
 	public double getX() {
@@ -75,11 +79,11 @@ public class TurtleInfo {
 	}
 	
 	public void setColor(Color newColor) {
-		penColor = newColor;
+		myPenColor = newColor;
 	}
 	
 	public Color getColor() {
-		return penColor;
+		return myPenColor;
 	}
 	
 	public String toString() {

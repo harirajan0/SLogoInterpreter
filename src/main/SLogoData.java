@@ -40,6 +40,7 @@ public class SLogoData extends Observable {
 				if (turtle.isSelected()) {
 					ret = cmd.execute(params, turtle, this);
 					setChanged();
+					notifyObservers();
 				}
 			}
 			return ret;
@@ -54,6 +55,7 @@ public class SLogoData extends Observable {
 	
 	public void changeBackgroundColorIndex(int index) {
 		myBackgroundColorIndex = index;
+		setChanged();
 	}
 	
 	public int getBackgroundColorIndex() {
@@ -69,10 +71,14 @@ public class SLogoData extends Observable {
 	
 	public void addVariable(Variable var) {
 		myVariables.add(var);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void addTurtle(Turtle turtle) {
 		myTurtles.add(turtle);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public List<Turtle> getTurtles() {

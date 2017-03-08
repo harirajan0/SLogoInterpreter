@@ -36,7 +36,7 @@ public class Executor {
 		myInput = input;
 	}
 
-	public ASTNode parseText(Turtle turtle, SLogoData slogoData) throws IllegalArgumentException {
+	public ASTNode parseText(SLogoData slogoData) throws IllegalArgumentException {
 		ProgramParser parser = new ProgramParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		if (myInput.size() == 0) {
@@ -46,17 +46,17 @@ public class Executor {
 				Command cmd = commandFactory.getCommand(parser.getSymbol(myInput.get(0)));
 				myInput.remove(0);
 				while (myInput.size() > 0) {
-					arguments.add(parseText(turtle, slogoData));
+					arguments.add(parseText(slogoData));
 				}
-				return new ASTNode(cmd, null, 0, arguments, turtle, slogoData);
+				return new ASTNode(cmd, null, 0, arguments, slogoData);
 			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Variable")) {
 				Variable var = null; // get the variable
 				myInput.remove(0);
-				return new ASTNode(null, var, 0, arguments, turtle, slogoData);
+				return new ASTNode(null, var, 0, arguments, slogoData);
 			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Constant")) {
 				double value = Double.parseDouble(myInput.get(0));
 				myInput.remove(0);
-				return new ASTNode(null, null, value, arguments, turtle, slogoData);
+				return new ASTNode(null, null, value, arguments, slogoData);
 			} else {
 				return null;
 			}

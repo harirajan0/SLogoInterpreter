@@ -22,19 +22,19 @@ public class ASTNode {
 	private Command myCommand;
 	Variable myVariable;
 	private double myValue;
-	private Turtle myTurtle;
+//	private Turtle myTurtle;
 	private SLogoData mySlogoData;
 	
 	private List<ASTNode> myArguments;
 	
 	
 	public ASTNode(Command command, Variable variable, double value,
-			List<ASTNode> arguments, Turtle turtle, SLogoData slogoData) {
+			List<ASTNode> arguments, SLogoData slogoData) {
 		myCommand = command;
 		myVariable = variable;
 		myValue = value;
 		myArguments = arguments;
-		myTurtle = turtle;
+//		myTurtle = turtle;
 		mySlogoData = slogoData;
 	}
 	
@@ -45,7 +45,6 @@ public class ASTNode {
 		List<Double> paramList = new ArrayList<>();
 		List<ASTNode> evaluateList = new ArrayList<>();		
 		for (int i = 0; i < myArguments.size(); i++) {
-			System.out.println(myArguments.get(i));
 			if (i >= myCommand.getNumArgs()) {
 				if (myArguments.get(i).getCommand() != null) {
 					if (!myArguments.get(i).getCommand().isLogicCommand()) { //change string to constant
@@ -56,8 +55,8 @@ public class ASTNode {
 			}
 			paramList.add(myArguments.get(i).evaluate());
 		}
-		double ret1 = mySlogoData.runCommand(myCommand, paramList);
-		double ret = myCommand.execute(paramList, myTurtle, mySlogoData);
+		double ret = mySlogoData.runCommand(myCommand, paramList);
+//		double ret = myCommand.execute(paramList, myTurtle, mySlogoData);
 		for (ASTNode node : evaluateList) node.evaluate();
 		return ret;
 	}

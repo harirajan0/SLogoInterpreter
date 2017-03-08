@@ -103,7 +103,13 @@ public class SLogoView implements Observer {
 	public void update(Observable slogoData, Object arg) {
 		// TODO Auto-generated method stub
 		mySlogoData = (SLogoData) slogoData;
-		//myTurtleWindow.setTurtles(mySLogoData.geTurtles());
+		System.out.println("TURTLE 1");
+		System.out.println(mySlogoData.getTurtles().get(0).getTurtleInfo());
+		if (mySlogoData.getTurtles().size() > 1) {
+			System.out.println("TURTLE 2");
+			System.out.println(mySlogoData.getTurtles().get(1).getTurtleInfo());
+		}
+		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 	}
 
 }

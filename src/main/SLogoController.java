@@ -9,6 +9,7 @@ import java.util.List;
 
 import backend.SLogoModel;
 import frontend.SLogoView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import languages.Language;
 import turtle.Turtle;
@@ -31,11 +32,13 @@ public class SLogoController {
 		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
 		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot());
-		mySlogoModel = new SLogoModel(firstTurtle);
+		mySlogoModel = new SLogoModel();
 		mySlogoData = new SLogoData(firstTurtle);
 		mySlogoData.addObserver(mySlogoView);
 		mySlogoData.addObserver(mySlogoModel);
-		mySlogoView.getTurtleWindow().setTurtles(mySlogoModel.getTurtles());
+		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
+										new TurtleInfo(250, 200, 0, true, true, Color.BLACK));
+		mySlogoData.addTurtle(secondTurtle);
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {

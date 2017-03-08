@@ -22,12 +22,10 @@ public class SLogoModel implements Observer {
 	
 	SLogoData mySlogoData;
 	
-	List<Turtle> myTurtles;
 	Executor myExecutor;
 	Language myLang;
 	
-	public SLogoModel(Turtle firstTurtle) {
-		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
+	public SLogoModel() {
 		myExecutor = new Executor();
 	}
 	
@@ -39,12 +37,12 @@ public class SLogoModel implements Observer {
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
 		//myExecutor.parseText(mySlogoData).evaluate();
-		for (Turtle turtle : myTurtles) myExecutor.parseText(turtle, mySlogoData).evaluate();
+//		for (Turtle turtle : myTurtles)
+			myExecutor.parseText(mySlogoData).evaluate();
 	}
 	
 	public List<Turtle> getTurtles() {
-		return myTurtles;
-		//return mySlogoData.getTurtles();
+		return mySlogoData.getTurtles();
 	}
 
 	/* (non-Javadoc)

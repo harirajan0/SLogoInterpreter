@@ -5,23 +5,23 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
+
 /**
  * @author harirajan
  *
  */
-public class Power extends LogicCommand{
+public class Power extends LogicCommandTwoParams {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
+	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if ( arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
-		return Math.pow(arg1.evaluate(), arg2.evaluate());
+		return Math.pow(params.get(0), params.get(1));
 	}
+
 	
 
 }

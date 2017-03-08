@@ -3,16 +3,18 @@ package commands;
 import java.util.List;
 
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
-public class Right implements Command {
+public class Right extends OneParam {//TurtleOneParam?
 
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtle) throws IllegalArgumentException {
-		double rotationAmount = arg1.evaluate();
-		turtle.setHeading(turtle.getHeading() + rotationAmount);
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		Double totalRotation = 0.0;
+		for(Double d : params){
+			totalRotation += d;
+		}
+		turtle.setHeading(turtle.getHeading() + totalRotation);
 		turtle.display();
-		if (arg2 != null) arg2.evaluate();
-		return rotationAmount;
+		return totalRotation;
 	}
+	
 }

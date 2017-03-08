@@ -23,14 +23,18 @@ public class SLogoController {
 	
 	private SLogoView mySlogoView;
 	private SLogoModel mySlogoModel;
+	private SLogoData mySlogoData;
 	
 	private Language myLang;
 	
 	public SLogoController(Stage s) {
 		myLang = Language.ENGLISH;
+		mySlogoData = new SLogoData();
 		mySlogoView = new SLogoView(s);
 		mySlogoModel = new SLogoModel(new Turtle(mySlogoView.getTurtleWindow().getRoot()));
 		mySlogoView.getTurtleWindow().setTurtles(mySlogoModel.getTurtles());
+		mySlogoData.addObserver(mySlogoView);
+		mySlogoData.addObserver(mySlogoModel);
 		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {

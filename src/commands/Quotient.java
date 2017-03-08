@@ -5,25 +5,27 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
+
 
 /**
  * @author harirajan
  *
  */
-public class Quotient extends LogicCommand {
+public class Quotient extends LogicCommandTwoParams {
 
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
+	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if ( arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
-		
-		return arg1.evaluate() / arg2.evaluate();
+		double totalQuotient = params.get(0);
+		params.remove(0);
+		for (double param : params) totalQuotient /= param;
+		return totalQuotient;
 	}
+
 
 }

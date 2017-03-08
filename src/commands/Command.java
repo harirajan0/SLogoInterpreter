@@ -5,6 +5,7 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
@@ -14,7 +15,11 @@ import turtle.TurtleInfo;
  */
 public interface Command {
 	
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4,
+	public double execute(List<Double> params,
 			Turtle turtle) throws IllegalArgumentException;
+	
+	public int getNumArgs();
+	
+	public boolean isLogicCommand();
 	
 }

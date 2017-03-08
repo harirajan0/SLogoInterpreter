@@ -6,8 +6,11 @@ package backend;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import languages.Language;
+import main.SLogoData;
 import turtle.Turtle;
 import turtle.TurtleView;
 
@@ -15,7 +18,9 @@ import turtle.TurtleView;
  * @author harirajan
  *
  */
-public class SLogoModel {
+public class SLogoModel implements Observer {
+	
+	SLogoData mySlogoData;
 	
 	List<Turtle> myTurtles;
 	Executor myExecutor;
@@ -38,6 +43,14 @@ public class SLogoModel {
 	
 	public List<Turtle> getTurtles() {
 		return myTurtles;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable slogoData, Object arg) {
+		mySlogoData = (SLogoData) slogoData;
 	}
 
 }

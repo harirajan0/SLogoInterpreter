@@ -2,18 +2,19 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
-public class SetHeading implements Command {
+public class SetHeading extends OneParam {
 
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtle) throws IllegalArgumentException {
-		double heading = arg1.evaluate();
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		double heading = params.get(0);
 		turtle.setHeading(heading);
 		turtle.display();
-		if (arg2 != null) arg2.evaluate();
 		return turtle.getHeading() - heading;
 	}
+	
 	
 }

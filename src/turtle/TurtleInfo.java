@@ -18,7 +18,6 @@ public class TurtleInfo {
 	private double myHeading;
 	private boolean isPenDown;
 	private boolean isVisible;
-	
 	private Color penColor;
 		
 	public TurtleInfo() {

@@ -1,5 +1,8 @@
 package frontend;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import constants.Constants;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -13,11 +16,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.SLogoData;
 
-public class SLogoView {
+public class SLogoView implements Observer {
 	
 	public static final String TITLE = "SLogo";
 	public static final int SIZE = 800;
+	
+	private SLogoData mySlogoData;
 	
 	private BorderPane myBorderPane;
 	private Scene myScene;
@@ -88,6 +94,16 @@ public class SLogoView {
 	
 	public void clearCommandPrompt() {
 		myCommandPrompt.setCommandPromptText("");
+	}
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable slogoData, Object arg) {
+		// TODO Auto-generated method stub
+		mySlogoData = (SLogoData) slogoData;
+		//myTurtleWindow.setTurtles(mySLogoData.geTurtles());
 	}
 
 }

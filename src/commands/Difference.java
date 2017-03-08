@@ -5,23 +5,22 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
+
 
 /**
  * @author harirajan
  *
  */
-public class Difference extends LogicCommand {
+public class Difference extends LogicCommandTwoParams {
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
+	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if ( arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
-		
-		return arg1.evaluate() - arg2.evaluate();
+		return params.get(0) - params.get(1);
 	}
+
 	
 }

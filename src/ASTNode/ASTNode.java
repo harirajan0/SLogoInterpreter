@@ -1,9 +1,14 @@
 /**
  * 
  */
-package commands;
+package ASTNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import backend.Variable;
+import commands.Command;
+import commands.Sum;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
@@ -22,24 +27,40 @@ public class ASTNode {
 	private ASTNode myArg4;
 	private Turtle myTurtle;
 	
+	private List<ASTNode> myArguments;
+	
 //	ASTNode[] myArgs = { myArg1, myArg2, myArg3, myArg4 };
 	
 	public ASTNode(Command command, Variable variable, double value,
-			ASTNode arg1, ASTNode arg2, ASTNode arg3, ASTNode arg4, Turtle turtle) {
+			List<ASTNode> arguments, Turtle turtle) {
 		myCommand = command;
 		myVariable = variable;
 		myValue = value;
-		myArg1 = arg1;
-		myArg2 = arg2;
-		myArg3 = arg3;
-		myArg4 = arg4;
+		myArguments = arguments;
 		myTurtle = turtle;
 	}
 	
 	public double evaluate() {
 		if (myVariable != null) return myVariable.getValue();
-		if (myCommand == null) return myValue;
-		return myCommand.execute(myArg1,  myArg2, myArg3, myArg4, myTurtle);
+		if (myCommand == null) return myValue; // if its a double
+		
+		List<Double> paramList = new ArrayList<>();
+		List<ASTNode> evaluateList = new ArrayList<>();		
+		for (int i = 0; i < myArguments.size(); i++) {
+			System.out.println(myArguments.get(i));
+			if (i >= myCommand.getNumArgs()) {
+				if (myArguments.get(i).getCommand() != null) {
+					if (!myArguments.get(i).getCommand().isLogicCommand()) { //change string to constant
+						evaluateList.add(myArguments.get(i));
+						continue;
+					}
+				}
+			}
+			paramList.add(myArguments.get(i).evaluate());
+		}
+		double ret = myCommand.execute(paramList, myTurtle);
+		for (ASTNode node : evaluateList) node.evaluate();
+		return ret;
 	}
 	
 	public Command getCommand() {

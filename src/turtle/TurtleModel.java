@@ -19,10 +19,6 @@ public class TurtleModel {
 	private TurtleInfo currentTurtleInfo;
 	private TurtleInfo nextTurtleInfo;
 	
-	public TurtleModel() {
-		this(new TurtleInfo());
-	}
-	
 	public TurtleModel(TurtleInfo turtleInfo) {
 		currentTurtleInfo = turtleInfo;
 		nextTurtleInfo = turtleInfo;

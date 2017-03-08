@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Queue;
 
 import ASTNode.ASTNode;
-import commands.Command;
+import command_abstractions.Command;
 import languages.Language;
 import main.SLogoData;
 import turtle.Turtle;
@@ -24,12 +24,12 @@ public class Executor {
 	private CommandFactory commandFactory;
 	private ProgramParser syntaxParser;
 	private List<String> myInput;
+	private Language myLang;
 	
-	Language myLang;
-	
-	public Executor() {
+	public Executor(Language lang) {
 		commandFactory = new CommandFactory();
 		syntaxParser = new ProgramParser(Language.SYNTAX);
+		myLang = lang;
 	}
 	
 	public void setInput( List<String> input) {

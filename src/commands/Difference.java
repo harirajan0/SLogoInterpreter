@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandTwoParams;
 
 
 /**
  * @author harirajan
  *
  */
-public class Difference extends LogicCommandTwoParams {
+public class Difference extends MathCommandTwoParams {
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */

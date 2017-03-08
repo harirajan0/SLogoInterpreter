@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.Variable;
-import commands.Command;
+import command_abstractions.Command;
 import commands.Sum;
 import main.SLogoData;
 import turtle.Turtle;
@@ -41,24 +41,8 @@ public class ASTNode {
 	public double evaluate() {
 		if (myVariable != null) return myVariable.getValue();
 		if (myCommand == null) return myValue; // if its a double
-		
-		List<Double> paramList = new ArrayList<>();
-		List<ASTNode> evaluateList = new ArrayList<>();		
-		for (int i = 0; i < myArguments.size(); i++) {
-			if (i >= myCommand.getNumArgs()) {
-				if (myArguments.get(i).getCommand() != null) {
-					if (!myArguments.get(i).getCommand().isLogicCommand()) { //change string to constant
-						evaluateList.add(myArguments.get(i));
-						continue;
-					}
-				}
-			}
-			paramList.add(myArguments.get(i).evaluate());
-		}
-		double ret = mySlogoData.runCommand(myCommand, paramList);
-//		double ret = myCommand.execute(paramList, myTurtle, mySlogoData);
-		for (ASTNode node : evaluateList) node.evaluate();
-		return ret;
+
+		return myCommand.execute(myArguments, mySlogoData);
 	}
 	
 	public Command getCommand() {

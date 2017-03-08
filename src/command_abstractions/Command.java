@@ -1,7 +1,7 @@
 /**
  * 
  */
-package commands;
+package command_abstractions;
 
 import java.util.List;
 
@@ -16,11 +16,10 @@ import turtle.TurtleInfo;
  */
 public interface Command {
 	
-	public double execute(List<Double> params,
-			Turtle turtle, SLogoData slogoData) throws IllegalArgumentException;
+	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException;
 	
 	public int getNumArgs();
 	
-	public boolean isLogicCommand();
+	public boolean isMathCommand();
 	
 }

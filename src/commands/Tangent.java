@@ -6,12 +6,13 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 import turtle.Turtle;
 /**
  * @author harirajan
  *
  */
-public class Tangent extends LogicCommandOneParam {
+public class Tangent extends MathCommandOneParam {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 
 
 /**
  * @author harirajan
  *
  */
-public class Arctangent extends LogicCommandOneParam {
+public class Arctangent extends MathCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

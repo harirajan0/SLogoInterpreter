@@ -1,15 +1,12 @@
 package commands;
 
-import java.util.List;
-
-import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandNoParams;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
-public class PenUp extends NoParams {
+public class PenUp extends TurtleCommandNoParams {
 
 	@Override
-	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+	public double execute(Turtle turtle) throws IllegalArgumentException {
 		turtle.setPenDown(false);
 		turtle.display();
 		return 0;

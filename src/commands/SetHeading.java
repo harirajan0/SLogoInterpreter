@@ -2,11 +2,10 @@ package commands;
 
 import java.util.List;
 
-import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandOneParam;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
-public class SetHeading extends OneParam {
+public class SetHeading extends TurtleCommandOneParam {
 
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

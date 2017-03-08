@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 import constants.Constants;
 
 /**
  * @author harirajan
  *
  */
-public class Not extends LogicCommandOneParam {
+public class Not extends MathCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

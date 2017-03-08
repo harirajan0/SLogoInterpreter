@@ -6,12 +6,13 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 
 /**
  * @author harirajan
  *
  */
-public class Minus extends LogicCommandOneParam {
+public class Minus extends MathCommandOneParam {
 
 	
 	/* (non-Javadoc)

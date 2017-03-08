@@ -4,14 +4,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 import constants.Constants;
-import javafx.geometry.Point2D;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -30,17 +31,27 @@ public class SLogoView implements Observer {
 	private Group myRoot;
 	
 	private CommandPromptView myCommandPrompt;
-	private VariablesView myVariables;
+	private VariablesView myVariablesView;
 	private TurtleWindowView myTurtleWindow;
 	private MenuView myMenuBar;
 	private VBox topVBox;
+	private PaletteView myPaletteView;
 	
 	public SLogoView(Stage s) {
 		myRoot = new Group();
+		
 		myCommandPrompt = new CommandPromptView();
-		myVariables = new VariablesView();
+		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
+		myPaletteView = new PaletteView();
+		
+		myPaletteView.getNode().setOnMouseClicked(new EventHandler<Event>(){
+			public void handle(Event event){
+				displayPalettePicker();
+			}
+		});
+		
 		topVBox = new VBox();
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
@@ -55,8 +66,8 @@ public class SLogoView implements Observer {
 	
 	private void setUpBorderPane() {
 		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(new Rectangle(Constants.WINDOW_SIZE / 4, Constants.WINDOW_SIZE / 4, Constants.BACKGROUND_COLOR)); // to fill space on left 
-		myBorderPane.setRight(myVariables.getNode());
+		myBorderPane.setLeft(myPaletteView.getNode());
+		myBorderPane.setRight(myVariablesView.getNode());
 		myBorderPane.setCenter(myTurtleWindow.getNode());
 		myBorderPane.setTop(topVBox);
 	}
@@ -68,7 +79,39 @@ public class SLogoView implements Observer {
 		s.show();
 	}
 	
+	private void displayPalettePicker(){
+		Group newRoot = new Group();
+		displayPaletteTextFields(newRoot);
+		Stage paletteColorPicker = new Stage();
+		paletteColorPicker.setTitle(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePickerName"));
+		paletteColorPicker.setScene(new Scene(newRoot, Constants.PALETTE_PICKER_SIZE, Constants.PALETTE_PICKER_SIZE, Constants.BACKGROUND_COLOR));
+		paletteColorPicker.show();
+	}
 	
+	private void displayPaletteTextFields(Group newRoot){
+		VBox textFields = new VBox();
+		TextArea colorOneField = new TextArea("Color 1");
+		colorOneField.setPrefHeight(10);
+		TextArea colorTwoField = new TextArea("Color 2");
+		colorTwoField.setPrefHeight(10);
+		TextArea colorThreeField = new TextArea("Color 3");
+		colorThreeField.setPrefHeight(10);
+		TextArea colorFourField = new TextArea("Color 4");
+		colorFourField.setPrefHeight(10);
+		Button changeColors = new Button("Change colors");
+		changeColors.setOnAction((event) -> {
+			updateColors(colorOneField.getText(), colorTwoField.getText(), colorThreeField.getText(), colorFourField.getText());
+		});
+		textFields.getChildren().addAll(colorOneField, colorTwoField, colorThreeField, colorFourField, changeColors);
+		newRoot.getChildren().add(textFields);
+	}
+	
+	private void updateColors(String c1, String c2, String c3, String c4){
+		myPaletteView.setColorOne(c1);
+		myPaletteView.setColorTwo(c2);
+		myPaletteView.setColorThree(c3);
+		myPaletteView.setColorFour(c4);
+	}
 	
 	//FIX THIS
 	
@@ -103,13 +146,9 @@ public class SLogoView implements Observer {
 	public void update(Observable slogoData, Object arg) {
 		// TODO Auto-generated method stub
 		mySlogoData = (SLogoData) slogoData;
-		System.out.println("TURTLE 1");
-		System.out.println(mySlogoData.getTurtles().get(0).getTurtleInfo());
-		if (mySlogoData.getTurtles().size() > 1) {
-			System.out.println("TURTLE 2");
-			System.out.println(mySlogoData.getTurtles().get(1).getTurtleInfo());
-		}
+		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
+		myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
 	}
 
 }

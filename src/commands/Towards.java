@@ -1,10 +1,10 @@
 package commands;
 
 import java.util.List;
-
+import command_abstractions.TurtleCommandTwoParams;
 import turtle.Turtle;
 
-public class Towards extends TwoParams {
+public class Towards extends TurtleCommandTwoParams {
 
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

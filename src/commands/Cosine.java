@@ -6,12 +6,13 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 
 /**
  * @author harirajan
  *
  */
-public class Cosine extends LogicCommandOneParam {
+public class Cosine extends MathCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

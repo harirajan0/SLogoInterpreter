@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandTwoParams;
 import constants.Constants;
 
 /**
  * @author harirajan
  *
  */
-public class Equal extends LogicCommandTwoParams {
+public class Equal extends MathCommandTwoParams {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

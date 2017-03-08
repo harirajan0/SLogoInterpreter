@@ -26,20 +26,17 @@ public class SLogoController {
 	private SLogoModel mySlogoModel;
 	private SLogoData mySlogoData;
 	
-	private Language myLang;
 	
 	public SLogoController(Stage s) {
-		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
-		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot());
+		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 1);
 		mySlogoModel = new SLogoModel();
 		mySlogoData = new SLogoData(firstTurtle);
 		mySlogoData.addObserver(mySlogoView);
 		mySlogoData.addObserver(mySlogoModel);
 		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
-										new TurtleInfo(250, 200, 0, true, true, Color.BLACK));
+										new TurtleInfo(250, 200, 0, true, true, Color.BLACK), 2);
 		mySlogoData.addTurtle(secondTurtle);
-		mySlogoModel.setLanguage(myLang);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
 				mySlogoModel.parse(input);

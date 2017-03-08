@@ -6,12 +6,13 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 
 /**
  * @author harirajan
  *
  */
-public class Log extends LogicCommandOneParam {
+public class Log extends MathCommandOneParam {
 	
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

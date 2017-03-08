@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandTwoParams;
 import constants.Constants;
 
 /**
  * @author harirajan
  *
  */
-public class Or extends LogicCommandTwoParams {
+public class Or extends MathCommandTwoParams {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

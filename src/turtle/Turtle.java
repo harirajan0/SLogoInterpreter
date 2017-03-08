@@ -19,14 +19,16 @@ public class Turtle {
 	private TurtleModel myTurtleModel;
 	private TurtleView myTurtleView;
 	
-	public Turtle(Group root) {
-		myTurtleModel = new TurtleModel(); 
-		myTurtleView = new TurtleView(root);
+	private int myID;
+	
+	public Turtle(Group root, int id) {
+		this(root, new TurtleInfo(), id);
 	}
 	
-	public Turtle(Group root, TurtleInfo turtleInfo) {
-		myTurtleModel = new TurtleModel(turtleInfo); 
+	public Turtle(Group root, TurtleInfo turtleInfo, int id) {
+ 		myTurtleModel = new TurtleModel(turtleInfo); 
 		myTurtleView = new TurtleView(root);
+		myID = id;
 	}
 	
 	public void setNext(TurtleInfo turtleInfo) {
@@ -58,8 +60,6 @@ public class Turtle {
 	}
 	
 	public void display() {
-		System.out.println(myTurtleModel.getCurrentTurtleInfo());
-		System.out.println(myTurtleModel.getNextTurtleInfo());
 		for (Line l : myTurtleModel.calculateLinesToDraw()) {
 			myTurtleView.getRoot().getChildren().add(l);
 		}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import constants.Constants;
 import javafx.scene.Group;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import turtle.Turtle;
@@ -63,5 +64,10 @@ public class TurtleWindowView {
 		}
 		displayTurtles();
 	}
+	
+	public void changeBackgroundColor(Paint color) {
+		myRectangle.setFill(color);
+	}
+	
 
 }

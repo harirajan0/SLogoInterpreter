@@ -6,13 +6,14 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
 
 
 /**
  * @author harirajan
  *
  */
-public class Sine extends LogicCommandOneParam {
+public class Sine extends MathCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

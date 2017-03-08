@@ -2,11 +2,10 @@ package commands;
 
 import java.util.List;
 
-import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandTwoParams;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
-public class SetPosition extends TwoParams {
+public class SetPosition extends TurtleCommandTwoParams {
 
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

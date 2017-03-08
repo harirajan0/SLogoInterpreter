@@ -3,6 +3,7 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandOneParam;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
@@ -11,7 +12,7 @@ import turtle.TurtleInfo;
  * @author Alex Boss
  *
  */
-public class Back extends OneParam {
+public class Back extends TurtleCommandOneParam {
 
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

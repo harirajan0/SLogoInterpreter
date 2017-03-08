@@ -3,10 +3,10 @@
  */
 package backend;
 
+import command_abstractions.Command;
 import commands.And;
 import commands.Arctangent;
 import commands.Back;
-import commands.Command;
 import commands.Cosine;
 import commands.Difference;
 import commands.Equal;
@@ -85,7 +85,7 @@ public class CommandFactory {
 		case "And" : return new And();
 		case "Or" : return new Or();
 		case "Not" : return new Not();
-		case "Repeat" : return new Repeat();
+//		case "Repeat" : return new Repeat();
 		default: throw new IllegalArgumentException();
 		}
 	}

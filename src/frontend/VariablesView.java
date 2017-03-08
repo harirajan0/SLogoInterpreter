@@ -32,11 +32,12 @@ public class VariablesView{
 	public VariablesView() {
 		myVBox = new VBox();
 		currentVars = new ArrayList<Variable>();
-		currentVars.add(new Variable("x", 20));
-		currentVars.add(new Variable("y", 40));
 		updateVariableDisplay();
 	}
 	
+	public void setVariables(List<Variable> newVariables) {
+		currentVars = newVariables;
+	}
     
     
     public void updateVariableDisplay(){

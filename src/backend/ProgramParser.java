@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import languages.Language;
-import languages.LanguageFacotry;
+import languages.LanguageFactory;
 
 
 /**

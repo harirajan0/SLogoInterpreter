@@ -6,12 +6,13 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import command_abstractions.MathCommandTwoParams;
 
 /**
  * @author harirajan
  *
  */
-public class Product extends LogicCommandTwoParams {
+public class Product extends MathCommandTwoParams {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)

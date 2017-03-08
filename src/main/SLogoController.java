@@ -55,8 +55,5 @@ public class SLogoController {
 		return mySlogoModel;
 	}
 	
-	public void changeLanguage(Language newLanguage){
-		myLang=newLanguage;
-	}
 
 }

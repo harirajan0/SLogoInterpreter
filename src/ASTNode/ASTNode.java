@@ -9,6 +9,7 @@ import java.util.List;
 import backend.Variable;
 import commands.Command;
 import commands.Sum;
+import main.SLogoData;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
@@ -21,23 +22,20 @@ public class ASTNode {
 	private Command myCommand;
 	Variable myVariable;
 	private double myValue;
-	private ASTNode myArg1;
-	private ASTNode myArg2;
-	private ASTNode myArg3;
-	private ASTNode myArg4;
 	private Turtle myTurtle;
+	private SLogoData mySlogoData;
 	
 	private List<ASTNode> myArguments;
 	
-//	ASTNode[] myArgs = { myArg1, myArg2, myArg3, myArg4 };
 	
 	public ASTNode(Command command, Variable variable, double value,
-			List<ASTNode> arguments, Turtle turtle) {
+			List<ASTNode> arguments, Turtle turtle, SLogoData slogoData) {
 		myCommand = command;
 		myVariable = variable;
 		myValue = value;
 		myArguments = arguments;
 		myTurtle = turtle;
+		mySlogoData = slogoData;
 	}
 	
 	public double evaluate() {
@@ -58,7 +56,8 @@ public class ASTNode {
 			}
 			paramList.add(myArguments.get(i).evaluate());
 		}
-		double ret = myCommand.execute(paramList, myTurtle);
+		double ret1 = mySlogoData.runCommand(myCommand, paramList);
+		double ret = myCommand.execute(paramList, myTurtle, mySlogoData);
 		for (ASTNode node : evaluateList) node.evaluate();
 		return ret;
 	}
@@ -73,71 +72,6 @@ public class ASTNode {
 	
 	public void setValue(double newValue) {
 		myValue = newValue;
-	}
-	
-	/**
-	 * @return the myArg1
-	 */
-	public ASTNode getArg1() {
-		return myArg1;
-	}
-
-	/**
-	 * @param myArg1 the myArg1 to set
-	 */
-	public void setArg1(ASTNode myArg1) {
-		this.myArg1 = myArg1;
-	}
-
-	/**
-	 * @return the myArg2
-	 */
-	public ASTNode getArg2() {
-		return myArg2;
-	}
-
-	/**
-	 * @param myArg2 the myArg2 to set
-	 */
-	public void setArg2(ASTNode myArg2) {
-		this.myArg2 = myArg2;
-	}
-
-	/**
-	 * @return the myArg3
-	 */
-	public ASTNode getArg3() {
-		return myArg3;
-	}
-
-	/**
-	 * @param myArg3 the myArg3 to set
-	 */
-	public void setArg3(ASTNode myArg3) {
-		this.myArg3 = myArg3;
-	}
-
-	/**
-	 * @return the myArg4
-	 */
-	public ASTNode getArg4() {
-		return myArg4;
-	}
-
-	/**
-	 * @param myArg4 the myArg4 to set
-	 */
-	public void setArg4(ASTNode myArg4) {
-		this.myArg4 = myArg4;
-	}
-	
-	
-	public ASTNode getFirstAvailableArgument() {
-		if (myArg1 != null) return myArg1;
-		if (myArg2 != null) return myArg2;
-		if (myArg3 != null) return myArg3;
-		if (myArg4 != null) return myArg4;
-		return null;
 	}
 	
 	public String toString() {

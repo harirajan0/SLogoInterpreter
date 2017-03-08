@@ -6,6 +6,7 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import turtle.Turtle;
 /**
  * @author harirajan
  *
@@ -20,5 +21,6 @@ public class Tangent extends LogicCommandOneParam {
 		// TODO Auto-generated method stub
 		return Math.toDegrees(Math.tan(Math.toRadians(params.get(0))));
 	}
+
 
 }

@@ -6,6 +6,7 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import main.SLogoData;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 
@@ -16,7 +17,7 @@ import turtle.TurtleInfo;
 public interface Command {
 	
 	public double execute(List<Double> params,
-			Turtle turtle) throws IllegalArgumentException;
+			Turtle turtle, SLogoData slogoData) throws IllegalArgumentException;
 	
 	public int getNumArgs();
 	

@@ -1,7 +1,9 @@
 package main;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 import backend.Variable;
 import commands.Command;
@@ -23,17 +25,31 @@ public class SLogoData extends Observable {
 	
 	private int myBackgroundColorIndex;
 	
+	public SLogoData(Turtle firstTurtle) {
+		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
+		myVariables = new ArrayList<>();
+		myBackgroundColorIndex = 0; //black
+	}
 	
-	public void runCommand(Command cmd, List<Double> params) {
-		if (cmd.isLogicCommand()) cmd.execute(params, null);
+	
+	public double runCommand(Command cmd, List<Double> params) {
+		if (cmd.isLogicCommand()) return cmd.execute(params, null, this);
 		else {
+			double ret = 0.0;
 			for (Turtle turtle : myTurtles) {
 				if (turtle.isSelected()) {
-	//				cmd.execute(params, turtle, this);
+					ret = cmd.execute(params, turtle, this);
 					setChanged();
 				}
 			}
+			return ret;
 		}
+	}
+	
+	@Override
+	public void addObserver(Observer o) {
+		super.addObserver(o);
+		o.update(this, null);
 	}
 	
 	public void changeBackgroundColorIndex(int index) {
@@ -53,6 +69,14 @@ public class SLogoData extends Observable {
 	
 	public void addVariable(Variable var) {
 		myVariables.add(var);
+	}
+	
+	public void addTurtle(Turtle turtle) {
+		myTurtles.add(turtle);
+	}
+	
+	public List<Turtle> getTurtles() {
+		return myTurtles;
 	}
 	
 }

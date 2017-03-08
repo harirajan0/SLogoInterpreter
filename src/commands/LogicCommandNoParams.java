@@ -6,6 +6,7 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import main.SLogoData;
 import turtle.Turtle;
 import turtle.TurtleInfo;
 

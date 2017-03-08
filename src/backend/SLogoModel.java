@@ -38,11 +38,13 @@ public class SLogoModel implements Observer {
 	
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
-		for (Turtle turtle : myTurtles) myExecutor.parseText(turtle).evaluate();
+		//myExecutor.parseText(mySlogoData).evaluate();
+		for (Turtle turtle : myTurtles) myExecutor.parseText(turtle, mySlogoData).evaluate();
 	}
 	
 	public List<Turtle> getTurtles() {
 		return myTurtles;
+		//return mySlogoData.getTurtles();
 	}
 
 	/* (non-Javadoc)

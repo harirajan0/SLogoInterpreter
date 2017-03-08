@@ -1,10 +1,8 @@
 package frontend;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -15,7 +13,6 @@ import languages.Language;
 import main.SLogoController;
 
 public class MenuFactory {
-
 	public Menu MakeMenu(String menuName){
 		switch(menuName){
 		case "Help":
@@ -71,5 +68,4 @@ public class MenuFactory {
 		default: return new Menu(menuName);
 		}
 	}
-
 }

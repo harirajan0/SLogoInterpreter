@@ -2,17 +2,17 @@ package commands;
 
 import java.util.List;
 
-import backend.TurtleInfo;
+import command_abstractions.TurtleCommandOneParam;
+import turtle.Turtle;
 
-public class Left implements Command {
+public class Left extends TurtleCommandOneParam {
 
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
-		if ( arg2 != null || arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
-		double rotationAmount = arg1.evaluate();
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		double rotationAmount = params.get(0);
 		turtle.setHeading(turtle.getHeading() - rotationAmount);
+		turtle.display();
 		return rotationAmount;
 	}
+
 }

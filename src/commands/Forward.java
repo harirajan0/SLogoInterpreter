@@ -3,28 +3,35 @@
  */
 package commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import backend.TurtleInfo;
+import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandOneParam;
+import turtle.Turtle;
+import turtle.TurtleInfo;
 
 /**
  * @author harirajan
  *
  */
-public class Forward implements Command {
+public class Forward extends TurtleCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.lang.Double[])
 	 */
-	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
-		if ( arg2 != null || arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
+//	@Override
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		double totalAmount = 0;
+		for (Double fwdAmount : params) {
+			turtle.setX(turtle.getX() + fwdAmount * Math.sin(Math.toRadians(turtle.getHeading())));
+			turtle.setY(turtle.getY() - fwdAmount * Math.cos(Math.toRadians(turtle.getHeading())));
+			turtle.display();
+			totalAmount += fwdAmount;
 		}
-		double fwdAmount = arg1.evaluate();
-		turtle.setX(turtle.getX() + fwdAmount*Math.sin(Math.toRadians(turtle.getHeading())));
-		turtle.setY(turtle.getY() - fwdAmount*Math.cos(Math.toRadians(turtle.getHeading())));
-		return fwdAmount;
+		return totalAmount;
 	}
+	
 
+	
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package backend;
+package turtle;
 
 import constants.Constants;
 import javafx.scene.shape.Line;
@@ -19,32 +19,9 @@ public class TurtleModel {
 	private TurtleInfo currentTurtleInfo;
 	private TurtleInfo nextTurtleInfo;
 	
-	public TurtleModel() {
-		currentTurtleInfo = new TurtleInfo();
-		nextTurtleInfo = null;
-		currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE / 2);
-		currentTurtleInfo.setY(Constants.TURTLE_WINDOW_SIZE / 2);
-	}
-	
-	
-	public double getX() {
-		return currentTurtleInfo.getX();
-	}
-	
-	public double getY() {
-		return currentTurtleInfo.getY();
-	}
-	
-	public double getHeading() {
-		return currentTurtleInfo.getHeading();
-	}
-	
-	public boolean isVisible() {
-		return currentTurtleInfo.isVisible();
-	}
-	
-	public boolean isPenDown() {
-		return currentTurtleInfo.isPenDown();
+	public TurtleModel(TurtleInfo turtleInfo) {
+		currentTurtleInfo = turtleInfo;
+		nextTurtleInfo = turtleInfo;
 	}
 	
 	public List<Line> calculateLinesToDraw() {
@@ -93,7 +70,6 @@ public class TurtleModel {
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					top.getStartX(), top.getStartY(), top.getEndX(), top.getEndY()) 
 					&& currentTurtleInfo.getY() != 0) {
-				System.out.println("top");
 				endY = 0;
 				nextY = Constants.TURTLE_WINDOW_SIZE;
 				endX = currentTurtleInfo.getX() + (currentTurtleInfo.getY()
@@ -104,7 +80,6 @@ public class TurtleModel {
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					bottom.getStartX(), bottom.getStartY(), bottom.getEndX(), bottom.getEndY()) 
 					&& currentTurtleInfo.getY() != Constants.TURTLE_WINDOW_SIZE) {
-				System.out.println("bottom");
 				endY = Constants.TURTLE_WINDOW_SIZE;
 				nextY = 0;
 				endX = currentTurtleInfo.getX() - ((Constants.TURTLE_WINDOW_SIZE - currentTurtleInfo.getY())
@@ -115,7 +90,6 @@ public class TurtleModel {
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					left.getStartX(), left.getStartY(), left.getEndX(), left.getEndY()) 
 					&& currentTurtleInfo.getX() != 0) {
-				System.out.println("left");
 				endX = 0;
 				nextX = Constants.TURTLE_WINDOW_SIZE;
 				endY = currentTurtleInfo.getY() + (currentTurtleInfo.getX()	/ Math.tan(Math.toRadians(currentTurtleInfo.getHeading())));	
@@ -154,8 +128,12 @@ public class TurtleModel {
 				nextTurtleInfo.getY() <= Constants.TURTLE_WINDOW_SIZE;			
 	}
 	
-	public TurtleInfo getTurtleInfo() {
+	public TurtleInfo getCurrentTurtleInfo() {
 		return currentTurtleInfo;
+	}
+	
+	public TurtleInfo getNextTurtleInfo() {
+		return nextTurtleInfo;
 	}
 	
 	public void setNext(TurtleInfo turtleInfo) {
@@ -164,7 +142,7 @@ public class TurtleModel {
 	
 	public void prepareForNextCommand() {
 		currentTurtleInfo = new TurtleInfo(nextTurtleInfo);
-		nextTurtleInfo = null;
+//		nextTurtleInfo = null;
 	}
 
 

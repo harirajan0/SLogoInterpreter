@@ -1,12 +1,9 @@
 package frontend;
-
 import constants.Constants;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
-
 public class MenuView {
-
 	private MenuBar myMenuBar;
 	private MenuFactory myMenuFactory;
 	
@@ -23,7 +20,6 @@ public class MenuView {
 			myMenuBar.getMenus().add(newMenu);	
 		}
 	}
-
 	public MenuBar getNode() {
 		return myMenuBar;
 	}

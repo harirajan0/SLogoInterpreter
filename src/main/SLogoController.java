@@ -8,11 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import backend.SLogoModel;
-import backend.TurtleInfo;
 import frontend.SLogoView;
-import frontend.TurtleView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import languages.Language;
+import turtle.Turtle;
+import turtle.TurtleInfo;
+import turtle.TurtleView;
 
 /**
  * @author harirajan
@@ -22,25 +24,24 @@ public class SLogoController {
 	
 	private SLogoView mySlogoView;
 	private SLogoModel mySlogoModel;
+	private SLogoData mySlogoData;
 	
-	private Language myLang;
 	
 	public SLogoController(Stage s) {
-		myLang = Language.ENGLISH;
 		mySlogoView = new SLogoView(s);
-		TurtleView firstTurtle = new TurtleView();
-		firstTurtle.setNext(mySlogoView.getTurtleWindow().getTurtleInfo());
-		firstTurtle.prepareForNextCommand();
-		List<TurtleView> turtles = new ArrayList<>();
-		turtles.add(firstTurtle);
-		mySlogoModel = new SLogoModel(turtles);
-		mySlogoModel.setLanguage(myLang);
+		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 1);
+		mySlogoModel = new SLogoModel();
+		mySlogoData = new SLogoData(firstTurtle);
+		mySlogoData.addObserver(mySlogoView);
+		mySlogoData.addObserver(mySlogoModel);
+		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
+										new TurtleInfo(250, 200, 0, true, true, Color.BLACK), 2);
+		mySlogoData.addTurtle(secondTurtle);
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
 				mySlogoModel.parse(input);
 				mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 				mySlogoView.clearCommandPrompt();
-				mySlogoView.getTurtleWindow().updateTurtle(mySlogoModel.getTurtles());
 			}
 		});
 	}

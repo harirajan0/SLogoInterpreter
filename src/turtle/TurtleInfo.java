@@ -1,7 +1,7 @@
 /**
  * 
  */
-package backend;
+package turtle;
 
 import constants.Constants;
 import javafx.scene.paint.Color;
@@ -18,25 +18,28 @@ public class TurtleInfo {
 	private double myHeading;
 	private boolean isPenDown;
 	private boolean isVisible;
-	
-	private Color penColor;
+	private Color myPenColor;
 		
 	public TurtleInfo() {
-		myX = 0;
-		myY = 0;
+		myX = Constants.TURTLE_WINDOW_SIZE / 2;
+		myY = Constants.TURTLE_WINDOW_SIZE / 2;
 		myHeading = 0;
 		isPenDown = true;
 		isVisible = true;
-		penColor = Color.BLACK;
+		myPenColor = Color.BLACK;
+	}
+	
+	public TurtleInfo(double X, double Y, double heading, boolean penDown, boolean visible, Color penColor) {
+		myX = X;
+		myY = Y;
+		myHeading = heading;
+		isPenDown = penDown;
+		isVisible = visible;
+		myPenColor = penColor;
 	}
 	
 	public TurtleInfo(TurtleInfo toCopy) {
-		myX = toCopy.getX();
-		myY = toCopy.getY();
-		myHeading = toCopy.getHeading();
-		isPenDown = toCopy.isPenDown();
-		isVisible = toCopy.isVisible();
-		penColor = toCopy.getColor();
+		this(toCopy.getX(), toCopy.getY(), toCopy.getHeading(), toCopy.isPenDown(), toCopy.isVisible(), toCopy.getColor());
 	}
 	
 	public double getX() {
@@ -68,19 +71,19 @@ public class TurtleInfo {
 			myHeading = 360 + newHeading;
 		}
 	}
-	public void setPenDown(boolean upOrDown) {
-		isPenDown = upOrDown;
+	public void setPenDown(boolean newPenDown) {
+		isPenDown = newPenDown;
 	}
-	public void setVisible(boolean hiddenOrShown) {
-		isVisible = hiddenOrShown;
+	public void setVisible(boolean newVisible) {
+		isVisible = newVisible;
 	}
 	
 	public void setColor(Color newColor) {
-		penColor = newColor;
+		myPenColor = newColor;
 	}
 	
 	public Color getColor() {
-		return penColor;
+		return myPenColor;
 	}
 	
 	public String toString() {

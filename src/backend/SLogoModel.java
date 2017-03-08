@@ -6,43 +6,47 @@ package backend;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-import frontend.TurtleView;
 import languages.Language;
+import main.SLogoData;
+import turtle.Turtle;
+import turtle.TurtleView;
 
 /**
  * @author harirajan
  *
  */
-public class SLogoModel {
+public class SLogoModel implements Observer {
 	
-	List<TurtleView> myTurtles;
-//	TurtleInfo myTurtleInfo;
+	SLogoData mySlogoData;
+	
 	Executor myExecutor;
-	Language myLang;
 	
-	public SLogoModel(List<TurtleView> turtles) {
-		myTurtles = turtles;
-//		myTurtleInfo = turtleInfo;
-		myExecutor = new Executor();
+	public SLogoModel() {
+		myExecutor = new Executor(mySlogoData.getLanguage());
 	}
 	
-	public void setLanguage(Language lang) {
-		myLang = lang;
-		myExecutor.setLanguage(lang);
-	}
 	
 	public void parse(String input) {
 		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
-		for (TurtleView turtle : myTurtles) myExecutor.parseText(turtle.getTurtleInfo()).evaluate();
+		//myExecutor.parseText(mySlogoData).evaluate();
+//		for (Turtle turtle : myTurtles)
+			myExecutor.parseText(mySlogoData).evaluate();
 	}
 	
-	public List<TurtleView> getTurtles() {
-		return myTurtles;
+	public List<Turtle> getTurtles() {
+		return mySlogoData.getTurtles();
 	}
-	
-//	public void setTurtleInfo(TurtleInfo newTurtleInfo) {
-//		myTurtleInfo = newTurtleInfo;
-//		myExecutor.setTurtleInfo(myTurtleInfo);
-//	}
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable slogoData, Object arg) {
+		mySlogoData = (SLogoData) slogoData;
+		myExecutor.setLanguage(mySlogoData.getLanguage());
+	}
+
 }

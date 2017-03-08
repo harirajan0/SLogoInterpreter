@@ -3,15 +3,14 @@
  */
 package backend;
 
+import command_abstractions.Command;
 import commands.And;
 import commands.Arctangent;
 import commands.Back;
-import commands.Command;
 import commands.Cosine;
 import commands.Difference;
 import commands.Equal;
 import commands.Forward;
-import commands.Goto;
 import commands.Greater;
 import commands.HideTurtle;
 import commands.Home;
@@ -29,8 +28,10 @@ import commands.Product;
 import commands.Quotient;
 import commands.Random;
 import commands.Remainder;
+import commands.Repeat;
 import commands.Right;
 import commands.SetHeading;
+import commands.SetPosition;
 import commands.ShowTurtle;
 import commands.Sine;
 import commands.Sum;
@@ -52,7 +53,7 @@ public class CommandFactory {
 		case "Right" : return new Right();
 		case "SetHeading" : return new SetHeading();
 		case "SetTowards" : return new Towards();
-		case "SetPosition" : return new Goto();
+		case "SetPosition" : return new SetPosition();
 		case "PenDown" : return new PenDown();
 		case "PenUp" : return new PenUp();
 		case "ShowTurtle" : return new ShowTurtle();
@@ -84,6 +85,7 @@ public class CommandFactory {
 		case "And" : return new And();
 		case "Or" : return new Or();
 		case "Not" : return new Not();
+//		case "Repeat" : return new Repeat();
 		default: throw new IllegalArgumentException();
 		}
 	}

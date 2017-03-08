@@ -1,17 +1,16 @@
 package commands;
 
-import java.util.List;
+import command_abstractions.TurtleCommandNoParams;
+import turtle.Turtle;
 
-import backend.TurtleInfo;
-
-public class PenDown implements Command {
+public class PenDown extends TurtleCommandNoParams {
 
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
-		if ( arg1 != null || arg2 != null || arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
+	public double execute(Turtle turtle) throws IllegalArgumentException {
 		turtle.setPenDown(true);
+		turtle.display();
 		return 1;
 	}
+	
+
 }

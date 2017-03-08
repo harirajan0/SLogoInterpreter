@@ -2,16 +2,18 @@ package commands;
 
 import java.util.List;
 
-import backend.TurtleInfo;
+import command_abstractions.TurtleCommandNoParams;
+import turtle.Turtle;
 
-public class ShowTurtle implements Command {
+public class ShowTurtle extends TurtleCommandNoParams {
 
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4, TurtleInfo turtle) throws IllegalArgumentException {
-		if ( arg2 != null || arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
+	public double execute(Turtle turtle) throws IllegalArgumentException {
 		turtle.setVisible(true);
+		turtle.display();
 		return 1;
 	}
+
 }
+
+

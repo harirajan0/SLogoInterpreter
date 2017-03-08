@@ -7,7 +7,7 @@ package languages;
  * @author harirajan
  *
  */
-public class LanguageFacotry {
+public class LanguageFactory {
 	
 	public static Language getLang(String lang) {
 		switch (lang) {

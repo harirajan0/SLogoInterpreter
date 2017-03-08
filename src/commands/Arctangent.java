@@ -5,24 +5,23 @@ package commands;
 
 import java.util.List;
 
+import ASTNode.ASTNode;
+import command_abstractions.MathCommandOneParam;
+
 
 /**
  * @author harirajan
  *
  */
-public class Arctangent extends LogicCommand {
+public class Arctangent extends MathCommandOneParam {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(java.util.List)
 	 */
 	@Override
-	public double execute(ASTNode arg1,ASTNode arg2, ASTNode arg3, ASTNode arg4) throws IllegalArgumentException {
+	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if ( arg2 != null || arg3 != null || arg4 != null ) {
-			throw new IllegalArgumentException();
-		}
-		
-		return Math.toDegrees(Math.atan(Math.toRadians(arg1.getValue())));
+		return Math.toDegrees(Math.atan(Math.toRadians(params.get(0))));
 	}
-
+	
 }

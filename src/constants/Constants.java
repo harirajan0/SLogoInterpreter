@@ -3,6 +3,8 @@
  */
 package constants;
 
+import java.util.ResourceBundle;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
@@ -12,6 +14,7 @@ import javafx.scene.paint.Paint;
  */
 public class Constants {
 
+	
 	public static final String APPLICATION_TITLE = "SLogo Interpreter";
 	public static final String TITLE_FONT = "Courier New";
 	public static final int TITLE_FONT_SIZE = 36;
@@ -28,4 +31,6 @@ public class Constants {
 	
 	public static final double TRUE = 1.0;
 	public static final double FALSE = 0.0;
+	
+	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myResources/resources");
 }

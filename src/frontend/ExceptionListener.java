@@ -46,6 +46,7 @@ public class ExceptionListener {
 		Alert alert = new Alert(AlertType.ERROR);
 		//alert.setTitle(property.getProperty("name"));
 		//alert.setHeaderText(property.getProperty("header"));
+		
 		alert.setContentText(e.toString());
 		Label label = new Label("The exception stacktrace was:");
 		TextArea textArea = new TextArea(Arrays.toString(e.getStackTrace()));
@@ -54,6 +55,7 @@ public class ExceptionListener {
 		GridPane labelAndException = new GridPane();
 		labelAndException.add(label, 0, 0);
 		labelAndException.add(textArea, 0, 1);
+		
 		//make the stacktrace expandable
 		alert.getDialogPane().setExpandableContent(labelAndException);
 		alert.showAndWait();

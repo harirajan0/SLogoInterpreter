@@ -48,7 +48,7 @@ public class ExceptionListener {
 		//alert.setHeaderText(property.getProperty("header"));
 		
 		alert.setContentText(e.toString());
-		Label label = new Label("The exception stacktrace was:");
+		Label label = new Label(Constants.DEFAULT_RESOURCE_BUNDLE.getString("exceptionStackTrace"));
 		TextArea textArea = new TextArea(Arrays.toString(e.getStackTrace()));
 		textArea.setEditable(false);
 		textArea.setWrapText(true);

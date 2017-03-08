@@ -25,6 +25,7 @@ public class CommandPromptView {
 	 * the command prompt and send it to the backend via the controller. Using
 	 * this class allows us to separate what is happening in the command prompt
 	 * from everything else in the screen.
+	 * 
 	 * @ author Daniel Rubinstein
 	 */
 	

@@ -39,6 +39,8 @@ public class SLogoView {
 	private VBox topVBox;
 	private PaletteView myPaletteView;
 	
+	private Button newWorkspace;
+	
 	public SLogoView(Stage s) {
 		myRoot = new Group();
 		myCommandPrompt = new CommandPromptView();
@@ -52,6 +54,8 @@ public class SLogoView {
 				displayPalettePicker();
 			}
 		});
+		
+		newWorkspace = new Button();
 		
 		/*myTurtleWindow.getNode().setOnMouseClicked(new EventHandler<Event>(){
 			public void handle(Event event){
@@ -69,6 +73,10 @@ public class SLogoView {
 		displayStage(s);
 		
 //		ExceptionListener errorBox=new ExceptionListener();
+	}
+	
+	public Button getWorkspaceButton(){
+		return newWorkspace;
 	}
 	
 	private void setUpBorderPane() {

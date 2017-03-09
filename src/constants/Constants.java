@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 /**
  * @author harirajan
+ * @author Daniel
  * @author Belal Taher
  */
 public class Constants {

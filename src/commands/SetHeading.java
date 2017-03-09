@@ -2,17 +2,18 @@ package commands;
 
 import java.util.List;
 
-import backend.TurtleInfo;
+import command_abstractions.TurtleCommandOneParam;
+import turtle.Turtle;
 
-public class SetHeading implements Command {
+public class SetHeading extends TurtleCommandOneParam {
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 1) {
-			throw new IllegalArgumentException();
-		}
-		double heading = arguments.get(0);
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		double heading = params.get(0);
 		turtle.setHeading(heading);
+		turtle.display();
 		return turtle.getHeading() - heading;
 	}
+	
+	
 }

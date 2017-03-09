@@ -1,17 +1,18 @@
 package commands;
 
-import java.util.List;
+import command_abstractions.TurtleCommandNoParams;
+import turtle.Turtle;
 
-import backend.TurtleInfo;
-
-public class Home implements Command {
+public class Home extends TurtleCommandNoParams {
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 2) {
-			throw new IllegalArgumentException();
-		}
+	public double execute(Turtle turtle) throws IllegalArgumentException {
+		//THIS HAS TO BE FIXED
 		turtle.setVisible(true);
+		turtle.display();
 		return 1;
 	}
+	
+
+	
 }

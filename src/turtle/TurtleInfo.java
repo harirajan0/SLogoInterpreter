@@ -1,35 +1,45 @@
 /**
  * 
  */
-package backend;
+package turtle;
 
 import constants.Constants;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * @author harirajan
  *
  */
 public class TurtleInfo {	
+	
 	private double myX;
 	private double myY;
 	private double myHeading;
 	private boolean isPenDown;
 	private boolean isVisible;
-	
+	private Color myPenColor;
+		
 	public TurtleInfo() {
-		myX = 0;
-		myY = 0;
+		myX = Constants.TURTLE_WINDOW_SIZE / 2;
+		myY = Constants.TURTLE_WINDOW_SIZE / 2;
 		myHeading = 0;
 		isPenDown = true;
 		isVisible = true;
+		myPenColor = Color.BLACK;
+	}
+	
+	public TurtleInfo(double X, double Y, double heading, boolean penDown, boolean visible, Color penColor) {
+		myX = X;
+		myY = Y;
+		myHeading = heading;
+		isPenDown = penDown;
+		isVisible = visible;
+		myPenColor = penColor;
 	}
 	
 	public TurtleInfo(TurtleInfo toCopy) {
-		myX = toCopy.getX();
-		myY = toCopy.getY();
-		myHeading = toCopy.getHeading();
-		isPenDown = toCopy.isPenDown();
-		isVisible = toCopy.isVisible();
+		this(toCopy.getX(), toCopy.getY(), toCopy.getHeading(), toCopy.isPenDown(), toCopy.isVisible(), toCopy.getColor());
 	}
 	
 	public double getX() {
@@ -48,22 +58,12 @@ public class TurtleInfo {
 		return isVisible;
 	}
 	public void setX(double newX) {
-		if (newX >= 0 && newX <= Constants.TURTLE_WINDOW_SIZE) {
-			myX = newX;
-		} else {
-			myX = newX % Constants.TURTLE_WINDOW_SIZE;
-			if (myX < 0) myX += Constants.TURTLE_WINDOW_SIZE;
-		}
+		myX = newX;
 	}
 	public void setY(double newY) {
-		if (newY >= 0 && newY <= Constants.TURTLE_WINDOW_SIZE) {
-			System.out.println(newY);
-			myY = newY;
-		} else {
-			myY = newY % Constants.TURTLE_WINDOW_SIZE;
-			if (myY < 0) myY += Constants.TURTLE_WINDOW_SIZE;
-		}
+		myY = newY;
 	}
+	
 	public void setHeading(double newHeading) {
 		if (newHeading >= 0) {
 			myHeading = newHeading % 360;
@@ -71,11 +71,19 @@ public class TurtleInfo {
 			myHeading = 360 + newHeading;
 		}
 	}
-	public void setPenDown(boolean upOrDown) {
-		isPenDown = upOrDown;
+	public void setPenDown(boolean newPenDown) {
+		isPenDown = newPenDown;
 	}
-	public void setVisible(boolean hiddenOrShown) {
-		isVisible = hiddenOrShown;
+	public void setVisible(boolean newVisible) {
+		isVisible = newVisible;
+	}
+	
+	public void setColor(Color newColor) {
+		myPenColor = newColor;
+	}
+	
+	public Color getColor() {
+		return myPenColor;
 	}
 	
 	public String toString() {

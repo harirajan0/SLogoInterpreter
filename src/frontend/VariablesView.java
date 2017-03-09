@@ -32,11 +32,12 @@ public class VariablesView{
 	public VariablesView() {
 		myVBox = new VBox();
 		currentVars = new ArrayList<Variable>();
-		currentVars.add(new Variable("x", "20"));
-		currentVars.add(new Variable("y", "40"));
 		updateVariableDisplay();
 	}
 	
+	public void setVariables(List<Variable> newVariables) {
+		currentVars = newVariables;
+	}
     
     
     public void updateVariableDisplay(){
@@ -47,7 +48,7 @@ public class VariablesView{
     public void displayVariable(Variable var) {
     	HBox variableDisplay = new HBox();
     	Text variableName = new Text(var.getName());
-    	TextField variableValue = new TextField(var.getValue());
+    	TextField variableValue = new TextField(String.valueOf(var.getValue()));
     	variableDisplay.getChildren().addAll(variableName, variableValue);
     	myVBox.getChildren().add(variableDisplay);
     	

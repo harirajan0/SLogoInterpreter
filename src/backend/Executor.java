@@ -6,9 +6,14 @@ package backend;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Queue;
 
-import commands.Command;
+import ASTNode.ASTNode;
+import command_abstractions.Command;
 import languages.Language;
+import main.SLogoData;
+import turtle.Turtle;
+import turtle.TurtleInfo;
 
 /**
  * @author harirajan
@@ -18,42 +23,47 @@ public class Executor {
 
 	private CommandFactory commandFactory;
 	private ProgramParser syntaxParser;
-	private TurtleInfo myTurtleInfo;
+	private List<String> myInput;
+	private Language myLang;
 	
-	Language myLang;
-	
-	public Executor(TurtleInfo turtleInfo) {
-		myTurtleInfo = turtleInfo;
+	public Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new ProgramParser(Language.SYNTAX);
 	}
 	
+	public void setInput( List<String> input) {
+		myInput = input;
+	}
 
-	public List<Double> parseText(List<String> input) throws IllegalArgumentException {
+	public ASTNode parseText(SLogoData slogoData) throws IllegalArgumentException {
 		ProgramParser parser = new ProgramParser(myLang);
-
-		if (input.size() == 0) {
-			return new ArrayList<Double>();
+		List<ASTNode> arguments = new ArrayList<>();
+		if (myInput.size() == 0) {
+			return null;
 		} else {
-			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
-				Command cmd = commandFactory.getCommand(parser.getSymbol(input.get(0)));
-				return new ArrayList<>(Arrays.asList(cmd.execute(parseText(input.subList(1, input.size())), myTurtleInfo)));
-			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
-				// look in variables map return
-			} else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
-				List<Double> list = new ArrayList<>(Arrays.asList(Double.parseDouble(input.get(0))));
-				list.addAll(parseText(input.subList(1, input.size())));
-				return list;
-
+			if (syntaxParser.getSymbol(myInput.get(0)).equals("Command")) {
+				Command cmd = commandFactory.getCommand(parser.getSymbol(myInput.get(0)));
+				myInput.remove(0);
+				while (myInput.size() > 0) {
+					arguments.add(parseText(slogoData));
+				}
+				return new ASTNode(cmd, null, 0, arguments, slogoData);
+			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Variable")) {
+				Variable var = null; // get the variable
+				myInput.remove(0);
+				return new ASTNode(null, var, 0, arguments, slogoData);
+			} else if (syntaxParser.getSymbol(myInput.get(0)).equals("Constant")) {
+				double value = Double.parseDouble(myInput.get(0));
+				myInput.remove(0);
+				return new ASTNode(null, null, value, arguments, slogoData);
 			} else {
-				return new ArrayList<Double>();
+				return null;
 			}
 		}
-		return null;
-
 	}
 	
 	public void setLanguage(Language lang) {
 		myLang = lang;
 	}
+
 }

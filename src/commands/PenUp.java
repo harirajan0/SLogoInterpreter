@@ -1,17 +1,15 @@
 package commands;
 
-import java.util.List;
+import command_abstractions.TurtleCommandNoParams;
+import turtle.Turtle;
 
-import backend.TurtleInfo;
-
-public class PenUp implements Command {
+public class PenUp extends TurtleCommandNoParams {
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 1) {
-			throw new IllegalArgumentException();
-		}
+	public double execute(Turtle turtle) throws IllegalArgumentException {
 		turtle.setPenDown(false);
+		turtle.display();
 		return 0;
 	}
+
 }

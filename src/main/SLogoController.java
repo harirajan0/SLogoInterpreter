@@ -3,34 +3,47 @@
  */
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import backend.SLogoModel;
-import backend.TurtleInfo;
 import frontend.SLogoView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import languages.Language;
+import turtle.Turtle;
+import turtle.TurtleInfo;
+import turtle.TurtleView;
 
 /**
  * @author harirajan
- * @author Daniel
  *
  */
 public class SLogoController {
 	
 	private SLogoView mySlogoView;
 	private SLogoModel mySlogoModel;
+	private SLogoData mySlogoData;
 	
-	private static Language myLang;
 	
 	public SLogoController(Stage s) {
 		mySlogoView = new SLogoView(s);
-		myLang = Language.ENGLISH; //DEFAULT
-		mySlogoModel = new SLogoModel(new TurtleInfo(mySlogoView.getTurtleWindow().getTurtleInfo()));
-		mySlogoModel.setLanguage(myLang);
+		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 1);
+		mySlogoModel = new SLogoModel();
+		mySlogoData = new SLogoData(firstTurtle);
+		mySlogoData.addObserver(mySlogoView);
+		mySlogoData.addObserver(mySlogoModel);
+		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
+										new TurtleInfo(250, 200, 0, true, true, Color.BLACK), 2);
+		mySlogoData.addTurtle(secondTurtle);
+		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
-			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
-			mySlogoView.clearCommandPrompt();
-			mySlogoView.getTurtleWindow().updateTurtlePosition(mySlogoModel.getTurtleInfo());
+			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
+				mySlogoModel.parse(input);
+				mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
+				mySlogoView.clearCommandPrompt();
+			}
 		});
 	}
 	
@@ -40,12 +53,6 @@ public class SLogoController {
 	
 	public SLogoModel getModel() {
 		return mySlogoModel;
-	}
-	
-	
-	public static void changeLanguage(Language newLanguage){
-		myLang=newLanguage;
-		//System.out.println("languageChanged");
 	}
 	
 

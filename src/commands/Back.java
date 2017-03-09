@@ -2,24 +2,29 @@ package commands;
 
 import java.util.List;
 
-import backend.TurtleInfo;
+import ASTNode.ASTNode;
+import command_abstractions.TurtleCommandOneParam;
+import turtle.Turtle;
+import turtle.TurtleInfo;
 
 /**
  * 
  * @author Alex Boss
  *
  */
-public class Back implements Command{
+public class Back extends TurtleCommandOneParam {
 
 	@Override
-	public double execute(List<Double> arguments, TurtleInfo turtle) throws IllegalArgumentException {
-		if (arguments.size() != 1) {
-			throw new IllegalArgumentException();
+	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {
+		double totalAmount = 0;
+		for (double backAmount : params) {
+			turtle.setX(turtle.getX() - backAmount*Math.sin(Math.toRadians(turtle.getHeading())));
+			turtle.setY(turtle.getY() + backAmount*Math.cos(Math.toRadians(turtle.getHeading())));
+			totalAmount += backAmount;
 		}
-		double backAmount = arguments.get(0);
-		turtle.setX(turtle.getX() - backAmount*Math.sin(Math.toRadians(turtle.getHeading())));
-		turtle.setY(turtle.getY() + backAmount*Math.cos(Math.toRadians(turtle.getHeading())));
-		return backAmount;
+		return totalAmount;
 	}
+
+	
 
 }

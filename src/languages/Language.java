@@ -17,14 +17,14 @@ import java.util.Set;
 public enum Language {
 	
 	CHINESE("Chinese"),
+	ENGLISH("English"),
 	FRENCH("French"),
 	GERMAN("German"),
 	ITALIAN("Italian"),
 	PORTUGESE("Portuguese"),
 	RUSSIAN("Russian"),
 	SPANISH("Spanish"),
-	SYNTAX("Syntax"),
-	ENGLISH("English");
+	SYNTAX("Syntax");
 	
 	private String myLang;
 	private ResourceBundle myResources;

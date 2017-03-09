@@ -6,15 +6,15 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
+import backend.Variable;
 import command_abstractions.Command;
 import main.SLogoData;
-import turtle.Turtle;
 
 /**
  * @author harirajan
  *
  */
-public class Repeat implements Command {
+public class MakeVariable implements Command {
 
 	/* (non-Javadoc)
 	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
@@ -22,13 +22,8 @@ public class Repeat implements Command {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		double limit = params.get(0).evaluate();
-		double ret = 0.0;
-		while (limit > 0) {
-			ret = params.get(1).evaluate();
-			limit--;
-		}
-		return ret;
+		slogoData.addVariable(new Variable(params.get(0).getVariableName(), params.get(1).evaluate()));
+		return 0.0;
 	}
 
 	/* (non-Javadoc)
@@ -48,7 +43,7 @@ public class Repeat implements Command {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
+	
+	
 
 }

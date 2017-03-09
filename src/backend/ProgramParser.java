@@ -52,6 +52,7 @@ public class ProgramParser {
                 return entry.getKey();
             }
         }
+        System.out.println(text);
         return ERROR;
     }
 

@@ -6,15 +6,15 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
-import command_abstractions.TwoParams;
+import command_abstractions.Command;
+import main.SLogoData;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
  *
  */
-public class For extends TwoParams {
+public class For implements Command {
 
 	/* (non-Javadoc)
 	 * @see commands.Command#execute(commands.ASTNode, commands.ASTNode, commands.ASTNode, commands.ASTNode, backend.TurtleInfo)
@@ -28,6 +28,24 @@ public class For extends TwoParams {
 //			arg1.getArg2().setValue(arg1.getArg2().getValue() + arg3.evaluate());
 //		}
 		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
+	 */
+	@Override
+	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see command_abstractions.Command#getNumArgs()
+	 */
+	@Override
+	public int getNumArgs() {
+		// TODO Auto-generated method stub
+		return 5;
 	}
 
 }

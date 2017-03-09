@@ -39,9 +39,9 @@ public class ASTNode {
 	}
 	
 	public double evaluate() {
+		print();
 		if (myVariable != null) return myVariable.getValue();
 		if (myCommand == null) return myValue; // if its a double
-
 		return myCommand.execute(myArguments, mySlogoData);
 	}
 	
@@ -61,5 +61,18 @@ public class ASTNode {
 		if (myCommand != null) return myCommand.getClass().getName();
 		return String.valueOf(myValue);
 	}
+	
+	public boolean hasMathValue() {
+		if (myCommand == null) return true;
+		return myCommand.isMathCommand();
+	}
+	
+	public void print() {
+		System.out.println();
+		System.out.println(this);
+		System.out.println(this.myArguments);
+		System.out.println();
+	}
+	
 
 }

@@ -8,15 +8,19 @@ import java.util.Observable;
 import java.util.Observer;
 
 import constants.Constants;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -26,6 +30,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.SLogoData;
 import myResources.CommandDisplayer;
+import myResources.LanguageSelector;
 
 public class SLogoView implements Observer {
 	
@@ -47,6 +52,7 @@ public class SLogoView implements Observer {
 	private MenuItem languageMenu;
 	private MenuItem penColorMenu;
 	private MenuItem penThicknessMenu;
+	private LanguageSelector myLanguageSelector;
 	private MenuItem helpMenu;
 	
 	public SLogoView(Stage s) {
@@ -72,19 +78,29 @@ public class SLogoView implements Observer {
 			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))){
 				helpMenu=myMenuBar.getMenuItems().get(i);
 			}
-			
-			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColorContainedIn"))){
+			//System.out.println(myMenuBar.getMenuItems().get(i).getText());
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor"))){
 				penColorMenu=myMenuBar.getMenuItems().get(i);
 			}
 			
-			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penWidthContainedIn"))){
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penThickness"))){
 				penThicknessMenu=myMenuBar.getMenuItems().get(i);
+
 			}
 			
-			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagesContainedIn"))){
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagePrompt"))){
 				languageMenu=myMenuBar.getMenuItems().get(i);
+				myLanguageSelector=new LanguageSelector();
+				myLanguageSelector.getChoiceBox().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+				      @Override
+				      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+				        mySlogoData.setLanguage((myLanguageSelector.getChoiceBox().getItems().get((Integer) number2)));
+				      }
+				    });
 			}
 		}
+		
+
 		
 		helpMenu.setOnAction(event -> {
 			CommandDisplayer myCommandDisplay=new CommandDisplayer();
@@ -96,10 +112,10 @@ public class SLogoView implements Observer {
 //	    });
 //		penThicknessMenu.setOnAction(event -> {
 //	    	mySlogoData.
-//	    });
-//		languageMenu.setOnAction(event -> {
-//	    	mySlogoData.
-//	    });
+
+		languageMenu.setOnAction(event -> {
+	    	myLanguageSelector.show();
+	    	});
 		
 		
 		//myMenuBar.getNode().getMenus();

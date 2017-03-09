@@ -10,6 +10,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+
+/**
+ * @author Daniel
+ *
+ */
+
 public class CommandDisplayer extends Stage{
 	public CommandDisplayer(){
 		URL urlHello = getClass().getResource(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList"));

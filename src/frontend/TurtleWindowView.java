@@ -35,7 +35,7 @@ public class TurtleWindowView {
 	
 	public void setTurtles(List<Turtle> turtles) {
 		myTurtles = turtles;
-		for (Turtle turtle : turtles) turtle.display();
+		for (Turtle turtle : myTurtles) turtle.display();
 	}
 	
 	public Group getRoot() {

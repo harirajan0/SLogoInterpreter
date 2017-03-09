@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.SLogoData;
+import turtle.Turtle;
 
 public class SLogoView implements Observer {
 	
@@ -148,6 +149,9 @@ public class SLogoView implements Observer {
 		mySlogoData = (SLogoData) slogoData;
 		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
+		for (Turtle t : mySlogoData.getTurtles()) {
+			System.out.println(t.getTurtleInfo());
+		}
 		myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
 	}
 

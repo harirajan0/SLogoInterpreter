@@ -109,6 +109,7 @@ public class SLogoData extends Observable {
 	
 	public void setLanguage(String lang) {
 		myLanguage = LanguageFactory.getLang(lang);
+		notifyObservers();
 	}
 	
 	public void setPenWidth(Double penWidth){

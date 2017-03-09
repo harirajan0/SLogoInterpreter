@@ -3,18 +3,10 @@
  */
 package main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import backend.SLogoModel;
 import frontend.SLogoView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import languages.Language;
 import turtle.Turtle;
-import turtle.TurtleInfo;
-import turtle.TurtleView;
 
 /**
  * @author harirajan

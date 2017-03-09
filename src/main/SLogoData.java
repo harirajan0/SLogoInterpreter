@@ -54,8 +54,8 @@ public class SLogoData extends Observable {
 	
 	@Override
 	public void notifyObservers() {
-		super.notifyObservers();
 		setChanged();
+		super.notifyObservers();
 	}
 
 	public void changeBackgroundColorIndex(int index) {

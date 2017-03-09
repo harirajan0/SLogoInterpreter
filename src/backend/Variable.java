@@ -22,4 +22,8 @@ public class Variable {
 	public void updateValue(double newVal){
 		myValue = newVal;
 	}
+	
+	public String toString() {
+		return "Name: " + myName + " Value: " + String.valueOf(myValue); 
+	}
 }

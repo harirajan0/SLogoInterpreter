@@ -21,12 +21,11 @@ import turtle.TurtleView;
  *
  */
 public class SLogoController {
-	
+
 	private SLogoView mySlogoView;
 	private SLogoModel mySlogoModel;
 	private SLogoData mySlogoData;
-	
-	
+
 	public SLogoController(Stage s) {
 		mySlogoView = new SLogoView(s);
 		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 1);
@@ -34,26 +33,20 @@ public class SLogoController {
 		mySlogoData = new SLogoData(firstTurtle);
 		mySlogoData.addObserver(mySlogoView);
 		mySlogoData.addObserver(mySlogoModel);
-		Turtle secondTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 
-										new TurtleInfo(250, 200, 0, true, true, Color.BLACK), 2);
-		mySlogoData.addTurtle(secondTurtle);
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			for (String input : mySlogoView.getUserInput().trim().split("\n")) {
-				mySlogoModel.parse(input);
-				mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
-				mySlogoView.clearCommandPrompt();
-			}
+			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
+			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
+			mySlogoView.clearCommandPrompt();
 		});
 	}
-	
+
 	public SLogoView getView() {
 		return mySlogoView;
 	}
-	
+
 	public SLogoModel getModel() {
 		return mySlogoModel;
 	}
-	
 
 }

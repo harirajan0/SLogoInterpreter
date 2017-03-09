@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import main.SLogoData;
 import myResources.CommandDisplayer;
 import myResources.LanguageSelector;
+import turtle.Turtle;
 
 public class SLogoView implements Observer {
 	

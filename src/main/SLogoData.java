@@ -54,8 +54,8 @@ public class SLogoData extends Observable {
 	
 	@Override
 	public void notifyObservers() {
-		super.notifyObservers();
 		setChanged();
+		super.notifyObservers();
 	}
 
 	public void changeBackgroundColorIndex(int index) {
@@ -75,9 +75,19 @@ public class SLogoData extends Observable {
 		return null; // fix this to throw error when we cant find the variable
 	}
 
-	public void addVariable(Variable var) {
-		myVariables.add(var);
+	public void addVariable(Variable newVar) {
+		deleteVariable(newVar.getName());
+		myVariables.add(newVar);
 		notifyObservers();
+	}
+	
+	public void deleteVariable(String varName) {
+		for (Variable var : myVariables) { 
+			if (varName.equals(var.getName())) {
+				myVariables.remove(var);
+				break;
+			}
+		}
 	}
 
 	public void addTurtle(Turtle turtle) {

@@ -8,13 +8,12 @@ import java.util.List;
 import ASTNode.ASTNode;
 import command_abstractions.Command;
 import main.SLogoData;
-import turtle.Turtle;
 
 /**
  * @author harirajan
  *
  */
-public class Repeat implements Command {
+public class IfElse implements Command {
 
 	/* (non-Javadoc)
 	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
@@ -22,11 +21,11 @@ public class Repeat implements Command {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		double limit = params.get(0).evaluate();
-		double ret = 0.0;
-		while (limit > 0) {
+		double ret = 0.0; 
+		if (params.get(0).evaluate() == 1.0) {
 			ret = params.get(1).evaluate();
-			limit--;
+		} else {
+			ret = params.get(2).evaluate();
 		}
 		return ret;
 	}
@@ -37,7 +36,7 @@ public class Repeat implements Command {
 	@Override
 	public int getNumArgs() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 3;
 	}
 
 	/* (non-Javadoc)
@@ -48,7 +47,5 @@ public class Repeat implements Command {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 }

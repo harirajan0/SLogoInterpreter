@@ -6,28 +6,51 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
-import command_abstractions.TwoParams;
+import backend.Variable;
+import command_abstractions.Command;
+import main.SLogoData;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
  *
  */
-public class For extends TwoParams {
+public class For implements Command {
+
 
 	/* (non-Javadoc)
-	 * @see commands.Command#execute(commands.ASTNode, commands.ASTNode, commands.ASTNode, commands.ASTNode, backend.TurtleInfo)
+	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
 	 */
 	@Override
-	public double execute(List<Double> params, Turtle turtleInfo)
-			throws IllegalArgumentException {
+	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-//		while (arg1.evaluate() < arg2.evaluate()) {
-//			arg4.evaluate();
-//			arg1.getArg2().setValue(arg1.getArg2().getValue() + arg3.evaluate());
-//		}
-		return 0;
+		double ret = 0;
+		for (double i = params.get(0).getArguments().get(1).evaluate();
+				i < params.get(0).getArguments().get(2).evaluate(); 
+				i += params.get(0).getArguments().get(3).evaluate()) {
+			slogoData.addVariable(new Variable(params.get(0).getArguments().get(0).getVariableName() , i));
+			ret = params.get(1).evaluate();
+		}
+		slogoData.deleteVariable(params.get(0).getArguments().get(0).getVariableName());
+		return ret;
+	}
+
+	/* (non-Javadoc)
+	 * @see command_abstractions.Command#getNumArgs()
+	 */
+	@Override
+	public int getNumArgs() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+
+	/* (non-Javadoc)
+	 * @see command_abstractions.Command#isMathCommand()
+	 */
+	@Override
+	public boolean isMathCommand() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

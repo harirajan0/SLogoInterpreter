@@ -25,7 +25,7 @@ public class SLogoModel implements Observer {
 	Executor myExecutor;
 	
 	public SLogoModel() {
-		myExecutor = new Executor(mySlogoData.getLanguage());
+		myExecutor = new Executor();
 	}
 	
 	

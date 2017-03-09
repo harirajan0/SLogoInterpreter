@@ -26,10 +26,9 @@ public class Executor {
 	private List<String> myInput;
 	private Language myLang;
 	
-	public Executor(Language lang) {
+	public Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new ProgramParser(Language.SYNTAX);
-		myLang = lang;
 	}
 	
 	public void setInput( List<String> input) {

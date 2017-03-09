@@ -17,6 +17,12 @@ public class Constants {
 	public static final int WINDOW_SIZE = 800;
 	public static final Paint BACKGROUND_COLOR = Color.GRAY;
 	
+	//CommandPromptView constants
+	public static final int COMMAND_WINDOW_HEIGHT = 200;
+	public static final int COMMAND_WINDOW_WIDTH = 600;
+	public static final int COMMAND_BUTTON_WIDTH=200;
+
+	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;

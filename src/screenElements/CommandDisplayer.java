@@ -1,4 +1,4 @@
-package myResources;
+package screenElements;
 
 import java.net.URL;
 

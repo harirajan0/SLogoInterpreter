@@ -29,8 +29,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.SLogoData;
-import myResources.CommandDisplayer;
-import myResources.LanguageSelector;
+import screenElements.CommandDisplayer;
+import screenElements.CommandPromptView;
+import screenElements.LanguageSelector;
+import screenElements.PaletteView;
+import screenElements.PenSlider;
+import screenElements.TurtleWindowView;
+import screenElements.VariablesView;
 import turtle.Turtle;
 
 public class SLogoView implements Observer {

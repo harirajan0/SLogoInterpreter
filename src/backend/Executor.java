@@ -42,21 +42,21 @@ public class Executor {
 						if (parseText(slogoData, new ArrayList<>(input)).hasMathValue() || arguments.size() == 0) {
 							arguments.add(parseText(slogoData, input));
 						} else {
-							return new ASTNode(cmd, null, 0, arguments, slogoData, false);
+							return new ASTNode(cmd, null, null, 0, arguments, slogoData, false);
 						}
 					} else {
 						arguments.add(parseText(slogoData, input));
 					}
 				}
-				return new ASTNode(cmd, null, 0, arguments, slogoData, false);
+				return new ASTNode(cmd, null, null, 0, arguments, slogoData, false);
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Variable")) {
 				String var = input.get(0).substring(1);
 				input.remove(0);
-				return new ASTNode(null, var, 0, arguments, slogoData, false);
+				return new ASTNode(null, var, null, 0, arguments, slogoData, false);
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("Constant")) {
 				double value = Double.parseDouble(input.get(0));
 				input.remove(0);
-				return new ASTNode(null, null, value, arguments, slogoData, false);
+				return new ASTNode(null, null, null, value, arguments, slogoData, false);
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = getIndexOfBracketMatch(input);
 				List<String> block = new ArrayList<>(input.subList(1, listEndIndex));
@@ -67,8 +67,16 @@ public class Executor {
 				while (block.size() > 0) {
 					arguments.add(parseText(slogoData, block));
 				}
-				return new ASTNode(null, null, 0, arguments, slogoData, true);
-			} else {
+				return new ASTNode(null, null, null, 0, arguments, slogoData, true);
+			} 
+//			else if (syntaxParser.getSymbol(input.get(0)).equals("PossibleFunction")) {
+//				ASTNode function = slogoData.getFunction(input.get(0));
+//				input.remove(0);
+//				function.runAsFunction(parseText(slogoData, input));
+//				if (input.size() > 0) return parseText(slogoData, input);
+//				return function;
+//			}
+			else {
 				return null;
 			}
 		}

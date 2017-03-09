@@ -3,15 +3,11 @@
  */
 package ASTNode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import backend.Variable;
 import command_abstractions.Command;
-import commands.Sum;
 import main.SLogoData;
-import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
@@ -21,16 +17,18 @@ public class ASTNode {
 	
 	private Command myCommand;
 	String myVariableName;
+	String myFunctionName;
 	private double myValue;
 	private SLogoData mySlogoData;
 	private boolean isBlock;
 	private List<ASTNode> myArguments;
 	
 	
-	public ASTNode(Command command, String variableName, double value,
+	public ASTNode(Command command, String variableName, String functionName, double value,
 			List<ASTNode> arguments, SLogoData slogoData, boolean isBlock) {
 		myCommand = command;
 		myVariableName = variableName;
+		myFunctionName = functionName;
 		myValue = value;
 		myArguments = arguments;
 		mySlogoData = slogoData;
@@ -89,5 +87,19 @@ public class ASTNode {
 		System.out.println(this.myArguments);
 	}
 	
+	public double runAsFunction(ASTNode params) {
+		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
+			mySlogoData.addVariable( new Variable(myArguments.get(0).getArguments().get(i).getVariableName(), 
+												params.getArguments().get(i).evaluate()));
+		}
+		double ret = params.getArguments().get(1).evaluate();
+		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
+			mySlogoData.deleteVariable(myArguments.get(0).getArguments().get(i).getVariableName());
+		}
+		return ret;
+	}
 
+	public String getFunctionName() {
+		return myFunctionName;
+	}
 }

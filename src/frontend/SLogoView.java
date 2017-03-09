@@ -54,6 +54,7 @@ public class SLogoView implements Observer {
 	private MenuItem penColorMenu;
 	private MenuItem penThicknessMenu;
 	private LanguageSelector myLanguageSelector;
+	private PenSlider myPenSlider;
 	private MenuItem helpMenu;
 	
 	public SLogoView(Stage s) {
@@ -86,6 +87,8 @@ public class SLogoView implements Observer {
 			
 			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penThickness"))){
 				penThicknessMenu=myMenuBar.getMenuItems().get(i);
+				myPenSlider=new PenSlider();
+
 
 			}
 			
@@ -111,8 +114,15 @@ public class SLogoView implements Observer {
 //		penColorMenu.setOnAction(event -> {
 //	    	mySlogoData.
 //	    });
-//		penThicknessMenu.setOnAction(event -> {
-//	    	mySlogoData.
+		penThicknessMenu.setOnAction(event -> {			
+			myPenSlider.show();
+		    myPenSlider.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
+		        public void changed(ObservableValue<? extends Number> ov,
+		            Number old_val, Number new_val) {
+		            mySlogoData.setPenWidth(new_val.doubleValue());
+		        }
+		    });
+		});
 
 		languageMenu.setOnAction(event -> {
 	    	myLanguageSelector.show();

@@ -25,6 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.SLogoData;
+import myResources.CommandDisplayer;
 
 public class SLogoView implements Observer {
 	
@@ -84,7 +85,24 @@ public class SLogoView implements Observer {
 				languageMenu=myMenuBar.getMenuItems().get(i);
 			}
 		}
-		myMenuBar.getNode().getMenus();
+		
+		helpMenu.setOnAction(event -> {
+			CommandDisplayer myCommandDisplay=new CommandDisplayer();
+	    	myCommandDisplay.show();
+	    });
+		
+//		penColorMenu.setOnAction(event -> {
+//	    	mySlogoData.
+//	    });
+//		penThicknessMenu.setOnAction(event -> {
+//	    	mySlogoData.
+//	    });
+//		languageMenu.setOnAction(event -> {
+//	    	mySlogoData.
+//	    });
+		
+		
+		//myMenuBar.getNode().getMenus();
 		//myMenuBar.getLanguageMenuItem().
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
 		setUpBorderPane();
@@ -118,7 +136,7 @@ public class SLogoView implements Observer {
 		paletteColorPicker.show();
 	}
 	
-	private void displayPaletteTextFields(Group newRoot){
+	private void displayPaletteTextFields(Group newRoot){  //NEEDS TO BE REFACTORED!!!
 		VBox textFields = new VBox();
 		TextArea colorOneField = new TextArea("Color 1");
 		colorOneField.setPrefHeight(10);

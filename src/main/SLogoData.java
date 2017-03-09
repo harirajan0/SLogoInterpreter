@@ -8,6 +8,7 @@ import java.util.Observer;
 
 import backend.Variable;
 import command_abstractions.TurtleCommand;
+import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
 import turtle.Turtle;
@@ -114,6 +115,12 @@ public class SLogoData extends Observable {
 	
 	public void setPenWidth(Double penWidth){
 		//TODO
+		//change width of pen (only for selected turtles? to be agreed on).
+	}
+	
+	public void setPenColor(Color newColor){
+		//TODO
+		//change color of selected turtles
 	}
 	
 	public Language getLanguage() {

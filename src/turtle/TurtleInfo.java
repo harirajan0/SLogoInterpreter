@@ -9,7 +9,6 @@ import javafx.scene.paint.Paint;
 
 /**
  * @author harirajan
- *
  */
 public class TurtleInfo {	
 	

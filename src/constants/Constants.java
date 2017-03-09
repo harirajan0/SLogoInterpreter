@@ -34,6 +34,10 @@ public class Constants {
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
 	
+	//pen width slider constants
+	public static final int MIN_SLIDER_VALUE=0;
+	public static final int MAX_SLIDER_VALUE=40;
+	
 	//True false constants
 	public static final double TRUE = 1.0;
 	public static final double FALSE = 0.0;

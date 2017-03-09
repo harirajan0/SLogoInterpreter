@@ -47,6 +47,10 @@ public class MenuFactory {
 			MenuItem help = new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"));
 		    myMenu.getItems().add(help);
 		}
+		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("backgroundColorContainedIn").equals(myMenu.getText())){
+			MenuItem backgroundColor = new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backgroundColor"));
+		    myMenu.getItems().add(backgroundColor);
+		}
 
 		}
 	

@@ -1,42 +1,9 @@
 /**
  * 
  */
-package backend;
+package commands;
 
 import command_abstractions.Command;
-import commands.And;
-import commands.Arctangent;
-import commands.Back;
-import commands.Cosine;
-import commands.Difference;
-import commands.Equal;
-import commands.Forward;
-import commands.Greater;
-import commands.HideTurtle;
-import commands.Home;
-import commands.Left;
-import commands.Less;
-import commands.Log;
-import commands.Minus;
-import commands.Not;
-import commands.NotEqual;
-import commands.Or;
-import commands.PenDown;
-import commands.PenUp;
-import commands.Power;
-import commands.Product;
-import commands.Quotient;
-import commands.Random;
-import commands.Remainder;
-import commands.Repeat;
-import commands.Right;
-import commands.SetHeading;
-import commands.SetPosition;
-import commands.ShowTurtle;
-import commands.Sine;
-import commands.Sum;
-import commands.Tangent;
-import commands.Towards;
 
 
 /**
@@ -59,12 +26,14 @@ public class CommandFactory {
 		case "ShowTurtle" : return new ShowTurtle();
 		case "HideTurtle" : return new HideTurtle();
 		case "Home" : return new Home();
-//		case "ClearScreen" : return new ;
-//		case "XCoordinate" : return new ;
-//		case "YCoordinate" : return new ;
-//		case "Heading" : return new ;
-//		case "IsPenDown" : return new ;
-//		case "IsShowing" : return new ;
+		//implement these
+		case "ClearScreen" : return new Home();
+		case "XCoordinate" : return new Home();
+		case "YCoordinate" : return new Home();
+		case "Heading" : return new Home();
+		case "IsPenDown" : return new Home();
+		case "IsShowing" : return new Home();
+		//
 		case "Sum" : return new Sum();
 		case "Difference" : return new Difference();
 		case "Product" : return new Product();
@@ -78,6 +47,9 @@ public class CommandFactory {
 		case "ArcTangent" : return new Arctangent();
 		case "NaturalLog" : return new Log();
 		case "Power" : return new Power();
+		//implement this
+		case "Pi" : return new Home();
+		//
 		case "LessThan" : return new Less();
 		case "GreaterThan" : return new Greater();
 		case "Equal" : return new Equal();
@@ -85,7 +57,12 @@ public class CommandFactory {
 		case "And" : return new And();
 		case "Or" : return new Or();
 		case "Not" : return new Not();
-//		case "Repeat" : return new Repeat();
+		case "MakeVariable" : return new MakeVariable();
+		case "Repeat" : return new Repeat();
+		case "If" : return new If();
+		case "IfElse" : return new IfElse();
+		case "DoTimes" : return new DoTimes();
+		case "For" : return new For();
 		default: throw new IllegalArgumentException();
 		}
 	}

@@ -21,7 +21,7 @@ public class NotEqual extends MathCommandTwoParams {
 	@Override
 	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		if (params.get(0) != params.get(1)) {
+		if (!params.get(0).equals(params.get(1))) {
 			return Constants.TRUE;
 		} else {
 			return Constants.FALSE;

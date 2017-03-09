@@ -1,5 +1,9 @@
 package frontend;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,7 +13,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -37,6 +43,10 @@ public class SLogoView implements Observer {
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private PaletteView myPaletteView;
+	private Menu languageMenu;
+	private Menu penColorMenu;
+	private Menu penThicknessMenu;
+	private MenuItem helpMenu;
 	
 	public SLogoView(Stage s) {
 		myRoot = new Group();
@@ -59,7 +69,22 @@ public class SLogoView implements Observer {
 		myMenuBar = new MenuView(s);
 		for (int i=0; i<myMenuBar.getNode().getMenus().size(); i++){
 			MenuBar myMenu = myMenuBar.getNode();
-			//System.out.println(myMenu.getMenus().get(i).getText().toString());
+			String menuName=myMenu.getMenus().get(i).getText().toString();
+			if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("listOfCommandsContainedIn").equals(menuName)){
+				for (int j=0; j<myMenu.getMenus().get(i).getItems().size(); j++){
+					if (myMenu.getMenus().get(i).getItems().get(j).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))){
+						helpMenu=myMenu.getMenus().get(i).getItems().get(j);
+					}
+				}
+			}
+			
+			helpMenu.setOnAction(actionEvent ->  {
+				try {
+					Desktop.getDesktop().browse(new URL(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList")).toURI());
+				} catch (IOException | URISyntaxException e) {
+					new ExceptionListener(e);
+				}
+			});
 			//System.out.println(myMenu.getMenus().get(i).getItems().toString());
 
 		}

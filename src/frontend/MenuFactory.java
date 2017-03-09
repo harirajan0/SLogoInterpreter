@@ -21,54 +21,31 @@ public class MenuFactory {
 		case "Help":
 			Menu helpMenu = new Menu("Help");
 			addElementsToMenu(helpMenu);
-//			MenuItem help = new MenuItem("See a list of commands");
-//		    help.setOnAction(actionEvent ->  {
-//				try {
-//					Desktop.getDesktop().browse(new URL("http://www.cs.duke.edu/courses/compsci308/spring17/assign/03_slogo/commands.php").toURI());
-//				} catch (IOException | URISyntaxException e) {
-//					new ExceptionListener(e);
-//				}
-//			});
-//		    helpMenu.getItems().add(help);
 		    return helpMenu;
 			
 		case "Options":
 			Menu optionMenu = new Menu("Options");
 			addElementsToMenu(optionMenu);
-		    optionMenu.getItems().add(new Menu("Display Options"));		    
-		    Menu penMenu=new Menu("Pen Properties");
-		    MenuItem penThickness=new MenuItem("Adjust pen thickness");
-		    //MenuItem penColor=new MenuItem("Change pen color");
-		    //penColor.setOnAction(event -> {
-		    	//we need ACCESS to our instance of pen!!! 
-		    	//colorPicker.show();
-		    //});
-		    penThickness.setOnAction(event -> {
-		    	//WE NEED SOME INSTANCE of the pen
-		    	//myPenSlider.show();
-		    });
-		    penMenu.getItems().add(penThickness);
-		    //penMenu.getItems().add(penColor);
-		    optionMenu.getItems().add(penMenu);
+//		    optionMenu.getItems().add(new Menu("Display Options"));		    
+//		    Menu penMenu=new Menu("Pen Properties");
+//		    MenuItem penThickness=new MenuItem("Adjust pen thickness");
+//		    //MenuItem penColor=new MenuItem("Change pen color");
+//		    //penColor.setOnAction(event -> {
+//		    	//we need ACCESS to our instance of pen!!! 
+//		    	//colorPicker.show();
+//		    //});
+//		    penThickness.setOnAction(event -> {
+//		    	//WE NEED SOME INSTANCE of the pen
+//		    	//myPenSlider.show();
+//		    });
+//		    penMenu.getItems().add(penThickness);
+//		    //penMenu.getItems().add(penColor);
+//		    optionMenu.getItems().add(penMenu);
 		    return optionMenu;
 		    
 		case "Languages":
 			Menu languageMenu = new Menu("Language");
-			ToggleGroup languageSelection = new ToggleGroup();
-			for (String lang : Constants.LANGUAGE_RESOURCE_BUNDLE.keySet()){
-				RadioMenuItem languageItem=new RadioMenuItem(lang);
-				languageMenu.getItems().add(languageItem);
-				if (lang.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getObject("DefaultLanguage"))){
-					languageItem.setSelected(true);
-				}
-				languageItem.setToggleGroup(languageSelection);
-				languageItem.setOnAction(new EventHandler<ActionEvent>() {
-				    @Override public void handle(ActionEvent e) {
-				    	//FRONTEND NEEDS SOME ACCESS TO OUR INSTANCE OF CONTROLLER HERE!!!
-				    	//SLogoController.changeLanguage(lang);
-				    }
-				});
-			}
+			addElementsToMenu(languageMenu);
 			return languageMenu;
 			
 			
@@ -77,7 +54,6 @@ public class MenuFactory {
 	}
 	
 	public void addElementsToMenu(Menu myMenu){
-		System.out.println(myMenu.getText());
 		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColorContainedIn").equals(myMenu.getText())){
 		    MenuItem penColor=new MenuItem("Change pen color");
 		    myMenu.getItems().add(penColor);
@@ -88,8 +64,34 @@ public class MenuFactory {
 		}
 		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("listOfCommandsContainedIn").equals(myMenu.getText())){
 			MenuItem help = new MenuItem("See a list of commands");
-			myMenu.getItems().add(help);
+//		    help.setOnAction(actionEvent ->  {
+//				try {
+//					Desktop.getDesktop().browse(new URL(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList")).toURI());
+//				} catch (IOException | URISyntaxException e) {
+//					new ExceptionListener(e);
+//				}
+//			});
+		    myMenu.getItems().add(help);
 		}
+		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagesMenuContainedIn").equals(myMenu.getText())){
+			ToggleGroup languageSelection = new ToggleGroup();
+			for (String lang : Constants.LANGUAGE_RESOURCE_BUNDLE.keySet()){
+				RadioMenuItem languageItem=new RadioMenuItem(lang);
+				myMenu.getItems().add(languageItem);
+				if (lang.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getObject("DefaultLanguage"))){
+					languageItem.setSelected(true);
+				}
+				languageItem.setToggleGroup(languageSelection);
+//				languageItem.setOnAction(new EventHandler<ActionEvent>() {
+//				    @Override public void handle(ActionEvent e) {
+//				    	//FRONTEND NEEDS SOME ACCESS TO OUR INSTANCE OF CONTROLLER HERE!!!
+//				    	//SLogoController.changeLanguage(lang);
+//				    }
+//				});
+			}
+		}
+		
+		
 		
 	}
 	

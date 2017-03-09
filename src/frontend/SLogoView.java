@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -56,6 +57,14 @@ public class SLogoView implements Observer {
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
 		myMenuBar = new MenuView(s);
+		for (int i=0; i<myMenuBar.getNode().getMenus().size(); i++){
+			MenuBar myMenu = myMenuBar.getNode();
+			//System.out.println(myMenu.getMenus().get(i).getText().toString());
+			//System.out.println(myMenu.getMenus().get(i).getItems().toString());
+
+		}
+		myMenuBar.getNode().getMenus();
+		//myMenuBar.getLanguageMenuItem().
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
 		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);

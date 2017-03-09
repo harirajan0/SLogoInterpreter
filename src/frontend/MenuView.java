@@ -2,7 +2,9 @@ package frontend;
 import constants.Constants;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import main.SLogoData;
 public class MenuView {
 	private MenuBar myMenuBar;
 	private MenuFactory myMenuFactory;
@@ -20,7 +22,12 @@ public class MenuView {
 			myMenuBar.getMenus().add(newMenu);	
 		}
 	}
+	
 	public MenuBar getNode() {
 		return myMenuBar;
+	}
+	
+	public MenuItem getLanguageMenuItem() {
+		return myMenuBar.getMenus().get(myMenuBar.getMenus().indexOf("Language"));
 	}
 }

@@ -20,7 +20,7 @@ import languages.LanguageFactory;
  *
  */
 
-public class ProgramParser {
+public class RegexParser {
     // "types" and the regular expression patterns that recognize those types
     // note, it is a list because order matters (some patterns may be more generic)
     private List<Entry<String, Pattern>> mySymbols;
@@ -28,7 +28,7 @@ public class ProgramParser {
     private Language myLang;
 
 
-    public ProgramParser (Language lang) {
+    public RegexParser (Language lang) {
         mySymbols = new ArrayList<>();
         myLang = lang;
         addPatterns(myLang);

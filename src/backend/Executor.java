@@ -19,17 +19,17 @@ import main.SLogoData;
 public class Executor {
 
 	private CommandFactory commandFactory;
-	private ProgramParser syntaxParser;
+	private RegexParser syntaxParser;
 	private Language myLang;
 	
 	public Executor() {
 		commandFactory = new CommandFactory();
-		syntaxParser = new ProgramParser(Language.SYNTAX);
+		syntaxParser = new RegexParser(Language.SYNTAX);
 	}
 	
 
 	public ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
-		ProgramParser parser = new ProgramParser(myLang);
+		RegexParser parser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		if (input.size() == 0) {
 			return null;

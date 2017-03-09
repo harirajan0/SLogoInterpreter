@@ -33,6 +33,8 @@ public class Constants {
 	
 	//Resource Bundle constants
 	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myResources/resources");
+	public static final ResourceBundle LANGUAGE_RESOURCE_BUNDLE = ResourceBundle.getBundle("myResources/languageNames");
+
 	
 	//PaletteView Constants
 	public static final int PALETTE_SIDE_PADDING = 50;

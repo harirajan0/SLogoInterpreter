@@ -43,9 +43,9 @@ public class SLogoView implements Observer {
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private PaletteView myPaletteView;
-	private Menu languageMenu;
-	private Menu penColorMenu;
-	private Menu penThicknessMenu;
+	private MenuItem languageMenu;
+	private MenuItem penColorMenu;
+	private MenuItem penThicknessMenu;
 	private MenuItem helpMenu;
 	
 	public SLogoView(Stage s) {
@@ -67,26 +67,22 @@ public class SLogoView implements Observer {
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
 		myMenuBar = new MenuView(s);
-		for (int i=0; i<myMenuBar.getNode().getMenus().size(); i++){
-			MenuBar myMenu = myMenuBar.getNode();
-			String menuName=myMenu.getMenus().get(i).getText().toString();
-			if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("listOfCommandsContainedIn").equals(menuName)){
-				for (int j=0; j<myMenu.getMenus().get(i).getItems().size(); j++){
-					if (myMenu.getMenus().get(i).getItems().get(j).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))){
-						helpMenu=myMenu.getMenus().get(i).getItems().get(j);
-					}
-				}
+		for (int i=0; i<myMenuBar.getMenuItems().size(); i++){
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))){
+				helpMenu=myMenuBar.getMenuItems().get(i);
 			}
 			
-			helpMenu.setOnAction(actionEvent ->  {
-				try {
-					Desktop.getDesktop().browse(new URL(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList")).toURI());
-				} catch (IOException | URISyntaxException e) {
-					new ExceptionListener(e);
-				}
-			});
-			//System.out.println(myMenu.getMenus().get(i).getItems().toString());
-
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColorContainedIn"))){
+				penColorMenu=myMenuBar.getMenuItems().get(i);
+			}
+			
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penWidthContainedIn"))){
+				penThicknessMenu=myMenuBar.getMenuItems().get(i);
+			}
+			
+			if (myMenuBar.getMenuItems().get(i).getText().equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagesContainedIn"))){
+				languageMenu=myMenuBar.getMenuItems().get(i);
+			}
 		}
 		myMenuBar.getNode().getMenus();
 		//myMenuBar.getLanguageMenuItem().

@@ -43,7 +43,7 @@ public class Executor {
 				return null; //throw exception; illegal function name
 			}
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
+				int listEndIndex = indexOfMatchingBrace(input);
 				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
@@ -51,7 +51,7 @@ public class Executor {
 				return null; //throw exception; illegal format for defining funciton
 			}
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
+				int listEndIndex = indexOfMatchingBrace(input);
 				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
@@ -73,7 +73,7 @@ public class Executor {
 					ASTNode function = slogoData.getFunction(input.get(0));
 					input.remove(0);
 					if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-						int listEndIndex = getIndexOfBracketMatch(input);
+						int listEndIndex = indexOfMatchingBrace(input);
 						List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 						function.addArgument(parseText(slogoData, block));
 						removeToIndex(input, listEndIndex);
@@ -106,7 +106,7 @@ public class Executor {
 				input.remove(0);
 				return new ASTNode(null, null, null, value, arguments, slogoData, false);
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
+				int listEndIndex = indexOfMatchingBrace(input);
 				List<String> block = new ArrayList<>(input.subList(1, listEndIndex));
 				removeToIndex(input, listEndIndex);
 				while (block.size() > 0) {
@@ -120,7 +120,7 @@ public class Executor {
 		}
 	}
 	
-	public int getIndexOfBracketMatch(List<String> input) {
+	private int indexOfMatchingBrace(List<String> input) {
 		int count = 0;
 		for (int i = 0; i < input.size(); i++) {
 			if (input.get(i).equals("[")) {

@@ -1,6 +1,5 @@
 package screenElements;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import constants.Constants;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -89,7 +87,7 @@ public class PaletteView extends Stage{
 		return myColorsList.get(index);
 	}
 	
-//	public void setColorOne(String rgbValue){
+/*//	public void setColorOne(String rgbValue){
 //		colorOne.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
 //	}
 //	
@@ -104,7 +102,7 @@ public class PaletteView extends Stage{
 //	public void setColorFour(String rgbValue){
 //		colorFour.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
 //	}
-	
+	*/
 	private void displayPaletteTextFields(Group newRoot){  //NEEDS TO BE REFACTORED!!!
 		Group newRoot2 = new Group();
 		VBox textFields = new VBox();

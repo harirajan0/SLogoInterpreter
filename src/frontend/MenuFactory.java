@@ -1,9 +1,7 @@
 package frontend;
-<<<<<<< HEAD
-import java.util.List;
-=======
 
->>>>>>> b25ac1c6c7e0d486b4d68bc366ea41e206cada59
+import java.util.List;
+
 
 import constants.Constants;
 import javafx.scene.control.Menu;

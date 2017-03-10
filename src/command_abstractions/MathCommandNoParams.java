@@ -7,14 +7,13 @@ import java.util.List;
 
 import ASTNode.ASTNode;
 import main.SLogoData;
-import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
+ * @author Alex Boss
  *
  */
-public abstract class MathCommandNoParams extends MathCommand {
+public abstract class MathCommandNoParams extends MathCommand  {
 	
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
@@ -26,6 +25,6 @@ public abstract class MathCommandNoParams extends MathCommand {
 		return 0;
 	}
 	
-	public abstract double execute();
+	protected abstract double execute();
 
 }

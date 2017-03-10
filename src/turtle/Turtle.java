@@ -1,16 +1,10 @@
 package turtle;
 import java.util.List;
-import java.util.Optional;
 
-<<<<<<< HEAD
-=======
-import constants.Constants;
 import javafx.event.Event;
 import javafx.event.EventHandler;
->>>>>>> b25ac1c6c7e0d486b4d68bc366ea41e206cada59
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;

@@ -1,12 +1,7 @@
 package screenElements;
 
-<<<<<<< HEAD:src/frontend/CommandPromptView.java
-=======
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+
 import constants.Constants;
->>>>>>> b25ac1c6c7e0d486b4d68bc366ea41e206cada59:src/screenElements/CommandPromptView.java
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;

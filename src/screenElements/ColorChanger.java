@@ -31,18 +31,12 @@ public abstract class ColorChanger<T> extends Stage {
 		    colorPicker.setOnAction(event ->  {
 		    	ColorChangeAction(colorPicker.getValue(), myThingToChange);
 		    });
-		    borderPaneOptionPane.setTop(new Text(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor")));
+		    borderPaneOptionPane.setTop(new Text(Constants.DEFAULT_RESOURCE_BUNDLE.getString("genericColorLabel")));
 		    borderPaneOptionPane.setCenter(colorPicker);
 		    Scene s = new Scene(borderPaneOptionPane);
 		    this.setScene(s);
 		    this.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 	 }
-	
-	public ColorChanger(Palette p){
-		p.show();
-		myPalette = p;
-		p.getPaletteList().a
-	}
 	
 	
 	public void setTitleAndPrompt(String title, String prompt){

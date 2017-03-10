@@ -5,8 +5,8 @@ package commands;
 
 import java.util.List;
 
-import backend.ASTNode;
 import command_abstractions.MathCommandTwoParams;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -14,16 +14,18 @@ import command_abstractions.MathCommandTwoParams;
  */
 public class Remainder extends MathCommandTwoParams {
 
-	/* (non-Javadoc)
-	 * @see commands.Command#execute(java.util.List)
-	 */
 	@Override
 	public double execute(List<Double> params) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+
+		
+		if(params.size() != 2){
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("RemainderError"));
+		}
+		
 		double result = params.get(0);
-		while ((result - params.get(1)) >= 0.0) result -= params.get(1);
+		while ((result - params.get(1)) >= 0.0)
+			result -= params.get(1);
 		return result;
 	}
 
-	
 }

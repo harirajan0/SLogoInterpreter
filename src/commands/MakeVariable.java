@@ -6,9 +6,9 @@ package commands;
 import java.util.List;
 
 import backend.ASTNode;
+import backend.SLogoData;
 import backend.Variable;
 import command_abstractions.Command;
-import main.SLogoData;
 
 /**
  * @author harirajan

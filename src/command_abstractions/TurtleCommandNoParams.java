@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
-import main.SLogoData;
+import backend.SLogoData;
 import turtle.Turtle;
 
 /**

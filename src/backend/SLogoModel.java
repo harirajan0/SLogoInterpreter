@@ -9,7 +9,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import languages.Language;
-import main.SLogoData;
 import turtle.Turtle;
 
 /**

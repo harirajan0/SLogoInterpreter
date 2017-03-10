@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.Variable;
+import constants.Constants;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,7 +21,7 @@ public class VariablesView{
     */
 	
 	private List<Variable> currentVars;
-	
+	private Button myUpdateButton;
 	private VBox myVBox;
 	
 	public VariablesView() {
@@ -29,11 +32,13 @@ public class VariablesView{
 		myVBox.getChildren().add(title);
 		myVBox.setPrefWidth(200);
 		currentVars = new ArrayList<Variable>();
+		myUpdateButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("updateButtonLabel"));
+		myVBox.getChildren().add(myUpdateButton);
 		updateVariableDisplay();
 	}
 	
 	public void setVariables(List<Variable> newVariables) {
-		myVBox.getChildren().remove(1, myVBox.getChildren().size());
+		myVBox.getChildren().remove(2, myVBox.getChildren().size());
 		currentVars = newVariables;
 		updateVariableDisplay();
 	}
@@ -59,4 +64,30 @@ public class VariablesView{
     	return myVBox;
     }
     
+    public Button getUpdateButton() {
+    	return myUpdateButton;
+    }
+    
+    public void updateVariables() {
+    	List<Variable> newVars = new ArrayList<>();
+    	for (Node node : myVBox.getChildren()) {
+    		if (node.getClass().isInstance(new HBox())) {
+    			System.out.println("YAY");
+    			HBox hb = (HBox) node;
+    			String varName = ((Text) hb.getChildren().get(0)).getText();
+    			try {
+    				double varValue = Double.parseDouble(((TextField) hb.getChildren().get(1)).getText());
+    				newVars.add(new Variable(varName, varValue));
+    			} catch (Exception e) {
+    				//throw exception
+    				System.out.println(e);
+    			}
+    		}
+    	}
+    	setVariables(newVars);
+    }
+    
+    public List<Variable> getVariables() {
+    	return currentVars;
+    }
   }

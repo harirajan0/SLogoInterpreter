@@ -6,51 +6,42 @@ package commands;
 import java.util.List;
 
 import backend.ASTNode;
+import backend.SLogoData;
 import backend.Variable;
-import command_abstractions.Command;
-import main.SLogoData;
-import turtle.Turtle;
+import command_abstractions.ControlCommand;
+import constants.Constants;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
-public class For implements Command {
+public class For extends ControlCommand {
 
-
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
-	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+
+		checkNumArgs(params);
+
+		if (!params.get(0).isBlock()) {
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("ForBlockError"));
+		}
+		
+		if (params.get(0).getArguments().get(0).getVariableName() == null) {
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("ForNoVariableError"));
+		}
 		double ret = 0;
-		for (double i = params.get(0).getArguments().get(1).evaluate();
-				i < params.get(0).getArguments().get(2).evaluate(); 
-				i += params.get(0).getArguments().get(3).evaluate()) {
-			slogoData.addVariable(new Variable(params.get(0).getArguments().get(0).getVariableName() , i));
+		for (double i = params.get(0).getArguments().get(1).evaluate(); i < params.get(0).getArguments().get(2)
+				.evaluate(); i += params.get(0).getArguments().get(3).evaluate()) {
+			slogoData.addVariable(new Variable(params.get(0).getArguments().get(0).getVariableName(), i));
 			ret = params.get(1).evaluate();
 		}
 		slogoData.deleteVariable(params.get(0).getArguments().get(0).getVariableName());
 		return ret;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
 	public int getNumArgs() {
-		// TODO Auto-generated method stub
 		return 2;
-	}
-
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
-	@Override
-	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

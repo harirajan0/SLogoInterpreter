@@ -3,14 +3,16 @@
  */
 package main;
 
+import backend.SLogoData;
 import backend.SLogoModel;
 import constants.Constants;
-
+import frontend.ExceptionAlert;
 import frontend.SLogoView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import languages.LanguageFactory;
 import turtle.Turtle;
 
 /**
@@ -32,9 +34,14 @@ public class SLogoController {
 		mySlogoData.addObserver(mySlogoModel);
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
-			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
-			mySlogoView.clearCommandPrompt();
+			if (!mySlogoView.getUserInput().replace("\n", " ").trim().equals(""))
+				try {
+					mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
+				} catch (Exception e) {
+					new ExceptionAlert(e);
+				}
+				mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
+				mySlogoView.clearCommandPrompt();
 		});
 		
 		setupEventHandlers();
@@ -55,12 +62,23 @@ public class SLogoController {
 		mySlogoView.getCommandBox().setRotateLeft(e -> mySlogoData.moveSelectedTurtles(0, Constants.LEFT_BUTTON_ROTATION));
 		mySlogoView.getCommandBox().setRotateRight(e -> mySlogoData.moveSelectedTurtles(0, Constants.RIGHT_BUTTON_ROTATION));
 		mySlogoView.getBackgroundColorPicker().setOnAction(e -> mySlogoData.changeBackgroundColor(mySlogoView.getBackgroundColorPicker().getValue()));
+		mySlogoView.getVariableUpdateButton().setOnAction(e -> {
+			mySlogoView.getVariablesView().updateVariables();
+			mySlogoData.setVariables(mySlogoView.getVariablesView().getVariables());
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Variables Updated!");
+			alert.setContentText("You successfully updated your variables!");
+			alert.showAndWait();
+		});
+		mySlogoView.getGraphicalDisplayButton().setOnAction(e -> {
+			mySlogoView.toggleSlowSelection();
+			mySlogoData.showSelectedGraphically(mySlogoView.getShowSelected());
+		});
 		mySlogoView.getLanguageChoiceBox().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				mySlogoData.setLanguage(newValue);
 			}
-			
     	});
 		mySlogoView.getPenColorChoiceBox().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
 			@Override
@@ -77,7 +95,7 @@ public class SLogoController {
 		for (int i = 0; i < mySlogoView.getPaletteColorPickers().size(); i++) setUpColorPickerEventHandlers(i);
 	}
 
-	public void setUpColorPickerEventHandlers(int index) {
+	private void setUpColorPickerEventHandlers(int index) {
 		mySlogoView.getPaletteColorPickers().get(index).setOnAction(e -> 
 				mySlogoData.changeColor(index, mySlogoView.getPaletteColorPickers().get(index).getValue()));
 		

@@ -42,9 +42,9 @@ public class MenuView {
 	    myLanguagesMenu = new Menu(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagePrompt"));
 	    MenuItem languages = new MenuItem();
 	    myLanguageChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(
-	    		new ArrayList<String>() {{
-	    			for (Language lang : Language.values()) if (!lang.equals(Language.SYNTAX)) add(lang.getLang());
-	    		}}));
+	    	new ArrayList<String>() {{
+	    		for (Language lang : Language.values()) if (!lang.equals(Language.SYNTAX)) add(lang.getLang());
+	    }}));
 	    myLanguageChoiceBox.getSelectionModel().select(Constants.DEFAULT_LANGUAGE);
 	    languages.setGraphic(myLanguageChoiceBox);
 	    myLanguagesMenu.getItems().add(languages);

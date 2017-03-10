@@ -8,8 +8,8 @@ import java.util.List;
 
 import command_abstractions.Command;
 import commands.CommandFactory;
+import constants.Constants;
 import languages.Language;
-import main.SLogoData;
 
 /**
  * @author harirajan
@@ -114,7 +114,14 @@ public class Executor {
 				return new ASTNode(null, null, null, 0, arguments, slogoData, true);
 			} 
 			else {
-				return null;
+				if(syntaxParser.getSymbol(input.get(0)).equals("ListEnd")){
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingOpenDelimiter"));
+				}
+				else{
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("InvalidSyntaxError") + input.get(0));
+				}
 			}
 		}
 	}

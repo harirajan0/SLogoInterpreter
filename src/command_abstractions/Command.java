@@ -6,9 +6,7 @@ package command_abstractions;
 import java.util.List;
 
 import backend.ASTNode;
-import main.SLogoData;
-import turtle.Turtle;
-import turtle.TurtleInfo;
+import backend.SLogoData;
 
 /**
  * @author harirajan

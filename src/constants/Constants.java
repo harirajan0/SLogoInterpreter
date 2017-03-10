@@ -25,7 +25,7 @@ public class Constants {
 	//CommandPromptView constants
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
 	public static final int COMMAND_WINDOW_WIDTH = 600;
-	public static final int COMMAND_BUTTON_WIDTH = 200;
+	public static final int BIG_BUTTON_WIDTH = 200;
 	public static final int SMALL_BUTTON_SIZE= 32;
 
 	
@@ -77,4 +77,8 @@ public class Constants {
 		add(Color.BLUE);
 		add(Color.RED);
 	}};
+	
+	//Turtle opacity to show selection constants
+	public static final double SELECTED = 1;
+	public static final double NOT_SELECTED = SELECTED / 2;
 }

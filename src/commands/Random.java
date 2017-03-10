@@ -7,6 +7,7 @@ import java.util.List;
 
 import backend.ASTNode;
 import command_abstractions.MathCommandOneParam;
+import constants.Constants;
 
 
 /**
@@ -22,8 +23,9 @@ public class Random extends MathCommandOneParam {
 	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		if (params.get(0) < 0.0) {
-			throw new IllegalArgumentException("Random only takes in a positive number, negative number given");
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("RandomError"));
 		}
+		
 		return Math.random() * params.get(0);
 	}
 	

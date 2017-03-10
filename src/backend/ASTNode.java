@@ -6,7 +6,6 @@ package backend;
 import java.util.List;
 
 import command_abstractions.Command;
-import main.SLogoData;
 
 /**
  * @author harirajan
@@ -82,6 +81,14 @@ public class ASTNode {
 			return true;
 		return myCommand.isMathCommand();
 	}
+	
+	public boolean isBlock(){
+		return isBlock;
+	}
+	
+	public boolean isVariable(){
+		return (myVariableName != null);
+	}
 
 	public String getVariableName() {
 		return myVariableName;
@@ -115,8 +122,5 @@ public class ASTNode {
 	
 	public void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
-	}
-	public boolean isBlock() {
-		return isBlock();
 	}
 }

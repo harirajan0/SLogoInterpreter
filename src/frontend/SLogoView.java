@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import backend.SLogoData;
 import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
@@ -12,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -23,7 +25,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.SLogoData;
 
 /**
  *  @author Daniel
@@ -41,7 +42,7 @@ public class SLogoView implements Observer {
 	private TurtleWindowView myTurtleWindow;
 	private MenuView myMenuBar;
 	private VBox topVBox;
-	
+	private boolean showSelectedGraphically;
 	private ScrollPane myLeftScrollPane;
 	private VBox myLeftScrollPaneVBox;
 	private PaletteView myPaletteView;
@@ -67,6 +68,7 @@ public class SLogoView implements Observer {
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
 		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);
+		showSelectedGraphically = false;
 		displayStage(s);
 	}
 
@@ -180,7 +182,27 @@ public class SLogoView implements Observer {
 	public ChoiceBox<String> getLanguageChoiceBox() {
 		return myMenuBar.getLanguageChoiceBox();
 	}
+	
+	public CheckBox getGraphicalDisplayButton(){
+		return myCommandPrompt.getGraphicalDisplayButton();
+	}
+	
+	public boolean getShowSelected() {
+		return showSelectedGraphically;
+	}
+	
+	public void toggleSlowSelection() {
+		showSelectedGraphically = !showSelectedGraphically;
+	}
 
+	public Button getVariableUpdateButton() {
+		return myVariablesView.getUpdateButton();
+	}
+	
+	public VariablesView getVariablesView() {
+		return myVariablesView;
+	}
+	
 	@Override
 	public void update(Observable slogoData, Object arg) {
 		// TODO Auto-generated method stub

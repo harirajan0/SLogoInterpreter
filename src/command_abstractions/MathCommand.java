@@ -7,17 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
-import main.SLogoData;
-import turtle.Turtle;
+import backend.SLogoData;
+import constants.Constants;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
 public abstract class MathCommand implements Command {
 
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		
+		if(params.size() < getNumArgs()){
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("TooFewArgumentsError") +
+					getClass().getSimpleName());
+		}
+		
 		List<Double> paramList = new ArrayList<>();
 		List<ASTNode> evaluateList = new ArrayList<>();		
 		for (int i = 0; i < params.size(); i++) {
@@ -41,6 +47,6 @@ public abstract class MathCommand implements Command {
 		return true;
 	}
 	
-	public abstract double execute(List<Double> params) throws IllegalArgumentException;
+	protected abstract double execute(List<Double> params) throws IllegalArgumentException;
 	
 }

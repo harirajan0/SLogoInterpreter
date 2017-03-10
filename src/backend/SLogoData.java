@@ -1,4 +1,4 @@
-package main;
+package backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import backend.ASTNode;
-import backend.Variable;
 import command_abstractions.Command;
 import command_abstractions.TurtleCommand;
 import commands.Forward;
@@ -87,7 +85,8 @@ public class SLogoData extends Observable {
 				return func;
 			}
 		}
-		return null; //throw exception here maybe??
+		throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError")
+				+ functionName);
 	}
 	
 	public void addFunction(ASTNode newFunction) {
@@ -118,7 +117,8 @@ public class SLogoData extends Observable {
 			if (var.getName().equals(name))
 				return var;
 		}
-		return null; // fix this to throw error when we cant find the variable
+		throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UninitializedVariableError")
+				+ name);
 	}
 
 	public void addVariable(Variable newVar) {
@@ -188,6 +188,24 @@ public class SLogoData extends Observable {
 	public void changeColor(int index, Color newColor) {
 		myColors.set(index, newColor);
 		for (Turtle turtle : myTurtles) if (turtle.getColorIndex() == index) turtle.setPenColor(index, newColor);
+		notifyObservers();
+	}
+	
+	public void showSelectedGraphically(boolean showSelected) {
+		for(Turtle turtle : myTurtles){
+			if(showSelected && !turtle.isSelected()) { 
+				turtle.getNode().setOpacity(Constants.NOT_SELECTED);
+			}
+			else {
+				turtle.getNode().setOpacity(Constants.SELECTED);
+			}
+			turtle.display();
+		}
+		notifyObservers();
+	}
+	
+	public void setVariables(List<Variable> newVars) {
+		myVariables = newVars;
 		notifyObservers();
 	}
 	

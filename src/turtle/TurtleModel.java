@@ -24,7 +24,7 @@ public class TurtleModel {
 	public TurtleModel(TurtleInfo turtleInfo) {
 		currentTurtleInfo = turtleInfo;
 		nextTurtleInfo = turtleInfo;
-		isSelected = true;
+		isSelected = false;
 	}
 	
 	public List<Line> calculateLinesToDraw() {

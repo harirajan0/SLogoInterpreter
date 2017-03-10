@@ -22,6 +22,7 @@ public class Constants {
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
 	public static final int COMMAND_WINDOW_WIDTH = 600;
 	public static final int COMMAND_BUTTON_WIDTH=200;
+	public static final int BUTTON_SPACING = 5;
 
 	
 	//TurtleWindow constants

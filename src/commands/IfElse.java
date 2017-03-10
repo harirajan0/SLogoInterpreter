@@ -6,21 +6,21 @@ package commands;
 import java.util.List;
 
 import ASTNode.ASTNode;
-import command_abstractions.Command;
+import command_abstractions.ControlCommand;
+import constants.Constants;
 import main.SLogoData;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
-public class IfElse implements Command {
+public class IfElse extends ControlCommand {
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
-	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+		
+		checkNumArgs(params);
+		
 		double ret = 0.0; 
 		if (params.get(0).evaluate() == 1.0) {
 			ret = params.get(1).evaluate();
@@ -30,22 +30,8 @@ public class IfElse implements Command {
 		return ret;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
 	public int getNumArgs() {
-		// TODO Auto-generated method stub
 		return 3;
 	}
-
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
-	@Override
-	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

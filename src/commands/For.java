@@ -7,23 +7,22 @@ import java.util.List;
 
 import ASTNode.ASTNode;
 import backend.Variable;
-import command_abstractions.Command;
+import command_abstractions.ControlCommand;
+import constants.Constants;
 import main.SLogoData;
-import turtle.Turtle;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
-public class For implements Command {
+public class For extends ControlCommand {
 
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
-	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+		
+		checkNumArgs(params);
+		
 		double ret = 0;
 		for (double i = params.get(0).getArguments().get(1).evaluate();
 				i < params.get(0).getArguments().get(2).evaluate(); 
@@ -35,22 +34,9 @@ public class For implements Command {
 		return ret;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
 	public int getNumArgs() {
-		// TODO Auto-generated method stub
 		return 2;
-	}
-
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
-	@Override
-	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

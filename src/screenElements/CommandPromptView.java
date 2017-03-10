@@ -19,7 +19,7 @@ public class CommandPromptView {
 	 * from everything else in the screen.
 	 * 
 	 * @author Daniel
-	 * 
+	 * @author Belal Taher
 	 */
 	
 	private Button myExecuteButton;
@@ -41,6 +41,7 @@ public class CommandPromptView {
 		myBorderPane = new BorderPane();
 		setUpCommandEntry();
 		setUpButtons();
+		resizeButtons();
 		myBorderPane.setLeft(myCommandEntry);
 		myBorderPane.setRight(myVBox);
 	}
@@ -51,17 +52,23 @@ public class CommandPromptView {
 		myCommandEntry.setMinHeight(Constants.COMMAND_WINDOW_HEIGHT);
 	}
 	
+	private void resizeButtons(){
+		fileLoader.setMinWidth(myVBox.getPrefWidth());
+		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
+		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
+		forwardButton.setMinWidth(myVBox.getPrefWidth());
+		rightButton.setMinWidth(myVBox.getPrefWidth());
+		leftButton.setMinWidth(myVBox.getPrefWidth());
+		backButton.setMinWidth(myVBox.getPrefWidth());
+	}
+	
 	private void setUpButtons() {
-		myVBox = new VBox();
+		myVBox = new VBox(Constants.BUTTON_SPACING);
 		showSelectedTurtlesButton = new CheckBox(Constants.DEFAULT_RESOURCE_BUNDLE.getString("selectedTurtlesButton"));
 		fileLoader = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
-		fileLoader.setMinWidth(myVBox.getPrefWidth());
-
 		myVBox.setPrefWidth(Constants.COMMAND_BUTTON_WIDTH);
 		myExecuteButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("executeCommandLabel"));
 		setUpCommandHistory();
-		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
-		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
 		createMovingButtons();
 		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton, fileLoader, showSelectedTurtlesButton);	}
 	

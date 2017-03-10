@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
@@ -32,7 +33,7 @@ public class Turtle {
  		myTurtleModel = new TurtleModel(turtleInfo); 
 		myTurtleView = new TurtleView(root);
 		myID = id;
-		getNode().setOnMouseClicked(new EventHandler<Event>() {
+		getClickSensorNode().setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {
@@ -41,7 +42,7 @@ public class Turtle {
 				alert.setTitle("Turtle Selected!");
 				alert.setContentText("You chose turtle with ID: " + myID);
 				alert.showAndWait();
-				myTurtleModel.setSelected(true);
+				myTurtleModel.setSelected(!myTurtleModel.isSelected());
 			}
 			
 		});
@@ -73,6 +74,10 @@ public class Turtle {
 	
 	public ImageView getNode() {
 		return myTurtleView.getNode();
+	}
+	
+	public Node getClickSensorNode(){
+		return (Node) myTurtleView.getClickSensorNode();
 	}
 	
 	public void display() {

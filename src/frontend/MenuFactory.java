@@ -1,19 +1,9 @@
 package frontend;
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 
 import constants.Constants;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
-import languages.Language;
-import main.SLogoController;
 
 /**
  * @author Daniel

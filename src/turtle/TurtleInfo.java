@@ -5,9 +5,9 @@ package turtle;
 
 import constants.Constants;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 /**
+ * @author Alex Boss
  * @author harirajan
  *
  */

@@ -1,7 +1,6 @@
 package turtle;
 import java.util.List;
 
-import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;

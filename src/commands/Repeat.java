@@ -18,6 +18,8 @@ public class Repeat extends ControlCommand {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		
+		checkNumArgs(params);
+		
 		double limit = params.get(0).evaluate();
 		
 		if(limit < 0 ){

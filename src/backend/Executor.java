@@ -9,6 +9,7 @@ import java.util.List;
 import ASTNode.ASTNode;
 import command_abstractions.Command;
 import commands.CommandFactory;
+import constants.Constants;
 import languages.Language;
 import main.SLogoData;
 
@@ -21,14 +22,13 @@ public class Executor {
 	private CommandFactory commandFactory;
 	private RegexParser syntaxParser;
 	private Language myLang;
-	
-	
+
 	public Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new RegexParser(Language.SYNTAX);
-		
+
 	}
-	
+
 	public ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Executor {
 				functionName = input.get(0);
 				input.remove(0);
 			} else {
-				return null; //throw exception; illegal function name
+				return null; // throw exception; illegal function name
 			}
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = indexOfMatchingBrace(input);
@@ -48,7 +48,8 @@ public class Executor {
 				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
 			} else {
-				return null; //throw exception; illegal format for defining funciton
+				return null; // throw exception; illegal format for defining
+								// funciton
 			}
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = indexOfMatchingBrace(input);
@@ -56,17 +57,18 @@ public class Executor {
 				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
 			} else {
-				return null; //throw exception; illegal format for defining funciton
+				return null; // throw exception; illegal format for defining
+								// funciton
 			}
 		}
 		return new ASTNode(null, null, functionName, 0, arguments, slogoData, false);
 	}
-	
 
 	public ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
-		if (input.size() == 0) return null;
+		if (input.size() == 0)
+			return null;
 		else {
 			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
 				if (languageParser.getSymbol(input.get(0)).equals("PossibleFunction")) {
@@ -113,30 +115,31 @@ public class Executor {
 					arguments.add(parseText(slogoData, block));
 				}
 				return new ASTNode(null, null, null, 0, arguments, slogoData, true);
-			} 
-			else {
-				return null;
+			} else {
+				throw new IllegalArgumentException(
+						Constants.DEFAULT_RESOURCE_BUNDLE.getString("InvalidSyntaxError") + input.get(0));
 			}
 		}
 	}
-	
+
 	private int indexOfMatchingBrace(List<String> input) {
 		int count = 0;
 		for (int i = 0; i < input.size(); i++) {
 			if (input.get(i).equals("[")) {
 				count++;
 			} else if (input.get(i).equals("]")) {
-				count --;
-				if (count == 0) return i;
+				count--;
+				if (count == 0)
+					return i;
 			}
 		}
-		return 0;
+		throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("ImbalancedDelimiterError"));
 	}
-	
+
 	public void setLanguage(Language lang) {
 		myLang = lang;
 	}
-	
+
 	private void removeToIndex(List<String> list, int index) {
 		while (index >= 0) {
 			list.remove(0);

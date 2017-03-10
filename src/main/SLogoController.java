@@ -45,7 +45,11 @@ public class SLogoController {
 		mySlogoData.addObserver(mySlogoModel);
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
+			try {
+				mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
+			} catch (Exception e) {
+				System.out.print(e.getMessage());
+			}
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 		});

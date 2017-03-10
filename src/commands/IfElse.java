@@ -7,6 +7,7 @@ import java.util.List;
 
 import ASTNode.ASTNode;
 import command_abstractions.ControlCommand;
+import constants.Constants;
 import main.SLogoData;
 
 /**
@@ -17,6 +18,9 @@ public class IfElse extends ControlCommand {
 
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		
+		checkNumArgs(params);
+		
 		double ret = 0.0; 
 		if (params.get(0).evaluate() == 1.0) {
 			ret = params.get(1).evaluate();

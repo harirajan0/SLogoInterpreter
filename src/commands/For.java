@@ -8,6 +8,7 @@ import java.util.List;
 import ASTNode.ASTNode;
 import backend.Variable;
 import command_abstractions.ControlCommand;
+import constants.Constants;
 import main.SLogoData;
 
 /**
@@ -19,6 +20,9 @@ public class For extends ControlCommand {
 
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		
+		checkNumArgs(params);
+		
 		double ret = 0;
 		for (double i = params.get(0).getArguments().get(1).evaluate();
 				i < params.get(0).getArguments().get(2).evaluate(); 

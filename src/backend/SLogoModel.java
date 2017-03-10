@@ -9,7 +9,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import languages.Language;
-import turtle.Turtle;
 
 /**
  * @author harirajan
@@ -18,7 +17,6 @@ import turtle.Turtle;
 public class SLogoModel implements Observer {
 	
 	SLogoData mySlogoData;
-	
 	Executor myExecutor;
 	
 	public SLogoModel() {
@@ -29,21 +27,13 @@ public class SLogoModel implements Observer {
 		myExecutor.setLanguage(lang);
 	}
 	
+	@SuppressWarnings("serial")
 	public void parse(String input) {
-//		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
-		//myExecutor.parseText(mySlogoData).evaluate();
-//		for (Turtle turtle : myTurtles)
-		System.out.println(new ArrayList<String>() {{
-			for (String str : input.split("\\s+")) add(str.trim());
-		}});
 		myExecutor.parseText(mySlogoData, new ArrayList<String>() {{
 			for (String str : input.split("\\s+")) add(str.trim());
 		}}).evaluate();
 	}
 	
-	public List<Turtle> getTurtles() {
-		return mySlogoData.getTurtles();
-	}
 
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)

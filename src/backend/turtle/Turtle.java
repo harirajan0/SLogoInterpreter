@@ -1,6 +1,4 @@
-package turtle;
-import java.util.List;
-
+package backend.turtle;
 import constants.Constants;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,14 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-/**
- * 
- */
-
-/**
- * @author harirajan
- *
- */
 public class Turtle {
 	
 	private TurtleModel myTurtleModel;
@@ -32,7 +22,7 @@ public class Turtle {
 		this(root, new TurtleInfo(), id);
 	}
 	
-	public Turtle(Group root, TurtleInfo turtleInfo, int id) {
+	protected Turtle(Group root, TurtleInfo turtleInfo, int id) {
  		myTurtleModel = new TurtleModel(turtleInfo); 
 		myTurtleView = new TurtleView(root);
 		myID = id;
@@ -40,25 +30,20 @@ public class Turtle {
 		getNode().setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event event) {
-				// TODO Auto-generated method stub
 				myTurtleModel.setSelected(!myTurtleModel.isSelected());
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				if (myTurtleModel.isSelected()) {
-					alert.setTitle("Turtle Selected!");
-					alert.setContentText("You chose turtle with ID: " + myID);
+					alert.setTitle(Constants.TURTLE_SELECTED_TITLE);
+					alert.setContentText(Constants.TURTLE_SELECTED_MESSAGE + myID);
 					alert.showAndWait();
 				} else {
-					alert.setTitle("Turtle Unselected!");
-					alert.setContentText("You unselected turtle with ID: " + myID);
+					alert.setTitle(Constants.TURTLE_UNSELECTED_TITLE);
+					alert.setContentText(Constants.TURTLE_UNSELECTED_MESSAGE + myID);
 					alert.showAndWait();
 				}
 				display();
 			}
 		});
-	}
-	
-	public void setNext(TurtleInfo turtleInfo) {
-		myTurtleModel.setNext(turtleInfo);
 	}
 	
 	public boolean isSelected() {
@@ -70,16 +55,8 @@ public class Turtle {
 		display();
 	}
 	
-	public List<Line> getLinesToDraw() {
-		return myTurtleModel.calculateLinesToDraw();
-	}
-	
 	public TurtleInfo getTurtleInfo() {
 		return myTurtleModel.getCurrentTurtleInfo();
-	}
-	
-	public void prepareForNextCommand() {
-		myTurtleModel.prepareForNextCommand();
 	}
 	
 	public ImageView getNode() {
@@ -99,7 +76,6 @@ public class Turtle {
 		else {
 			getNode().setOpacity(Constants.SELECTED);
 		}
-		System.out.println("hello");
 		myTurtleView.display(myTurtleModel.getNextTurtleInfo().getX(), 
 							myTurtleModel.getNextTurtleInfo().getY(), 
 							myTurtleModel.getNextTurtleInfo().getHeading());
@@ -168,6 +144,11 @@ public class Turtle {
 	
 	public void changeImage(Image img) {
 		myTurtleView.changeImage(img);
+	}
+	
+	public String toString() {
+		return "ID: " + String.valueOf(myID) + "; Selcted: "  + String.valueOf(myTurtleModel.isSelected()) + "; " +
+				myTurtleModel.getCurrentTurtleInfo().toString();
 	}
 	
 }

@@ -3,7 +3,7 @@ package backend.commands;
 import java.util.List;
 
 import backend.command_abstraction.TurtleCommandTwoParams;
-import turtle.Turtle;
+import backend.turtle.Turtle;
 
 public class Towards extends TurtleCommandTwoParams {
 

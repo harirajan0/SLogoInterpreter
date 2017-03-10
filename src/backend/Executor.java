@@ -21,13 +21,13 @@ public class Executor {
 	private Language myLang;
 	
 	
-	public Executor() {
+	protected Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new RegexParser(Language.SYNTAX);
 		
 	}
 	
-	public ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
+	private ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		String functionName;
@@ -61,7 +61,7 @@ public class Executor {
 	}
 	
 
-	public ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
+	protected ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		if (input.size() == 0) return null;
@@ -125,7 +125,7 @@ public class Executor {
 		}
 	}
 	
-	public int getIndexOfBracketMatch(List<String> input) {
+	private int getIndexOfBracketMatch(List<String> input) {
 		int count = 0;
 		for (int i = 0; i < input.size(); i++) {
 			if (input.get(i).equals("[")) {
@@ -138,7 +138,7 @@ public class Executor {
 		return 0;
 	}
 	
-	public void setLanguage(Language lang) {
+	protected void setLanguage(Language lang) {
 		myLang = lang;
 	}
 	

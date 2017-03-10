@@ -28,14 +28,14 @@ public class RegexParser {
     private Language myLang;
 
 
-    public RegexParser (Language lang) {
+    protected RegexParser(Language lang) {
         mySymbols = new ArrayList<>();
         myLang = lang;
         addPatterns(myLang);
     }
 
     // adds the given resource file to this language's recognized types
-    public void addPatterns (Language lang) {
+    private void addPatterns(Language lang) {
         for (String key : lang.getKeys()) {
             String regex = lang.getString(key);
             mySymbols.add(new SimpleEntry<>(key,
@@ -45,7 +45,7 @@ public class RegexParser {
     }
 
     // returns the language's type associated with the given text if one exists 
-    public String getSymbol (String text) {
+    protected String getSymbol(String text) {
         for (Entry<String, Pattern> entry : mySymbols) {
             if (match(text, entry.getValue())) {
                 return entry.getKey();
@@ -55,8 +55,7 @@ public class RegexParser {
     }
 
     // returns true if the given text matches the given regular expression pattern
-    private boolean match (String text, Pattern regex) {
-        // THIS IS THE KEY LINE
+    private boolean match(String text, Pattern regex) {
         return regex.matcher(text).matches();
     }
     

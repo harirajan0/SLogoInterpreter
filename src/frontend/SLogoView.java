@@ -52,7 +52,6 @@ public class SLogoView implements Observer {
 	private HBox myPenThicknessChanger;
 	private HBox myBackgroundColorChanger;
 	private Slider myPenThicknessSlider;
-	
 	private ScrollPane rightScrollPane;
 
 	public SLogoView(Stage s) {
@@ -76,7 +75,6 @@ public class SLogoView implements Observer {
 	 * 
 	 */
 	private void setUpScrollPanes() {
-		// TODO Auto-generated method stub
 		myLeftScrollPane = new ScrollPane();
 		myLeftScrollPane.setPrefSize(Constants.TURTLE_WINDOW_SIZE / 2, Constants.TURTLE_WINDOW_SIZE);
 		myLeftScrollPaneVBox = new VBox();
@@ -96,18 +94,18 @@ public class SLogoView implements Observer {
 	private void setUpColorChangers() {
 		myPenColorChanger = new HBox();
 		myPenColorChanger.setAlignment(Pos.BASELINE_RIGHT);
-		Label penColorTitle = new Label("Pen Color: ");
+		Label penColorTitle = new Label(Constants.PEN_COLOR_LABEL);
 		myPenColorChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(
 		new ArrayList<String>() {{
-			for (int i = 0; i < 4; i++) add("Palette Color " + i);
+			for (int i = 0; i < 4; i++) add(Constants.PALETTE_COLOR_LABEL + i);
 		}}));
 		myPenColorChoiceBox.getSelectionModel().selectFirst();
 		myPenColorChanger.getChildren().addAll(penColorTitle, myPenColorChoiceBox);
 		myBackgroundColorChanger = new HBox();
 		myBackgroundColorChanger.setAlignment(Pos.BASELINE_RIGHT);
-		Label backgroundColorTitle = new Label("Background Color: ");
+		Label backgroundColorTitle = new Label(Constants.BACKGROUND_COLOR_LABEL);
 		myBackgroundColorPicker = new ColorPicker();
-		myBackgroundColorPicker.setPrefWidth(50);
+		myBackgroundColorPicker.setPrefWidth(Constants.MEDIUM_BUTTON_SIZE);
 		myBackgroundColorChanger.getChildren().addAll(backgroundColorTitle, myBackgroundColorPicker);
 	}
 	
@@ -116,11 +114,11 @@ public class SLogoView implements Observer {
 		Label penThicknessTitle = new Label("Pen Thickness: ");
 		myPenThicknessSlider = new Slider();
 		myPenThicknessSlider.setOrientation(Orientation.HORIZONTAL);
-		myPenThicknessSlider.setMajorTickUnit(5);
-		myPenThicknessSlider.setMax(20);
+		myPenThicknessSlider.setMajorTickUnit(Constants.SLIDER_INCREMENT_VALUE);
+		myPenThicknessSlider.setMax(Constants.MAX_SLIDER_VALUE);
 		myPenThicknessSlider.setShowTickMarks(true);
 		myPenThicknessSlider.setShowTickLabels(true);
-		myPenThicknessSlider.setPrefWidth(110);
+		myPenThicknessSlider.setPrefWidth(Constants.TURTLE_WINDOW_SIZE / 4);
 		myPenThicknessChanger.getChildren().addAll(penThicknessTitle, myPenThicknessSlider);
 	}
 
@@ -191,7 +189,7 @@ public class SLogoView implements Observer {
 		return showSelectedGraphically;
 	}
 	
-	public void toggleSlowSelection() {
+	public void toggleShowSelection() {
 		showSelectedGraphically = !showSelectedGraphically;
 	}
 
@@ -209,7 +207,6 @@ public class SLogoView implements Observer {
 	
 	@Override
 	public void update(Observable slogoData, Object arg) {
-		// TODO Auto-generated method stub
 		mySlogoData = (SLogoData) slogoData;
 		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());

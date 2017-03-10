@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.Variable;
+import constants.Constants;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,43 +13,37 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import constants.Constants;
 
 public class VariablesView{
-    /** This class allows us to update the variables from the backend (controller will launch this), create a new variable and send this info to 
-    *   the backend via the controller, and update the value of the variables by clicking (which will trigger the controller and update the variables
-    *   in the backend. Everything relating to variables takes place in this class.
-    */
 	
 	private List<Variable> currentVars;
 	private Button myUpdateButton;
 	private VBox myVBox;
 	
-	public VariablesView() {
+	protected VariablesView() {
 		myVBox = new VBox();
 		myVBox.setAlignment(Pos.TOP_CENTER);
-		Text title = new Text("Your Variables");
-		title.setFont(new Font("Verdana", 20));
+		Text title = new Text(Constants.VARIABLES_VIEW_TITLE);
+		title.setFont(new Font(Constants.DEFAULT_FONT, Constants.DEFAULT_FONT_SIZE));
 		myVBox.getChildren().add(title);
-		myVBox.setPrefWidth(200);
+		myVBox.setPrefWidth(Constants.TURTLE_WINDOW_SIZE / 2);
 		currentVars = new ArrayList<Variable>();
 		myUpdateButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("updateButtonLabel"));
 		myVBox.getChildren().add(myUpdateButton);
 		updateVariableDisplay();
 	}
 	
-	public void setVariables(List<Variable> newVariables) {
+	protected void setVariables(List<Variable> newVariables) {
 		myVBox.getChildren().remove(2, myVBox.getChildren().size());
 		currentVars = newVariables;
 		updateVariableDisplay();
 	}
     
-    public void updateVariableDisplay(){
-    	//changes value of variable on screen if modified by backend
+    private void updateVariableDisplay(){
     	for (Variable var : currentVars) displayVariable(var);
     }
     
-    public void displayVariable(Variable var) {
+    private void displayVariable(Variable var) {
     	HBox variableDisplay = new HBox();
     	variableDisplay.setPrefWidth(175);
     	variableDisplay.setAlignment(Pos.BASELINE_RIGHT);
@@ -60,11 +55,11 @@ public class VariablesView{
     	
     }
     
-    public VBox getNode() {
+    protected VBox getNode() {
     	return myVBox;
     }
     
-    public Button getUpdateButton() {
+    protected Button getUpdateButton() {
     	return myUpdateButton;
     }
     

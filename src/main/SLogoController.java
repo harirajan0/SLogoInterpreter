@@ -7,6 +7,7 @@ import java.io.File;
 
 import backend.SLogoData;
 import backend.SLogoModel;
+import backend.turtle.Turtle;
 import constants.Constants;
 import frontend.ExceptionAlert;
 import frontend.SLogoView;
@@ -18,7 +19,6 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import turtle.Turtle;
 
 /**
  * @author harirajan
@@ -40,15 +40,6 @@ public class SLogoController {
 		mySlogoData.setRoot(mySlogoView.getTurtleWindow().getRoot());
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		setupEventHandlers();
-	}
-
-	
-	public SLogoView getView() {
-		return mySlogoView;
-	}
-
-	public SLogoModel getModel() {
-		return mySlogoModel;
 	}
 	
 	private void setupEventHandlers() {
@@ -116,7 +107,7 @@ public class SLogoController {
 	 */
 	private void setUpViewSelectionGraphicallyHandler() {
 		mySlogoView.getGraphicalDisplayButton().setOnAction(e -> {
-			mySlogoView.toggleSlowSelection();
+			mySlogoView.toggleShowSelection();
 			mySlogoData.showSelectedGraphically(mySlogoView.getShowSelected());
 		});
 	}

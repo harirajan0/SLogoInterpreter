@@ -59,24 +59,7 @@ public class ASTNode {
 		return myCommand;
 	}
 
-	public double getValue() {
-		return myValue;
-	}
-
-	public void setValue(double newValue) {
-		myValue = newValue;
-	}
-
-	public String toString() {
-		if (isBlock) {
-			return "BLOCK: " + myArguments.toString();
-		}
-		if (myCommand != null)
-			return myCommand.getClass().getName();
-		return String.valueOf(myValue);
-	}
-
-	public boolean hasMathValue() {
+	protected boolean hasMathValue() {
 		if (myCommand == null)
 			return true;
 		return myCommand.isMathCommand();
@@ -98,12 +81,7 @@ public class ASTNode {
 		return myArguments;
 	}
 
-	public void print() {
-		System.out.println();
-		System.out.println(this);
-		System.out.println(this.myArguments);
-	}	
-	public double runAsFunction() {
+	private double runAsFunction() {
 		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
 			mySlogoData.addVariable( new Variable(myArguments.get(0).getArguments().get(i).getVariableName(), 
 												myArguments.get(2).getArguments().get(i).evaluate()));
@@ -116,11 +94,11 @@ public class ASTNode {
 		return ret;
 	}
 
-	public String getFunctionName() {
+	protected String getFunctionName() {
 		return myFunctionName;
 	}
 	
-	public void addArgument(ASTNode toAdd) {
+	protected void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
 	}
 }

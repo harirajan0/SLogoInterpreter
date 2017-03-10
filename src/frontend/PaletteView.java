@@ -27,7 +27,7 @@ public class PaletteView {
 	List<ColorPicker> myPickers;
 	
 	@SuppressWarnings("serial")
-	public PaletteView() {
+	protected PaletteView() {
 		myVBox = new VBox();
 		myVBox.setAlignment(Pos.CENTER);
 		myPickers = new ArrayList<ColorPicker>() {{
@@ -49,22 +49,12 @@ public class PaletteView {
 		return hb;
 	}
 	
-	public Node getNode() {
+	protected Node getNode() {
 		return myVBox;
 	}
 	
-	public Color getColorAtIndex(int index) {
-		return myPickers.get(index).getValue();
-	}
-	
-	@SuppressWarnings("serial")
-	public List<Color> getColors() {
-		return new ArrayList<Color>() {{
-			for (ColorPicker picker : myPickers) add(picker.getValue());
-		}};
-	}
-	
-	public List<ColorPicker> getColorPickers() {
+
+	protected List<ColorPicker> getColorPickers() {
 		return myPickers;
 	}
 

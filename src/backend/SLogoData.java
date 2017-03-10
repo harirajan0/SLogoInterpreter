@@ -9,13 +9,13 @@ import java.util.Observer;
 import backend.command_abstraction.TurtleCommand;
 import backend.commands.Forward;
 import backend.commands.Right;
+import backend.turtle.Turtle;
 import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
-import turtle.Turtle;
 
 /**
  * 
@@ -83,7 +83,7 @@ public class SLogoData extends Observable {
 		super.notifyObservers();
 	}
 	
-	public ASTNode getFunction(String functionName) {
+	protected ASTNode getFunction(String functionName) {
 		for (ASTNode func : myFunctions) {
 			if (func.getFunctionName().equals(functionName)) {
 				return func;
@@ -107,16 +107,8 @@ public class SLogoData extends Observable {
 		myBackgroundColor = col;
 		notifyObservers();
 	}
-	public void changeBackgroundColorIndex(int index) {
-		myBackgroundColorIndex = index;
-		notifyObservers();
-	}
 
-	public int getBackgroundColorIndex() {
-		return myBackgroundColorIndex;
-	}
-
-	public Variable getVariable(String name) {
+	protected Variable getVariable(String name) {
 		for (Variable var : myVariables) {
 			if (var.getName().equals(name))
 				return var;
@@ -178,10 +170,6 @@ public class SLogoData extends Observable {
 	
 	public Language getLanguage() {
 		return myLanguage;
-	}
-	
-	public List<ASTNode> getFunctions() {
-		return myFunctions;
 	}
 	
 	public Color getBackgroundColor() {

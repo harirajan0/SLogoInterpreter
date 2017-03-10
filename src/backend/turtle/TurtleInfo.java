@@ -1,7 +1,7 @@
 /**
  * 
  */
-package turtle;
+package backend.turtle;
 
 import constants.Constants;
 
@@ -26,7 +26,7 @@ public class TurtleInfo {
 		myPenColorIndex = 0;
 	}
 	
-	public TurtleInfo(double X, double Y, double heading, boolean penDown, boolean visible, int penColorIndex) {
+	private TurtleInfo(double X, double Y, double heading, boolean penDown, boolean visible, int penColorIndex) {
 		myX = X;
 		myY = Y;
 		myHeading = heading;
@@ -35,56 +35,64 @@ public class TurtleInfo {
 		myPenColorIndex = penColorIndex;
 	}
 	
-	public TurtleInfo(TurtleInfo toCopy) {
+	protected TurtleInfo(TurtleInfo toCopy) {
 		this(toCopy.getX(), toCopy.getY(), toCopy.getHeading(), toCopy.isPenDown(), toCopy.isVisible(), toCopy.getColor());
 	}
 	
-	public double getX() {
+	protected double getX() {
 		return myX;
 	}
-	public double getY() {
+	
+	protected double getY() {
 		return myY;
 	}
-	public double getHeading() {
+	
+	protected double getHeading() {
 		return myHeading;
 	}
-	public boolean isPenDown() {
+	
+	protected boolean isPenDown() {
 		return isPenDown;
 	}
-	public boolean isVisible() {
+	
+	protected boolean isVisible() {
 		return isVisible;
 	}
-	public void setX(double newX) {
+	
+	protected void setX(double newX) {
 		myX = newX;
 	}
-	public void setY(double newY) {
+	
+	protected void setY(double newY) {
 		myY = newY;
 	}
 	
-	public void setHeading(double newHeading) {
+	protected void setHeading(double newHeading) {
 		if (newHeading >= 0) {
 			myHeading = newHeading % 360;
 		} else {
 			myHeading = 360 + newHeading;
 		}
 	}
-	public void setPenDown(boolean newPenDown) {
+	
+	protected void setPenDown(boolean newPenDown) {
 		isPenDown = newPenDown;
 	}
-	public void setVisible(boolean newVisible) {
+	
+	protected void setVisible(boolean newVisible) {
 		isVisible = newVisible;
 	}
 	
-	public void setColor(int index) {
+	protected void setColor(int index) {
 		myPenColorIndex = index;
 	}
 	
-	
-	public int getColor() {
+	protected int getColor() {
 		return myPenColorIndex;
 	}
 	
 	public String toString() {
 		return String.format("X: %f; Y: %f, Heading: %f; penDown: %b; visible: %b", myX, myY, myHeading, isPenDown, isVisible);
 	}
+	
 }

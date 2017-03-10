@@ -1,7 +1,7 @@
 /**
  * 
  */
-package turtle;
+package backend.turtle;
 
 import constants.Constants;
 import javafx.scene.Group;
@@ -18,7 +18,7 @@ public class TurtleView {
 	private ImageView myTurtleImage;
 	private Group myRoot;
 		
-	public TurtleView(Group root) {
+	protected TurtleView(Group root) {
 		myTurtleImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 		myTurtleImage.setFitWidth(Constants.TURTLE_SIZE);
 		myTurtleImage.setFitHeight(Constants.TURTLE_SIZE);
@@ -26,15 +26,15 @@ public class TurtleView {
 		myRoot = root;
 	}
 	
-	public ImageView getNode() {
+	protected ImageView getNode() {
 		return myTurtleImage;
 	}
 	
-	public Group getRoot() {
+	protected Group getRoot() {
 		return myRoot;
 	}
 	
-	public void display(double newX, double newY, double newHeading) {
+	protected void display(double newX, double newY, double newHeading) {
 		myTurtleImage.setX(newX - Constants.BUFFER);
 		myTurtleImage.setY(newY - Constants.BUFFER);
 		myTurtleImage.setRotate(newHeading);

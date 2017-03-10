@@ -60,7 +60,7 @@ import backend.commands.Turtles;
  */
 public class CommandFactory {
 
-	public Command getCommand(String commandString) {
+	protected Command getCommand(String commandString) {
 		switch (commandString) {
 		case "Forward" : return new Forward();
 		case "Backward" : return new Back();

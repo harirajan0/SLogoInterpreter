@@ -8,12 +8,9 @@ import java.util.ResourceBundle;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-/**
- * @author harirajan
- * @author Daniel
- * @author Belal Taher
- */
+
 public class Constants {
+	
 	//Application constants
 	public static final String APPLICATION_TITLE = "SLogo Interpreter";
 	public static final String TITLE_FONT = "Courier New";
@@ -21,18 +18,29 @@ public class Constants {
 	public static final int WINDOW_SIZE = 825;
 	public static final Paint BACKGROUND_COLOR = Color.GRAY;
 	public static final String DEFAULT_LANGUAGE = "English";
+	public static final String VARIABLES_VIEW_TITLE = "Your Variables";
+	public static final int DEFAULT_FONT_SIZE = 20;
+	public static final String DEFAULT_FONT = "Verdana";
 	public static final String IMAGE_CHOOSER_TITLE = "Image Chooser";
+	public static final String PEN_COLOR_LABEL = "";
+	public static final String PALETTE_COLOR_LABEL = "";
+	public static final String BACKGROUND_COLOR_LABEL = "";
 	
 	//CommandPromptView constants
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
 	public static final int COMMAND_WINDOW_WIDTH = 600;
 	public static final int BIG_BUTTON_WIDTH = 200;
 	public static final int SMALL_BUTTON_SIZE= 32;
+	public static final int MEDIUM_BUTTON_SIZE= 50;
 
 	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
+	public static final String TURTLE_SELECTED_TITLE = "Turtle Selected!";
+	public static final String TURTLE_UNSELECTED_TITLE = "Turtle Unselected!";
+	public static final String TURTLE_SELECTED_MESSAGE = "You chose turtle with ID: ";
+	public static final String TURTLE_UNSELECTED_MESSAGE = "You unselected turtle with ID: ";
 	
 	//TurtleView constants
 	public static final String TURTLE_IMAGE = "turtle.png";
@@ -45,8 +53,8 @@ public class Constants {
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
 	
 	//pen width slider constants
-	public static final int MIN_SLIDER_VALUE=0;
-	public static final int MAX_SLIDER_VALUE=40;
+	public static final int SLIDER_INCREMENT_VALUE = 5;
+	public static final int MAX_SLIDER_VALUE = 20;
 	
 	//Button movement values
 	public static final int FORWARD_BUTTON_DISTANCE = 10;

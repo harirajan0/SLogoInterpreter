@@ -1,7 +1,7 @@
 /**
  * 
  */
-package turtle;
+package backend.turtle;
 
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class TurtleModel {
 	private double myPenThickness;
 	private boolean isSelected;
 	
-	public TurtleModel(TurtleInfo turtleInfo) {
+	protected TurtleModel(TurtleInfo turtleInfo) {
 		currentTurtleInfo = turtleInfo;
 		nextTurtleInfo = turtleInfo;
 		isSelected = false;
@@ -32,7 +32,7 @@ public class TurtleModel {
 		myPenColor = Color.BLACK;
 	}
 	
-	public List<Line> calculateLinesToDraw() {
+	protected List<Line> calculateLinesToDraw() {
 		List<Line> linesToDraw = new ArrayList<>();
 		if (nextTurtleInfo == null) return linesToDraw;
 		Line top = new Line(0.3, 0.3, Constants.TURTLE_WINDOW_SIZE - 0.3, 0.3);
@@ -153,53 +153,49 @@ public class TurtleModel {
 				nextTurtleInfo.getY() <= Constants.TURTLE_WINDOW_SIZE;			
 	}
 	
-	public TurtleInfo getCurrentTurtleInfo() {
+	protected TurtleInfo getCurrentTurtleInfo() {
 		return currentTurtleInfo;
 	}
 	
-	public TurtleInfo getNextTurtleInfo() {
+	protected TurtleInfo getNextTurtleInfo() {
 		return nextTurtleInfo;
 	}
 	
-	public void setNext(TurtleInfo turtleInfo) {
-		nextTurtleInfo = new TurtleInfo(turtleInfo);
-	}
-	
-	public void prepareForNextCommand() {
+	protected void prepareForNextCommand() {
 		currentTurtleInfo = new TurtleInfo(nextTurtleInfo);
 	}
 
-	public boolean isSelected() {
+	protected boolean isSelected() {
 		return isSelected;
 	}
 	
-	public void setSelected(boolean selected) {
+	protected void setSelected(boolean selected) {
 		isSelected = selected;
 	}
 	
-	public Color getPenColor() {
+	protected Color getPenColor() {
 		return myPenColor;
 	}
 	
-	public void setPenColor(int index, Color newColor) {
+	protected void setPenColor(int index, Color newColor) {
 		currentTurtleInfo.setColor(index);
 		nextTurtleInfo.setColor(index);
 		setPenColor(newColor);
 	}
 	
-	public void setPenColor(Color newColor) {
+	protected void setPenColor(Color newColor) {
 		myPenColor = newColor;
 	}
 	
-	public void setPenWidth(double newVal) {
+	protected void setPenWidth(double newVal) {
 		myPenThickness = newVal;
 	}
 
-	public int getColorIndex() {
+	protected int getColorIndex() {
 		return currentTurtleInfo.getColor();
 	}
 	
-	public boolean getPenDown() {
+	protected boolean getPenDown() {
 		return currentTurtleInfo.isPenDown();
 	}
 }

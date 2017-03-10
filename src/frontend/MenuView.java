@@ -18,7 +18,7 @@ public class MenuView {
 	private Menu myLanguagesMenu;
 	private ChoiceBox<String> myLanguageChoiceBox;
 	
-	public MenuView() {
+	protected MenuView() {
 		myMenuBar = new MenuBar();
 		myMenuItems = new ArrayList<MenuItem>();
 		setUpMenuBarItems();
@@ -51,15 +51,11 @@ public class MenuView {
 		
 	}
 
-	public MenuBar getNode() {
+	protected MenuBar getNode() {
 		return myMenuBar;
 	}
 
-	public List<MenuItem> getMenuItems() {
-		return myMenuItems;
-	}
-
-	public ChoiceBox<String> getLanguageChoiceBox() {
+	protected ChoiceBox<String> getLanguageChoiceBox() {
 		return myLanguageChoiceBox;
 	}
 }

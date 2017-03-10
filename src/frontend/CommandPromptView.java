@@ -43,7 +43,7 @@ public class CommandPromptView {
 	ObservableList<String> listOfCommands;
 	
 
-	public CommandPromptView() {
+	protected CommandPromptView() {
 		myBorderPane = new BorderPane();
 		setUpCommandEntry();
 		setUpButtons();

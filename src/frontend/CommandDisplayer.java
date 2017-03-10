@@ -14,13 +14,11 @@ import constants.Constants;
  */
 
 public class CommandDisplayer extends Stage {
-	public CommandDisplayer() {
+	
+	protected CommandDisplayer() {
 		URL urlHello = getClass().getResource(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList"));
-		// Create a WebView
 		WebView browser = new WebView();
-		// Get WebEngine via WebView
 		WebEngine webEngine = browser.getEngine();
-		// Load page
 		webEngine.load(urlHello.toExternalForm());
 		Scene s = new Scene(browser);
 		this.setScene(s);

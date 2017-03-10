@@ -17,6 +17,11 @@ public abstract class MathCommandNoParams extends MathCommand  {
 	
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		return execute(null);
+	}
+	
+	@Override
+	public double execute(List<Double> params) throws IllegalArgumentException {
 		return execute();
 	}
 	

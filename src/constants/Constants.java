@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 /**
  * @author harirajan
+ * @author Daniel
  * @author Belal Taher
  */
 public class Constants {
@@ -17,6 +18,12 @@ public class Constants {
 	public static final int WINDOW_SIZE = 800;
 	public static final Paint BACKGROUND_COLOR = Color.GRAY;
 	
+	//CommandPromptView constants
+	public static final int COMMAND_WINDOW_HEIGHT = 200;
+	public static final int COMMAND_WINDOW_WIDTH = 600;
+	public static final int COMMAND_BUTTON_WIDTH=200;
+
+	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
@@ -26,6 +33,16 @@ public class Constants {
 	public static final int TURTLE_SIZE = 20;
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
+	
+	//pen width slider constants
+	public static final int MIN_SLIDER_VALUE=0;
+	public static final int MAX_SLIDER_VALUE=40;
+	
+	//Button movement values
+	public static final int FORWARD_BUTTON_DISTANCE = 10;
+	public static final int BACKWARDS_BUTTON_DISTANCE = -FORWARD_BUTTON_DISTANCE;
+	public static final int RIGHT_BUTTON_ROTATION = 10;
+	public static final int LEFT_BUTTON_ROTATION = -RIGHT_BUTTON_ROTATION;
 	
 	//True false constants
 	public static final double TRUE = 1.0;

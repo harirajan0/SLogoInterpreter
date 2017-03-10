@@ -1,4 +1,4 @@
-package myResources;
+package screenElements;
 
 import constants.Constants;
 import javafx.beans.value.ChangeListener;

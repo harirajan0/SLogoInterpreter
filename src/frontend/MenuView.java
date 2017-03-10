@@ -1,13 +1,12 @@
 package frontend;
 import java.util.ArrayList;
 import java.util.List;
-
 import constants.Constants;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import main.SLogoData;
+
 public class MenuView {
 	private MenuBar myMenuBar;
 	private MenuFactory myMenuFactory;

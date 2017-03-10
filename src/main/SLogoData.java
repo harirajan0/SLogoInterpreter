@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import ASTNode.ASTNode;
 import backend.Variable;
 import command_abstractions.TurtleCommand;
+import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
 import turtle.Turtle;
@@ -24,14 +26,24 @@ public class SLogoData extends Observable {
 
 	private List<Turtle> myTurtles;
 	private List<Variable> myVariables;
+	private List<ASTNode> myFunctions;
 	private int myBackgroundColorIndex;
 	private Language myLanguage;
 
 	public SLogoData(Turtle firstTurtle) {
 		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
 		myVariables = new ArrayList<>();
+		myFunctions = new ArrayList<>();
 		myLanguage = Language.ENGLISH;
 		myBackgroundColorIndex = 0; // black
+	}
+	
+	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
+		for (Turtle turtle : myTurtles) {
+			if (turtle.isSelected()) {
+				System.out.println("works");
+			}
+		}
 	}
 
 	public double runCommand(TurtleCommand cmd, List<Double> params) {
@@ -57,6 +69,25 @@ public class SLogoData extends Observable {
 		setChanged();
 		super.notifyObservers();
 	}
+	
+	public ASTNode getFunction(String functionName) {
+		for (ASTNode func : myFunctions) {
+			if (func.getFunctionName().equals(functionName)) {
+				return func;
+			}
+		}
+		return null; //throw exception here maybe??
+	}
+	
+	public void addFunction(ASTNode newFunction) {
+		for (ASTNode func : myFunctions) {
+			if (newFunction.getFunctionName().equals(func.getFunctionName())) {
+				myFunctions.remove(func);
+				break;
+			}
+		}
+		myFunctions.add(newFunction);
+	}
 
 	public void changeBackgroundColorIndex(int index) {
 		myBackgroundColorIndex = index;
@@ -76,6 +107,7 @@ public class SLogoData extends Observable {
 	}
 
 	public void addVariable(Variable newVar) {
+		System.out.println(newVar);
 		deleteVariable(newVar.getName());
 		myVariables.add(newVar);
 		notifyObservers();
@@ -114,12 +146,16 @@ public class SLogoData extends Observable {
 	
 	public void setPenWidth(Double penWidth){
 		//TODO
+		//change width of pen (only for selected turtles? to be agreed on).
+	}
+	
+	public void setPenColor(Color newColor){
+		//TODO
+		//change color of selected turtles
 	}
 	
 	public Language getLanguage() {
 		return myLanguage;
 	}
 	
-//	public void moveTurtle(int turtleIndex, double newX, double newY);
-
 }

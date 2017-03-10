@@ -140,6 +140,7 @@ public class Turtle {
 	
 	public void setVisible(boolean newVisible) {
 		myTurtleModel.getNextTurtleInfo().setVisible(newVisible);
+//		myTurtleView.getNode().getImage().
 	}
 
 	public void setPenColor(int index, Color newColor) {

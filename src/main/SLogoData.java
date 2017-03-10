@@ -76,7 +76,7 @@ public class SLogoData extends Observable {
 				return func;
 			}
 		}
-		return null; //throw exception here maybe??
+		return null;
 	}
 	
 	public void addFunction(ASTNode newFunction) {

@@ -28,6 +28,8 @@ import turtle.Turtle;
 
 /**
  * @author harirajan
+ * @author Daniel
+ * @author Belal
  *
  */
 public class SLogoController {

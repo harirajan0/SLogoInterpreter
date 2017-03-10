@@ -1,7 +1,17 @@
 package turtle;
 import java.util.List;
+import java.util.Optional;
 
+<<<<<<< HEAD
+=======
+import constants.Constants;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+>>>>>>> b25ac1c6c7e0d486b4d68bc366ea41e206cada59
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
 
@@ -28,6 +38,19 @@ public class Turtle {
  		myTurtleModel = new TurtleModel(turtleInfo); 
 		myTurtleView = new TurtleView(root);
 		myID = id;
+		getNode().setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Turtle Selected!");
+				alert.setContentText("You chose turtle with ID: " + myID);
+				alert.showAndWait();
+				myTurtleModel.setSelected(true);
+			}
+			
+		});
 	}
 	
 	public void setNext(TurtleInfo turtleInfo) {
@@ -35,11 +58,11 @@ public class Turtle {
 	}
 	
 	public boolean isSelected() {
-		return myTurtleView.isSelected();
+		return myTurtleModel.isSelected();
 	}
 	
-	public void toggleSelection() {
-		myTurtleView.toggleSelection();
+	public void seSelected(boolean selected) {
+		myTurtleModel.setSelected(selected);
 	}
 	
 	public List<Line> getLinesToDraw() {

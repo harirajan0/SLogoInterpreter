@@ -5,6 +5,7 @@ package ASTNode;
 
 import java.util.List;
 
+import backend.Variable;
 import command_abstractions.Command;
 import main.SLogoData;
 
@@ -15,16 +16,18 @@ import main.SLogoData;
 public class ASTNode {
 
 	private Command myCommand;
-	String myVariableName; // why not private?
+	private String myVariableName;
+	private String myFunctionName;
 	private double myValue;
 	private SLogoData mySlogoData;
 	private boolean isBlock;
-	private List<ASTNode> myArguments;
-
-	public ASTNode(Command command, String variableName, double value, List<ASTNode> arguments, SLogoData slogoData,
-			boolean isBlock) {
+	private List<ASTNode> myArguments;	
+	
+	public ASTNode(Command command, String variableName, String functionName, double value,
+			List<ASTNode> arguments, SLogoData slogoData, boolean isBlock) {
 		myCommand = command;
 		myVariableName = variableName;
+		myFunctionName = functionName;
 		myValue = value;
 		myArguments = arguments;
 		mySlogoData = slogoData;
@@ -32,9 +35,15 @@ public class ASTNode {
 	}
 
 	public double evaluate() {
-		print();
-		if (isBlock)
+		if (isBlock) {
 			return myArguments.get(0).evaluate();
+		}
+		if (myFunctionName != null) {
+			if (myArguments.size() > 2) {
+				return runAsFunction();
+			}
+			else { return 0.0; }
+		}
 		if (myVariableName != null) {
 			if (mySlogoData.getVariable(myVariableName) != null) {
 				return mySlogoData.getVariable(myVariableName).getValue();
@@ -87,6 +96,25 @@ public class ASTNode {
 		System.out.println();
 		System.out.println(this);
 		System.out.println(this.myArguments);
+	}	
+	public double runAsFunction() {
+		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
+			mySlogoData.addVariable( new Variable(myArguments.get(0).getArguments().get(i).getVariableName(), 
+												myArguments.get(2).getArguments().get(i).evaluate()));
+		}
+		double ret = myArguments.get(1).evaluate();
+		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
+			mySlogoData.deleteVariable(myArguments.get(0).getArguments().get(i).getVariableName());
+		}
+		myArguments.remove(2);
+		return ret;
 	}
 
+	public String getFunctionName() {
+		return myFunctionName;
+	}
+	
+	public void addArgument(ASTNode toAdd) {
+		myArguments.add(toAdd);
+	}
 }

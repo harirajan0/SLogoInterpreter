@@ -9,6 +9,7 @@ import java.util.Observer;
 import ASTNode.ASTNode;
 import backend.Variable;
 import command_abstractions.TurtleCommand;
+import constants.Constants;
 import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
@@ -76,7 +77,8 @@ public class SLogoData extends Observable {
 				return func;
 			}
 		}
-		return null; //throw exception here maybe??
+		throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError")
+				+ functionName);
 	}
 	
 	public void addFunction(ASTNode newFunction) {
@@ -103,7 +105,8 @@ public class SLogoData extends Observable {
 			if (var.getName().equals(name))
 				return var;
 		}
-		return null; // fix this to throw error when we cant find the variable
+		throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UninitializedVariableError")
+				+ name);
 	}
 
 	public void addVariable(Variable newVar) {

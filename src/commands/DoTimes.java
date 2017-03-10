@@ -3,27 +3,35 @@
  */
 package commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ASTNode.ASTNode;
 import backend.Variable;
-import command_abstractions.Command;
+import command_abstractions.ControlCommand;
+import constants.Constants;
 import main.SLogoData;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
-public class DoTimes implements Command {
+public class DoTimes extends ControlCommand {
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, main.SLogoData)
-	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+		
+		checkNumArgs(params);
+		checkForBlocks(params, indicesOfRequiredBlocks());
+		checkForVariables(params, indicesOfRequiredVariables());
+		
+		double iterations = params.get(0).getArguments().get(1).evaluate();
+		if (iterations < 0 ) {
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("DoTimesNegativeError"));
+		}
+		
 		double ret = 0;
-		for (int i = 1; i <= params.get(0).getArguments().get(1).evaluate(); i++) {
+		for (int i = 1; i < iterations; i++) {
 			slogoData.addVariable(new Variable(params.get(0).getArguments().get(0).getVariableName(), i));
 			ret = params.get(1).evaluate();
 		}
@@ -31,22 +39,23 @@ public class DoTimes implements Command {
 		return ret;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
 	public int getNumArgs() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
 	@Override
-	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
-		return false;
+	protected List<Integer> indicesOfRequiredBlocks() {
+		List<Integer> blocks = new ArrayList<Integer>();
+		blocks.add(0); blocks.add(1);
+		return blocks;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
+		List<Integer> vars = new ArrayList<Integer>();
+		vars.add(0);
+		return vars;
 	}
 
 }

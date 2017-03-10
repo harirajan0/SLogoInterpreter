@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -160,6 +161,10 @@ public class Turtle {
 	public void setShowSelected(boolean showSelected) {
 		this.showSelected = showSelected;
 		display();
+	}
+	
+	public void changeImage(Image img) {
+		myTurtleView.changeImage(img);
 	}
 	
 }

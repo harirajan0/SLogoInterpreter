@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import resources.Constants;
+import constants.Constants;
 
 /**
  *  @author Daniel
@@ -201,6 +201,10 @@ public class SLogoView implements Observer {
 	
 	public VariablesView getVariablesView() {
 		return myVariablesView;
+	}
+	
+	public Button getTurtleImageSelectionButton() {
+		return myCommandPrompt.getTurtleImageSelectionButton();
 	}
 	
 	@Override

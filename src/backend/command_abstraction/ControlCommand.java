@@ -6,7 +6,7 @@ package backend.command_abstraction;
 import java.util.List;
 
 import backend.ASTNode;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan

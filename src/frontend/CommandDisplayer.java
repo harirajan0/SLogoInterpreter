@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author Daniel

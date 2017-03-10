@@ -8,7 +8,7 @@ import java.util.List;
 
 import backend.ASTNode;
 import backend.SLogoData;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan

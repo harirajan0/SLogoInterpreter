@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import resources.Constants;
+import constants.Constants;
 
 public class VariablesView{
     /** This class allows us to update the variables from the backend (controller will launch this), create a new variable and send this info to 

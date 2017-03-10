@@ -7,10 +7,9 @@ public class Home extends TurtleCommandNoParams {
 
 	@Override
 	public double execute(Turtle turtle) throws IllegalArgumentException {
-		//THIS HAS TO BE FIXED
-		turtle.setVisible(true);
-		turtle.display();
-		return 1;
+		turtle.setX(200);
+		turtle.setY(200);
+		return Math.sqrt((Math.pow(turtle.getX() - 200, 2)) + (Math.pow(turtle.getY() - 200, 2)));
 	}
 	
 

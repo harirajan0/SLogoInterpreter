@@ -9,7 +9,7 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -74,8 +74,7 @@ public class TurtleModel {
 				nextX = 0;
 				nextTurtleInfo.setY(nextTurtleInfo.getY() + Constants.TURTLE_WINDOW_SIZE);
 				nextTurtleInfo.setX(nextTurtleInfo.getX() - Constants.TURTLE_WINDOW_SIZE);
-			} 
-			else if (currentTurtleInfo.getX() == 0 && nextTurtleInfo.getX() < 0) {
+			} else if (currentTurtleInfo.getX() == 0 && nextTurtleInfo.getX() < 0) {
 				currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE);
 				nextTurtleInfo.setX(nextTurtleInfo.getX() + Constants.TURTLE_WINDOW_SIZE);
 				continue;
@@ -91,11 +90,10 @@ public class TurtleModel {
 				currentTurtleInfo.setY(0);
 				nextTurtleInfo.setY(nextTurtleInfo.getY() - Constants.TURTLE_WINDOW_SIZE);
 				continue;
-			}
-			else if (Line2D.linesIntersect(
+			} else if (Line2D.linesIntersect(
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
-					top.getStartX(), top.getStartY(), top.getEndX(), top.getEndY()) 
-					) {
+					top.getStartX(), top.getStartY(), top.getEndX(), top.getEndY()) && currentTurtleInfo.getY() != 0) 
+			{
 				endY = 0;
 				nextY = Constants.TURTLE_WINDOW_SIZE;
 				endX = currentTurtleInfo.getX() + (currentTurtleInfo.getY()
@@ -105,7 +103,7 @@ public class TurtleModel {
 			} else if (Line2D.linesIntersect(
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					bottom.getStartX(), bottom.getStartY(), bottom.getEndX(), bottom.getEndY()) 
-					) {
+					&& currentTurtleInfo.getY() != Constants.TURTLE_WINDOW_SIZE) {
 				endY = Constants.TURTLE_WINDOW_SIZE;
 				nextY = 0;
 				endX = currentTurtleInfo.getX() - ((Constants.TURTLE_WINDOW_SIZE - currentTurtleInfo.getY())
@@ -115,7 +113,7 @@ public class TurtleModel {
 			} else if (Line2D.linesIntersect(
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					left.getStartX(), left.getStartY(), left.getEndX(), left.getEndY()) 
-					) {
+					&& currentTurtleInfo.getX() != 0) {
 				endX = 0;
 				nextX = Constants.TURTLE_WINDOW_SIZE;
 				endY = currentTurtleInfo.getY() + (currentTurtleInfo.getX()	/ Math.tan(Math.toRadians(currentTurtleInfo.getHeading())));	
@@ -124,7 +122,7 @@ public class TurtleModel {
 			} else if (Line2D.linesIntersect(
 					lineToDraw.getStartX(), lineToDraw.getStartY(), lineToDraw.getEndX(), lineToDraw.getEndY(), 
 					right.getStartX(), right.getStartY(), right.getEndX(), right.getEndY()) 
-					) {
+					&& currentTurtleInfo.getX() != Constants.TURTLE_WINDOW_SIZE) {
 				endX = Constants.TURTLE_WINDOW_SIZE;
 				nextX = 0;
 				endY = currentTurtleInfo.getY() - 

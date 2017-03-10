@@ -32,6 +32,7 @@ import backend.commands.NotEqual;
 import backend.commands.Or;
 import backend.commands.PenDown;
 import backend.commands.PenUp;
+import backend.commands.Pi;
 import backend.commands.Power;
 import backend.commands.Product;
 import backend.commands.Quotient;
@@ -94,9 +95,7 @@ public class CommandFactory {
 		case "ArcTangent" : return new Arctangent();
 		case "NaturalLog" : return new Log();
 		case "Power" : return new Power();
-		//implement this
-		case "Pi" : return new Home();
-		//
+		case "Pi" : return new Pi();
 		case "LessThan" : return new Less();
 		case "GreaterThan" : return new Greater();
 		case "Equal" : return new Equal();

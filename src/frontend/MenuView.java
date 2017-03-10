@@ -9,7 +9,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import languages.Language;
-import resources.Constants;
+import constants.Constants;
 
 public class MenuView {
 	private MenuBar myMenuBar;

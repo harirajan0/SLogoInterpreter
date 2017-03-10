@@ -9,7 +9,7 @@ import backend.ASTNode;
 import backend.SLogoData;
 import backend.Variable;
 import backend.command_abstraction.ControlCommand;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan

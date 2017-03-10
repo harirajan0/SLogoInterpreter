@@ -21,6 +21,7 @@ public class Constants {
 	public static final int WINDOW_SIZE = 825;
 	public static final Paint BACKGROUND_COLOR = Color.GRAY;
 	public static final String DEFAULT_LANGUAGE = "English";
+	public static final String IMAGE_CHOOSER_TITLE = "Image Chooser";
 	
 	//CommandPromptView constants
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
@@ -58,7 +59,7 @@ public class Constants {
 	public static final double FALSE = 0.0;
 	
 	//Resource Bundle constants
-	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("resources/resources");
+	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myresources/resources");
 
 	
 	//PaletteView Constants

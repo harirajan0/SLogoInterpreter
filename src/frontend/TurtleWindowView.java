@@ -11,7 +11,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import resources.Constants;
+import constants.Constants;
 import turtle.Turtle;
 
 /**

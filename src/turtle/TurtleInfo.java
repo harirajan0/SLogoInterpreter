@@ -3,9 +3,7 @@
  */
 package turtle;
 
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan

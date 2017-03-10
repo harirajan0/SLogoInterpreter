@@ -8,6 +8,7 @@ import java.util.List;
 import backend.ASTNode;
 import backend.SLogoData;
 import backend.command_abstraction.ControlCommand;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -19,7 +20,7 @@ public class If extends ControlCommand {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		double ret = 0.0;
-		if (params.get(0).evaluate() == 1) ret = params.get(1).evaluate();
+		if (params.get(0).evaluate() == Constants.TRUE) ret = params.get(1).evaluate();
 		return ret;
 	}
 

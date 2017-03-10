@@ -3,13 +3,10 @@
  */
 package backend.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import backend.ASTNode;
 import backend.command_abstraction.TurtleCommandOneParam;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
@@ -27,7 +24,6 @@ public class Forward extends TurtleCommandOneParam {
 		for (Double fwdAmount : params) {
 			turtle.setX(turtle.getX() + fwdAmount * Math.sin(Math.toRadians(turtle.getHeading())));
 			turtle.setY(turtle.getY() - fwdAmount * Math.cos(Math.toRadians(turtle.getHeading())));
-			turtle.display();
 			totalAmount += fwdAmount;
 		}
 		return totalAmount;

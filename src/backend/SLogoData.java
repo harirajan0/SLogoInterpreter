@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import backend.command_abstraction.Command;
 import backend.command_abstraction.TurtleCommand;
 import backend.commands.Forward;
 import backend.commands.Right;
+import constants.Constants;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
-import resources.Constants;
 import turtle.Turtle;
 
 /**
@@ -218,5 +218,15 @@ public class SLogoData extends Observable {
 	
 	public Group getRoot() {
 		return myRoot;
+	}
+	
+	public void clearScreen() {
+		myRoot.getChildren().clear();
+		addTurtle(new Turtle(myRoot, 1));
+	}
+	
+	public void changeImage(Image img) {
+		for (Turtle turtle : myTurtles) if (turtle.isSelected()) turtle.changeImage(img);
+		notifyObservers();
 	}
 }

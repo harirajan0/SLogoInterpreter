@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import resources.Constants;
+import constants.Constants;
 
 public class CommandPromptView {
 	/**
@@ -37,7 +37,7 @@ public class CommandPromptView {
 	private Button rightButton;
 	private Button leftButton;
 	private Button backButton;
-	private Button fileLoader;
+	private Button myTurtleImageSelectionButton;
 	private CheckBox showSelectedTurtlesButton;
 	
 	ObservableList<String> listOfCommands;
@@ -65,10 +65,10 @@ public class CommandPromptView {
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
 		createMovingButtons();
-		fileLoader = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
-		fileLoader.setPrefWidth(Constants.BIG_BUTTON_WIDTH);
+		myTurtleImageSelectionButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
+		myTurtleImageSelectionButton.setPrefWidth(Constants.BIG_BUTTON_WIDTH);
 		showSelectedTurtlesButton = new CheckBox(Constants.DEFAULT_RESOURCE_BUNDLE.getString("selectedTurtlesButton"));
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers, fileLoader, showSelectedTurtlesButton);
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers, myTurtleImageSelectionButton, showSelectedTurtlesButton);
 	}
 	
 	private void createMovingButtons(){
@@ -145,7 +145,7 @@ public class CommandPromptView {
 	}
 	
 	public Button getFileLoader(){
-		return fileLoader;
+		return myTurtleImageSelectionButton;
 	}
 	
 	public CheckBox getGraphicalDisplayButton(){
@@ -155,4 +155,9 @@ public class CommandPromptView {
 	public void setCommandPromptText(String text) {
 		myCommandEntry.setText(text);
 	}
+	
+	protected Button getTurtleImageSelectionButton() {
+		return myTurtleImageSelectionButton;
+	}
+	
 }

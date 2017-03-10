@@ -74,14 +74,12 @@ public class CommandFactory {
 		case "ShowTurtle" : return new ShowTurtle();
 		case "HideTurtle" : return new HideTurtle();
 		case "Home" : return new Home();
-		//implement these
 		case "ClearScreen" : return new Home();
 		case "XCoordinate" : return new Home();
 		case "YCoordinate" : return new Home();
 		case "Heading" : return new Home();
 		case "IsPenDown" : return new Home();
 		case "IsShowing" : return new Home();
-		//
 		case "Sum" : return new Sum();
 		case "Difference" : return new Difference();
 		case "Product" : return new Product();

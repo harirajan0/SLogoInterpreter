@@ -198,4 +198,8 @@ public class TurtleModel {
 	public int getColorIndex() {
 		return currentTurtleInfo.getColor();
 	}
+	
+	public boolean getPenDown() {
+		return currentTurtleInfo.isPenDown();
+	}
 }

@@ -87,9 +87,11 @@ public class Turtle {
 	}
 	
 	public void display() {
-		for (Line l : myTurtleModel.calculateLinesToDraw()) {
-			l.setFill(myTurtleModel.getPenColor());
-			myTurtleView.getRoot().getChildren().add(l);
+		if (myTurtleModel.getPenDown()) {
+			for (Line l : myTurtleModel.calculateLinesToDraw()) {
+				l.setFill(myTurtleModel.getPenColor());
+				myTurtleView.getRoot().getChildren().add(l);
+			}
 		}
 		if(showSelected && !isSelected()) { 
 			getNode().setOpacity(Constants.NOT_SELECTED);
@@ -140,7 +142,7 @@ public class Turtle {
 	
 	public void setVisible(boolean newVisible) {
 		myTurtleModel.getNextTurtleInfo().setVisible(newVisible);
-//		myTurtleView.getNode().getImage().
+		myTurtleView.getNode().setVisible(newVisible);
 	}
 
 	public void setPenColor(int index, Color newColor) {

@@ -63,7 +63,10 @@ public class CommandFactory {
 		case "IfElse" : return new IfElse();
 		case "DoTimes" : return new DoTimes();
 		case "For" : return new For();
-		default: throw new IllegalArgumentException();
+		case "MakeUserInstruction" : return new MakeUserInstruction();
+		default: 
+			System.out.println(commandString);
+			throw new IllegalArgumentException();
 		}
 	}
 }

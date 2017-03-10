@@ -3,10 +3,6 @@
  */
 package main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import backend.SLogoModel;
 import constants.Constants;
 
@@ -19,10 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import languages.Language;
 import turtle.Turtle;
-import turtle.TurtleInfo;
-import turtle.TurtleView;
 
 /**
  * @author harirajan
@@ -43,7 +36,7 @@ public class SLogoController {
 		mySlogoData.addObserver(mySlogoModel);
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
+			mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 		});

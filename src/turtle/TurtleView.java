@@ -20,14 +20,11 @@ public class TurtleView {
 	
 	private ImageView myTurtleImage;
 	private Group myRoot;
-	
-	private boolean isSelected;	
-	
+		
 	public TurtleView(Group root) {
 		myTurtleImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 		myTurtleImage.setFitWidth(Constants.TURTLE_SIZE);
 		myTurtleImage.setFitHeight(Constants.TURTLE_SIZE);
-		isSelected = true;
 		myRoot = root;
 	}
 	
@@ -47,12 +44,5 @@ public class TurtleView {
 		myRoot.getChildren().add(getNode());
 	}
 
-	public boolean isSelected() {
-		return isSelected;
-	}
-	
-	public void toggleSelection() {
-		isSelected = !isSelected;
-	}
 	
 }

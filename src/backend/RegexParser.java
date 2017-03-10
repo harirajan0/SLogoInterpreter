@@ -20,7 +20,7 @@ import languages.LanguageFactory;
  *
  */
 
-public class ProgramParser {
+public class RegexParser {
     // "types" and the regular expression patterns that recognize those types
     // note, it is a list because order matters (some patterns may be more generic)
     private List<Entry<String, Pattern>> mySymbols;
@@ -28,7 +28,7 @@ public class ProgramParser {
     private Language myLang;
 
 
-    public ProgramParser (Language lang) {
+    public RegexParser (Language lang) {
         mySymbols = new ArrayList<>();
         myLang = lang;
         addPatterns(myLang);
@@ -46,14 +46,12 @@ public class ProgramParser {
 
     // returns the language's type associated with the given text if one exists 
     public String getSymbol (String text) {
-        final String ERROR = "NO MATCH";
         for (Entry<String, Pattern> entry : mySymbols) {
             if (match(text, entry.getValue())) {
                 return entry.getKey();
             }
         }
-        System.out.println(text);
-        return ERROR;
+        return "PossibleFunction";
     }
 
     // returns true if the given text matches the given regular expression pattern

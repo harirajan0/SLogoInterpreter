@@ -4,7 +4,6 @@
 package backend;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +11,6 @@ import java.util.Observer;
 import languages.Language;
 import main.SLogoData;
 import turtle.Turtle;
-import turtle.TurtleView;
 
 /**
  * @author harirajan
@@ -36,9 +34,11 @@ public class SLogoModel implements Observer {
 //		myExecutor.setInput(new ArrayList<String>(Arrays.asList(input.split(" "))));
 		//myExecutor.parseText(mySlogoData).evaluate();
 //		for (Turtle turtle : myTurtles)
-
+		System.out.println(new ArrayList<String>() {{
+			for (String str : input.split("\\s+")) add(str.trim());
+		}});
 		myExecutor.parseText(mySlogoData, new ArrayList<String>() {{
-			for (String str : input.split(" ")) add(str.trim());
+			for (String str : input.split("\\s+")) add(str.trim());
 		}}).evaluate();
 	}
 	

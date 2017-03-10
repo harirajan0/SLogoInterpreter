@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.CheckBox;
+import turtle.Turtle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,8 +44,9 @@ public class SLogoView implements Observer {
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private Palette myPalette;
+	private CheckBox showSelectedTurtlesButton;
+	private boolean showSelectedGraphically;
 	private MenuItem languageMenu;
-	private MenuItem penColorMenu;
 	private MenuItem penThicknessMenu;
 	private LanguageSelector myLanguageSelector;
 	private PenSlider myPenSlider;
@@ -52,10 +55,14 @@ public class SLogoView implements Observer {
 	private Button paletteOpener;
 
 	public SLogoView(Stage s) {
-		initializePalette();
+		initializePalettes();
+		showSelectedGraphically = false;
 		myRoot = new Group();
 		topVBox = new VBox();
 		myCommandPrompt = new CommandPromptView();
+		myCommandPrompt.getGraphicalDisplayButton().setOnAction(event -> {
+			showSelectedGraphically = !showSelectedGraphically;
+		});
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
@@ -109,7 +116,7 @@ public class SLogoView implements Observer {
 		myCommandPrompt.setCommandPromptText("");
 	}
 	
-	private void initializePalette(){
+	private void initializePalettes(){
 		myPalette=new Palette();
 		paletteOpener=new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePrompt"));
 		paletteOpener.setOnAction(event ->  {
@@ -123,10 +130,6 @@ public class SLogoView implements Observer {
 			if (myMenuBar.getMenuItems().get(i).getText()
 					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))) {
 				helpMenu = myMenuBar.getMenuItems().get(i);
-			}
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor"))) {
-				penColorMenu = myMenuBar.getMenuItems().get(i);
 			}
 
 			if (myMenuBar.getMenuItems().get(i).getText()
@@ -166,11 +169,6 @@ public class SLogoView implements Observer {
 			myCommandDisplay.show();
 		});
 
-	 penColorMenu.setOnAction(event -> {
-		PenColorChanger pc=new PenColorChanger();
-		pc.setObjectToChangeColorOf(mySlogoData);
-		pc.show();
-	  });
 	 
 		penThicknessMenu.setOnAction(event -> {
 			myPenSlider.show();
@@ -199,6 +197,23 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
 		myTurtleWindow.setToolTips();
+		updateTransparency();
+	}
+	
+	private void updateTransparency(){
+		for(Turtle currTurtle : mySlogoData.getTurtles()){
+			if(showSelectedGraphically){
+				if(currTurtle.isSelected()){
+					currTurtle.getNode().setOpacity(Constants.SELECTED);
+				}
+				else{
+					currTurtle.getNode().setOpacity(Constants.NOT_SELECTED);
+				}
+			}
+			else{
+				currTurtle.getNode().setOpacity(Constants.SELECTED);
+			}
+		}
 	}
 
 }

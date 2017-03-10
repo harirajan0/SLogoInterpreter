@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -21,6 +22,7 @@ import screenElements.BackgroundColorChanger;
 import screenElements.CommandDisplayer;
 import screenElements.CommandPromptView;
 import screenElements.LanguageSelector;
+import screenElements.Palette;
 import screenElements.PaletteView;
 import screenElements.PenColorChanger;
 import screenElements.PenSlider;
@@ -43,7 +45,7 @@ public class SLogoView implements Observer {
 	private TurtleWindowView myTurtleWindow;
 	private MenuView myMenuBar;
 	private VBox topVBox;
-	private PaletteView myPaletteView;
+	private Palette myPalette;
 	private MenuItem languageMenu;
 	private MenuItem penColorMenu;
 	private MenuItem penThicknessMenu;
@@ -51,6 +53,7 @@ public class SLogoView implements Observer {
 	private PenSlider myPenSlider;
 	private MenuItem helpMenu;
 	private MenuItem backgroundColorMenu;
+	private Button paletteOpener;
 
 	public SLogoView(Stage s) {
 		myRoot = new Group();
@@ -59,15 +62,11 @@ public class SLogoView implements Observer {
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
-		myPaletteView = new PaletteView();
-
-		myPaletteView.getNode().setOnMouseClicked(new EventHandler<Event>() {
-			public void handle(Event event) {
-				// myPaletteView.show();
-				myPaletteView.displayPalettePicker();
-			}
-		});
-
+		myPalette=new Palette();
+		paletteOpener=new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePrompt"));
+		paletteOpener.setOnAction(event ->  {
+	    	myPalette.show();
+	    });
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
 		myMenuBar = new MenuView(s);
@@ -145,7 +144,7 @@ public class SLogoView implements Observer {
 
 	private void setUpBorderPane() {
 		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(myPaletteView.getNode());
+		myBorderPane.setLeft(paletteOpener);
 		myBorderPane.setRight(myVariablesView.getNode());
 		myBorderPane.setCenter(myTurtleWindow.getNode());
 		myBorderPane.setTop(topVBox);

@@ -3,9 +3,7 @@ package screenElements;
 import java.net.URL;
 
 import constants.Constants;
-import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;

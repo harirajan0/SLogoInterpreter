@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,26 +35,34 @@ public class PaletteView extends Stage{
 			//Arrays.asList(colorOne.getFill(), colorTwo.getFill(), colorThree.getFill(), colorFour.getFill()));
 	
 	public PaletteView(){
+		myColorsList = new ArrayList<Paint>();
 		myColorsView = new VBox();
+		myColorsView.getChildren().add(new Label(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePickerName")));
+		for (int i=0; i<Integer.parseInt(Constants.DEFAULT_RESOURCE_BUNDLE.getString("numColorsInPalette")); i++){
+			Rectangle current=new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
+			current.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color"+i))));
+			myColorsList.add(current.getFill());
+			createHBoxForColor(current, i);
+		}
 		
-		colorOne = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
-		colorTwo = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*2, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
-		colorThree = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*3, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
-		colorFour = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*4, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
-		
-		colorOne.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color1"))));
-		colorTwo.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color2"))));
-		colorThree.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color3"))));
-		colorFour.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color4"))));
-		
-		
-		myColorsList = new ArrayList<Paint>(Arrays.asList(colorOne.getFill(), colorTwo.getFill(), 
-				colorThree.getFill(), colorFour.getFill()));
-		
-		createHBoxForColor(colorOne, 1);
-		createHBoxForColor(colorTwo, 2);
-		createHBoxForColor(colorThree, 3);
-		createHBoxForColor(colorFour, 4);
+//		colorOne = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
+//		colorTwo = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*2, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
+//		colorThree = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*3, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
+//		colorFour = new Rectangle(Constants.PALETTE_SIDE_PADDING, Constants.PALETTE_TOP_PADDING*4, Constants.PALETTE_SIZE, Constants.PALETTE_SIZE);
+//		
+//		colorOne.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color1"))));
+//		colorTwo.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color2"))));
+//		colorThree.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color3"))));
+//		colorFour.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + (Constants.DEFAULT_RESOURCE_BUNDLE.getString("color4"))));
+//		
+//		
+//		myColorsList = new ArrayList<Paint>(Arrays.asList(colorOne.getFill(), colorTwo.getFill(), 
+//				colorThree.getFill(), colorFour.getFill()));
+//		
+//		createHBoxForColor(colorOne, 1);
+//		createHBoxForColor(colorTwo, 2);
+//		createHBoxForColor(colorThree, 3);
+//		createHBoxForColor(colorFour, 4);
 		
 	    Scene s = new Scene(myColorsView);
 	    this.setScene(s);
@@ -63,10 +72,12 @@ public class PaletteView extends Stage{
 	
 	private void createHBoxForColor(Rectangle c, int index){
 		HBox myBox = new HBox();
-		ImageView number = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.DEFAULT_RESOURCE_BUNDLE.getString("num" + index))));
-		number.setFitWidth(Constants.TURTLE_SIZE);
-		number.setFitHeight(Constants.TURTLE_SIZE);
-		myBox.getChildren().addAll(c, number);
+		myBox.getChildren().add(new Label(Integer.toString(index)));
+		
+		//ImageView number = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.DEFAULT_RESOURCE_BUNDLE.getString("num" + index))));
+		//number.setFitWidth(Constants.TURTLE_SIZE);
+		//number.setFitHeight(Constants.TURTLE_SIZE);
+		//myBox.getChildren().addAll(c, number);
 		myColorsView.getChildren().add(myBox);
 	}
 	
@@ -78,21 +89,21 @@ public class PaletteView extends Stage{
 		return myColorsList.get(index);
 	}
 	
-	public void setColorOne(String rgbValue){
-		colorOne.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
-	}
-	
-	public void setColorTwo(String rgbValue){
-		colorTwo.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter")+ "(" + rgbValue + ")"));
-	}
-	
-	public void setColorThree(String rgbValue){
-		colorThree.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
-	}
-	
-	public void setColorFour(String rgbValue){
-		colorFour.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
-	}
+//	public void setColorOne(String rgbValue){
+//		colorOne.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
+//	}
+//	
+//	public void setColorTwo(String rgbValue){
+//		colorTwo.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter")+ "(" + rgbValue + ")"));
+//	}
+//	
+//	public void setColorThree(String rgbValue){
+//		colorThree.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
+//	}
+//	
+//	public void setColorFour(String rgbValue){
+//		colorFour.setFill(Color.web(Constants.DEFAULT_RESOURCE_BUNDLE.getString("colorDelimiter") + "(" + rgbValue + ")"));
+//	}
 	
 	private void displayPaletteTextFields(Group newRoot){  //NEEDS TO BE REFACTORED!!!
 		Group newRoot2 = new Group();

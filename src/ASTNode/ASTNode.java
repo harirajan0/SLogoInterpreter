@@ -106,6 +106,7 @@ public class ASTNode {
 		for (int i = 0; i < myArguments.get(0).getArguments().size(); i++) {
 			mySlogoData.deleteVariable(myArguments.get(0).getArguments().get(i).getVariableName());
 		}
+		myArguments.remove(2);
 		return ret;
 	}
 

@@ -19,9 +19,12 @@ public class TurtleModel {
 	private TurtleInfo currentTurtleInfo;
 	private TurtleInfo nextTurtleInfo;
 	
+	private boolean isSelected;
+	
 	public TurtleModel(TurtleInfo turtleInfo) {
 		currentTurtleInfo = turtleInfo;
 		nextTurtleInfo = turtleInfo;
+		isSelected = false;
 	}
 	
 	public List<Line> calculateLinesToDraw() {
@@ -145,5 +148,12 @@ public class TurtleModel {
 //		nextTurtleInfo = null;
 	}
 
+	public boolean isSelected() {
+		return isSelected;
+	}
+	
+	public void setSelected(boolean selected) {
+		isSelected = selected;
+	}
 
 }

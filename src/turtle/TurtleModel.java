@@ -7,9 +7,9 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Constants;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import resources.Constants;
 
 /**
  * @author harirajan

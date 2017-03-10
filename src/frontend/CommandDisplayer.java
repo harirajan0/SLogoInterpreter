@@ -2,11 +2,11 @@ package frontend;
 
 import java.net.URL;
 
-import constants.Constants;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import resources.Constants;
 
 /**
  * @author Daniel

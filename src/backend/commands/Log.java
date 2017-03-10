@@ -6,7 +6,7 @@ package backend.commands;
 import java.util.List;
 
 import backend.command_abstraction.MathCommandOneParam;
-import constants.Constants;
+import resources.Constants;
 
 /**
  * @author harirajan

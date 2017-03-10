@@ -3,11 +3,11 @@
  */
 package turtle;
 
-import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import resources.Constants;
 
 
 /**

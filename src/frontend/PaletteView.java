@@ -6,7 +6,6 @@ package frontend;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Constants;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
@@ -16,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import resources.Constants;
 
 /**
  * @author harirajan

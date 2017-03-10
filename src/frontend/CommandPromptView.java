@@ -1,6 +1,5 @@
 package frontend;
 
-import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import resources.Constants;
 
 public class CommandPromptView {
 	/**

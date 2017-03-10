@@ -8,7 +8,7 @@ import java.util.List;
 
 import backend.ASTNode;
 import backend.SLogoData;
-import constants.Constants;
+import resources.Constants;
 import turtle.Turtle;
 
 /**

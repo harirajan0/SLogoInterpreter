@@ -58,7 +58,7 @@ public class Constants {
 	public static final double FALSE = 0.0;
 	
 	//Resource Bundle constants
-	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("resources/resources.properties");
+	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("resources/resources");
 
 	
 	//PaletteView Constants

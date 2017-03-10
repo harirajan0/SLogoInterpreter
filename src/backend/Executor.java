@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.command_abstraction.Command;
-import constants.Constants;
 import languages.Language;
+import resources.Constants;
 
 /**
  * @author harirajan

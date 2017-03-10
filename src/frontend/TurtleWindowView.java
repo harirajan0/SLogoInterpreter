@@ -5,12 +5,13 @@ package frontend;
 
 import java.util.ArrayList;
 import java.util.List;
-import constants.Constants;
+
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import resources.Constants;
 import turtle.Turtle;
 
 /**

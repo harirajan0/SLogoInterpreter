@@ -5,7 +5,6 @@ package main;
 
 import backend.SLogoData;
 import backend.SLogoModel;
-import constants.Constants;
 import frontend.ExceptionAlert;
 import frontend.SLogoView;
 import javafx.beans.value.ChangeListener;
@@ -13,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import resources.Constants;
 import turtle.Turtle;
 
 /**

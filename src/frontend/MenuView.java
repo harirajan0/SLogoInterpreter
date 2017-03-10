@@ -3,13 +3,13 @@ package frontend;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import languages.Language;
+import resources.Constants;
 
 public class MenuView {
 	private MenuBar myMenuBar;

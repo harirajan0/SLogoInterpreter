@@ -10,11 +10,11 @@ import backend.command_abstraction.Command;
 import backend.command_abstraction.TurtleCommand;
 import backend.commands.Forward;
 import backend.commands.Right;
-import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
+import resources.Constants;
 import turtle.Turtle;
 
 /**

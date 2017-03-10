@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import backend.SLogoData;
-import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -25,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import resources.Constants;
 
 /**
  *  @author Daniel

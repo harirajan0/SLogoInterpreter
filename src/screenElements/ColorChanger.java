@@ -38,7 +38,7 @@ public abstract class ColorChanger<T> extends Stage {
 	 }
 	
 	public ColorChanger(Palette p){
-		p.show();
+		
 
 	}
 	

@@ -195,6 +195,8 @@ public class SLogoView implements Observer {
 		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
+		myTurtleWindow.setToolTips();
+
 		//myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
 	}
 

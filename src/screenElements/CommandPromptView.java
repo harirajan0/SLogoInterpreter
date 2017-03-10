@@ -25,6 +25,10 @@ public class CommandPromptView {
 	private BorderPane myBorderPane;
 	private VBox myVBox;
 	private TextArea myCommandEntry;
+	private Button forwardButton;
+	private Button rightButton;
+	private Button leftButton;
+	private Button backButton;
 	
 	ObservableList<String> listOfCommands;
 	
@@ -50,7 +54,15 @@ public class CommandPromptView {
 		setUpCommandHistory();
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory);
+		createMovingButtons();
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton);
+	}
+	
+	private void createMovingButtons(){
+		forwardButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("forwardLabel")));
+		rightButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("rightLabel")));;
+		leftButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("leftLabel")));;
+		backButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backLabel")));;
 	}
 	
 	private void setUpCommandHistory() {
@@ -76,6 +88,23 @@ public class CommandPromptView {
 	
 	public BorderPane getNode() {
 		return myBorderPane;
+	}
+	
+	public Button getForwardButton(){
+		return forwardButton;
+	}
+	
+	public Button getBackwardsButton(){
+		return backButton;
+	}
+	
+	
+	public Button getRightRotate(){
+		return rightButton;
+	}
+	
+	public Button getLeftRotate(){
+		return leftButton;
 	}
 	
 	public void setCommandPromptText(String text) {

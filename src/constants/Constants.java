@@ -38,6 +38,12 @@ public class Constants {
 	public static final int MIN_SLIDER_VALUE=0;
 	public static final int MAX_SLIDER_VALUE=40;
 	
+	//Button movement values
+	public static final int FORWARD_BUTTON_DISTANCE = 10;
+	public static final int BACKWARDS_BUTTON_DISTANCE = -FORWARD_BUTTON_DISTANCE;
+	public static final int RIGHT_BUTTON_ROTATION = 10;
+	public static final int LEFT_BUTTON_ROTATION = -RIGHT_BUTTON_ROTATION;
+	
 	//True false constants
 	public static final double TRUE = 1.0;
 	public static final double FALSE = 0.0;

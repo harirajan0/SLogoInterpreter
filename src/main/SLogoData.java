@@ -34,6 +34,14 @@ public class SLogoData extends Observable {
 		myLanguage = Language.ENGLISH;
 		myBackgroundColorIndex = 0; // black
 	}
+	
+	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
+		for (Turtle turtle : myTurtles) {
+			if (turtle.isSelected()) {
+				System.out.println("works");
+			}
+		}
+	}
 
 	public double runCommand(TurtleCommand cmd, List<Double> params) {
 		double ret = 0.0;

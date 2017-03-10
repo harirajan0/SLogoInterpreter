@@ -3,9 +3,11 @@
  */
 package screenElements;
 
+import java.util.ArrayList;
 import java.util.List;
 import constants.Constants;
 import javafx.scene.Group;
+import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -38,6 +40,15 @@ public class TurtleWindowView {
 	
 	public Group getRoot() {
 		return myRoot;
+	}
+	
+	public void setToolTips(){
+		ArrayList<Turtle> allTurtles = (ArrayList<Turtle>) myTurtles;
+	
+		for(int currTurtle = 0; currTurtle < allTurtles.size(); currTurtle++){
+			Tooltip.install(allTurtles.get(currTurtle).getNode(), new Tooltip(allTurtles.get(currTurtle).getTurtleInfo().toString()));
+			
+		}
 	}
 	
 	public void displayTurtles() {

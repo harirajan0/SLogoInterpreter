@@ -6,6 +6,7 @@ package backend.commands;
 import java.util.List;
 
 import backend.command_abstraction.TurtleCommandOneParam;
+import constants.Constants;
 import turtle.Turtle;
 
 /**
@@ -19,9 +20,11 @@ public class SetPenSize extends TurtleCommandOneParam {
 	 */
 	@Override
 	public double execute(List<Double> params, Turtle turtle) {
-		// TODO Auto-generated method stub
-		//ALEX THROW EXCEPTION IS PARAMS.GET(0) IS NOT BETWEEN 1 AND 20
 		Double penSize = params.get(0);
+		
+		if(penSize < 0 || penSize > 20){
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("PenSizeError"));
+		}
 		turtle.setPenWidth(penSize);
 		return penSize;
 	}

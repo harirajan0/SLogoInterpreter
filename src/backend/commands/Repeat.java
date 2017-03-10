@@ -11,7 +11,7 @@ import backend.command_abstraction.ControlCommand;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
 public class Repeat extends ControlCommand {
 
@@ -42,6 +42,18 @@ public class Repeat extends ControlCommand {
 	@Override
 	public boolean isMathCommand() {
 		return false;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredVarBlocks() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

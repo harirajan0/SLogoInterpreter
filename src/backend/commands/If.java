@@ -29,6 +29,18 @@ public class If extends ControlCommand {
 		return 2;
 	}
 
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredVarBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

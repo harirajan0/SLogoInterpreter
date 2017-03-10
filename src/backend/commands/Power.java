@@ -14,9 +14,6 @@ import backend.command_abstraction.MathCommandTwoParams;
  */
 public class Power extends MathCommandTwoParams {
 	
-	/* (non-Javadoc)
-	 * @see commands.Command#execute(java.util.List)
-	 */
 	@Override
 	public double execute(List<Double> params) throws IllegalArgumentException {
 		// TODO Auto-generated method stub

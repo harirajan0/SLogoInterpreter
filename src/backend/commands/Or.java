@@ -2,12 +2,10 @@
  * 
  */
 package backend.commands;
-
 import java.util.List;
 
-import backend.ASTNode;
 import backend.command_abstraction.MathCommandTwoParams;
-import resources.Constants;
+import constants.Constants;
 
 /**
  * @author harirajan

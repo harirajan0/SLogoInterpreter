@@ -23,7 +23,7 @@ public class DoTimes extends ControlCommand {
 		
 		checkNumArgs(params);
 		checkForBlocks(params, indicesOfRequiredBlocks());
-		checkForVariables(params, indicesOfRequiredVariables());
+		checkForVariables(params, indicesOfRequiredVarBlocks());
 		
 		double iterations = params.get(0).getArguments().get(1).evaluate();
 		if (iterations < 0 ) {
@@ -52,7 +52,7 @@ public class DoTimes extends ControlCommand {
 	}
 
 	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
+	protected List<Integer> indicesOfRequiredVarBlocks() {
 		List<Integer> vars = new ArrayList<Integer>();
 		vars.add(0);
 		return vars;

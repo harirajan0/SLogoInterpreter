@@ -54,20 +54,31 @@ public class CommandPromptView {
 	
 	private void setUpCommandEntry() {
 		myCommandEntry = new TextArea();
+		myCommandEntry.setPromptText("Please enter a command");
+		System.out.println(myCommandEntry.getPromptText());
 		myCommandEntry.setMinWidth(600);	//fix magic values for size	
-		myCommandEntry.setMinHeight(200); 	//fix magic values for size
+		myCommandEntry.setMinHeight(100); 	//fix magic values for size
 	}
 	
 	private void setUpButtons() {
-		myVBox = new VBox();
+		myVBox = new VBox(8);
 		myVBox.setPrefWidth(200);
 		myExecuteButton = new Button("Execute");
 		createMovingButtons();
 		setUpCommandHistory();
-		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
-		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
+		sizeButtons(myVBox.getPrefWidth());
+
 		
 		myVBox.getChildren().addAll(myExecuteButton, forwardButton, backButton, rightButton, leftButton, myCommandHistory);
+	}
+	
+	private void sizeButtons(double size){
+		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
+		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
+		forwardButton.setMinWidth(myVBox.getPrefWidth());
+		rightButton.setMinWidth(myVBox.getPrefWidth());
+		leftButton.setMinWidth(myVBox.getPrefWidth());
+		backButton.setMinWidth(myVBox.getPrefWidth());
 	}
 	
 	private void createMovingButtons(){

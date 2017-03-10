@@ -42,7 +42,7 @@ public class Turtle {
 				alert.setTitle("Turtle Selected!");
 				alert.setContentText("You chose turtle with ID: " + myID);
 				alert.showAndWait();
-				myTurtleModel.setSelected(!myTurtleModel.isSelected());
+				myTurtleModel.setSelected(true);
 			}
 			
 		});

@@ -1,6 +1,13 @@
 package screenElements;
 
+<<<<<<< HEAD
 
+=======
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+>>>>>>> master
 import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +37,8 @@ public class CommandPromptView {
 	private Button rightButton;
 	private Button leftButton;
 	private Button backButton;
+	private Button fileLoader;
+	private CheckBox showSelectedTurtlesButton;
 	
 	ObservableList<String> listOfCommands;
 	
@@ -50,14 +59,17 @@ public class CommandPromptView {
 	
 	private void setUpButtons() {
 		myVBox = new VBox();
+		showSelectedTurtlesButton = new CheckBox(Constants.DEFAULT_RESOURCE_BUNDLE.getString("selectedTurtlesButton"));
+		fileLoader = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
+		fileLoader.setMinWidth(myVBox.getPrefWidth());
+
 		myVBox.setPrefWidth(Constants.COMMAND_BUTTON_WIDTH);
 		myExecuteButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("executeCommandLabel"));
 		setUpCommandHistory();
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
 		createMovingButtons();
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton);
-	}
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton, fileLoader, showSelectedTurtlesButton);	}
 	
 	private void createMovingButtons(){
 		forwardButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("forwardLabel")));
@@ -73,6 +85,14 @@ public class CommandPromptView {
 		myCommandHistory.setOnAction((event) -> {
 			myCommandEntry.setText(myCommandHistory.getSelectionModel().getSelectedItem());
 		});
+	}
+	
+	public Button getFileLoader(){
+		return fileLoader;
+	}
+	
+	public CheckBox getGraphicalDisplayButton(){
+		return showSelectedTurtlesButton;
 	}
 	
 	public void addCommandToHistory(String cmd) {

@@ -16,34 +16,19 @@ import javafx.scene.layout.GridPane;
 
 public class ExceptionListener {
 	
-	
-	//private ResourceBundle myResources;
-	//private Properties property;
-	//private FileInputStream fs;
+	/**
+	 * Use this class to display exceptions graphically to the user.
+	 * 
+	 * @author Daniel
+	 * 
+	 */
 	
 	public ExceptionListener(Exception e){
 		receiveAndDisplayError(e);
-		//myResources = ResourceBundle.getBundle("resources/ExceptionListener.properties");
 	}
-	public ExceptionListener(){
-	}
+
 	public void receiveAndDisplayError(Exception e){
-	/*	try {
-			//fs=new FileInputStream(System.getProperty("user.dir")+"\\ExceptionListener.properties");
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			//property.load(fs);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
 		Alert alert = new Alert(AlertType.ERROR);
-		//alert.setTitle(property.getProperty("name"));
-		//alert.setHeaderText(property.getProperty("header"));
 		
 		alert.setContentText(e.toString());
 		Label label = new Label(Constants.DEFAULT_RESOURCE_BUNDLE.getString("exceptionStackTrace"));
@@ -53,7 +38,6 @@ public class ExceptionListener {
 		GridPane labelAndException = new GridPane();
 		labelAndException.add(label, 0, 0);
 		labelAndException.add(textArea, 0, 1);
-		
 		//make the stacktrace expandable
 		alert.getDialogPane().setExpandableContent(labelAndException);
 		alert.showAndWait();

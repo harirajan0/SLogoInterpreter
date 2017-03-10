@@ -10,9 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class VariablesView{
-    /** This class allows us to update the variables from the backend (controller will launch this), create a new variable and send this info to 
+    /**      
+    * This class allows us to update the variables from the backend (controller will launch this), create a new variable and send this info to 
     *   the backend via the controller, and update the value of the variables by clicking (which will trigger the controller and update the variables
     *   in the backend. Everything relating to variables takes place in this class.
+    *   
+    *   @author Daniel
+    *   
     */
 	
 	private List<Variable> currentVars;

@@ -32,11 +32,6 @@ public class MenuFactory {
 	}
 	
 	public void addElementsToMenu(Menu myMenu){
-		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColorContainedIn").equals(myMenu.getText())){
-		    MenuItem penColor=new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor"));
-		    myMenu.getItems().add(penColor);
-		    
-		}
 		if (Constants.DEFAULT_RESOURCE_BUNDLE.getString("penWidthContainedIn").equals(myMenu.getText())){
 		    MenuItem penThickness=new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penThickness"));
 		    myMenu.getItems().add(penThickness);

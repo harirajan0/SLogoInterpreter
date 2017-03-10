@@ -1,19 +1,9 @@
-package frontend;
+package screenElements;
 
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import com.sun.prism.paint.Color;
-
+import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -25,15 +15,20 @@ public class CommandPromptView {
 	 * the command prompt and send it to the backend via the controller. Using
 	 * this class allows us to separate what is happening in the command prompt
 	 * from everything else in the screen.
+	 * 
+	 * @author Daniel
+	 * 
 	 */
 	
-	
 	private Button myExecuteButton;
-	private String actualCommand = "";
 	private ComboBox<String> myCommandHistory;
 	private BorderPane myBorderPane;
 	private VBox myVBox;
 	private TextArea myCommandEntry;
+	private Button forwardButton;
+	private Button rightButton;
+	private Button leftButton;
+	private Button backButton;
 	
 	ObservableList<String> listOfCommands;
 	
@@ -48,18 +43,26 @@ public class CommandPromptView {
 	
 	private void setUpCommandEntry() {
 		myCommandEntry = new TextArea();
-		myCommandEntry.setMinWidth(600);	//fix magic values for size	
-		myCommandEntry.setMinHeight(200); 	//fix magic values for size
+		myCommandEntry.setMinWidth(Constants.COMMAND_WINDOW_WIDTH);
+		myCommandEntry.setMinHeight(Constants.COMMAND_WINDOW_HEIGHT);
 	}
 	
 	private void setUpButtons() {
 		myVBox = new VBox();
-		myVBox.setPrefWidth(200);
-		myExecuteButton = new Button("Execute");
+		myVBox.setPrefWidth(Constants.COMMAND_BUTTON_WIDTH);
+		myExecuteButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("executeCommandLabel"));
 		setUpCommandHistory();
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory);
+		createMovingButtons();
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton);
+	}
+	
+	private void createMovingButtons(){
+		forwardButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("forwardLabel")));
+		rightButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("rightLabel")));;
+		leftButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("leftLabel")));;
+		backButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backLabel")));;
 	}
 	
 	private void setUpCommandHistory() {
@@ -79,11 +82,6 @@ public class CommandPromptView {
 		return myCommandEntry.getText();
 	}
 
-	public void setCoordinates(int x, int y) {
-		myBorderPane.setLayoutX(x);
-		myBorderPane.setLayoutY(y);
-	}
-
 	public Button getExecuteButton() {
 		return myExecuteButton;
 	}
@@ -92,10 +90,24 @@ public class CommandPromptView {
 		return myBorderPane;
 	}
 	
+	public Button getForwardButton(){
+		return forwardButton;
+	}
+	
+	public Button getBackwardsButton(){
+		return backButton;
+	}
+	
+	
+	public Button getRightRotate(){
+		return rightButton;
+	}
+	
+	public Button getLeftRotate(){
+		return leftButton;
+	}
+	
 	public void setCommandPromptText(String text) {
 		myCommandEntry.setText(text);
 	}
-	// public void displayHistory(); // brings up the history of commands
-	// public String sendHistoryItem(); // sends the selected history item to
-	// the back end and then they create a turtleInfo object and send it back
 }

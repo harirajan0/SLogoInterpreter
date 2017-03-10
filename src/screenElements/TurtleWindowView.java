@@ -1,21 +1,21 @@
 /**
  * 
  */
-package frontend;
+package screenElements;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import constants.Constants;
 import javafx.scene.Group;
+import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import turtle.Turtle;
-import turtle.TurtleInfo;
 
 /**
  * @author harirajan
+ * @author Daniel
  *
  */
 public class TurtleWindowView {
@@ -42,6 +42,15 @@ public class TurtleWindowView {
 		return myRoot;
 	}
 	
+	public void setToolTips(){
+		ArrayList<Turtle> allTurtles = (ArrayList<Turtle>) myTurtles;
+	
+		for(int currTurtle = 0; currTurtle < allTurtles.size(); currTurtle++){
+			Tooltip.install(allTurtles.get(currTurtle).getNode(), new Tooltip(allTurtles.get(currTurtle).getTurtleInfo().toString()));
+			
+		}
+	}
+	
 	public void displayTurtles() {
 		for (Turtle turtle : myTurtles) {
 			for (Line l : turtle.getLinesToDraw()) {
@@ -54,9 +63,6 @@ public class TurtleWindowView {
 		return myRoot;
 	}
 
-//	public TurtleInfo getTurtleInfo() {
-//		return myTurtles.get(0).getTurtleInfo(); //FIXTHIS!!!!!!!! this wont work when we have multiple turtles
-//	}
 	
 	public void updateTurtle(List<Turtle> newTurtles) {
 		for (int i = 0; i < myTurtles.size(); i++ ) {
@@ -67,6 +73,10 @@ public class TurtleWindowView {
 	
 	public void changeBackgroundColor(Paint color) {
 		myRectangle.setFill(color);
+	}
+	
+	public Rectangle getBackgroundRectangle(){
+		return myRectangle;
 	}
 	
 

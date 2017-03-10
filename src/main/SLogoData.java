@@ -9,6 +9,7 @@ import java.util.Observer;
 import ASTNode.ASTNode;
 import backend.Variable;
 import command_abstractions.TurtleCommand;
+import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
 import turtle.Turtle;
@@ -35,6 +36,14 @@ public class SLogoData extends Observable {
 		myFunctions = new ArrayList<>();
 		myLanguage = Language.ENGLISH;
 		myBackgroundColorIndex = 0; // black
+	}
+	
+	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
+		for (Turtle turtle : myTurtles) {
+			if (turtle.isSelected()) {
+				System.out.println("works");
+			}
+		}
 	}
 
 	public double runCommand(TurtleCommand cmd, List<Double> params) {
@@ -137,6 +146,12 @@ public class SLogoData extends Observable {
 	
 	public void setPenWidth(Double penWidth){
 		//TODO
+		//change width of pen (only for selected turtles? to be agreed on).
+	}
+	
+	public void setPenColor(Color newColor){
+		//TODO
+		//change color of selected turtles
 	}
 	
 	public Language getLanguage() {

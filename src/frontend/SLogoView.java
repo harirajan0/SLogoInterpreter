@@ -44,8 +44,7 @@ public class SLogoView implements Observer {
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private Palette myPalette;
-	private CheckBox showSelectedTurtlesButton;
-	private boolean showSelectedGraphically;
+	private boolean showSelectedGraphically = false;
 	private MenuItem languageMenu;
 	private MenuItem penThicknessMenu;
 	private LanguageSelector myLanguageSelector;
@@ -56,13 +55,15 @@ public class SLogoView implements Observer {
 
 	public SLogoView(Stage s) {
 		initializePalettes();
-		showSelectedGraphically = false;
 		myRoot = new Group();
 		topVBox = new VBox();
 		myCommandPrompt = new CommandPromptView();
+		
 		myCommandPrompt.getGraphicalDisplayButton().setOnAction(event -> {
 			showSelectedGraphically = !showSelectedGraphically;
+			updateTransparency();
 		});
+		
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
@@ -197,7 +198,6 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
 		myTurtleWindow.setToolTips();
-		updateTransparency();
 	}
 	
 	private void updateTransparency(){

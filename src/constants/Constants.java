@@ -29,12 +29,13 @@ public class Constants {
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
 	
 	//Constants to show graphically which turtles are selected
-	public static final double SELECTED = 100;
+	public static final double SELECTED = 1;
 	public static final double NOT_SELECTED = SELECTED/2;
 	
 	//TurtleView constants
 	public static final String TURTLE_IMAGE = "turtle.png";
 	public static final int TURTLE_SIZE = 20;
+	public static final int SENSOR_SIZE = TURTLE_SIZE;
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
 	

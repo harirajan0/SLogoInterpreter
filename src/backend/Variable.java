@@ -19,12 +19,4 @@ public class Variable {
 	public double getValue(){
 		return myValue;
 	}
-	
-	public void updateValue(double newVal){
-		myValue = newVal;
-	}
-	
-	public String toString() {
-		return "Name: " + myName + " Value: " + String.valueOf(myValue); 
-	}
 }

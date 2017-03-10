@@ -6,11 +6,9 @@ package backend;
 import java.util.ArrayList;
 import java.util.List;
 
-import ASTNode.ASTNode;
-import command_abstractions.Command;
-import commands.CommandFactory;
+import backend.command_abstraction.Command;
+import constants.Constants;
 import languages.Language;
-import main.SLogoData;
 
 /**
  * @author harirajan
@@ -23,13 +21,13 @@ public class Executor {
 	private Language myLang;
 	
 	
-	public Executor() {
+	protected Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new RegexParser(Language.SYNTAX);
 		
 	}
 	
-	public ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
+	private ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		String functionName;
@@ -63,7 +61,7 @@ public class Executor {
 	}
 	
 
-	public ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
+	protected ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
 		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		if (input.size() == 0) return null;
@@ -115,12 +113,19 @@ public class Executor {
 				return new ASTNode(null, null, null, 0, arguments, slogoData, true);
 			} 
 			else {
-				return null;
+				if(syntaxParser.getSymbol(input.get(0)).equals("ListEnd")){
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingOpenDelimiter"));
+				}
+				else{
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("InvalidSyntaxError") + input.get(0));
+				}
 			}
 		}
 	}
 	
-	public int getIndexOfBracketMatch(List<String> input) {
+	private int getIndexOfBracketMatch(List<String> input) {
 		int count = 0;
 		for (int i = 0; i < input.size(); i++) {
 			if (input.get(i).equals("[")) {
@@ -133,7 +138,7 @@ public class Executor {
 		return 0;
 	}
 	
-	public void setLanguage(Language lang) {
+	protected void setLanguage(Language lang) {
 		myLang = lang;
 	}
 	

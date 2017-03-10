@@ -42,12 +42,6 @@ public enum Language {
 		return myLang;
 	}
 	
-	public List<String> getAllLangs() {
-		List<String> langs = new ArrayList<String>();
-		for (Language lang : values()) langs.add(lang.getLang());
-		return langs; 
-	}
-	
 	public Set<String> getKeys() {
 		return myResources.keySet();
 	}

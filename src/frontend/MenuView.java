@@ -1,41 +1,61 @@
 package frontend;
+
 import java.util.ArrayList;
 import java.util.List;
-import constants.Constants;
+
+import javafx.collections.FXCollections;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
+import languages.Language;
+import constants.Constants;
 
 public class MenuView {
 	private MenuBar myMenuBar;
-	private MenuFactory myMenuFactory;
 	private List<MenuItem> myMenuItems;
+	private Menu myHelpMenu;
+	private Menu myLanguagesMenu;
+	private ChoiceBox<String> myLanguageChoiceBox;
 	
-	public MenuView(Stage myStage) {
-		myMenuFactory=new MenuFactory();
+	protected MenuView() {
 		myMenuBar = new MenuBar();
-		myMenuItems=new ArrayList<MenuItem>();
-		myMenuBar.prefWidthProperty().bind(myStage.widthProperty()); //make sure menu bar is full screen width
-		//for loop to dynamically add items
-		for(int menuItem = 1; menuItem <= Integer.parseInt(Constants.DEFAULT_RESOURCE_BUNDLE.getString("numOfOptions")); menuItem++){
-			//Creates menu choices
-			String menuName=Constants.DEFAULT_RESOURCE_BUNDLE.getString("option" + menuItem);
-			Menu newMenu=myMenuFactory.MakeMenu(menuName);
-			myMenuItems.addAll(newMenu.getItems());
-			myMenuBar.getMenus().add(newMenu);	
-		}
+		myMenuItems = new ArrayList<MenuItem>();
+		setUpMenuBarItems();
+		myMenuBar.getMenus().addAll(myHelpMenu, myLanguagesMenu);
 	}
-	
-	public MenuBar getNode() {
+
+	/**
+	 * 
+	 */
+	@SuppressWarnings("serial")
+	private void setUpMenuBarItems() {
+		myHelpMenu = new Menu(Constants.DEFAULT_RESOURCE_BUNDLE.getString("helpPrompt"));
+		MenuItem help = new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"));
+	    myHelpMenu.getItems().add(help);
+	    myHelpMenu.setOnAction(event -> {
+			CommandDisplayer myCommandDisplay = new CommandDisplayer();
+			myCommandDisplay.show();
+		});
+	    
+	    
+	    myLanguagesMenu = new Menu(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagePrompt"));
+	    MenuItem languages = new MenuItem();
+	    myLanguageChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(
+	    	new ArrayList<String>() {{
+	    		for (Language lang : Language.values()) if (!lang.equals(Language.SYNTAX)) add(lang.getLang());
+	    }}));
+	    myLanguageChoiceBox.getSelectionModel().select(Constants.DEFAULT_LANGUAGE);
+	    languages.setGraphic(myLanguageChoiceBox);
+	    myLanguagesMenu.getItems().add(languages);
+		
+	}
+
+	protected MenuBar getNode() {
 		return myMenuBar;
 	}
-	
-	public List<MenuItem> getMenuItems(){
-		return myMenuItems;
-	}
-	
-	public MenuItem getLanguageMenuItem() {
-		return myMenuBar.getMenus().get(myMenuBar.getMenus().indexOf(Constants.DEFAULT_RESOURCE_BUNDLE.getString("actualWordlLanguage")));
+
+	protected ChoiceBox<String> getLanguageChoiceBox() {
+		return myLanguageChoiceBox;
 	}
 }

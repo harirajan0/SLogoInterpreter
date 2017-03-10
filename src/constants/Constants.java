@@ -2,45 +2,59 @@
  * 
  */
 package constants;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-/**
- * @author harirajan
- * @author Daniel
- * @author Belal Taher
- */
+
 public class Constants {
+	
 	//Application constants
 	public static final String APPLICATION_TITLE = "SLogo Interpreter";
 	public static final String TITLE_FONT = "Courier New";
 	public static final int TITLE_FONT_SIZE = 36;
-	public static final int WINDOW_SIZE = 800;
+	public static final int WINDOW_SIZE = 825;
 	public static final Paint BACKGROUND_COLOR = Color.GRAY;
+	public static final String DEFAULT_LANGUAGE = "English";
+	public static final String VARIABLES_VIEW_TITLE = "Your Variables";
+	public static final int DEFAULT_FONT_SIZE = 20;
+	public static final String DEFAULT_FONT = "Verdana";
+	public static final String IMAGE_CHOOSER_TITLE = "Image Chooser";
+	public static final String PEN_COLOR_LABEL = "";
+	public static final String PALETTE_COLOR_LABEL = "";
+	public static final String BACKGROUND_COLOR_LABEL = "";
 	
 	//CommandPromptView constants
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
 	public static final int COMMAND_WINDOW_WIDTH = 600;
-	public static final int COMMAND_BUTTON_WIDTH=200;
+	public static final int BIG_BUTTON_WIDTH = 200;
+	public static final int SMALL_BUTTON_SIZE= 32;
+	public static final int MEDIUM_BUTTON_SIZE= 50;
 
 	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
 	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
-	
-	//Constants to show graphically which turtles are selected
-	public static final double SELECTED = 100;
-	public static final double NOT_SELECTED = SELECTED/2;
+	public static final String TURTLE_SELECTED_TITLE = "Turtle Selected!";
+	public static final String TURTLE_UNSELECTED_TITLE = "Turtle Unselected!";
+	public static final String TURTLE_SELECTED_MESSAGE = "You chose turtle with ID: ";
+	public static final String TURTLE_UNSELECTED_MESSAGE = "You unselected turtle with ID: ";
 	
 	//TurtleView constants
 	public static final String TURTLE_IMAGE = "turtle.png";
+	public static final String LEFT_ROTATE_IMAGE = "left_rotate.png";
+	public static final String RIGHT_ROTATE_IMAGE = "right_rotate.png";
+	public static final String FORWARD_IMAGE = "forward.png";
+	public static final String BACK_IMAGE = "backward.png";
 	public static final int TURTLE_SIZE = 20;
 	public static final int BUFFER = TURTLE_SIZE / 2;
 	public static final Paint DEFAULT_PENCOLOR = Color.BLACK;
 	
 	//pen width slider constants
-	public static final int MIN_SLIDER_VALUE=0;
-	public static final int MAX_SLIDER_VALUE=40;
+	public static final int SLIDER_INCREMENT_VALUE = 5;
+	public static final int MAX_SLIDER_VALUE = 20;
 	
 	//Button movement values
 	public static final int FORWARD_BUTTON_DISTANCE = 10;
@@ -53,8 +67,7 @@ public class Constants {
 	public static final double FALSE = 0.0;
 	
 	//Resource Bundle constants
-	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myResources/resources");
-	public static final ResourceBundle LANGUAGE_RESOURCE_BUNDLE = ResourceBundle.getBundle("myResources/languageNames");
+	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myresources/resources");
 
 	
 	//PaletteView Constants
@@ -66,4 +79,14 @@ public class Constants {
 	//Palette Picker constants
 	public static final String PALETTE_PICKER_NAME = "Pick new colors for the palette";
 	public static final int PALETTE_PICKER_SIZE = 400;
+	public static final List<Color> DEFAULT_PALLETE_COLORS = new ArrayList<Color>() {{
+		add(Color.WHITE);
+		add(Color.BLACK);
+		add(Color.BLUE);
+		add(Color.RED);
+	}};
+	
+	//Turtle opacity to show selection constants
+	public static final double SELECTED = 1;
+	public static final double NOT_SELECTED = SELECTED / 2;
 }

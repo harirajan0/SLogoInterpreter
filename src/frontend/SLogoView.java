@@ -1,31 +1,30 @@
 package frontend;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import constants.Constants;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
+import backend.SLogoData;
+import javafx.collections.FXCollections;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.CheckBox;
-import turtle.Turtle;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.SLogoData;
-import screenElements.BackgroundColorChanger;
-import screenElements.CommandDisplayer;
-import screenElements.CommandPromptView;
-import screenElements.LanguageSelector;
-import screenElements.Palette;
-import screenElements.PenColorChanger;
-import screenElements.PenSlider;
-import screenElements.TurtleWindowView;
-import screenElements.VariablesView;
+import constants.Constants;
 
 /**
  *  @author Daniel
@@ -43,43 +42,90 @@ public class SLogoView implements Observer {
 	private TurtleWindowView myTurtleWindow;
 	private MenuView myMenuBar;
 	private VBox topVBox;
-	private Palette myPalette;
-	private CheckBox showSelectedTurtlesButton;
 	private boolean showSelectedGraphically;
-	private MenuItem languageMenu;
-	private MenuItem penThicknessMenu;
-	private LanguageSelector myLanguageSelector;
-	private PenSlider myPenSlider;
-	private MenuItem helpMenu;
-	private MenuItem backgroundColorMenu;
-	private Button paletteOpener;
+	private ScrollPane myLeftScrollPane;
+	private VBox myLeftScrollPaneVBox;
+	private PaletteView myPaletteView;
+	private ChoiceBox<String> myPenColorChoiceBox;
+	private ColorPicker myBackgroundColorPicker;
+	private HBox myPenColorChanger;
+	private HBox myPenThicknessChanger;
+	private HBox myBackgroundColorChanger;
+	private Slider myPenThicknessSlider;
+	private ScrollPane rightScrollPane;
 
 	public SLogoView(Stage s) {
-		initializePalettes();
-		showSelectedGraphically = false;
 		myRoot = new Group();
 		topVBox = new VBox();
+		setUpScrollPanes();
 		myCommandPrompt = new CommandPromptView();
-		myCommandPrompt.getGraphicalDisplayButton().setOnAction(event -> {
-			showSelectedGraphically = !showSelectedGraphically;
-		});
-		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
 		Text header = new Text(Constants.APPLICATION_TITLE);
 		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
-		myMenuBar = new MenuView(s);
-		initializeMenuBarItems();
+		myMenuBar = new MenuView();
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
 		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);
+		showSelectedGraphically = false;
 		displayStage(s);
+	}
+
+	/**
+	 * 
+	 */
+	private void setUpScrollPanes() {
+		myLeftScrollPane = new ScrollPane();
+		myLeftScrollPane.setPrefSize(Constants.TURTLE_WINDOW_SIZE / 2, Constants.TURTLE_WINDOW_SIZE);
+		myLeftScrollPaneVBox = new VBox();
+		myPaletteView = new PaletteView();
+		setUpColorChangers();
+		setUpPenThicknessSlider();
+		myLeftScrollPaneVBox.getChildren().addAll(myPaletteView.getNode(), myPenColorChanger, myBackgroundColorChanger, myPenThicknessChanger);
+		myLeftScrollPane.setContent(myLeftScrollPaneVBox);
+		rightScrollPane = new ScrollPane();
+		rightScrollPane.setPrefSize(Constants.TURTLE_WINDOW_SIZE / 2, Constants.TURTLE_WINDOW_SIZE);
+		myVariablesView = new VariablesView();
+		rightScrollPane.setContent(myVariablesView.getNode());
+		
+	}
+	
+	@SuppressWarnings("serial")
+	private void setUpColorChangers() {
+		myPenColorChanger = new HBox();
+		myPenColorChanger.setAlignment(Pos.BASELINE_RIGHT);
+		Label penColorTitle = new Label(Constants.PEN_COLOR_LABEL);
+		myPenColorChoiceBox = new ChoiceBox<String>(FXCollections.observableArrayList(
+		new ArrayList<String>() {{
+			for (int i = 0; i < 4; i++) add(Constants.PALETTE_COLOR_LABEL + i);
+		}}));
+		myPenColorChoiceBox.getSelectionModel().selectFirst();
+		myPenColorChanger.getChildren().addAll(penColorTitle, myPenColorChoiceBox);
+		myBackgroundColorChanger = new HBox();
+		myBackgroundColorChanger.setAlignment(Pos.BASELINE_RIGHT);
+		Label backgroundColorTitle = new Label(Constants.BACKGROUND_COLOR_LABEL);
+		myBackgroundColorPicker = new ColorPicker();
+		myBackgroundColorPicker.setPrefWidth(Constants.MEDIUM_BUTTON_SIZE);
+		myBackgroundColorChanger.getChildren().addAll(backgroundColorTitle, myBackgroundColorPicker);
+	}
+	
+	private void setUpPenThicknessSlider() {
+		myPenThicknessChanger = new HBox();
+		Label penThicknessTitle = new Label("Pen Thickness: ");
+		myPenThicknessSlider = new Slider();
+		myPenThicknessSlider.setOrientation(Orientation.HORIZONTAL);
+		myPenThicknessSlider.setMajorTickUnit(Constants.SLIDER_INCREMENT_VALUE);
+		myPenThicknessSlider.setMax(Constants.MAX_SLIDER_VALUE);
+		myPenThicknessSlider.setShowTickMarks(true);
+		myPenThicknessSlider.setShowTickLabels(true);
+		myPenThicknessSlider.setPrefWidth(Constants.TURTLE_WINDOW_SIZE / 4);
+		myPenThicknessChanger.getChildren().addAll(penThicknessTitle, myPenThicknessSlider);
 	}
 
 	private void setUpBorderPane() {
 		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(paletteOpener);
-		myBorderPane.setRight(myVariablesView.getNode());
+		myBorderPane.setLeft(myLeftScrollPane);
+		myBorderPane.setRight(rightScrollPane);
 		myBorderPane.setCenter(myTurtleWindow.getNode());
 		myBorderPane.setTop(topVBox);
 	}
@@ -90,7 +136,10 @@ public class SLogoView implements Observer {
 		s.setTitle(Constants.APPLICATION_TITLE);
 		s.show();
 	}
-
+	
+	public ColorPicker getBackgroundColorPicker() {
+		return myBackgroundColorPicker;
+	}
 
 	public CommandPromptView getCommandBox() {
 		return myCommandPrompt;
@@ -116,104 +165,53 @@ public class SLogoView implements Observer {
 		myCommandPrompt.setCommandPromptText("");
 	}
 	
-	private void initializePalettes(){
-		myPalette=new Palette();
-		paletteOpener=new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePrompt"));
-		paletteOpener.setOnAction(event ->  {
-	    	myPalette.show();
-	    });
-	}
-
-	
-	private void initializeMenuBarItems(){
-		for (int i = 0; i < myMenuBar.getMenuItems().size(); i++) {
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))) {
-				helpMenu = myMenuBar.getMenuItems().get(i);
-			}
-
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penThickness"))) {
-				penThicknessMenu = myMenuBar.getMenuItems().get(i);
-				myPenSlider = new PenSlider();
-
-			}
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backgroundColor"))) {
-				backgroundColorMenu = myMenuBar.getMenuItems().get(i);
-				BackgroundColorChanger bc=new BackgroundColorChanger();
-				backgroundColorMenu.setOnAction(event -> {
-					bc.setObjectToChangeColorOf(myTurtleWindow);
-					bc.show();
-					});
-			}
-
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("languagePrompt"))) {
-				languageMenu = myMenuBar.getMenuItems().get(i);
-				myLanguageSelector = new LanguageSelector();
-				myLanguageSelector.getChoiceBox().getSelectionModel().selectedIndexProperty()
-						.addListener(new ChangeListener<Number>() {
-							@Override
-							public void changed(ObservableValue<? extends Number> observableValue, Number number,
-									Number number2) {
-								mySlogoData.setLanguage(
-										(myLanguageSelector.getChoiceBox().getItems().get((Integer) number2)));
-							}
-						});
-			}
-		}
-
-		helpMenu.setOnAction(event -> {
-			CommandDisplayer myCommandDisplay = new CommandDisplayer();
-			myCommandDisplay.show();
-		});
-
-	 
-		penThicknessMenu.setOnAction(event -> {
-			myPenSlider.show();
-			myPenSlider.getSlider().valueProperty().addListener(new ChangeListener<Number>() {
-				public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-					mySlogoData.setPenWidth(new_val.doubleValue());
-				}
-			});
-		});
-
-		languageMenu.setOnAction(event -> {
-			myLanguageSelector.show();
-		});
+	public ChoiceBox<String> getPenColorChoiceBox() {
+		return myPenColorChoiceBox;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
+	public Slider getPenThicknessSlider() {
+		return myPenThicknessSlider;
+	}
+	
+	public List<ColorPicker> getPaletteColorPickers() {
+		return myPaletteView.getColorPickers();
+	}
+	
+	public ChoiceBox<String> getLanguageChoiceBox() {
+		return myMenuBar.getLanguageChoiceBox();
+	}
+	
+	public CheckBox getGraphicalDisplayButton(){
+		return myCommandPrompt.getGraphicalDisplayButton();
+	}
+	
+	public boolean getShowSelected() {
+		return showSelectedGraphically;
+	}
+	
+	public void toggleShowSelection() {
+		showSelectedGraphically = !showSelectedGraphically;
+	}
+
+	public Button getVariableUpdateButton() {
+		return myVariablesView.getUpdateButton();
+	}
+	
+	public VariablesView getVariablesView() {
+		return myVariablesView;
+	}
+	
+	public Button getTurtleImageSelectionButton() {
+		return myCommandPrompt.getTurtleImageSelectionButton();
+	}
+	
 	@Override
 	public void update(Observable slogoData, Object arg) {
-		// TODO Auto-generated method stub
 		mySlogoData = (SLogoData) slogoData;
 		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
-		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
+		myTurtleWindow.changeBackgroundColor(mySlogoData.getBackgroundColor());
 		myTurtleWindow.setToolTips();
-		updateTransparency();
-	}
-	
-	private void updateTransparency(){
-		for(Turtle currTurtle : mySlogoData.getTurtles()){
-			if(showSelectedGraphically){
-				if(currTurtle.isSelected()){
-					currTurtle.getNode().setOpacity(Constants.SELECTED);
-				}
-				else{
-					currTurtle.getNode().setOpacity(Constants.NOT_SELECTED);
-				}
-			}
-			else{
-				currTurtle.getNode().setOpacity(Constants.SELECTED);
-			}
-		}
 	}
 
 }

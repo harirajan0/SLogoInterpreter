@@ -1,0 +1,14 @@
+package backend.commands;
+
+import backend.command_abstraction.TurtleCommandNoParams;
+import backend.turtle.Turtle;
+
+public class PenUp extends TurtleCommandNoParams {
+
+	@Override
+	public double execute(Turtle turtle) throws IllegalArgumentException {
+		turtle.setPenDown(false);
+		return 0;
+	}
+
+}

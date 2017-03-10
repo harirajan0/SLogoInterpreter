@@ -21,34 +21,29 @@ public abstract class ColorChanger<T> extends Stage {
 	
 	private BorderPane borderPaneOptionPane;
 	private T myThingToChange;
+	Palette myPalette;
 	
 	public ColorChanger(){
 			this.setTitle(Constants.DEFAULT_RESOURCE_BUNDLE.getString("genericColorLabel"));
 		    this.setResizable(false);
 		    borderPaneOptionPane = new BorderPane();
-//		    final ColorPicker colorPicker = new ColorPicker();
-//		    colorPicker.setOnAction(event ->  {
-//		    	ColorChangeAction(colorPicker.getValue(), myThingToChange);
-//		    });
+		    final ColorPicker colorPicker = new ColorPicker();
+		    colorPicker.setOnAction(event ->  {
+		    	ColorChangeAction(colorPicker.getValue(), myThingToChange);
+		    });
 		    borderPaneOptionPane.setTop(new Text(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor")));
-		    borderPaneOptionPane.setCenter(colorPickerObject());
+		    borderPaneOptionPane.setCenter(colorPicker);
 		    Scene s = new Scene(borderPaneOptionPane);
 		    this.setScene(s);
 		    this.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 	 }
 	
 	public ColorChanger(Palette p){
-		
-
+		p.show();
+		myPalette = p;
+		p.getPaletteList().a
 	}
 	
-	public Node colorPickerObject(){
-		   final ColorPicker colorPicker = new ColorPicker();
-		    colorPicker.setOnAction(event ->  {
-		    	ColorChangeAction(colorPicker.getValue(), myThingToChange);
-		    });
-		    return colorPicker;
-	}
 	
 	public void setTitleAndPrompt(String title, String prompt){
 		this.setTitle(title);

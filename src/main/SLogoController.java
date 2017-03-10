@@ -3,17 +3,26 @@
  */
 package main;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
 import backend.SLogoModel;
 import constants.Constants;
 
 import frontend.SLogoView;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import turtle.Turtle;
 
@@ -41,9 +50,10 @@ public class SLogoController {
 			mySlogoView.clearCommandPrompt();
 		});
 		setUpMovementButtons();
+		setUpImageLoader(s);
 	}
 
-	public void setUpMovementButtons(){
+	private void setUpMovementButtons(){
 		
 		mySlogoView.getCommandBox().getForwardButton().setOnAction(action -> {
 			mySlogoData.moveSelectedTurtles(Constants.FORWARD_BUTTON_DISTANCE, 0);
@@ -59,6 +69,26 @@ public class SLogoController {
 		
 		mySlogoView.getCommandBox().getBackwardsButton().setOnAction(action -> {
 			mySlogoData.moveSelectedTurtles(Constants.BACKWARDS_BUTTON_DISTANCE, 0);
+		});
+	}
+	
+	private void setUpImageLoader(Stage s){
+		mySlogoView.getCommandBox().getFileLoader().setOnAction(action -> {
+			FileChooser myChooser = new FileChooser();
+			myChooser.setTitle(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileChooserTitle"));
+			File myFile = myChooser.showOpenDialog(s);
+			try {
+				BufferedImage bufferedImage = ImageIO.read(myFile);
+				Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+				if(myFile!=null){
+					for(Turtle currTurtle: mySlogoData.getTurtles()){
+						currTurtle.getNode().setImage(image);
+					}
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 	}
 	

@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -28,6 +29,7 @@ import screenElements.PenColorChanger;
 import screenElements.PenSlider;
 import screenElements.TurtleWindowView;
 import screenElements.VariablesView;
+import turtle.Turtle;
 
 /**
  *  @author Daniel
@@ -54,10 +56,13 @@ public class SLogoView implements Observer {
 	private MenuItem helpMenu;
 	private MenuItem backgroundColorMenu;
 	private Button paletteOpener;
+	private CheckBox showSelectedTurtlesButton;
+	private boolean showSelectedGraphically;
 
 	public SLogoView(Stage s) {
 		myRoot = new Group();
 		topVBox = new VBox();
+		showSelectedGraphically = false;
 		myCommandPrompt = new CommandPromptView();
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
@@ -117,11 +122,11 @@ public class SLogoView implements Observer {
 			myCommandDisplay.show();
 		});
 
-	 penColorMenu.setOnAction(event -> {
-		PenColorChanger pc=new PenColorChanger();
-		pc.setObjectToChangeColorOf(mySlogoData);
-		pc.show();
-	  });
+	    penColorMenu.setOnAction(event -> {
+	    	PenColorChanger pc=new PenColorChanger();
+			pc.setObjectToChangeColorOf(mySlogoData);
+			pc.show();
+		  });
 	 
 		penThicknessMenu.setOnAction(event -> {
 			myPenSlider.show();
@@ -134,6 +139,10 @@ public class SLogoView implements Observer {
 
 		languageMenu.setOnAction(event -> {
 			myLanguageSelector.show();
+		});
+		
+		myCommandPrompt.getGraphicalDisplayButton().setOnAction(event -> {
+			showSelectedGraphically = !showSelectedGraphically;
 		});
 
 		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
@@ -196,8 +205,25 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
 		myTurtleWindow.setToolTips();
-
+		updateTransparency();
+		
 		//myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
+	}
+	
+	private void updateTransparency(){
+		for(Turtle currTurtle : mySlogoData.getTurtles()){
+			if(showSelectedGraphically){
+				if(currTurtle.isSelected()){
+					currTurtle.getNode().setOpacity(Constants.SELECTED);
+				}
+				else{
+					currTurtle.getNode().setOpacity(Constants.NOT_SELECTED);
+				}
+			}
+			else{
+				currTurtle.getNode().setOpacity(Constants.SELECTED);
+			}
+		}
 	}
 
 }

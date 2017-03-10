@@ -62,4 +62,8 @@ public class Constants {
 	//Palette Picker constants
 	public static final String PALETTE_PICKER_NAME = "Pick new colors for the palette";
 	public static final int PALETTE_PICKER_SIZE = 400;
+	
+	//Constants to show graphically which turtles are selected
+	public static final double SELECTED = 100;
+	public static final double NOT_SELECTED = SELECTED/2;
 }

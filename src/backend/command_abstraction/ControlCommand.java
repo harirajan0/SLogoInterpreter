@@ -20,7 +20,7 @@ public abstract class ControlCommand implements Command {
 	
 	protected abstract List<Integer> indicesOfRequiredBlocks();
 	
-	protected abstract List<Integer> indicesOfRequiredVariables();
+	protected abstract List<Integer> indicesOfRequiredVarBlocks();
 	
 	protected void checkNumArgs(List<ASTNode> params) throws IllegalArgumentException {
 		if (params.size() < getNumArgs()) {

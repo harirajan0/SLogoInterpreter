@@ -3,6 +3,7 @@
  */
 package backend.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -42,6 +43,20 @@ public class For extends ControlCommand {
 	@Override
 	public int getNumArgs() {
 		return 2;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		List<Integer> blocks = new ArrayList<Integer>();
+		blocks.add(0); blocks.add(1);
+		return blocks;
+	}
+
+	@Override
+	protected List<Integer> indicesOfRequiredVarBlocks() {
+		List<Integer> varBlocks = new ArrayList<Integer>();
+		varBlocks.add(0); varBlocks.add(1);
+		return varBlocks;
 	}
 
 }

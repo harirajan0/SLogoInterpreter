@@ -8,6 +8,7 @@ import java.util.List;
 import backend.ASTNode;
 import backend.SLogoData;
 import backend.command_abstraction.Command;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -20,25 +21,23 @@ public class SetPenColor implements Command {
 	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		//ALEX THROW EXPCETION IS PARAMS.GET(0).EVALUATE() IS NOT 0,1,2,3
+
 		int index = (int) params.get(0).evaluate();
+		
+		if(index < 0 || index > 3){
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("SetColorError"));
+		}
 		slogoData.setPenColor(index);
 		return index;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
 	public int getNumArgs() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
+
 	@Override
 	public boolean isMathCommand() {
 		// TODO Auto-generated method stub

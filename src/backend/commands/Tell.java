@@ -48,18 +48,14 @@ public class Tell implements Command {
 		return turtleNum;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
+
 	@Override
 	public int getNumArgs() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
+
 	@Override
 	public boolean isMathCommand() {
 		// TODO Auto-generated method stub

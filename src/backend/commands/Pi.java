@@ -13,13 +13,16 @@ import backend.command_abstraction.MathCommandNoParams;
  */
 public class Pi extends MathCommandNoParams {
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.MathCommandNoParams#execute()
-	 */
+
 	@Override
 	protected double execute() {
-		// TODO Auto-generated method stub
 		return Math.PI;
+	}
+
+	@Override
+	protected double execute(List<Double> params) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

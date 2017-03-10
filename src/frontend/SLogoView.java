@@ -5,14 +5,14 @@ import java.util.Observer;
 import constants.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.CheckBox;
+import turtle.Turtle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,8 +44,9 @@ public class SLogoView implements Observer {
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private Palette myPalette;
+	private CheckBox showSelectedTurtlesButton;
+	private boolean showSelectedGraphically;
 	private MenuItem languageMenu;
-	private MenuItem penColorMenu;
 	private MenuItem penThicknessMenu;
 	private LanguageSelector myLanguageSelector;
 	private PenSlider myPenSlider;
@@ -54,28 +55,81 @@ public class SLogoView implements Observer {
 	private Button paletteOpener;
 
 	public SLogoView(Stage s) {
+		initializePalettes();
+		showSelectedGraphically = false;
 		myRoot = new Group();
 		topVBox = new VBox();
 		myCommandPrompt = new CommandPromptView();
+		myCommandPrompt.getGraphicalDisplayButton().setOnAction(event -> {
+			showSelectedGraphically = !showSelectedGraphically;
+		});
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
+		Text header = new Text(Constants.APPLICATION_TITLE);
+		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
+		myMenuBar = new MenuView(s);
+		initializeMenuBarItems();
+		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
+		setUpBorderPane();
+		myRoot.getChildren().addAll(myBorderPane);
+		displayStage(s);
+	}
+
+	private void setUpBorderPane() {
+		myBorderPane.setBottom(myCommandPrompt.getNode());
+		myBorderPane.setLeft(paletteOpener);
+		myBorderPane.setRight(myVariablesView.getNode());
+		myBorderPane.setCenter(myTurtleWindow.getNode());
+		myBorderPane.setTop(topVBox);
+	}
+
+	private void displayStage(Stage s) {
+		myScene = new Scene(myRoot, Constants.WINDOW_SIZE, Constants.WINDOW_SIZE, Constants.BACKGROUND_COLOR);
+		s.setScene(myScene);
+		s.setTitle(Constants.APPLICATION_TITLE);
+		s.show();
+	}
+
+
+	public CommandPromptView getCommandBox() {
+		return myCommandPrompt;
+	}
+
+	public TurtleWindowView getTurtleWindow() {
+		return myTurtleWindow;
+	}
+
+	public Button getExecuteButton() {
+		return myCommandPrompt.getExecuteButton();
+	}
+
+	public String getUserInput() {
+		return myCommandPrompt.getUserInput();
+	}
+
+	public void addCommandToHistory(String cmd) {
+		myCommandPrompt.addCommandToHistory(cmd);
+	}
+
+	public void clearCommandPrompt() {
+		myCommandPrompt.setCommandPromptText("");
+	}
+	
+	private void initializePalettes(){
 		myPalette=new Palette();
 		paletteOpener=new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePrompt"));
 		paletteOpener.setOnAction(event ->  {
 	    	myPalette.show();
 	    });
-		Text header = new Text(Constants.APPLICATION_TITLE);
-		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
-		myMenuBar = new MenuView(s);
+	}
+
+	
+	private void initializeMenuBarItems(){
 		for (int i = 0; i < myMenuBar.getMenuItems().size(); i++) {
 			if (myMenuBar.getMenuItems().get(i).getText()
 					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))) {
 				helpMenu = myMenuBar.getMenuItems().get(i);
-			}
-			if (myMenuBar.getMenuItems().get(i).getText()
-					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("penColor"))) {
-				penColorMenu = myMenuBar.getMenuItems().get(i);
 			}
 
 			if (myMenuBar.getMenuItems().get(i).getText()
@@ -115,11 +169,6 @@ public class SLogoView implements Observer {
 			myCommandDisplay.show();
 		});
 
-	 penColorMenu.setOnAction(event -> {
-		PenColorChanger pc=new PenColorChanger();
-		pc.setObjectToChangeColorOf(mySlogoData);
-		pc.show();
-	  });
 	 
 		penThicknessMenu.setOnAction(event -> {
 			myPenSlider.show();
@@ -133,54 +182,8 @@ public class SLogoView implements Observer {
 		languageMenu.setOnAction(event -> {
 			myLanguageSelector.show();
 		});
-
-		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
-		setUpBorderPane();
-		myRoot.getChildren().addAll(myBorderPane);
-		displayStage(s);
 	}
-
-	private void setUpBorderPane() {
-		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(paletteOpener);
-		myBorderPane.setRight(myVariablesView.getNode());
-		myBorderPane.setCenter(myTurtleWindow.getNode());
-		myBorderPane.setTop(topVBox);
-	}
-
-	private void displayStage(Stage s) {
-		myScene = new Scene(myRoot, Constants.WINDOW_SIZE, Constants.WINDOW_SIZE, Constants.BACKGROUND_COLOR);
-		s.setScene(myScene);
-		s.setTitle(Constants.APPLICATION_TITLE);
-		s.show();
-	}
-
-	// FIX THIS
-
-	public CommandPromptView getCommandBox() {
-		return myCommandPrompt;
-	}
-
-	public TurtleWindowView getTurtleWindow() {
-		return myTurtleWindow;
-	}
-
-	public Button getExecuteButton() {
-		return myCommandPrompt.getExecuteButton();
-	}
-
-	public String getUserInput() {
-		return myCommandPrompt.getUserInput();
-	}
-
-	public void addCommandToHistory(String cmd) {
-		myCommandPrompt.addCommandToHistory(cmd);
-	}
-
-	public void clearCommandPrompt() {
-		myCommandPrompt.setCommandPromptText("");
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -194,8 +197,23 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
 		myTurtleWindow.setToolTips();
-
-		//myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
+		updateTransparency();
+	}
+	
+	private void updateTransparency(){
+		for(Turtle currTurtle : mySlogoData.getTurtles()){
+			if(showSelectedGraphically){
+				if(currTurtle.isSelected()){
+					currTurtle.getNode().setOpacity(Constants.SELECTED);
+				}
+				else{
+					currTurtle.getNode().setOpacity(Constants.NOT_SELECTED);
+				}
+			}
+			else{
+				currTurtle.getNode().setOpacity(Constants.SELECTED);
+			}
+		}
 	}
 
 }

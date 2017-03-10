@@ -43,7 +43,7 @@ public class SLogoData extends Observable {
 		myFunctions = new ArrayList<>();
 		myLanguage = LanguageFactory.getLang(Constants.DEFAULT_LANGUAGE);
 		myColors = Constants.DEFAULT_PALLETE_COLORS;
-		myBackgroundColor = Color.WHITE; // black
+		myBackgroundColor = Constants.TURTLE_WINDOW_COLOR;
 		showSelected = false;
 	}
 	

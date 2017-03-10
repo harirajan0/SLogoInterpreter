@@ -34,8 +34,8 @@ public class PaletteView {
 			for (int i = 0; i < Constants.DEFAULT_PALLETE_COLORS.size(); i++)
 				add(new ColorPicker(Constants.DEFAULT_PALLETE_COLORS.get(i)));
 		}};
-		Text title = new Text("Your Palette");
-		title.setFont(new Font("Verdana", 20));
+		Text title = new Text(Constants.TURTLE_VIEW_OPTIONS_TITLE);
+		title.setFont(new Font(Constants.DEFAULT_FONT, 20));
 		myVBox.getChildren().add(title);
 		for (int i = 0; i < myPickers.size(); i++) {
 			myPickers.get(i).setPrefWidth(200);

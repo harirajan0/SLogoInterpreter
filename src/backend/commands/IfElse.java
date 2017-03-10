@@ -18,7 +18,6 @@ public class IfElse extends ControlCommand {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		
-		checkNumArgs(params);
 		
 		double ret = 0.0; 
 		if (params.get(0).evaluate() == constants.Constants.TRUE) {
@@ -32,5 +31,23 @@ public class IfElse extends ControlCommand {
 	@Override
 	public int getNumArgs() {
 		return 3;
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -29,6 +29,24 @@ public class If extends ControlCommand {
 		return 2;
 	}
 
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

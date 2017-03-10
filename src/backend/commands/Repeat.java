@@ -3,6 +3,7 @@
  */
 package backend.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -42,6 +43,24 @@ public class Repeat extends ControlCommand {
 	@Override
 	public boolean isMathCommand() {
 		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
 	}
 
 

@@ -6,6 +6,7 @@ package backend;
 import java.util.List;
 
 import backend.command_abstraction.Command;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -33,6 +34,7 @@ public class ASTNode {
 	}
 
 	public double evaluate() {
+		print();
 		if (isBlock) {
 			return myArguments.get(0).evaluate();
 		}
@@ -46,12 +48,11 @@ public class ASTNode {
 			if (mySlogoData.getVariable(myVariableName) != null) {
 				return mySlogoData.getVariable(myVariableName).getValue();
 			} else {
-				return 0.0; // THROW EXCEPTION FOR NOT BEING ABLE TO FIND
-							// VARIABLE
+				throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("VariableNotFoundError"));
 			}
 		}
 		if (myCommand == null)
-			return myValue; // if its a double
+			return myValue;
 		return myCommand.execute(myArguments, mySlogoData);
 	}
 
@@ -60,6 +61,7 @@ public class ASTNode {
 	}
 
 	protected boolean hasMathValue() {
+		if (isBlock) return false;
 		if (myCommand == null)
 			return true;
 		return myCommand.isMathCommand();
@@ -100,5 +102,24 @@ public class ASTNode {
 	
 	protected void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
+	}
+	
+	
+	//DELETE
+	public String toString() {
+		if (isBlock) { return "BLOCK: " + myArguments.toString(); }
+		if (myCommand != null) return myCommand.getClass().getName();
+		if (isBlock) {
+			return "BLOCK: " + myArguments.toString();
+		}
+		if (myCommand != null)
+			return myCommand.getClass().getName();
+		return String.valueOf(myValue);
+	}
+	
+	private void print() {
+		System.out.println();
+		System.out.println(this);
+		System.out.println(this.myArguments);
 	}
 }

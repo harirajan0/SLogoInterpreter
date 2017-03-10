@@ -22,9 +22,10 @@ public class Constants {
 	public static final int DEFAULT_FONT_SIZE = 20;
 	public static final String DEFAULT_FONT = "Verdana";
 	public static final String IMAGE_CHOOSER_TITLE = "Image Chooser";
-	public static final String PEN_COLOR_LABEL = "";
-	public static final String PALETTE_COLOR_LABEL = "";
-	public static final String BACKGROUND_COLOR_LABEL = "";
+	public static final String PEN_COLOR_LABEL = "Pen Color: ";
+	public static final String PALETTE_COLOR_LABEL = "Palette Color: ";
+	public static final String BACKGROUND_COLOR_LABEL = "Background Color: ";
+	public static final String POSSIBLE_FUNCTION = "PossibleFunction";
 	
 	//CommandPromptView constants
 	public static final int COMMAND_WINDOW_HEIGHT = 200;
@@ -36,7 +37,7 @@ public class Constants {
 	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
-	public static final Paint TURTLE_WINDOW_COLOR = Color.WHITE;
+	public static final Color TURTLE_WINDOW_COLOR = Color.WHITE;
 	public static final String TURTLE_SELECTED_TITLE = "Turtle Selected!";
 	public static final String TURTLE_UNSELECTED_TITLE = "Turtle Unselected!";
 	public static final String TURTLE_SELECTED_MESSAGE = "You chose turtle with ID: ";
@@ -69,8 +70,8 @@ public class Constants {
 	//Resource Bundle constants
 	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myresources/resources");
 
-	
 	//PaletteView Constants
+	public static final String TURTLE_VIEW_OPTIONS_TITLE = "Turtle View Options";
 	public static final int PALETTE_SIDE_PADDING = 50;
 	public static final int PALETTE_SIZE = 100;
 	public static final int PALETTE_TOP_PADDING = 50;

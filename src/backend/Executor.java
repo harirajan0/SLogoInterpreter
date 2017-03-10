@@ -34,32 +34,28 @@ public class Executor {
 		if (input.size() == 0) {
 			return null;
 		} else {
-			if (languageParser.getSymbol(input.get(0)).equals("PossibleFunction")) {
+			if (languageParser.getSymbol(input.get(0)).equals(Constants.POSSIBLE_FUNCTION)) {
 				functionName = input.get(0);
 				input.remove(0);
 			} else {
-				return null; //throw exception; illegal function name
+				throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("FunctionDefineError"));
 			}
-			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
-				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
-				removeToIndex(input, listEndIndex);
-				arguments.add(parseText(slogoData, block));
-			} else {
-				return null; //throw exception; illegal format for defining funciton
-			}
-			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
-				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
-				removeToIndex(input, listEndIndex);
-				arguments.add(parseText(slogoData, block));
-			} else {
-				return null; //throw exception; illegal format for defining funciton
-			}
+			parseBlockAsArgument(input, arguments, slogoData);
+			parseBlockAsArgument(input, arguments, slogoData);
 		}
 		return new ASTNode(null, null, functionName, 0, arguments, slogoData, false);
 	}
 	
+	private void parseBlockAsArgument(List<String> input, List<ASTNode> arguments, SLogoData slogoData) {
+		if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
+			int listEndIndex = getIndexOfBracketMatch(input);
+			List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
+			removeToIndex(input, listEndIndex);
+			arguments.add(parseText(slogoData, block));
+		} else {
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("FunctionDefineError"));
+		}
+	}
 
 	protected ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
 		RegexParser languageParser = new RegexParser(myLang);

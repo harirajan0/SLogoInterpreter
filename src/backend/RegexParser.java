@@ -3,16 +3,14 @@
  */
 package backend;
 
-import java.util.Enumeration;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import constants.Constants;
 import languages.Language;
-import languages.LanguageFactory;
 
 
 /**
@@ -51,7 +49,7 @@ public class RegexParser {
                 return entry.getKey();
             }
         }
-        return "PossibleFunction";
+        return Constants.POSSIBLE_FUNCTION;
     }
 
     // returns true if the given text matches the given regular expression pattern

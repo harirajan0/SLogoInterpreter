@@ -22,7 +22,4 @@ public class Back extends TurtleCommandOneParam {
 		}
 		return totalAmount;
 	}
-
-	
-
 }

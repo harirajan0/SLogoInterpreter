@@ -3,6 +3,7 @@
  */
 package backend.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -11,10 +12,6 @@ import backend.Variable;
 import backend.command_abstraction.ControlCommand;
 import constants.Constants;
 
-/**
- * @author harirajan
- * @author Alex Boss
- */
 public class For extends ControlCommand {
 
 	@Override
@@ -42,6 +39,24 @@ public class For extends ControlCommand {
 	@Override
 	public int getNumArgs() {
 		return 2;
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredBlocks() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
+	}
+
+	/* (non-Javadoc)
+	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
+	 */
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
 	}
 
 }

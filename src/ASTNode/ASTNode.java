@@ -83,6 +83,14 @@ public class ASTNode {
 			return true;
 		return myCommand.isMathCommand();
 	}
+	
+	public boolean isBlock(){
+		return isBlock;
+	}
+	
+	public boolean isVariable(){
+		return (myVariableName != null);
+	}
 
 	public String getVariableName() {
 		return myVariableName;

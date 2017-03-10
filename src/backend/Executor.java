@@ -116,8 +116,14 @@ public class Executor {
 				}
 				return new ASTNode(null, null, null, 0, arguments, slogoData, true);
 			} else {
-				throw new IllegalArgumentException(
-						Constants.DEFAULT_RESOURCE_BUNDLE.getString("InvalidSyntaxError") + input.get(0));
+				if(syntaxParser.getSymbol(input.get(0)).equals("ListEnd")){
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingOpenDelimiter"));
+				}
+				else{
+					throw new IllegalArgumentException(
+							Constants.DEFAULT_RESOURCE_BUNDLE.getString("InvalidSyntaxError") + input.get(0));
+				}
 			}
 		}
 	}

@@ -6,8 +6,7 @@ package backend;
 import java.util.ArrayList;
 import java.util.List;
 
-import command_abstractions.Command;
-import commands.CommandFactory;
+import backend.command_abstraction.Command;
 import constants.Constants;
 import languages.Language;
 

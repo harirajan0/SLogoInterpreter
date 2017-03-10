@@ -5,7 +5,7 @@ package backend;
 
 import java.util.List;
 
-import command_abstractions.Command;
+import backend.command_abstraction.Command;
 
 /**
  * @author harirajan

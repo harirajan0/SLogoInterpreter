@@ -1,6 +1,7 @@
 package turtle;
 import java.util.List;
 
+import constants.Constants;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -23,6 +24,7 @@ public class Turtle {
 	private TurtleModel myTurtleModel;
 	private TurtleView myTurtleView;
 	
+	private boolean showSelected;
 	private int myID;
 	
 	public Turtle(Group root, int id) {
@@ -33,18 +35,24 @@ public class Turtle {
  		myTurtleModel = new TurtleModel(turtleInfo); 
 		myTurtleView = new TurtleView(root);
 		myID = id;
+		showSelected = false;
 		getNode().setOnMouseClicked(new EventHandler<Event>() {
-
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
+				myTurtleModel.setSelected(!myTurtleModel.isSelected());
 				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Turtle Selected!");
-				alert.setContentText("You chose turtle with ID: " + myID);
-				alert.showAndWait();
-				myTurtleModel.setSelected(true);
+				if (myTurtleModel.isSelected()) {
+					alert.setTitle("Turtle Selected!");
+					alert.setContentText("You chose turtle with ID: " + myID);
+					alert.showAndWait();
+				} else {
+					alert.setTitle("Turtle Unselected!");
+					alert.setContentText("You unselected turtle with ID: " + myID);
+					alert.showAndWait();
+				}
+				display();
 			}
-			
 		});
 	}
 	
@@ -56,8 +64,9 @@ public class Turtle {
 		return myTurtleModel.isSelected();
 	}
 	
-	public void seSelected(boolean selected) {
+	public void setSelected(boolean selected) {
 		myTurtleModel.setSelected(selected);
+		display();
 	}
 	
 	public List<Line> getLinesToDraw() {
@@ -81,6 +90,13 @@ public class Turtle {
 			l.setFill(myTurtleModel.getPenColor());
 			myTurtleView.getRoot().getChildren().add(l);
 		}
+		if(showSelected && !isSelected()) { 
+			getNode().setOpacity(Constants.NOT_SELECTED);
+		}
+		else {
+			getNode().setOpacity(Constants.SELECTED);
+		}
+		System.out.println("hello");
 		myTurtleView.display(myTurtleModel.getNextTurtleInfo().getX(), 
 							myTurtleModel.getNextTurtleInfo().getY(), 
 							myTurtleModel.getNextTurtleInfo().getHeading());
@@ -135,6 +151,15 @@ public class Turtle {
 	
 	public int getColorIndex() {
 		return myTurtleModel.getColorIndex();
+	}
+	
+	public int getID() {
+		return myID;
+	}
+	
+	public void setShowSelected(boolean showSelected) {
+		this.showSelected = showSelected;
+		display();
 	}
 	
 }

@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import command_abstractions.Command;
-import command_abstractions.TurtleCommand;
-import commands.Forward;
-import commands.Right;
+import backend.command_abstraction.Command;
+import backend.command_abstraction.TurtleCommand;
+import backend.commands.Forward;
+import backend.commands.Right;
 import constants.Constants;
+import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import languages.Language;
 import languages.LanguageFactory;
@@ -33,6 +34,8 @@ public class SLogoData extends Observable {
 	private int myBackgroundColorIndex;
 	private List<Color> myColors;
 	private Language myLanguage;
+	private Group myRoot;
+	private boolean showSelected;
 
 	public SLogoData(Turtle firstTurtle) {
 		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
@@ -41,6 +44,7 @@ public class SLogoData extends Observable {
 		myLanguage = LanguageFactory.getLang(Constants.DEFAULT_LANGUAGE);
 		myColors = Constants.DEFAULT_PALLETE_COLORS;
 		myBackgroundColor = Color.WHITE; // black
+		showSelected = false;
 	}
 	
 	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
@@ -122,7 +126,6 @@ public class SLogoData extends Observable {
 	}
 
 	public void addVariable(Variable newVar) {
-		System.out.println(newVar);
 		deleteVariable(newVar.getName());
 		myVariables.add(newVar);
 		notifyObservers();
@@ -192,15 +195,8 @@ public class SLogoData extends Observable {
 	}
 	
 	public void showSelectedGraphically(boolean showSelected) {
-		for(Turtle turtle : myTurtles){
-			if(showSelected && !turtle.isSelected()) { 
-				turtle.getNode().setOpacity(Constants.NOT_SELECTED);
-			}
-			else {
-				turtle.getNode().setOpacity(Constants.SELECTED);
-			}
-			turtle.display();
-		}
+		this.showSelected = showSelected;
+		for(Turtle turtle : myTurtles) turtle.setShowSelected(showSelected);
 		notifyObservers();
 	}
 	
@@ -209,4 +205,18 @@ public class SLogoData extends Observable {
 		notifyObservers();
 	}
 	
+	public void setBackgroundIndex(int index) {
+		myBackgroundColorIndex = index;
+		myBackgroundColor = myColors.get(index);
+		notifyObservers();
+	}
+	
+	public void setRoot(Group root) {
+		myRoot = root;
+		notifyObservers();
+	}
+	
+	public Group getRoot() {
+		return myRoot;
+	}
 }

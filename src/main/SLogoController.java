@@ -32,6 +32,7 @@ public class SLogoController {
 		mySlogoData = new SLogoData(firstTurtle);
 		mySlogoData.addObserver(mySlogoView);
 		mySlogoData.addObserver(mySlogoModel);
+		mySlogoData.setRoot(mySlogoView.getTurtleWindow().getRoot());
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
 			if (!mySlogoView.getUserInput().replace("\n", " ").trim().equals(""))

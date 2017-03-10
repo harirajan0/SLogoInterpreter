@@ -46,14 +46,12 @@ public class RegexParser {
 
     // returns the language's type associated with the given text if one exists 
     public String getSymbol (String text) {
-//        final String ERROR = "NO MATCH";
         for (Entry<String, Pattern> entry : mySymbols) {
             if (match(text, entry.getValue())) {
                 return entry.getKey();
             }
         }
         return "PossibleFunction";
-//        return ERROR;
     }
 
     // returns true if the given text matches the given regular expression pattern

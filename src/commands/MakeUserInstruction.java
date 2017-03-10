@@ -21,7 +21,7 @@ public class MakeUserInstruction implements Command {
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		// TODO Auto-generated method 
-//		slogoData.addFunction(params.get(0));
+		slogoData.addFunction(params.get(0));
 		return 0;
 	}
 
@@ -31,7 +31,7 @@ public class MakeUserInstruction implements Command {
 	@Override
 	public int getNumArgs() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 1;
 	}
 
 	/* (non-Javadoc)

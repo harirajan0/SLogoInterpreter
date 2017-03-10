@@ -22,37 +22,30 @@ public class Executor {
 	private RegexParser syntaxParser;
 	private Language myLang;
 	
+	
 	public Executor() {
 		commandFactory = new CommandFactory();
 		syntaxParser = new RegexParser(Language.SYNTAX);
+		
 	}
 	
 	public ASTNode parseTextAsFunction(SLogoData slogoData, List<String> input) {
-		RegexParser parser = new RegexParser(myLang);
+		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
 		String functionName;
-		System.out.println("1");
-		System.out.println(input);
 		if (input.size() == 0) {
 			return null;
 		} else {
-			if (parser.getSymbol(input.get(0)).equals("PossibleFunction")) {
+			if (languageParser.getSymbol(input.get(0)).equals("PossibleFunction")) {
 				functionName = input.get(0);
 				input.remove(0);
-				System.out.println("2");
-				System.out.println(input);
 			} else {
 				return null; //throw exception; illegal function name
 			}
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = getIndexOfBracketMatch(input);
 				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
-				while (listEndIndex >= 0)  {
-					input.remove(0);
-					listEndIndex--;
-				}
-				System.out.println("3");
-				System.out.println(input);
+				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
 			} else {
 				return null; //throw exception; illegal format for defining funciton
@@ -60,12 +53,7 @@ public class Executor {
 			if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = getIndexOfBracketMatch(input);
 				List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
-				while (listEndIndex >= 0)  {
-					input.remove(0);
-					listEndIndex--;
-				}
-				System.out.println("4");
-				System.out.println(input);
+				removeToIndex(input, listEndIndex);
 				arguments.add(parseText(slogoData, block));
 			} else {
 				return null; //throw exception; illegal format for defining funciton
@@ -76,32 +64,26 @@ public class Executor {
 	
 
 	public ASTNode parseText(SLogoData slogoData, List<String> input) throws IllegalArgumentException {
-		RegexParser parser = new RegexParser(myLang);
+		RegexParser languageParser = new RegexParser(myLang);
 		List<ASTNode> arguments = new ArrayList<>();
-		if (input.size() == 0) {
-			return null;
-		} else {
+		if (input.size() == 0) return null;
+		else {
 			if (syntaxParser.getSymbol(input.get(0)).equals("Command")) {
-				if (parser.getSymbol(input.get(0)).equals("PossibleFunction")) {
+				if (languageParser.getSymbol(input.get(0)).equals("PossibleFunction")) {
 					ASTNode function = slogoData.getFunction(input.get(0));
 					input.remove(0);
 					if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 						int listEndIndex = getIndexOfBracketMatch(input);
 						List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 						function.addArgument(parseText(slogoData, block));
-						while (listEndIndex >= 0)  {
-							input.remove(0);
-							listEndIndex--;
-						}
+						removeToIndex(input, listEndIndex);
 					}
 					return function;
 				}
-				Command cmd = commandFactory.getCommand(parser.getSymbol(input.get(0)));
+				Command cmd = commandFactory.getCommand(languageParser.getSymbol(input.get(0)));
 				input.remove(0);
 				if (cmd.getClass().getSimpleName().equals("MakeUserInstruction")) {
 					arguments.add(parseTextAsFunction(slogoData, input));
-					System.out.println("5");
-					System.out.println(input);
 				}
 				while (input.size() > 0) {
 					if (cmd.isMathCommand()) {
@@ -126,10 +108,7 @@ public class Executor {
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
 				int listEndIndex = getIndexOfBracketMatch(input);
 				List<String> block = new ArrayList<>(input.subList(1, listEndIndex));
-				while (listEndIndex >= 0)  {
-					input.remove(0);
-					listEndIndex--;
-				}
+				removeToIndex(input, listEndIndex);
 				while (block.size() > 0) {
 					arguments.add(parseText(slogoData, block));
 				}
@@ -156,6 +135,13 @@ public class Executor {
 	
 	public void setLanguage(Language lang) {
 		myLang = lang;
+	}
+	
+	private void removeToIndex(List<String> list, int index) {
+		while (index >= 0) {
+			list.remove(0);
+			index--;
+		}
 	}
 
 }

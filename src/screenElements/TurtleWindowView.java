@@ -46,7 +46,7 @@ public class TurtleWindowView {
 		ArrayList<Turtle> allTurtles = (ArrayList<Turtle>) myTurtles;
 	
 		for(int currTurtle = 0; currTurtle < allTurtles.size(); currTurtle++){
-			Tooltip.install(allTurtles.get(currTurtle).getClickSensorNode(), new Tooltip(allTurtles.get(currTurtle).getTurtleInfo().toString()));
+			Tooltip.install(allTurtles.get(currTurtle).getNode(), new Tooltip(allTurtles.get(currTurtle).getTurtleInfo().toString()));
 			
 		}
 	}

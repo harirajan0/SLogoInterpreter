@@ -28,7 +28,7 @@ import turtle.Turtle;
 
 /**
  * @author harirajan
- * @author Belal Taher
+ *
  */
 public class SLogoController {
 
@@ -36,7 +36,7 @@ public class SLogoController {
 	private SLogoModel mySlogoModel;
 	private SLogoData mySlogoData;
 
-	public SLogoController(Stage s){
+	public SLogoController(Stage s) {
 		mySlogoView = new SLogoView(s);
 		Turtle firstTurtle = new Turtle(mySlogoView.getTurtleWindow().getRoot(), 1);
 		mySlogoModel = new SLogoModel();

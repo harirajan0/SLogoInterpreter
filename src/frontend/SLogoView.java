@@ -5,8 +5,6 @@ import java.util.Observer;
 import constants.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -54,20 +52,73 @@ public class SLogoView implements Observer {
 	private Button paletteOpener;
 
 	public SLogoView(Stage s) {
+		initializePalette();
 		myRoot = new Group();
 		topVBox = new VBox();
 		myCommandPrompt = new CommandPromptView();
 		myVariablesView = new VariablesView();
 		myBorderPane = new BorderPane();
 		myTurtleWindow = new TurtleWindowView();
+		Text header = new Text(Constants.APPLICATION_TITLE);
+		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
+		myMenuBar = new MenuView(s);
+		initializeMenuBarItems();
+		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
+		setUpBorderPane();
+		myRoot.getChildren().addAll(myBorderPane);
+		displayStage(s);
+	}
+
+	private void setUpBorderPane() {
+		myBorderPane.setBottom(myCommandPrompt.getNode());
+		myBorderPane.setLeft(paletteOpener);
+		myBorderPane.setRight(myVariablesView.getNode());
+		myBorderPane.setCenter(myTurtleWindow.getNode());
+		myBorderPane.setTop(topVBox);
+	}
+
+	private void displayStage(Stage s) {
+		myScene = new Scene(myRoot, Constants.WINDOW_SIZE, Constants.WINDOW_SIZE, Constants.BACKGROUND_COLOR);
+		s.setScene(myScene);
+		s.setTitle(Constants.APPLICATION_TITLE);
+		s.show();
+	}
+
+
+	public CommandPromptView getCommandBox() {
+		return myCommandPrompt;
+	}
+
+	public TurtleWindowView getTurtleWindow() {
+		return myTurtleWindow;
+	}
+
+	public Button getExecuteButton() {
+		return myCommandPrompt.getExecuteButton();
+	}
+
+	public String getUserInput() {
+		return myCommandPrompt.getUserInput();
+	}
+
+	public void addCommandToHistory(String cmd) {
+		myCommandPrompt.addCommandToHistory(cmd);
+	}
+
+	public void clearCommandPrompt() {
+		myCommandPrompt.setCommandPromptText("");
+	}
+	
+	private void initializePalette(){
 		myPalette=new Palette();
 		paletteOpener=new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("palettePrompt"));
 		paletteOpener.setOnAction(event ->  {
 	    	myPalette.show();
 	    });
-		Text header = new Text(Constants.APPLICATION_TITLE);
-		header.setFont(new Font(Constants.TITLE_FONT, Constants.TITLE_FONT_SIZE));
-		myMenuBar = new MenuView(s);
+	}
+
+	
+	private void initializeMenuBarItems(){
 		for (int i = 0; i < myMenuBar.getMenuItems().size(); i++) {
 			if (myMenuBar.getMenuItems().get(i).getText()
 					.equals(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"))) {
@@ -133,54 +184,8 @@ public class SLogoView implements Observer {
 		languageMenu.setOnAction(event -> {
 			myLanguageSelector.show();
 		});
-
-		topVBox.getChildren().addAll(myMenuBar.getNode(), header);
-		setUpBorderPane();
-		myRoot.getChildren().addAll(myBorderPane);
-		displayStage(s);
 	}
-
-	private void setUpBorderPane() {
-		myBorderPane.setBottom(myCommandPrompt.getNode());
-		myBorderPane.setLeft(paletteOpener);
-		myBorderPane.setRight(myVariablesView.getNode());
-		myBorderPane.setCenter(myTurtleWindow.getNode());
-		myBorderPane.setTop(topVBox);
-	}
-
-	private void displayStage(Stage s) {
-		myScene = new Scene(myRoot, Constants.WINDOW_SIZE, Constants.WINDOW_SIZE, Constants.BACKGROUND_COLOR);
-		s.setScene(myScene);
-		s.setTitle(Constants.APPLICATION_TITLE);
-		s.show();
-	}
-
-	// FIX THIS
-
-	public CommandPromptView getCommandBox() {
-		return myCommandPrompt;
-	}
-
-	public TurtleWindowView getTurtleWindow() {
-		return myTurtleWindow;
-	}
-
-	public Button getExecuteButton() {
-		return myCommandPrompt.getExecuteButton();
-	}
-
-	public String getUserInput() {
-		return myCommandPrompt.getUserInput();
-	}
-
-	public void addCommandToHistory(String cmd) {
-		myCommandPrompt.addCommandToHistory(cmd);
-	}
-
-	public void clearCommandPrompt() {
-		myCommandPrompt.setCommandPromptText("");
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -194,8 +199,6 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(myTurtleWindow.getBackgroundRectangle().getFill());
 		myTurtleWindow.setToolTips();
-
-		//myTurtleWindow.changeBackgroundColor(myPaletteView.getColorAtIndex(mySlogoData.getBackgroundColorIndex()));
 	}
 
 }

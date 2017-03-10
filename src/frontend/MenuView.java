@@ -36,6 +36,6 @@ public class MenuView {
 	}
 	
 	public MenuItem getLanguageMenuItem() {
-		return myMenuBar.getMenus().get(myMenuBar.getMenus().indexOf("Language"));
+		return myMenuBar.getMenus().get(myMenuBar.getMenus().indexOf(Constants.DEFAULT_RESOURCE_BUNDLE.getString("actualWordlLanguage")));
 	}
 }

@@ -7,9 +7,7 @@ import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Line;
-
-import java.util.List;
+import javafx.scene.paint.Color;
 
 
 /**

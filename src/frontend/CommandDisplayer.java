@@ -1,4 +1,4 @@
-package screenElements;
+package frontend;
 
 import java.net.URL;
 

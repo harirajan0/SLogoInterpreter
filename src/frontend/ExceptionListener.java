@@ -1,11 +1,6 @@
-package screenElements;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+package frontend;
 import java.util.Arrays;
-import java.util.Properties;
-import java.util.ResourceBundle;
+
 import constants.Constants;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

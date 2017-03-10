@@ -1,15 +1,13 @@
 package turtle;
 import java.util.List;
-import java.util.Optional;
 
-import constants.Constants;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 /**
@@ -80,6 +78,7 @@ public class Turtle {
 	
 	public void display() {
 		for (Line l : myTurtleModel.calculateLinesToDraw()) {
+			l.setFill(myTurtleModel.getPenColor());
 			myTurtleView.getRoot().getChildren().add(l);
 		}
 		myTurtleView.display(myTurtleModel.getNextTurtleInfo().getX(), 
@@ -126,6 +125,16 @@ public class Turtle {
 		myTurtleModel.getNextTurtleInfo().setVisible(newVisible);
 	}
 
-
+	public void setPenColor(int index, Color newColor) {
+		myTurtleModel.setPenColor(index, newColor);
+	}
+	
+	public void setPenWidth(double newVal) {
+		myTurtleModel.setPenWidth(newVal);
+	}
+	
+	public int getColorIndex() {
+		return myTurtleModel.getColorIndex();
+	}
 	
 }

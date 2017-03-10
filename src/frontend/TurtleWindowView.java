@@ -1,7 +1,7 @@
 /**
  * 
  */
-package screenElements;
+package frontend;
 
 import java.util.ArrayList;
 import java.util.List;

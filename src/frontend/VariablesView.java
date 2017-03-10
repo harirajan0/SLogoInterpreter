@@ -1,22 +1,14 @@
-package screenElements;
+package frontend;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import backend.Variable;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class VariablesView{
@@ -31,14 +23,20 @@ public class VariablesView{
 	
 	public VariablesView() {
 		myVBox = new VBox();
+		myVBox.setAlignment(Pos.TOP_CENTER);
+		Text title = new Text("Your Variables");
+		title.setFont(new Font("Verdana", 20));
+		myVBox.getChildren().add(title);
+		myVBox.setPrefWidth(200);
 		currentVars = new ArrayList<Variable>();
 		updateVariableDisplay();
 	}
 	
 	public void setVariables(List<Variable> newVariables) {
+		myVBox.getChildren().remove(1, myVBox.getChildren().size());
 		currentVars = newVariables;
+		updateVariableDisplay();
 	}
-    
     
     public void updateVariableDisplay(){
     	//changes value of variable on screen if modified by backend
@@ -47,8 +45,11 @@ public class VariablesView{
     
     public void displayVariable(Variable var) {
     	HBox variableDisplay = new HBox();
+    	variableDisplay.setPrefWidth(175);
+    	variableDisplay.setAlignment(Pos.BASELINE_RIGHT);
     	Text variableName = new Text(var.getName());
     	TextField variableValue = new TextField(String.valueOf(var.getValue()));
+    	variableValue.setPrefWidth(75);
     	variableDisplay.getChildren().addAll(variableName, variableValue);
     	myVBox.getChildren().add(variableDisplay);
     	

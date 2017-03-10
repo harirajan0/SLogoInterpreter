@@ -1,13 +1,18 @@
-package screenElements;
+package frontend;
 
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class CommandPromptView {
 	/**
@@ -25,6 +30,8 @@ public class CommandPromptView {
 	private BorderPane myBorderPane;
 	private VBox myVBox;
 	private TextArea myCommandEntry;
+	
+	private HBox turtleMovers;
 	private Button forwardButton;
 	private Button rightButton;
 	private Button leftButton;
@@ -55,14 +62,25 @@ public class CommandPromptView {
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
 		createMovingButtons();
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, rightButton, leftButton, forwardButton, backButton);
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers);
 	}
 	
 	private void createMovingButtons(){
-		forwardButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("forwardLabel")));
-		rightButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("rightLabel")));;
-		leftButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("leftLabel")));;
-		backButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backLabel")));;
+		turtleMovers = new HBox();
+		backButton = createButtonWithImage(Constants.BACK_IMAGE);
+		forwardButton = createButtonWithImage(Constants.FORWARD_IMAGE);
+		leftButton = createButtonWithImage(Constants.LEFT_ROTATE_IMAGE);
+		rightButton = createButtonWithImage(Constants.RIGHT_ROTATE_IMAGE);
+		turtleMovers.getChildren().addAll(backButton, forwardButton, leftButton, rightButton);
+	}
+	
+	private Button createButtonWithImage(String source) {
+		Button button = new Button();
+		ImageView buttonImage = new ImageView(new Image(source));
+		buttonImage.setFitHeight(Constants.SMALL_BUTTON_SIZE);
+		buttonImage.setFitWidth(Constants.SMALL_BUTTON_SIZE);
+		button.setGraphic(buttonImage);
+		return button;
 	}
 	
 	private void setUpCommandHistory() {
@@ -72,6 +90,19 @@ public class CommandPromptView {
 		myCommandHistory.setOnAction((event) -> {
 			myCommandEntry.setText(myCommandHistory.getSelectionModel().getSelectedItem());
 		});
+	}
+	
+	public void setForwards(EventHandler<ActionEvent> handler) {
+		forwardButton.setOnAction(handler);
+	}
+	public void setBackwards(EventHandler<ActionEvent> handler) {
+		backButton.setOnAction(handler);
+	}
+	public void setRotateLeft(EventHandler<ActionEvent> handler) {
+		leftButton.setOnAction(handler);
+	}
+	public void setRotateRight(EventHandler<ActionEvent> handler) {
+		rightButton.setOnAction(handler);
 	}
 	
 	public void addCommandToHistory(String cmd) {

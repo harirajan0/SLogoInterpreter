@@ -7,14 +7,10 @@ import backend.SLogoModel;
 import constants.Constants;
 
 import frontend.SLogoView;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.paint.Color;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.stage.Stage;
+import languages.LanguageFactory;
 import turtle.Turtle;
 
 /**
@@ -40,27 +36,10 @@ public class SLogoController {
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 		});
-		setUpMovementButtons();
+		
+		setupEventHandlers();
 	}
 
-	public void setUpMovementButtons(){
-		
-		mySlogoView.getCommandBox().getForwardButton().setOnAction(action -> {
-			mySlogoData.moveSelectedTurtles(Constants.FORWARD_BUTTON_DISTANCE, 0);
-		});
-		
-		mySlogoView.getCommandBox().getRightRotate().setOnAction(action -> {
-			mySlogoData.moveSelectedTurtles(0, Constants.RIGHT_BUTTON_ROTATION);
-		});
-		
-		mySlogoView.getCommandBox().getLeftRotate().setOnAction(action -> {
-			mySlogoData.moveSelectedTurtles(0, Constants.LEFT_BUTTON_ROTATION);
-		});
-		
-		mySlogoView.getCommandBox().getBackwardsButton().setOnAction(action -> {
-			mySlogoData.moveSelectedTurtles(Constants.BACKWARDS_BUTTON_DISTANCE, 0);
-		});
-	}
 	
 	public SLogoView getView() {
 		return mySlogoView;
@@ -69,5 +48,38 @@ public class SLogoController {
 	public SLogoModel getModel() {
 		return mySlogoModel;
 	}
+	
+	private void setupEventHandlers() {
+		mySlogoView.getCommandBox().setForwards(e -> mySlogoData.moveSelectedTurtles(Constants.FORWARD_BUTTON_DISTANCE, 0));
+		mySlogoView.getCommandBox().setBackwards(e -> mySlogoData.moveSelectedTurtles(Constants.BACKWARDS_BUTTON_DISTANCE, 0));
+		mySlogoView.getCommandBox().setRotateLeft(e -> mySlogoData.moveSelectedTurtles(0, Constants.LEFT_BUTTON_ROTATION));
+		mySlogoView.getCommandBox().setRotateRight(e -> mySlogoData.moveSelectedTurtles(0, Constants.RIGHT_BUTTON_ROTATION));
+		mySlogoView.getBackgroundColorPicker().setOnAction(e -> mySlogoData.changeBackgroundColor(mySlogoView.getBackgroundColorPicker().getValue()));
+		mySlogoView.getLanguageChoiceBox().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				mySlogoData.setLanguage(newValue);
+			}
+			
+    	});
+		mySlogoView.getPenColorChoiceBox().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				mySlogoData.setPenColor((int) newValue);
+			}
+    	});
+		mySlogoView.getPenThicknessSlider().valueProperty().addListener(new ChangeListener<Number>(){
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				mySlogoData.setPenWidth((double) newValue);
+			}
+    	});
+		for (int i = 0; i < mySlogoView.getPaletteColorPickers().size(); i++) setUpColorPickerEventHandlers(i);
+	}
 
+	public void setUpColorPickerEventHandlers(int index) {
+		mySlogoView.getPaletteColorPickers().get(index).setOnAction(e -> 
+				mySlogoData.changeColor(index, mySlogoView.getPaletteColorPickers().get(index).getValue()));
+		
+	}
 }

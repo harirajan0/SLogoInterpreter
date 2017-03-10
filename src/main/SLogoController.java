@@ -27,7 +27,7 @@ public class SLogoController {
 		mySlogoData.addObserver(mySlogoModel);
 		mySlogoModel.setLanguage(mySlogoData.getLanguage());
 		mySlogoView.getExecuteButton().setOnAction(action -> {
-			mySlogoModel.parse(mySlogoView.getUserInput().trim().replace("\n", " "));
+			mySlogoModel.parse(mySlogoView.getUserInput().replace("\n", " ").trim());
 			mySlogoView.addCommandToHistory(mySlogoView.getUserInput());
 			mySlogoView.clearCommandPrompt();
 		});

@@ -22,6 +22,7 @@ public class TurtleView {
 		myTurtleImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(Constants.TURTLE_IMAGE)));
 		myTurtleImage.setFitWidth(Constants.TURTLE_SIZE);
 		myTurtleImage.setFitHeight(Constants.TURTLE_SIZE);
+		myTurtleImage.managedProperty().bind(myTurtleImage.visibleProperty());
 		myRoot = root;
 	}
 	

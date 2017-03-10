@@ -8,7 +8,6 @@ public class HideTurtle extends TurtleCommandNoParams {
 	@Override
 	public double execute(Turtle turtle) throws IllegalArgumentException {
 		turtle.setVisible(false);
-		turtle.display();
 		return 0;
 	}
 	

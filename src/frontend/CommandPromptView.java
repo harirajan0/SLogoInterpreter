@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 import com.sun.prism.paint.Color;
 
+import constants.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -34,6 +35,11 @@ public class CommandPromptView {
 	private BorderPane myBorderPane;
 	private VBox myVBox;
 	private TextArea myCommandEntry;
+	
+	private Button forwardButton;
+	private Button rightButton;
+	private Button leftButton;
+	private Button backButton;
 	
 	ObservableList<String> listOfCommands;
 	
@@ -56,10 +62,19 @@ public class CommandPromptView {
 		myVBox = new VBox();
 		myVBox.setPrefWidth(200);
 		myExecuteButton = new Button("Execute");
+		createMovingButtons();
 		setUpCommandHistory();
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory);
+		
+		myVBox.getChildren().addAll(myExecuteButton, forwardButton, backButton, rightButton, leftButton, myCommandHistory);
+	}
+	
+	private void createMovingButtons(){
+		forwardButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("forwardLabel")));
+		rightButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("rightLabel")));;
+		leftButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("leftLabel")));;
+		backButton = new Button(new String(Constants.DEFAULT_RESOURCE_BUNDLE.getString("backLabel")));;
 	}
 	
 	private void setUpCommandHistory() {
@@ -90,6 +105,22 @@ public class CommandPromptView {
 	
 	public BorderPane getNode() {
 		return myBorderPane;
+	}
+	
+	public Button getForwardButton(){
+		return forwardButton;
+	}
+	
+	public Button getBackwardsButton(){
+		return backButton;
+	}
+	
+	public Button getRightRotate(){
+		return rightButton;
+	}
+	
+	public Button getLeftRotate(){
+		return leftButton;
 	}
 	
 	public void setCommandPromptText(String text) {

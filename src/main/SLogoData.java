@@ -105,6 +105,14 @@ public class SLogoData extends Observable {
 		return myLanguage;
 	}
 	
+	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
+		for (Turtle turtle : myTurtles) {
+			if (turtle.isSelected()) {
+				System.out.println("works");
+			}
+		}
+	}
+	
 //	public void moveTurtle(int turtleIndex, double newX, double newY);
 
 }

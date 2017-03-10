@@ -1,5 +1,6 @@
 package frontend;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.SLogoData;
+import turtle.Turtle;
 
 public class SLogoView implements Observer {
 	
@@ -51,6 +53,7 @@ public class SLogoView implements Observer {
 				displayPalettePicker();
 			}
 		});
+
 		
 		topVBox = new VBox();
 		Text header = new Text(Constants.APPLICATION_TITLE);
@@ -60,6 +63,8 @@ public class SLogoView implements Observer {
 		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);
 		displayStage(s);
+		
+		
 		
 //		ExceptionListener errorBox=new ExceptionListener();
 	}
@@ -114,6 +119,8 @@ public class SLogoView implements Observer {
 	}
 	
 	//FIX THIS
+	
+	
 	
 	public CommandPromptView getCommandBox() {
 		return myCommandPrompt;

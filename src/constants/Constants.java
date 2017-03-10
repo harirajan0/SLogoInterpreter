@@ -43,4 +43,10 @@ public class Constants {
 	//Palette Picker constants
 	public static final String PALETTE_PICKER_NAME = "Pick new colors for the palette";
 	public static final int PALETTE_PICKER_SIZE = 400;
+	
+	//Button movement values
+	public static final int FORWARD_BUTTON_DISTANCE = 10;
+	public static final int BACKWARDS_BUTTON_DISTANCE = -FORWARD_BUTTON_DISTANCE;
+	public static final int RIGHT_BUTTON_ROTATION = 10;
+	public static final int LEFT_BUTTON_ROTATION = -RIGHT_BUTTON_ROTATION;
 }

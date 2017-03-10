@@ -117,4 +117,7 @@ public class ASTNode {
 	public void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
 	}
+	public boolean isBlock() {
+		return isBlock();
+	}
 }

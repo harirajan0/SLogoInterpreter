@@ -143,4 +143,8 @@ public class SLogoData extends Observable {
 		return myLanguage;
 	}
 	
+	public List<ASTNode> getFunctions() {
+		return myFunctions;
+	}
+	
 }

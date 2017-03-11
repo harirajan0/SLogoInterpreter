@@ -26,12 +26,15 @@ import constants.Constants;
  *
  */
 public class PaletteView {
-	
 	VBox myVBox;
 	List<ColorPicker> myPickers;
 	
 	@SuppressWarnings("serial")
 	protected PaletteView() {
+		/** generate the palette view with
+		 * the initial color values determined by
+		 * info specified in constants
+		 */
 		myVBox = new VBox();
 		myVBox.setAlignment(Pos.CENTER);
 		myPickers = new ArrayList<ColorPicker>() {{
@@ -54,11 +57,17 @@ public class PaletteView {
 	}
 	
 	protected Node getNode() {
+		/** get the initialized palette */
 		return myVBox;
 	}
 	
 
 	protected List<ColorPicker> getColorPickers() {
+		/** get the list of color pickers
+		 * (each color in the palette has its color picker,
+		 * from which the value of the currently extracted color can
+		 * be gotten)
+		 *  */
 		return myPickers;
 	}
 

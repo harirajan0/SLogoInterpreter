@@ -23,6 +23,9 @@ public class ExceptionAlert {
 	}
 
 	public void receiveAndDisplayError(Exception e){
+		/** receive an error and display the error type 
+		 *  and stacktrace in a popup window
+		 **/
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setContentText(e.toString());
 		Label label = new Label(Constants.DEFAULT_RESOURCE_BUNDLE.getString("exceptionStackTrace"));

@@ -33,7 +33,7 @@ import constants.Constants;
  *  This class contains all the elements on the screen (we initialize all
  *  screen elements from here).
  *  This class also contains an instance of SLogoData, which holds the
- *  information about the turtles, pen info, etc. Using observables,
+ *  information about the turtles, pen info, etc. Using observers,
  *  we update the display is mySlogoData changes from the backend,
  *  and backend receives updates if information is changed from 
  *  the frontend (ex: if pen color or variable values are changed).
@@ -135,7 +135,7 @@ public class SLogoView implements Observer {
 		myBorderPane.setBottom(myCommandPrompt.getNode());
 		myBorderPane.setLeft(myLeftScrollPane);
 		myBorderPane.setRight(rightScrollPane);
-		myBorderPane.setCenter(myTurtleWindow.getNode());
+		myBorderPane.setCenter(myTurtleWindow.getRoot());
 		myBorderPane.setTop(topVBox);
 	}
 
@@ -147,75 +147,100 @@ public class SLogoView implements Observer {
 	}
 	
 	public ColorPicker getBackgroundColorPicker() {
+		/** get the background color picker */
 		return myBackgroundColorPicker;
 	}
 
 	public CommandPromptView getCommandBox() {
+		/** get the command box */
 		return myCommandPrompt;
 	}
 
 	public TurtleWindowView getTurtleWindow() {
+		/** get the turtle window */
 		return myTurtleWindow;
 	}
 
 	public Button getExecuteButton() {
+		/** get the execute button */
 		return myCommandPrompt.getExecuteButton();
 	}
 
 	public String getUserInput() {
+		/** get the user's input in the command line as a string */
 		return myCommandPrompt.getUserInput();
 	}
 
 	public void addCommandToHistory(String cmd) {
+		/** add string to our command prompt's history */
 		myCommandPrompt.addCommandToHistory(cmd);
 	}
 
 	public void clearCommandPrompt() {
+		/** clear the command prompt */
 		myCommandPrompt.setCommandPromptText("");
 	}
 	
 	public ChoiceBox<String> getPenColorChoiceBox() {
+		/** get the pen color chooser */
 		return myPenColorChoiceBox;
 	}
 	
 	public Slider getPenThicknessSlider() {
+		/** get the 'choose pen thickness slider' */
 		return myPenThicknessSlider;
 	}
 	
 	public List<ColorPicker> getPaletteColorPickers() {
+		/** get the list of color pickers contained in the palette
+		 * (the currently selected color can be retrieved within each color picker) */
 		return myPaletteView.getColorPickers();
 	}
 	
 	public ChoiceBox<String> getLanguageChoiceBox() {
+		/** get the language choice box */
 		return myMenuBar.getLanguageChoiceBox();
 	}
 	
 	public CheckBox getGraphicalDisplayButton(){
+		/** get the checkbox which enables us to display selected
+		 * turtles differently from non-selected ones */
 		return myCommandPrompt.getGraphicalDisplayButton();
 	}
 	
 	public boolean getShowSelected() {
+		/** get the boolean value that tells us whether to display selected turtles differently */
 		return showSelectedGraphically;
 	}
 	
 	public void toggleShowSelection() {
+		/** change this boolean value that tells us whether to display selected turtles differently
+		 * (set true to false and vice-versa) */
 		showSelectedGraphically = !showSelectedGraphically;
 	}
 
 	public Button getVariableUpdateButton() {
+		/** get the button in the variables view that updates variable values with what the user has typed graphically */
 		return myVariablesView.getUpdateButton();
 	}
 	
 	public VariablesView getVariablesView() {
+		/** get our entire variables view */
 		return myVariablesView;
 	}
 	
 	public Button getTurtleImageSelectionButton() {
+		/** get the button that allows us to chose a new image for the turtle */
 		return myCommandPrompt.getTurtleImageSelectionButton();
 	}
 	
 	@Override
 	public void update(Observable slogoData, Object arg) {
+		/** 
+		 * Using Observable, we make sure that we are always displaying the variables
+		 * contained in SLogoData, the turtles contained in SlogoData, and the background
+		 * in SLogoData.
+		 */
 		mySlogoData = (SLogoData) slogoData;
 		myVariablesView.setVariables(mySlogoData.getVariables());
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());

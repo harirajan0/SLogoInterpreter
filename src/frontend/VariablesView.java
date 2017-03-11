@@ -45,6 +45,7 @@ public class VariablesView{
 	}
 	
 	protected void setVariables(List<Variable> newVariables) {
+		/** given a list of variables, display them on the screen */
 		myVBox.getChildren().remove(2, myVBox.getChildren().size());
 		currentVars = newVariables;
 		updateVariableDisplay();
@@ -67,14 +68,18 @@ public class VariablesView{
     }
     
     protected VBox getNode() {
+		/** get the display object containing all the displayed variables */
     	return myVBox;
     }
     
     protected Button getUpdateButton() {
+		/** get the 'update variables' button */
     	return myUpdateButton;
     }
     
     public void updateVariables() {
+		/** updates variables being displayed and displays new variables if any new ones
+		 * have been defined (through the command line) */
     	List<Variable> newVars = new ArrayList<>();
     	for (Node node : myVBox.getChildren()) {
     		if (node.getClass().isInstance(new HBox())) {
@@ -92,6 +97,7 @@ public class VariablesView{
     }
     
     public List<Variable> getVariables() {
+		/** get a list of the variables */
     	return currentVars;
     }
   }

@@ -1,7 +1,6 @@
 package frontend;
 
 import java.util.ArrayList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
@@ -23,16 +22,16 @@ public class MenuView {
 	private ChoiceBox<String> myLanguageChoiceBox;
 	
 	protected MenuView() {
+		/** constructor that creates the menu bar and adds menu items to the menu bar */
 		myMenuBar = new MenuBar();
 		setUpMenuBarItems();
 		myMenuBar.getMenus().addAll(myHelpMenu, myLanguagesMenu);
 	}
 
-	/**
-	 * 
-	 */
+
 	@SuppressWarnings("serial")
 	private void setUpMenuBarItems() {
+		/** set up the items in the menu bar */
 		myHelpMenu = new Menu(Constants.DEFAULT_RESOURCE_BUNDLE.getString("helpPrompt"));
 		MenuItem help = new MenuItem(Constants.DEFAULT_RESOURCE_BUNDLE.getString("listPrompt"));
 	    myHelpMenu.getItems().add(help);
@@ -55,10 +54,12 @@ public class MenuView {
 	}
 
 	protected MenuBar getNode() {
+		/** get the menu bar that has been set up*/
 		return myMenuBar;
 	}
 
 	protected ChoiceBox<String> getLanguageChoiceBox() {
+		/** get the 'select language' choice box */
 		return myLanguageChoiceBox;
 	}
 }

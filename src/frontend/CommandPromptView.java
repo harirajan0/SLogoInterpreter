@@ -102,64 +102,77 @@ public class CommandPromptView {
 	}
 	
 	public void setForwards(EventHandler<ActionEvent> handler) {
+		/** set action to be performed if forward button is clicked */
 		forwardButton.setOnAction(handler);
 	}
 	public void setBackwards(EventHandler<ActionEvent> handler) {
+		/** set action to be performed if backwards button is clicked */
 		backButton.setOnAction(handler);
 	}
 	public void setRotateLeft(EventHandler<ActionEvent> handler) {
+		/** set action to be performed if rotate left button is clicked */
 		leftButton.setOnAction(handler);
 	}
 	public void setRotateRight(EventHandler<ActionEvent> handler) {
+		/** set action to be performed if rotate right button is clicked */
 		rightButton.setOnAction(handler);
 	}
 	
 	public void addCommandToHistory(String cmd) {
+		/** add a command to the history of commands */
 		listOfCommands.add(cmd);
 	}
 
 	public String getUserInput() {
+		/** get the text that the user inputed in the command line */
 		return myCommandEntry.getText();
 	}
-
+	
 	public Button getExecuteButton() {
+		/** get the execute button */
 		return myExecuteButton;
 	}
 	
 	public BorderPane getNode() {
+		/** get the entire border pane */
 		return myBorderPane;
 	}
 	
 	public Button getForwardButton(){
+		/** get the forward button */
 		return forwardButton;
 	}
 	
 	public Button getBackwardsButton(){
+		/** get the backwards button */
 		return backButton;
 	}
 	
 	
 	public Button getRightRotate(){
+		/** get the rotate right button */
 		return rightButton;
 	}
 	
 	public Button getLeftRotate(){
+		/** get the rotate left button */
 		return leftButton;
 	}
 	
-	public Button getFileLoader(){
-		return myTurtleImageSelectionButton;
-	}
 	
 	public CheckBox getGraphicalDisplayButton(){
+		/** get the button that allows us to toggle whether to display active turtles differently
+		 * from non-active ones*/
 		return showSelectedTurtlesButton;
 	}
 	
 	public void setCommandPromptText(String text) {
+		/** set a different piece of text inside the command prompt view */
 		myCommandEntry.setText(text);
 	}
 	
 	protected Button getTurtleImageSelectionButton() {
+		/** get the 'load new image file' button */
 		return myTurtleImageSelectionButton;
 	}
 	

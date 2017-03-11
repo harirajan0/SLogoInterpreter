@@ -18,6 +18,7 @@ import constants.Constants;
 public class CommandDisplayer extends Stage {
 	
 	protected CommandDisplayer() {
+		/** display the html page (name of file to use defined in resource file) */
 		URL urlHello = getClass().getResource(Constants.DEFAULT_RESOURCE_BUNDLE.getString("commandList"));
 		WebView browser = new WebView();
 		WebEngine webEngine = browser.getEngine();

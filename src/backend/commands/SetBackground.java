@@ -8,6 +8,7 @@ import java.util.List;
 import backend.ASTNode;
 import backend.SLogoData;
 import backend.command_abstraction.Command;
+import constants.Constants;
 
 /**
  * @author harirajan
@@ -15,33 +16,27 @@ import backend.command_abstraction.Command;
  */
 public class SetBackground implements Command {
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, backend.SLogoData)
-	 */
+
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		 // FOR YOU ALEX: IF PARAMS.GET(0).EVALUATE IS NOT 0,1,2, OR 3, THROW AN ERROR
+
 		int index = (int) params.get(0).evaluate();
+		
+		if(index < 0 || index > 3){
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("SetColorError"));
+		}
 		slogoData.setBackgroundIndex(index);
 		return index;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
-	public int getNumArgs() {
-		// TODO Auto-generated method stub
+	public int getMinNumArgs() {
 		return 1;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
+
 	@Override
 	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

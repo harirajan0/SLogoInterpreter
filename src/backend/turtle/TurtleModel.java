@@ -14,6 +14,8 @@ import constants.Constants;
 /**
  * @author harirajan
  *
+ * This class contains instances of TurtleInfo and contains some basic information about the Turtle, but its
+ * implementation is mostly hidden to the rest of the program
  */
 public class TurtleModel {
 

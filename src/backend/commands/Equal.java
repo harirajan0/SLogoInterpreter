@@ -13,9 +13,6 @@ import constants.Constants;
  */
 public class Equal extends MathCommandTwoParams {
 
-	/* (non-Javadoc)
-	 * @see commands.Command#execute(java.util.List)
-	 */
 	@Override
 	public double execute(List<Double> params) throws IllegalArgumentException {
 

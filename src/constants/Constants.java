@@ -9,6 +9,11 @@ import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+/**
+ * 
+ * This class contains some program-wide constants that need to be accessed from across the program
+ *
+ */
 public class Constants {
 	
 	//Application constants

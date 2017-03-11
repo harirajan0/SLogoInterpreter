@@ -5,7 +5,7 @@ import java.util.List;
 import backend.command_abstraction.TurtleCommandOneParam;
 import backend.turtle.Turtle;
 
-public class Right extends TurtleCommandOneParam {//TurtleOneParam?
+public class Right extends TurtleCommandOneParam {
 
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

@@ -10,13 +10,10 @@ import backend.turtle.Turtle;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
  */
 public class Forward extends TurtleCommandOneParam {
 
-	/* (non-Javadoc)
-	 * @see commands.Command#execute(java.lang.Double[])
-	 */
 	
 	@Override
 	public double execute(List<Double> params, Turtle turtle) throws IllegalArgumentException {

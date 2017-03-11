@@ -11,6 +11,10 @@ import constants.Constants;
 /**
  * @author harirajan
  * @author Alex Boss
+ * 
+ * This class is a node of the abstract syntax tree. It contains information about itself (whether it 
+ * represents a double value, a variable, or a command) and it also contains a List<ASTNode> of arguments.
+ * Subtrees are evaluated recursively from the head node. 
  */
 public class ASTNode {
 
@@ -22,6 +26,16 @@ public class ASTNode {
 	private boolean isBlock;
 	private List<ASTNode> myArguments;	
 	
+	/**
+	 * 
+	 * @param command The command this node represents (if applicable) 
+	 * @param variableName The name of the variable this node represents (if applicable) 
+	 * @param functionName The name of the function this node represents (if applicable) 
+	 * @param value The double value of this node (if applicable) 
+	 * @param arguments The arguments to this node's function (if applicable) 
+	 * @param slogoData The data of the program
+	 * @param isBlock A boolean representing whether this node represents a "block" (a set of things between brackets)
+	 */
 	public ASTNode(Command command, String variableName, String functionName, double value,
 			List<ASTNode> arguments, SLogoData slogoData, boolean isBlock) {
 		myCommand = command;
@@ -33,6 +47,11 @@ public class ASTNode {
 		this.isBlock = isBlock;
 	}
 
+	/**
+	 * 
+	 * @return The double value of the recrusively calculated value of this node. Returns its own double value
+	 * if this node is a double or variable, else evaluates this node's function with its parameters. 
+	 */
 	public double evaluate() {
 		print();
 		if (isBlock) {
@@ -56,6 +75,10 @@ public class ASTNode {
 		return myCommand.execute(myArguments, mySlogoData);
 	}
 
+	/**
+	 * 
+	 * @return The command this node represents, or null.
+	 */
 	public Command getCommand() {
 		return myCommand;
 	}
@@ -67,18 +90,34 @@ public class ASTNode {
 		return myCommand.isMathCommand();
 	}
 	
+	/**
+	 * 
+	 * @return A boolean representing whether this node is a block expression
+	 */
 	public boolean isBlock(){
 		return isBlock;
 	}
 	
+	/**
+	 * 
+	 * @return A boolean representing whether this node represents a variable
+	 */
 	public boolean isVariable(){
 		return (myVariableName != null);
 	}
 
+	/**
+	 * 
+	 * @return The name of the variable this node represents (if applicable) 
+	 */
 	public String getVariableName() {
 		return myVariableName;
 	}
 
+	/**
+	 * 
+	 * @return A list of this node children, or the arguments to its command (if applicable) 
+	 */
 	public List<ASTNode> getArguments() {
 		return myArguments;
 	}
@@ -102,19 +141,6 @@ public class ASTNode {
 	
 	protected void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
-	}
-	
-	
-	//DELETE
-	public String toString() {
-		if (isBlock) { return "BLOCK: " + myArguments.toString(); }
-		if (myCommand != null) return myCommand.getClass().getName();
-		if (isBlock) {
-			return "BLOCK: " + myArguments.toString();
-		}
-		if (myCommand != null)
-			return myCommand.getClass().getName();
-		return String.valueOf(myValue);
 	}
 	
 	private void print() {

@@ -15,7 +15,10 @@ import languages.Language;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
+ * 
+ * This class, based on Duvall's design, matches input strings to regular expressions for all the legal
+ * inputs. 
  */
 
 public class RegexParser {

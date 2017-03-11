@@ -1,7 +1,5 @@
 package backend.commands;
 
-import java.util.List;
-
 import backend.command_abstraction.TurtleCommandNoParams;
 import backend.turtle.Turtle;
 

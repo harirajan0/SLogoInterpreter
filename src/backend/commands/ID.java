@@ -12,12 +12,10 @@ import backend.turtle.Turtle;
  */
 public class ID extends TurtleCommandNoParams {
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.TurtleCommandNoParams#execute(turtle.Turtle)
-	 */
+
 	@Override
 	public double execute(Turtle turtle) {
-		// TODO Auto-generated method stub
+
 		return turtle.getID();
 	}
 

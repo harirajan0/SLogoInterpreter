@@ -8,6 +8,7 @@ import backend.commands.And;
 import backend.commands.Arctangent;
 import backend.commands.Ask;
 import backend.commands.Back;
+import backend.commands.ClearScreen;
 import backend.commands.Cosine;
 import backend.commands.Difference;
 import backend.commands.DoTimes;
@@ -16,11 +17,13 @@ import backend.commands.For;
 import backend.commands.Forward;
 import backend.commands.GetPenColor;
 import backend.commands.Greater;
+import backend.commands.Heading;
 import backend.commands.HideTurtle;
 import backend.commands.Home;
 import backend.commands.ID;
 import backend.commands.If;
 import backend.commands.IfElse;
+import backend.commands.IsPenDown;
 import backend.commands.Left;
 import backend.commands.Less;
 import backend.commands.Log;
@@ -46,17 +49,24 @@ import backend.commands.SetPenColor;
 import backend.commands.SetPenSize;
 import backend.commands.SetPosition;
 import backend.commands.ShowTurtle;
+import backend.commands.Showing;
 import backend.commands.Sine;
 import backend.commands.Sum;
 import backend.commands.Tangent;
 import backend.commands.Tell;
 import backend.commands.Towards;
 import backend.commands.Turtles;
+import backend.commands.XCoordinate;
+import backend.commands.YCoordinate;
+import constants.Constants;
 
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
+ * 
+ * This class returns a new command represented by the String passed in, or throws an exception for a command
+ * that doesn't exist. 
  */
 public class CommandFactory {
 
@@ -74,12 +84,12 @@ public class CommandFactory {
 		case "ShowTurtle" : return new ShowTurtle();
 		case "HideTurtle" : return new HideTurtle();
 		case "Home" : return new Home();
-		case "ClearScreen" : return new Home();
-		case "XCoordinate" : return new Home();
-		case "YCoordinate" : return new Home();
-		case "Heading" : return new Home();
-		case "IsPenDown" : return new Home();
-		case "IsShowing" : return new Home();
+		case "ClearScreen" : return new ClearScreen();
+		case "XCoordinate" : return new XCoordinate();
+		case "YCoordinate" : return new YCoordinate();
+		case "Heading" : return new Heading();
+		case "IsPenDown" : return new IsPenDown();
+		case "IsShowing" : return new Showing();
 		case "Sum" : return new Sum();
 		case "Difference" : return new Difference();
 		case "Product" : return new Product();
@@ -117,7 +127,8 @@ public class CommandFactory {
 		case "Tell" : return new Tell();
 		case "Ask" : return new Ask();
 		default: 
-			throw new IllegalArgumentException("Cannot interpret " + commandString);
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError")
+					+ commandString);
 		}
 	}
 }

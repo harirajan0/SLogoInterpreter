@@ -40,7 +40,7 @@ public class DoTimes extends ControlCommand {
 	}
 
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 2;
 	}
 

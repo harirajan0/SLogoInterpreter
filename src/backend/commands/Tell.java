@@ -18,12 +18,8 @@ import backend.turtle.Turtle;
  */
 public class Tell implements Command {
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#execute(java.util.List, backend.SLogoData)
-	 */
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
 		double turtleNum = 0.0;
 		Set<Integer> selectTurtles = new HashSet<>();
 		int initialTurtleNum = slogoData.getNumTurtles();
@@ -48,21 +44,14 @@ public class Tell implements Command {
 		return turtleNum;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#getNumArgs()
-	 */
 	@Override
-	public int getNumArgs() {
-		// TODO Auto-generated method stub
+	public int getMinNumArgs() {
 		return 1;
 	}
 
-	/* (non-Javadoc)
-	 * @see command_abstractions.Command#isMathCommand()
-	 */
+
 	@Override
 	public boolean isMathCommand() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

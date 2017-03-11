@@ -11,6 +11,8 @@ import constants.Constants;
 /**
  * @author harirajan
  * @author Alex Boss
+ * An implementation of the Command interface specifically for control statements like For, If, DoTimes, Repeat
+ * IfElse
  */
 public abstract class ControlCommand implements Command {
 
@@ -23,7 +25,7 @@ public abstract class ControlCommand implements Command {
 	protected abstract List<Integer> indicesOfRequiredVariables();
 	
 	protected void checkNumArgs(List<ASTNode> params) throws IllegalArgumentException {
-		if (params.size() < getNumArgs()) {
+		if (params.size() < getMinNumArgs()) {
 			throw new IllegalArgumentException(
 					Constants.DEFAULT_RESOURCE_BUNDLE.getString("TooFewArgumentsError") + getClass().getSimpleName());
 		}

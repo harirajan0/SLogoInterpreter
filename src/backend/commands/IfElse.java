@@ -3,6 +3,7 @@
  */
 package backend.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -29,25 +30,20 @@ public class IfElse extends ControlCommand {
 	}
 
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 3;
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
-	 */
+	// Did not have time to implement this
 	@Override
 	protected List<Integer> indicesOfRequiredBlocks() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList();
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
-	 */
+	// Did not have time to implement this
 	@Override
 	protected List<Integer> indicesOfRequiredVariables() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<>();
 	}
+
 }

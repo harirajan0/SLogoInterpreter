@@ -12,7 +12,9 @@ import backend.turtle.Turtle;
 
 /**
  * @author harirajan
- *
+ * @author Alex Boss
+ * 
+ * An extension of the Turtle command for turtle commands that take a minimum of 0 arguments
  */
 public abstract class TurtleCommandNoParams extends TurtleCommand {
 	
@@ -27,7 +29,7 @@ public abstract class TurtleCommandNoParams extends TurtleCommand {
 	}
 	
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 0;
 	}
 	

@@ -24,6 +24,8 @@ import languages.LanguageFactory;
 /**
  * @author harirajan
  *
+ *This class contains the essential data of the program, namely the list of turtles, list of variables,
+ *list of functions, the language, the active colors, and other key information. 
  */
 public class SLogoData extends Observable {
 
@@ -37,6 +39,10 @@ public class SLogoData extends Observable {
 	private Group myRoot;
 	private boolean showSelected;
 
+	/**
+	 * 
+	 * @param firstTurtle The first turtle to create and add to the program
+	 */
 	public SLogoData(Turtle firstTurtle) {
 		myTurtles = new ArrayList<>(Arrays.asList(firstTurtle));
 		myVariables = new ArrayList<>();
@@ -47,6 +53,11 @@ public class SLogoData extends Observable {
 		showSelected = false;
 	}
 	
+	/**
+	 * 
+	 * @param forwardDistance The distance for which to move the selected turtle
+	 * @param headingDiff
+	 */
 	public void moveSelectedTurtles(double forwardDistance, double headingDiff) {
 		for (Turtle turtle : myTurtles) {
 			if (turtle.isSelected()) {
@@ -59,6 +70,12 @@ public class SLogoData extends Observable {
 		notifyObservers();
 	}
 
+	/**
+	 * 
+	 * @param cmd The command to execute
+	 * @param params The params with which to execute the command
+	 * @return The return value of the command and the given parameters
+	 */
 	public double runCommand(TurtleCommand cmd, List<Double> params) {
 		double ret = 0.0;
 		for (Turtle turtle : myTurtles) {
@@ -71,12 +88,18 @@ public class SLogoData extends Observable {
 	}
 
 
+	/**
+	 * Part of the observable interface
+	 */
 	@Override
 	public void addObserver(Observer o) {
 		super.addObserver(o);
 		o.update(this, null);
 	}
 	
+	/**
+	 * Part of the observable interface
+	 */
 	@Override
 	public void notifyObservers() {
 		setChanged();
@@ -93,6 +116,10 @@ public class SLogoData extends Observable {
 				+ functionName);
 	}
 	
+	/**
+	 * 
+	 * @param newFunction Add a new function to list of current user-defined functions
+	 */
 	public void addFunction(ASTNode newFunction) {
 		for (ASTNode func : myFunctions) {
 			if (newFunction.getFunctionName().equals(func.getFunctionName())) {
@@ -103,6 +130,10 @@ public class SLogoData extends Observable {
 		myFunctions.add(newFunction);
 	}
 
+	/**
+	 * 
+	 * @param col New background color
+	 */
 	public void changeBackgroundColor(Color col) {
 		myBackgroundColor = col;
 		notifyObservers();
@@ -117,12 +148,20 @@ public class SLogoData extends Observable {
 				+ name);
 	}
 
+	/**
+	 * 
+	 * @param newVar A variable to be added to the program's list of variables
+	 */
 	public void addVariable(Variable newVar) {
 		deleteVariable(newVar.getName());
 		myVariables.add(newVar);
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param varName The name of the variable to delete from the program
+	 */
 	public void deleteVariable(String varName) {
 		for (Variable var : myVariables) { 
 			if (varName.equals(var.getName())) {
@@ -132,28 +171,53 @@ public class SLogoData extends Observable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param turtle The turtle to be added to the program
+	 */
 	public void addTurtle(Turtle turtle) {
 		myTurtles.add(turtle);
 		notifyObservers();
 	}
 
+	/**
+	 * 
+	 * @return A List of all turtles in the program
+	 * 
+	 */
 	public List<Turtle> getTurtles() {
 		return myTurtles;
 	}
 	
+	/**
+	 * 
+	 * @return The numbers of turtles in the program
+	 */
 	public int getNumTurtles() {
 		return myTurtles.size();
 	}
 	
+	/**
+	 * 
+	 * @return THe list of all variables in the program
+	 */
 	public List<Variable> getVariables() {
 		return myVariables;
 	}
 	
+	/**
+	 * 
+	 * @param lang The new language to which to set the program
+	 */
 	public void setLanguage(String lang) {
 		myLanguage = LanguageFactory.getLang(lang);
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param newVal The desired value of the width of the pen
+	 */
 	public void setPenWidth(Double newVal){
 		for (Turtle turtle : myTurtles) {
 			if (turtle.isSelected()) turtle.setPenWidth(newVal);
@@ -161,6 +225,10 @@ public class SLogoData extends Observable {
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param index The index of the desired color of the pen
+	 */
 	public void setPenColor(int index){
 		for (Turtle turtle : myTurtles) {
 			if (turtle.isSelected())  turtle.setPenColor(index, myColors.get(index));
@@ -168,51 +236,92 @@ public class SLogoData extends Observable {
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @return THe current language of the program
+	 */
 	public Language getLanguage() {
 		return myLanguage;
 	}
 	
+	/**
+	 * 
+	 * @return THe current color of the program
+	 */
 	public Color getBackgroundColor() {
 		return myBackgroundColor;
 	}
 	
+	/**
+	 * 
+	 * @param index The index of the new color (between 0 and 3)
+	 * @param newColor The new color to be added to the palette with the given index
+	 */
 	public void changeColor(int index, Color newColor) {
 		myColors.set(index, newColor);
 		for (Turtle turtle : myTurtles) if (turtle.getColorIndex() == index) turtle.setPenColor(index, newColor);
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param showSelected A boolean that determines whether turtles should be distinguished visually depending
+	 * on whether they are selected 
+	 */
 	public void showSelectedGraphically(boolean showSelected) {
 		this.showSelected = showSelected;
 		for(Turtle turtle : myTurtles) turtle.setShowSelected(showSelected);
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param newVars A List og new variables to replace the current variables in the program
+	 */
 	public void setVariables(List<Variable> newVars) {
 		myVariables = newVars;
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param index The index of the desired background color
+	 */
 	public void setBackgroundIndex(int index) {
 		myBackgroundColorIndex = index;
 		myBackgroundColor = myColors.get(index);
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @param root The Group to become the root of the JavaFX stage
+	 */
 	public void setRoot(Group root) {
 		myRoot = root;
 		notifyObservers();
 	}
 	
+	/**
+	 * 
+	 * @return The Group that is the current root in Javafx
+	 */
 	public Group getRoot() {
 		return myRoot;
 	}
 	
+	/**
+	 * Undraw lines from the screen
+	 */
 	public void clearScreen() {
 		myRoot.getChildren().clear();
 		addTurtle(new Turtle(myRoot, 1));
 	}
 	
+	/**
+	 * 
+	 * @param img The image to replace the images of the currently selected turtles
+	 */ 
 	public void changeImage(Image img) {
 		for (Turtle turtle : myTurtles) if (turtle.isSelected()) turtle.changeImage(img);
 		notifyObservers();

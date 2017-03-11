@@ -11,8 +11,12 @@ import constants.Constants;
 import languages.Language;
 
 /**
- * @author harirajan
- *
+ * 
+ * @author Alex Boss
+ * @author Hari Rajan
+ * 
+ * This class handles parsing input strings and building and executing the corresponding logical trees. We decided
+ * to research and use abstract syntax trees in order to parse and run commands. 
  */
 public class Executor {
 
@@ -38,7 +42,7 @@ public class Executor {
 				functionName = input.get(0);
 				input.remove(0);
 			} else {
-				throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("FunctionDefineError"));
+				throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError"));
 			}
 			parseBlockAsArgument(input, arguments, slogoData);
 			parseBlockAsArgument(input, arguments, slogoData);
@@ -48,12 +52,12 @@ public class Executor {
 	
 	private void parseBlockAsArgument(List<String> input, List<ASTNode> arguments, SLogoData slogoData) {
 		if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-			int listEndIndex = getIndexOfBracketMatch(input);
+			int listEndIndex = indexOfMatchingBrace(input);
 			List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 			removeToIndex(input, listEndIndex);
 			arguments.add(parseText(slogoData, block));
 		} else {
-			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("FunctionDefineError"));
+			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError"));
 		}
 	}
 
@@ -67,7 +71,7 @@ public class Executor {
 					ASTNode function = slogoData.getFunction(input.get(0));
 					input.remove(0);
 					if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-						int listEndIndex = getIndexOfBracketMatch(input);
+						int listEndIndex = indexOfMatchingBrace(input);
 						List<String> block = new ArrayList<>(input.subList(0, listEndIndex + 1));
 						function.addArgument(parseText(slogoData, block));
 						removeToIndex(input, listEndIndex);
@@ -100,7 +104,7 @@ public class Executor {
 				input.remove(0);
 				return new ASTNode(null, null, null, value, arguments, slogoData, false);
 			} else if (syntaxParser.getSymbol(input.get(0)).equals("ListStart")) {
-				int listEndIndex = getIndexOfBracketMatch(input);
+				int listEndIndex = indexOfMatchingBrace(input);
 				List<String> block = new ArrayList<>(input.subList(1, listEndIndex));
 				removeToIndex(input, listEndIndex);
 				while (block.size() > 0) {
@@ -121,7 +125,7 @@ public class Executor {
 		}
 	}
 	
-	private int getIndexOfBracketMatch(List<String> input) {
+	private int indexOfMatchingBrace(List<String> input) {
 		int count = 0;
 		for (int i = 0; i < input.size(); i++) {
 			if (input.get(i).equals("[")) {

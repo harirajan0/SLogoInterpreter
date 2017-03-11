@@ -3,6 +3,7 @@
  */
 package backend.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -19,32 +20,29 @@ public class If extends ControlCommand {
 
 	@Override
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
+		
+		checkNumArgs(params);
+		
 		double ret = 0.0;
 		if (params.get(0).evaluate() == Constants.TRUE) ret = params.get(1).evaluate();
 		return ret;
 	}
 
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 2;
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
-	 */
+	// Did not have time to implement this
 	@Override
 	protected List<Integer> indicesOfRequiredBlocks() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList();
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
-	 */
+	// Did not have time to implement this
 	@Override
 	protected List<Integer> indicesOfRequiredVariables() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<>();
 	}
 
 	

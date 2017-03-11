@@ -7,6 +7,8 @@ import constants.Constants;
 
 /**
  * @author harirajan
+ * 
+ * This class contains the data about a given turtle, like its coordinates and various states. 
  */
 public class TurtleInfo {	
 	
@@ -16,7 +18,10 @@ public class TurtleInfo {
 	private boolean isPenDown;
 	private boolean isVisible;
 	private int myPenColorIndex;
-		
+	
+	/**
+	 * Instantiates a new TurtleInfo
+	 */
 	public TurtleInfo() {
 		myX = Constants.TURTLE_WINDOW_SIZE / 2;
 		myY = Constants.TURTLE_WINDOW_SIZE / 2;
@@ -91,6 +96,9 @@ public class TurtleInfo {
 		return myPenColorIndex;
 	}
 	
+	/**
+	 * @return ToolTip information about this turtle
+	 */
 	public String toString() {
 		return String.format("X: %f; Y: %f, Heading: %f; penDown: %b; visible: %b", myX, myY, myHeading, isPenDown, isVisible);
 	}

@@ -36,7 +36,7 @@ public class Repeat extends ControlCommand {
 	}
 
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 2;
 	}
 
@@ -45,23 +45,19 @@ public class Repeat extends ControlCommand {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredBlocks()
-	 */
+
+	// Did not have time to implement this
 	@Override
 	protected List<Integer> indicesOfRequiredBlocks() {
-		// TODO Auto-generated method stub
+		return new ArrayList();
+	}
+
+	// Did not have time to implement this
+	@Override
+	protected List<Integer> indicesOfRequiredVariables() {
 		return new ArrayList<>();
 	}
 
-	/* (non-Javadoc)
-	 * @see backend.command_abstraction.ControlCommand#indicesOfRequiredVariables()
-	 */
-	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
 
 
 

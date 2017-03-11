@@ -11,7 +11,8 @@ import backend.SLogoData;
 /**
  * @author harirajan
  * @author Alex Boss
- *
+ * 
+ * An extension of the MathCommand for commands that take a minimum of 0 arguments
  */
 public abstract class MathCommandNoParams extends MathCommand  {
 	
@@ -26,7 +27,7 @@ public abstract class MathCommandNoParams extends MathCommand  {
 	}
 	
 	@Override
-	public int getNumArgs() {
+	public int getMinNumArgs() {
 		return 0;
 	}
 	

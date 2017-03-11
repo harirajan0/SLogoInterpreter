@@ -18,6 +18,11 @@ import constants.Constants;
  * @author harirajan
  * @author Daniel
  *
+ *This class displays the turtle(s) on the rectangle.
+ *
+ *We also implement the tooltips here (which allows us to see
+ *the turtle's properties when we hover over it with a mouse).
+ *
  */
 public class TurtleWindowView {
 

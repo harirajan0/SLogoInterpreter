@@ -9,6 +9,13 @@ import javafx.scene.layout.GridPane;
 import constants.Constants;
 
 
+/**
+ * @author Daniel
+ * 
+ * This class opens up a window that shows details
+ * about an exception.
+ */
+
 public class ExceptionAlert {
 	
 	public ExceptionAlert(Exception e){

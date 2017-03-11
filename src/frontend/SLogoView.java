@@ -29,6 +29,15 @@ import constants.Constants;
 /**
  *  @author Daniel
  *  @author Hari
+ *  
+ *  This class contains all the elements on the screen (we initialize all
+ *  screen elements from here).
+ *  This class also contains an instance of SLogoData, which holds the
+ *  information about the turtles, pen info, etc. Using observables,
+ *  we update the display is mySlogoData changes from the backend,
+ *  and backend receives updates if information is changed from 
+ *  the frontend (ex: if pen color or variable values are changed).
+ *  
  */
 
 public class SLogoView implements Observer {

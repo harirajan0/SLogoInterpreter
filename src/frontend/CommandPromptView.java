@@ -18,9 +18,12 @@ import constants.Constants;
 public class CommandPromptView {
 	/**
 	 * We use this class to store everything relating to what is happening in
-	 * the command prompt and send it to the backend via the controller. Using
-	 * this class allows us to separate what is happening in the command prompt
+	 * the command prompt. 
+	 * We can type in commands or select a command from the history of commands.
+	 * Using this class allows us to separate what is happening in the command prompt
 	 * from everything else in the screen.
+	 * This class also contains any buttons that allow the user to graphically
+	 * perform a command on the turtle (move, rotate, change its appearance..).
 	 * 
 	 * @author Daniel
 	 * 
@@ -92,7 +95,7 @@ public class CommandPromptView {
 	private void setUpCommandHistory() {
 		listOfCommands = FXCollections.observableArrayList();
 		myCommandHistory = new ComboBox<String>(listOfCommands);
-		myCommandHistory.setPromptText("Previous Commands");
+		myCommandHistory.setPromptText(Constants.PREVIOUS_COMMAND_PROMPT);
 		myCommandHistory.setOnAction((event) -> {
 			myCommandEntry.setText(myCommandHistory.getSelectionModel().getSelectedItem());
 		});

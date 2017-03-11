@@ -14,6 +14,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+
+/**
+ * @author Daniel
+ * @author Hari
+ * This class contains the display of variables.
+ * It allows the user to display variables that they can
+ * initialize and or modify through the command line. It also
+ * allows them to update their values on the screen directly
+ * in the display.
+ */
+
 public class VariablesView{
 	
 	private List<Variable> currentVars;
@@ -67,15 +78,13 @@ public class VariablesView{
     	List<Variable> newVars = new ArrayList<>();
     	for (Node node : myVBox.getChildren()) {
     		if (node.getClass().isInstance(new HBox())) {
-    			System.out.println("YAY");
     			HBox hb = (HBox) node;
     			String varName = ((Text) hb.getChildren().get(0)).getText();
     			try {
     				double varValue = Double.parseDouble(((TextField) hb.getChildren().get(1)).getText());
     				newVars.add(new Variable(varName, varValue));
     			} catch (Exception e) {
-    				//throw exception
-    				System.out.println(e);
+    				new ExceptionAlert(e);
     			}
     		}
     	}

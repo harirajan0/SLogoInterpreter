@@ -33,7 +33,7 @@ public class Constants {
 	public static final int BIG_BUTTON_WIDTH = 200;
 	public static final int SMALL_BUTTON_SIZE= 32;
 	public static final int MEDIUM_BUTTON_SIZE= 50;
-
+	public static final String PREVIOUS_COMMAND_PROMPT="See previous commands";
 	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;

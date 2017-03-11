@@ -19,6 +19,10 @@ import constants.Constants;
 
 /**
  * @author harirajan
+ * @author Daniel
+ * 
+ * This class contains a palette of colors that the user
+ * can change and refer to by indexes.
  *
  */
 public class PaletteView {

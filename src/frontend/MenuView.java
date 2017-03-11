@@ -2,7 +2,6 @@ package frontend;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
@@ -11,16 +10,20 @@ import javafx.scene.control.MenuItem;
 import languages.Language;
 import constants.Constants;
 
+/**
+ * @author Daniel
+ * 
+ * This class sets up the elements of the menu and puts them into the menubar.
+ */
+
 public class MenuView {
 	private MenuBar myMenuBar;
-	private List<MenuItem> myMenuItems;
 	private Menu myHelpMenu;
 	private Menu myLanguagesMenu;
 	private ChoiceBox<String> myLanguageChoiceBox;
 	
 	protected MenuView() {
 		myMenuBar = new MenuBar();
-		myMenuItems = new ArrayList<MenuItem>();
 		setUpMenuBarItems();
 		myMenuBar.getMenus().addAll(myHelpMenu, myLanguagesMenu);
 	}

@@ -25,13 +25,11 @@ public class Tell implements Command {
 		int initialTurtleNum = slogoData.getNumTurtles();
 		for (ASTNode node : params.get(0).getArguments()) {
 			turtleNum = node.evaluate();
-			System.out.println(turtleNum);
 			if (turtleNum > slogoData.getNumTurtles() ) {
-				for (int i = slogoData.getNumTurtles(); i <= turtleNum; i++) {
-					Turtle newTurtle = new Turtle(slogoData.getRoot(), i);
+				for (int i = slogoData.getNumTurtles(); i < turtleNum; i++) {
+					Turtle newTurtle = new Turtle(slogoData.getRoot(), i + 1);
 					newTurtle.setSelected(true);
 					slogoData.addTurtle(newTurtle);
-					System.out.println("hello");
 				}
 			} else {
 				selectTurtles.add(((int) turtleNum) - 1);

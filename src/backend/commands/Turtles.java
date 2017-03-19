@@ -29,7 +29,7 @@ public class Turtles implements Command {
 
 	@Override
 	public boolean isMathCommand() {
-		return false;
+		return true;
 	}
 
 }

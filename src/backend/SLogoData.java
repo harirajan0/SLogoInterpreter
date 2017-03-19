@@ -14,6 +14,7 @@ import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import languages.Language;
 import languages.LanguageFactory;
 
@@ -128,6 +129,7 @@ public class SLogoData extends Observable {
 			}
 		}
 		myFunctions.add(newFunction);
+		notifyObservers();
 	}
 
 	/**
@@ -169,6 +171,7 @@ public class SLogoData extends Observable {
 				break;
 			}
 		}
+		notifyObservers();
 	}
 
 	/**
@@ -315,7 +318,11 @@ public class SLogoData extends Observable {
 	 */
 	public void clearScreen() {
 		myRoot.getChildren().clear();
+		myTurtles.clear();
+		myRoot.getChildren().add(new Rectangle(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE,
+				Constants.TURTLE_WINDOW_COLOR));
 		addTurtle(new Turtle(myRoot, 1));
+		notifyObservers();
 	}
 	
 	/**

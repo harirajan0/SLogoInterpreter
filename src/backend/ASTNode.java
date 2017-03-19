@@ -143,6 +143,15 @@ public class ASTNode {
 		myArguments.add(toAdd);
 	}
 	
+	public String toString() {
+
+		if (myCommand != null ) return myCommand.getClass().getName();
+		if (isBlock) { return "BLOCK"; }
+		if (myFunctionName != null) { return myFunctionName; }
+		if (myVariableName != null) { return myVariableName; }
+		return String.valueOf(myValue);
+	}
+	
 	private void print() {
 		System.out.println();
 		System.out.println(this);

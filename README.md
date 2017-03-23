@@ -21,7 +21,7 @@ Alex: abstract syntax tree / parsing, creating command classes, turtle framework
 
 Hari: controller, abstract syntax tree / parsing, creating command classes, turtle framework, refactoring, error 
 
-Belal: palette display, refactoring
+Belal: palette display, refactoring, menu, turtle view, turtle window view, small features (tool tips/graphically displaying selected turtles/ e.t.c)
 
 Daniel: variables display, command display, palette display, menu, exception display, refactoring, working with backend to be able to have changes in frontend be seen in backend and vice versa
 

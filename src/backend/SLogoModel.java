@@ -8,16 +8,18 @@ import java.util.Observable;
 import java.util.Observer;
 
 import languages.Language;
+import main.SLogoController;
 
 /**
  * @author harirajan
+ * @author Daniel
  * The main backend class which contains an instance of crucial program data (SlogoData class) and an executor
  * class
  */
 public class SLogoModel implements Observer {
 	
-	SLogoData mySlogoData;
-	Executor myExecutor;
+	private SLogoData mySlogoData;
+	private Executor myExecutor;
 	
 	/**
 	 * Instantiate a new SLogoModel. Called once by Controller. 

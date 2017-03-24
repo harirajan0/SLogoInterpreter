@@ -1,43 +1,52 @@
-package frontend;
+// This entire file is part of my masterpiece.
+// Daniel Rubinstein
 
+package frontend;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
 import backend.SLogoData;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
+import main.SLogoController;
 import constants.Constants;
 
 /**
- *  @author Daniel
- *  @author Hari
+ *  @author Daniel and Hari
  *  
- *  This class contains all the elements on the screen (we initialize all
- *  screen elements from here).
+ *  This class contains all the elements on the screen. We initialize all screen elements from here (encapsulation!) and
+ *  also define their action here.
  *  This class also contains an instance of SLogoData, which holds the
- *  information about the turtles, pen info, etc. Using observers,
- *  we update the display is mySlogoData changes from the backend,
- *  and backend receives updates if information is changed from 
- *  the frontend (ex: if pen color or variable values are changed).
- *  
+ *  information about the turtles, pen info, etc. Using observers (we observe the Controller),
+ *  we update the display is mySlogoData changes from the backend. We can also
+ *  directly can modify the Controller's SLogoData from the frontend, in which case SLogoModel will 
+ *  get notified via SLogoController (since SlogoModel also observes the instance of SLogoData in SLogoController and will 
+ *  get updated if SLogoController's instance of SLogoData changes).
+ *  This class shows how we use observers and lambda methods (to define button actions) effectively.
+ *  (Note: the setting up of all the buttons is a bit repetitive, but I wanted to show how the observers work with the controller and 
+ *  I needed to include this whole class to do so).
  */
 
 public class SLogoView implements Observer {
@@ -62,8 +71,10 @@ public class SLogoView implements Observer {
 	private HBox myBackgroundColorChanger;
 	private Slider myPenThicknessSlider;
 	private ScrollPane rightScrollPane;
+	private SLogoController myController;
 
-	public SLogoView(Stage s) {
+	public SLogoView(Stage s, SLogoController mainController) { //set up all the items on the screen
+		myController = mainController;
 		myRoot = new Group();
 		topVBox = new VBox();
 		setUpScrollPanes();
@@ -77,12 +88,24 @@ public class SLogoView implements Observer {
 		setUpBorderPane();
 		myRoot.getChildren().addAll(myBorderPane);
 		showSelectedGraphically = false;
+		setUpButtonActions();
 		displayStage(s);
 	}
+	
+	@Override
+	public void update(Observable slogoData, Object arg) {
+		/** 
+		 * SLogoView observes the instance of SLogoData contained in the controller.
+		 * If this instance of SLogoData changes (due to backend action), we will receive the new information
+		 * and then update the screen (setTurtles based on new turtle info, display new variables on screen, etc.)
+		 */
+		mySlogoData = (SLogoData) slogoData;
+		myVariablesView.setVariables(mySlogoData.getVariables());
+		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
+		myTurtleWindow.changeBackgroundColor(mySlogoData.getBackgroundColor());
+		myTurtleWindow.setToolTips();
+	}
 
-	/**
-	 * 
-	 */
 	private void setUpScrollPanes() {
 		myLeftScrollPane = new ScrollPane();
 		myLeftScrollPane.setPrefSize(Constants.TURTLE_WINDOW_SIZE / 2, Constants.TURTLE_WINDOW_SIZE);
@@ -146,106 +169,113 @@ public class SLogoView implements Observer {
 		s.show();
 	}
 	
-	public ColorPicker getBackgroundColorPicker() {
-		/** get the background color picker */
-		return myBackgroundColorPicker;
-	}
-
-	public CommandPromptView getCommandBox() {
-		/** get the command box */
-		return myCommandPrompt;
-	}
-
 	public TurtleWindowView getTurtleWindow() {
-		/** get the turtle window */
 		return myTurtleWindow;
 	}
 
-	public Button getExecuteButton() {
-		/** get the execute button */
-		return myCommandPrompt.getExecuteButton();
+	private void setUpButtonActions(){
+		setUpLanguageChoice();
+		setUpPenColorChoiceBox();
+		setUpPenThicknessSliderHandler();
+		setUpTurtleMovementButtonHandlers();
+		setUpTurtleExecuteButtonHandler();
+		setUpTurtleImageSelectionHandler();
+		setUpVariableUpdateHandler();
+		setUpViewSelectionGraphicallyHandler();
+		setUpBackgroundColorPickerHandler();
+		for (int i = 0; i < myPaletteView.getColorPickers().size(); i++) setUpColorPickerEventHandlers(i);
+	}
+	
+	private void setUpLanguageChoice() {
+		myMenuBar.getLanguageChoiceBox().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				myController.getMainSLogoData().setLanguage(newValue);
+			}});
+	}
+	
+	private void setUpPenColorChoiceBox(){
+		myPenColorChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myController.getMainSLogoData().setPenColor((int) newValue);
+			}});
+	}
+	
+
+	private void setUpPenThicknessSliderHandler() {
+		myPenThicknessSlider.valueProperty().addListener(new ChangeListener<Number>(){
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myController.getMainSLogoData().setPenWidth((double) newValue);
+			}});
 	}
 
-	public String getUserInput() {
-		/** get the user's input in the command line as a string */
-		return myCommandPrompt.getUserInput();
+	private void setUpBackgroundColorPickerHandler() {
+		myBackgroundColorPicker.setOnAction(e -> myController.getMainSLogoData().changeBackgroundColor(myBackgroundColorPicker.getValue()));
 	}
 
-	public void addCommandToHistory(String cmd) {
-		/** add string to our command prompt's history */
-		myCommandPrompt.addCommandToHistory(cmd);
+	private void setUpViewSelectionGraphicallyHandler() {
+		myCommandPrompt.getGraphicalDisplayButton().setOnAction(e -> {
+			toggleShowSelection();
+			myController.getMainSLogoData().showSelectedGraphically(showSelectedGraphically);
+		});
 	}
 
-	public void clearCommandPrompt() {
-		/** clear the command prompt */
-		myCommandPrompt.setCommandPromptText("");
+
+	private void setUpVariableUpdateHandler() {
+		myVariablesView.getUpdateButton().setOnAction(e -> {
+			myVariablesView.updateVariables();
+			myController.getMainSLogoData().setVariables(myVariablesView.getVariables());
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle(Constants.VARIABLE_UPDATE_MESSAGE);
+			alert.setContentText(Constants.VARIABLE_UPDATE_CONFIRMATION_MESSAGE);
+			alert.showAndWait();
+		});	
+	}
+
+
+	private void setUpTurtleImageSelectionHandler() {
+		myCommandPrompt.getTurtleImageSelectionButton().setOnAction(e -> {
+			FileChooser fc = new FileChooser();
+	        fc.setTitle(Constants.IMAGE_CHOOSER_TITLE);
+	        fc.setInitialDirectory(new File(System.getProperty("user.dir"), "./images"));
+	        fc.getExtensionFilters().setAll(new ExtensionFilter("Images", "*.png"));
+	        File imageFile;
+	        if (!((imageFile = fc.showOpenDialog(null)) == null)){
+	        	myController.getMainSLogoData().changeImage(new Image(imageFile.getName()));
+	        }});
+	}
+
+
+	private void setUpTurtleExecuteButtonHandler() {
+		myCommandPrompt.getExecuteButton().setOnAction(action -> {
+			if (!myCommandPrompt.getUserInput().replace("\n", " ").trim().equals(""))
+				try {
+					myController.getMainSlogoModel().parse(myCommandPrompt.getUserInput().replace("\n", " ").trim());
+				} catch (Exception e) {
+					new ExceptionAlert(e);
+				}
+				myCommandPrompt.addCommandToHistory(myCommandPrompt.getUserInput());
+				myCommandPrompt.setCommandPromptText(Constants.EMPTY_STRING); //clear command prompt
+		});
+	}
+
+	private void setUpTurtleMovementButtonHandlers() {
+		myCommandPrompt.setForwards(e -> myController.getMainSLogoData().moveSelectedTurtles(Constants.FORWARD_BUTTON_DISTANCE, 0));
+		myCommandPrompt.setBackwards(e -> myController.getMainSLogoData().moveSelectedTurtles(Constants.BACKWARDS_BUTTON_DISTANCE, 0));
+		myCommandPrompt.setRotateLeft(e -> myController.getMainSLogoData().moveSelectedTurtles(0, Constants.LEFT_BUTTON_ROTATION));
+		myCommandPrompt.setRotateRight(e -> myController.getMainSLogoData().moveSelectedTurtles(0, Constants.RIGHT_BUTTON_ROTATION));
+	}
+
+
+	private void setUpColorPickerEventHandlers(int index) {
+		myPaletteView.getColorPickers().get(index).setOnAction(e -> 
+		myController.getMainSLogoData().changeColor(index, myPaletteView.getColorPickers().get(index).getValue()));
 	}
 	
-	public ChoiceBox<String> getPenColorChoiceBox() {
-		/** get the pen color chooser */
-		return myPenColorChoiceBox;
-	}
-	
-	public Slider getPenThicknessSlider() {
-		/** get the 'choose pen thickness slider' */
-		return myPenThicknessSlider;
-	}
-	
-	public List<ColorPicker> getPaletteColorPickers() {
-		/** get the list of color pickers contained in the palette
-		 * (the currently selected color can be retrieved within each color picker) */
-		return myPaletteView.getColorPickers();
-	}
-	
-	public ChoiceBox<String> getLanguageChoiceBox() {
-		/** get the language choice box */
-		return myMenuBar.getLanguageChoiceBox();
-	}
-	
-	public CheckBox getGraphicalDisplayButton(){
-		/** get the checkbox which enables us to display selected
-		 * turtles differently from non-selected ones */
-		return myCommandPrompt.getGraphicalDisplayButton();
-	}
-	
-	public boolean getShowSelected() {
-		/** get the boolean value that tells us whether to display selected turtles differently */
-		return showSelectedGraphically;
-	}
-	
-	public void toggleShowSelection() {
-		/** change this boolean value that tells us whether to display selected turtles differently
-		 * (set true to false and vice-versa) */
+	private void toggleShowSelection() {
+		/** change this boolean value that tells us whether to display selected turtles differently (set true to false and vice-versa) */
 		showSelectedGraphically = !showSelectedGraphically;
 	}
-
-	public Button getVariableUpdateButton() {
-		/** get the button in the variables view that updates variable values with what the user has typed graphically */
-		return myVariablesView.getUpdateButton();
-	}
-	
-	public VariablesView getVariablesView() {
-		/** get our entire variables view */
-		return myVariablesView;
-	}
-	
-	public Button getTurtleImageSelectionButton() {
-		/** get the button that allows us to chose a new image for the turtle */
-		return myCommandPrompt.getTurtleImageSelectionButton();
-	}
-	
-	@Override
-	public void update(Observable slogoData, Object arg) {
-		/** 
-		 * Using Observable, we make sure that we are always displaying the variables
-		 * contained in SLogoData, the turtles contained in SlogoData, and the background
-		 * in SLogoData.
-		 */
-		mySlogoData = (SLogoData) slogoData;
-		myVariablesView.setVariables(mySlogoData.getVariables());
-		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
-		myTurtleWindow.changeBackgroundColor(mySlogoData.getBackgroundColor());
-		myTurtleWindow.setToolTips();
-	}
-
 }

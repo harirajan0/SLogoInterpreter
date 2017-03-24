@@ -39,6 +39,7 @@ public class Constants {
 	public static final int SMALL_BUTTON_SIZE= 32;
 	public static final int MEDIUM_BUTTON_SIZE= 50;
 	public static final String PREVIOUS_COMMAND_PROMPT="See previous commands";
+	public static final String EMPTY_STRING="";
 	
 	//TurtleWindow constants
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
@@ -47,6 +48,8 @@ public class Constants {
 	public static final String TURTLE_UNSELECTED_TITLE = "Turtle Unselected!";
 	public static final String TURTLE_SELECTED_MESSAGE = "You chose turtle with ID: ";
 	public static final String TURTLE_UNSELECTED_MESSAGE = "You unselected turtle with ID: ";
+	public static final String VARIABLE_UPDATE_MESSAGE="Variables Updated!";
+	public static final String VARIABLE_UPDATE_CONFIRMATION_MESSAGE="You successfully updated your variables!";
 	
 	//TurtleView constants
 	public static final String TURTLE_IMAGE = "turtle.png";

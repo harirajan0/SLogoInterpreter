@@ -1,3 +1,11 @@
+//This entire file is part of my masterpiece.
+//BELAL TAHER
+// https://coursework.cs.duke.edu/CompSci308_2017Spring/slogo_team05/commit/0fbb3efb205a48e046e76759b83369f0cbfe0caf
+// For the same reasons as what I wrote in CommandPromptView I can't find the other commits I made to this class/ we might have done it
+//on someone else's laptop
+
+
+
 package frontend;
 
 import java.util.ArrayList;
@@ -11,6 +19,7 @@ import constants.Constants;
 
 /**
  * @author Daniel
+ * @author Belal
  * 
  * This class sets up the elements of the menu and puts them into the menubar.
  */

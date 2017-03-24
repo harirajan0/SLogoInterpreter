@@ -12,7 +12,9 @@ import javafx.scene.image.ImageView;
 /**
  * 
  * This class is the visual manifestation of the turte on the screen. It contains superficial data and JavaFX
- * classes related to the turtle's visuals 
+ * classes related to the turtle's visuals
+ * 
+ *  @author Belal
  *
  */
 public class TurtleView {

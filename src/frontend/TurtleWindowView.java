@@ -15,6 +15,7 @@ import constants.Constants;
 /**
  * @author harirajan
  * @author Daniel
+ * @author Belal
  *
  *This class displays the turtle(s) on the rectangle.
  *

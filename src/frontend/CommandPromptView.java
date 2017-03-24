@@ -1,3 +1,4 @@
+
 package frontend;
 
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ public class CommandPromptView {
 	 * perform a command on the turtle (move, rotate, change its appearance..).
 	 * 
 	 * @author Daniel
+	 * @author Belal
 	 * 
 	 */
 	

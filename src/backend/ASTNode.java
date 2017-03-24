@@ -53,7 +53,6 @@ public class ASTNode {
 	 * if this node is a double or variable, else evaluates this node's function with its parameters. 
 	 */
 	public double evaluate() {
-		print();
 		if (isBlock) {
 			return myArguments.get(0).evaluate();
 		}
@@ -141,11 +140,5 @@ public class ASTNode {
 	
 	protected void addArgument(ASTNode toAdd) {
 		myArguments.add(toAdd);
-	}
-	
-	private void print() {
-		System.out.println();
-		System.out.println(this);
-		System.out.println(this.myArguments);
 	}
 }

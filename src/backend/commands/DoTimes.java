@@ -22,8 +22,6 @@ public class DoTimes extends ControlCommand {
 	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
 		
 		checkNumArgs(params);
-		checkForBlocks(params, indicesOfRequiredBlocks());
-		checkForVariables(params, indicesOfRequiredVariables());
 		
 		double iterations = params.get(0).getArguments().get(1).evaluate();
 		if (iterations < 0 ) {
@@ -42,20 +40,6 @@ public class DoTimes extends ControlCommand {
 	@Override
 	public int getMinNumArgs() {
 		return 2;
-	}
-
-	@Override
-	protected List<Integer> indicesOfRequiredBlocks() {
-		List<Integer> blocks = new ArrayList<Integer>();
-		blocks.add(0); blocks.add(1);
-		return blocks;
-	}
-
-	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
-		List<Integer> vars = new ArrayList<Integer>();
-		vars.add(0);
-		return vars;
 	}
 
 }

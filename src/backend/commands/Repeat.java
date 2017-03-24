@@ -1,32 +1,29 @@
-/**
- * 
+// This entire file is part of my masterpiece.
+// Alex Boss
+
+/*
+ * This class demonstrates how easy it is to add a new command. This shows off the principle of flexibility
+ * and the open/closed principle. No class needs to be modified when adding a new command (closed), but
+ * the command hierarchy is open to extension, as shown here. 
  */
 package backend.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
-import backend.SLogoData;
-import backend.command_abstraction.ControlCommand;
+import backend.command_abstraction.ControlCommandMasterpiece;
 
 /**
+ * @author Alex Boss
  * @author harirajan
  *
  */
-public class Repeat extends ControlCommand {
+public class Repeat extends ControlCommandMasterpiece {
 
 	@Override
-	public double execute(List<ASTNode> params, SLogoData slogoData) throws IllegalArgumentException {
-		
-		checkNumArgs(params);
-		
+	public double execute(List<ASTNode> params) throws IllegalArgumentException {
+
 		double limit = params.get(0).evaluate();
-		
-		if(limit < 0 ){
-			throw new IllegalArgumentException();
-		}
-		
 		double ret = 0.0;
 		while (limit > 0) {
 			ret = params.get(1).evaluate();
@@ -39,26 +36,5 @@ public class Repeat extends ControlCommand {
 	public int getMinNumArgs() {
 		return 2;
 	}
-
-	@Override
-	public boolean isMathCommand() {
-		return false;
-	}
-
-
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredBlocks() {
-		return new ArrayList();
-	}
-
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
-		return new ArrayList<>();
-	}
-
-
-
 
 }

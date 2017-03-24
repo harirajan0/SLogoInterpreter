@@ -3,7 +3,6 @@
  */
 package backend.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import backend.ASTNode;
@@ -39,18 +38,6 @@ public class For extends ControlCommand {
 	@Override
 	public int getMinNumArgs() {
 		return 2;
-	}
-
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredBlocks() {
-		return new ArrayList<>();
-	}
-
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
-		return new ArrayList<>();
 	}
 
 }

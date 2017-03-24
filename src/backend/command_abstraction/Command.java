@@ -1,5 +1,13 @@
-/**
- * 
+// This entire file is part of my masterpiece.
+// Alex Boss
+
+/*
+ * This design takes advantage of interfaces and inheritance simultaneously. This interface prescribes 
+ * 3 methods that all commands must implement. The reason this is useful is because we can now classify
+ * all commands - math, turtle, and control - under the umbrella of "Command." This allows us to work
+ * with Commands abstractly without knowing which specific type. This interface reduces duplicated code
+ * and makes it easy for somebody to add new commands. This interface is implemented by the abstract super-
+ * classes like ControlCommandMasterpiece (featured in this masterpiece) or their subclasses. 
  */
 package backend.command_abstraction;
 
@@ -8,11 +16,7 @@ import java.util.List;
 import backend.ASTNode;
 import backend.SLogoData;
 
-/**
- * @author harirajan
- * @author Alex Boss
- * This interfaces provides 3 methods that all commands must implement. 
- */
+
 public interface Command {
 	
 	/**

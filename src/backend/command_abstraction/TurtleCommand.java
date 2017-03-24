@@ -35,7 +35,6 @@ public abstract class TurtleCommand implements Command {
 				if (params.get(i).getCommand() != null) {
 					if (!params.get(i).getCommand().isMathCommand()) { //change string to constant
 						evaluateList.add(params.get(i));
-						continue;
 					}
 				}
 			}

@@ -34,16 +34,4 @@ public class IfElse extends ControlCommand {
 		return 3;
 	}
 
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredBlocks() {
-		return new ArrayList();
-	}
-
-	// Did not have time to implement this
-	@Override
-	protected List<Integer> indicesOfRequiredVariables() {
-		return new ArrayList<>();
-	}
-
 }

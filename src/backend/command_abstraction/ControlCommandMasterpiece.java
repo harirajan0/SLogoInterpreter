@@ -62,7 +62,7 @@ public abstract class ControlCommandMasterpiece implements Command {
 	protected void checkForVariables(List<ASTNode> params) throws IllegalArgumentException {
 		if (!params.get(indexOfVariable()).isVariable()) {
 			throw new IllegalArgumentException(
-					Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingBlockError") + getClass().getSimpleName());
+					Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingVariableError") + getClass().getSimpleName());
 		}
 	}
 

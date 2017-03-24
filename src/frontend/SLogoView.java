@@ -34,19 +34,16 @@ import main.SLogoController;
 import constants.Constants;
 
 /**
- *  @author Daniel and Hari
- *  
- *  This class contains all the elements on the screen. We initialize all screen elements from here (encapsulation!) and
- *  also define their action here.
- *  This class also contains an instance of SLogoData, which holds the
- *  information about the turtles, pen info, etc. Using observers (we observe the Controller),
- *  we update the display is mySlogoData changes from the backend. We can also
- *  directly can modify the Controller's SLogoData from the frontend, in which case SLogoModel will 
- *  get notified via SLogoController (since SlogoModel also observes the instance of SLogoData in SLogoController and will 
- *  get updated if SLogoController's instance of SLogoData changes).
- *  This class shows how we use observers and lambda methods (to define button actions) effectively.
+ *  @author Daniel Rubinstein
+ *  This class contains all the elements on the screen. We initialize all screen elements from here, and also define their actions here (what happens when we press on each button, type text, etc).
+ *  This class contains an instance of SLogoData, which holds the information about the turtles, pen info, etc. Using observers (we observe the Controller), if mySlogoData changes from the backend, our instance of SlogoData in the view is updated,
+ *  and then we update what is being displayed on the screen from this new data. We can also modify the Controller's SLogoData from the frontend (from this class, for example, if we change a variable's value from the GUI), in which case SLogoModel
+ *  will get notified via SLogoController (since SlogoModel also observes the instance of SLogoData in SLogoController and will get updated if SLogoController's instance of SLogoData changes). This is how SLogoView and SLogoModel always contain the same, most up-to-date data.
+ *  Thereby, class shows how we use observers and lambda methods (in defining button actions) effectively to communicate/share/synchronize data between different classes.
  *  (Note: the setting up of all the buttons is a bit repetitive, but I wanted to show how the observers work with the controller and 
  *  I needed to include this whole class to do so).
+ *  
+ *  I also chose this class because it is a good example of encapsulation. All the different elements on the screen are added to the screen from one class. To add a new element to the screen, we just need to add it to the stage and define its action in this class.
  */
 
 public class SLogoView implements Observer {
@@ -96,8 +93,8 @@ public class SLogoView implements Observer {
 	public void update(Observable slogoData, Object arg) {
 		/** 
 		 * SLogoView observes the instance of SLogoData contained in the controller.
-		 * If this instance of SLogoData changes (due to backend action), we will receive the new information
-		 * and then update the screen (setTurtles based on new turtle info, display new variables on screen, etc.)
+		 * If the instance of SLogoData in SLogoController changes (due to backend action), we will receive the new data
+		 * and then update the screen based on this new data(setTurtles based on new turtle info, display new variables on screen, etc.)
 		 */
 		mySlogoData = (SLogoData) slogoData;
 		myVariablesView.setVariables(mySlogoData.getVariables());

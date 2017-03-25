@@ -1,3 +1,5 @@
+
+
 package frontend;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import constants.Constants;
 
 /**
  * @author Daniel
+ * @author Belal
  * 
  * This class sets up the elements of the menu and puts them into the menubar.
  */

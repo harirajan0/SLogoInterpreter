@@ -29,6 +29,7 @@ import constants.Constants;
 /**
  *  @author Daniel
  *  @author Hari
+ *  @author Belal
  *  
  *  This class contains all the elements on the screen (we initialize all
  *  screen elements from here).

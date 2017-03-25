@@ -22,7 +22,11 @@ import javafx.stage.Stage;
 
 /**
  * @author harirajan
+ *  * The controller is the center of our program. It contains an instance of SLogoModel, an instance of SLogoView, and an instance of SLogoData.
+ * When the backend makes changes on our SLogoData, SLogoController gives our instance of SLogoView the updated data, and vice versa, when the frontend makes changes on the SLogoData, the controller allows the SLogoModel
+ * to receive the updated data. To do this, we use observables (SLogoData is observable, and our instance of SLogoData in the controller is observed by SLogoModel and SlogoView).
  *
+ * We also define the actions of the frontend's buttons/sliders in this class.
  */
 public class SLogoController {
 

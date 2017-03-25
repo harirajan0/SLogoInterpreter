@@ -1,3 +1,27 @@
+//This entire file is part of my masterpiece
+//BELAL TAHER
+//This class is also apart of my masterpiece (probably should read the comments
+//from the MenuView class first). This class does a much better job of representing
+//my design choice of broad public methods with very specific and compartmentalized 
+//private methods. For example, all the private methods (setUpButtons(), setUpCommandEntry()
+//createMovingButtons(), createButtonWithImage(String)) all have extremely specialized functions.
+//They're also compartmentalized in such a way that none of them are too long 
+//and arduous to follow. They're all named very appropriately and, if that's not enough
+//to elucidate their function, one can simply read the short code bodies of each to
+//quickly understand what the methods do. Like I said before, the fact that the functionality
+//of the front end was so limited prevented us from implementing some other design choices, so
+//we decided to focus on really making extremely readable code. I think these two classes reflect that
+//extremely well. The code was so egregiously designed before that Duvall literally pulled it up and 
+//ripped on it in front of the entire class. However, I believe that this code is something he 
+//wouldn't do that with because it avoids all the magic values, bad method names, and 
+//unnecessary parts that we had before. I spent a lot of the second sprint making sure that 
+//all the code we wrote on the front end was as readable as these two classes, but I chose these two
+//for my master piece because they're the two that were the most greatly improved and the two that
+//reflect what kind of design I was going for the best.
+//The purpose of this code is to initialize and give functionality to the command prompt
+//and all of the control related buttons.
+
+
 
 package frontend;
 

@@ -1,4 +1,4 @@
-//This entire file is part of my masterpiece
+//This entire file is part of my masterpiece.
 //BELAL TAHER
 //This class is also apart of my masterpiece (probably should read the comments
 //from the MenuView class first). This class does a much better job of representing

@@ -96,7 +96,7 @@ public class Turtle {
 	 */
 	public void display() {
 		if (myTurtleModel.getPenDown()) {
-			for (Line l : myTurtleModel.calculateLinesToDraw()) {
+			for (Line l : myTurtleModel.getLinesToDraw()) {
 				l.setFill(myTurtleModel.getPenColor());
 				myTurtleView.getRoot().getChildren().add(l);
 			}

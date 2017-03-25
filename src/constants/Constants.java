@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// HARI RAJAN
+
 /**
  * 
  */
@@ -95,4 +98,6 @@ public class Constants {
 	//Turtle opacity to show selection constants
 	public static final double SELECTED = 1;
 	public static final double NOT_SELECTED = SELECTED / 2;
+	
+	public static final double LINE_BUFFER = 0.3;
 }

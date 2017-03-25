@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// HARI RAJAN
+
 /**
  * 
  */
@@ -69,6 +72,11 @@ public class TurtleInfo {
 	}
 	
 	protected void setY(double newY) {
+		myY = newY;
+	}
+	
+	protected void setCoordinates(double newX, double newY) {
+		myX = newX;
 		myY = newY;
 	}
 	

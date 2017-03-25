@@ -1,4 +1,4 @@
-//This entire file is part of my masterpiece
+//This entire file is part of my masterpiece.
 //BELAL TAHER
 //For my masterpiece, the refactored component that I'm submitting is the 
 //UI (the MenuView and the CommandPromptView). The version of the code

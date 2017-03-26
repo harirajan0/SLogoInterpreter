@@ -36,7 +36,7 @@ public class SetBackground implements Command {
 
 
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 

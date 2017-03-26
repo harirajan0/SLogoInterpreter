@@ -45,7 +45,7 @@ public class Ask implements Command {
 
 
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -84,7 +84,7 @@ public class Executor {
 					arguments.add(parseTextAsFunction(slogoData, input));
 				}
 				while (input.size() > 0) {
-					if (cmd.isMathCommand()) {
+					if (cmd.isSimpleEvaluation()) {
 						if (parseText(slogoData, new ArrayList<>(input)).hasMathValue() || arguments.size() == 0) {
 							arguments.add(parseText(slogoData, input));
 						} else {

@@ -10,7 +10,7 @@ package backend.command_abstraction;
 public abstract class ControlCommandTwoParams implements Command {
 	
 	
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 }

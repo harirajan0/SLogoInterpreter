@@ -15,7 +15,6 @@ import backend.command_abstraction.ControlCommandMasterpiece;
 
 /**
  * @author Alex Boss
- * @author harirajan
  *
  */
 public class Repeat extends ControlCommandMasterpiece {

@@ -28,7 +28,7 @@ public class ClearScreen implements Command {
 	}
 
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 

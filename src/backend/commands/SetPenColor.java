@@ -34,7 +34,7 @@ public class SetPenColor implements Command {
 	}
 
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 

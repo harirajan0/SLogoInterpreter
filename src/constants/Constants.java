@@ -73,7 +73,7 @@ public class Constants {
 	public static final double FALSE = 0.0;
 	
 	//Resource Bundle constants
-	public static final ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myresources/resources");
+	public final static ResourceBundle DEFAULT_RESOURCE_BUNDLE = ResourceBundle.getBundle("myresources/resources");
 
 	//PaletteView Constants
 	public static final String TURTLE_VIEW_OPTIONS_TITLE = "Turtle View Options";

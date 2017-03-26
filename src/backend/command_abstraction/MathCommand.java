@@ -31,7 +31,7 @@ public abstract class MathCommand implements Command {
 		for (int i = 0; i < params.size(); i++) {
 			if (i >= getMinNumArgs()) {
 				if (params.get(i).getCommand() != null) {
-					if (!params.get(i).getCommand().isMathCommand()) {
+					if (!params.get(i).getCommand().isSimpleEvaluation()) {
 						evaluateList.add(params.get(i));
 						continue;
 					}
@@ -45,7 +45,7 @@ public abstract class MathCommand implements Command {
 	}
 	
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return true;
 	}
 	

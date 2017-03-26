@@ -86,7 +86,7 @@ public class ASTNode {
 		if (isBlock) return false;
 		if (myCommand == null)
 			return true;
-		return myCommand.isMathCommand();
+		return myCommand.isSimpleEvaluation();
 	}
 	
 	/**

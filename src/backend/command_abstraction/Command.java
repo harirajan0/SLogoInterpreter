@@ -8,7 +8,10 @@
  * with Commands abstractly without knowing which specific type. This interface reduces duplicated code
  * and makes it easy for somebody to add new commands. This interface is implemented by the abstract super-
  * classes like ControlCommandMasterpiece (featured in this masterpiece) or their subclasses. 
+ * 
+ * My masterpiece makes use of the Command and Factory design patterns. 
  */
+
 package backend.command_abstraction;
 
 import java.util.List;
@@ -36,8 +39,9 @@ public interface Command {
 	
 	/**
 	 * 
-	 * @return A boolean that represents whether this command is mathematical or not
+	 * @return A boolean that represents whether, in the context of the ASTNode parsing algorithm,
+	 * this command evaluates simply
 	 */
-	public boolean isMathCommand();
+	public boolean isSimpleEvaluation();
 	
 }

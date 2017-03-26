@@ -48,14 +48,14 @@ public abstract class ControlCommand implements Command {
 	}
 
 	protected int indexOfBlock() {
-		return 0;
+		return 1;
 	}
 
 	protected int indexOfVariable() {
 		return 0;
 	}
 
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 

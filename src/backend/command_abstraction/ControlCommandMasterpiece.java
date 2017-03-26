@@ -8,7 +8,7 @@
  * more than just a general "you typed something wrong." This interface/inheritance hierarchy combo makes
  * it very easy and intuitive to add a new command. You need only create a new command class that extends
  * the right Command superclass. No lines of code have to be changed anywhere else but the factory. I use
- * the factory design pattern to instantiate a proper command based on the user's input, or throw an
+ * the Factory and Command design patterns to instantiate a proper command based on the user's input, or throw an
  * exception for an invalid function name. The Repeat class demonstrates how easy it is to add a new class.
  * 
  *  The exception handling is done in the superclass so it does not need to be done every time you make a new
@@ -23,6 +23,8 @@
 
 package backend.command_abstraction;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import backend.ASTNode;
@@ -38,7 +40,7 @@ public abstract class ControlCommandMasterpiece implements Command {
 	}
 
 	protected abstract double execute(List<ASTNode> params);
-	
+
 	protected void checkConditions(List<ASTNode> params) throws IllegalArgumentException {
 		checkNumArgs(params);
 		checkForBlocks(params);
@@ -53,29 +55,35 @@ public abstract class ControlCommandMasterpiece implements Command {
 	}
 
 	protected void checkForBlocks(List<ASTNode> params) throws IllegalArgumentException {
-		if (!params.get(indexOfBlock()).isBlock()) {
-			throw new IllegalArgumentException(
-					Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingBlockError") + getClass().getSimpleName());
+		for (ASTNode param : params) {
+			if (indicesOfRequiredBlocks().contains(params.indexOf(param))) {
+				if (!param.isBlock()) {
+					throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingBlockError")
+							+ getClass().getSimpleName());
+				}
+			}
 		}
 	}
 
 	protected void checkForVariables(List<ASTNode> params) throws IllegalArgumentException {
-		if (!params.get(indexOfVariable()).isVariable()) {
+		if (indexOfRequiredVariable() > 0 && !params.get(indexOfRequiredVariable()).isVariable()) {
 			throw new IllegalArgumentException(
 					Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingVariableError") + getClass().getSimpleName());
 		}
 	}
 
-	protected int indexOfBlock() {
-		return 0;
+	protected Collection<Integer> indicesOfRequiredBlocks() {
+		ArrayList<Integer> blocks = new ArrayList<Integer>();
+		blocks.add(1);
+		return blocks;
 	}
 
-	protected int indexOfVariable() {
-		return 0;
+	protected int indexOfRequiredVariable() {
+		return -1;
 	}
 
-	public boolean isMathCommand() {
-		return false;
+	public boolean isSimpleEvaluation() {
+		return indicesOfRequiredBlocks().size() == 0 && indexOfRequiredVariable() < 0;
 	}
 
 }

@@ -33,7 +33,7 @@ public abstract class TurtleCommand implements Command {
 		for (int i = 0; i < params.size(); i++) {
 			if (i >= getMinNumArgs()) {
 				if (params.get(i).getCommand() != null) {
-					if (!params.get(i).getCommand().isMathCommand()) { //change string to constant
+					if (!params.get(i).getCommand().isSimpleEvaluation()) { //change string to constant
 						evaluateList.add(params.get(i));
 					}
 				}
@@ -46,7 +46,7 @@ public abstract class TurtleCommand implements Command {
 	}
 	
 	@Override
-	public boolean isMathCommand() {
+	public boolean isSimpleEvaluation() {
 		return false;
 	}
 	

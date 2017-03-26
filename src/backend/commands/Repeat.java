@@ -30,10 +30,4 @@ public class Repeat extends ControlCommandMasterpiece {
 		}
 		return ret;
 	}
-
-	@Override
-	public int getMinNumArgs() {
-		return 2;
-	}
-
 }

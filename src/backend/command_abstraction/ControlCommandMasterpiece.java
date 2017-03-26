@@ -71,6 +71,11 @@ public abstract class ControlCommandMasterpiece implements Command {
 					Constants.DEFAULT_RESOURCE_BUNDLE.getString("MissingVariableError") + getClass().getSimpleName());
 		}
 	}
+	
+	@Override
+	public int getMinNumArgs(){
+		return 2;
+	}
 
 	protected Collection<Integer> indicesOfRequiredBlocks() {
 		ArrayList<Integer> blocks = new ArrayList<Integer>();

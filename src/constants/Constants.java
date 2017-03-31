@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 
 /**
  * 
@@ -44,12 +46,22 @@ public class Constants {
 	public static final String PREVIOUS_COMMAND_PROMPT="See previous commands";
 	
 	//TurtleWindow constants
+	public static final double LINE_BUFFER = 0.3;
 	public static final int TURTLE_WINDOW_SIZE = WINDOW_SIZE / 2;
 	public static final Color TURTLE_WINDOW_COLOR = Color.WHITE;
 	public static final String TURTLE_SELECTED_TITLE = "Turtle Selected!";
 	public static final String TURTLE_UNSELECTED_TITLE = "Turtle Unselected!";
 	public static final String TURTLE_SELECTED_MESSAGE = "You chose turtle with ID: ";
 	public static final String TURTLE_UNSELECTED_MESSAGE = "You unselected turtle with ID: ";
+	public static final Line WINDOW_TOP = new Line(LINE_BUFFER, LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER, LINE_BUFFER);
+	public static final Line WINDOW_BOTTOM = new Line(LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER);
+	public static final Line WINDOW_LEFT = new Line(LINE_BUFFER, LINE_BUFFER, LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER);
+	public static final Line WINDOW_RIGHT = new Line(TURTLE_WINDOW_SIZE - LINE_BUFFER, LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER, TURTLE_WINDOW_SIZE - LINE_BUFFER);
+	public static final Point2D TOP_LEFT= new Point2D(0, 0);
+	public static final Point2D TOP_RIGHT = new Point2D(TURTLE_WINDOW_SIZE, 0);
+	public static final Point2D BOTTOM_LEFT = new Point2D(0, TURTLE_WINDOW_SIZE);
+	public static final Point2D BOTTOM_RIGHT = new Point2D(TURTLE_WINDOW_SIZE, TURTLE_WINDOW_SIZE);
+	
 	
 	//TurtleView constants
 	public static final String TURTLE_IMAGE = "turtle.png";
@@ -99,5 +111,4 @@ public class Constants {
 	public static final double SELECTED = 1;
 	public static final double NOT_SELECTED = SELECTED / 2;
 	
-	public static final double LINE_BUFFER = 0.3;
 }

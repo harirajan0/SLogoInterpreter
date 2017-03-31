@@ -41,36 +41,6 @@ public class TurtleModel {
 		List<Line> linesToDraw = new ArrayList<>();
 		if (nextTurtleInfo == null) return linesToDraw;
 		while (!turtleInBounds()) {
-			double endX = 0;
-			double endY = 0;
-			Line lineToDraw = new Line(currentTurtleInfo.getX(), currentTurtleInfo.getY(),
-					nextTurtleInfo.getX(), nextTurtleInfo.getY());
-			if (lineToDraw.contains(0, 0)) {
-				currentTurtleInfo.setCoordinates(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE);
-				nextTurtleInfo.setCoordinates(nextTurtleInfo.getX() + Constants.TURTLE_WINDOW_SIZE, nextTurtleInfo.getY() + Constants.TURTLE_WINDOW_SIZE);
-			} else if (lineToDraw.contains(0, Constants.TURTLE_WINDOW_SIZE)) {
-				endY = Constants.TURTLE_WINDOW_SIZE;
-				currentTurtleInfo.setX(Constants.TURTLE_WINDOW_SIZE);
-				nextTurtleInfo.setCoordinates(nextTurtleInfo.getX() + Constants.TURTLE_WINDOW_SIZE, nextTurtleInfo.getY() - Constants.TURTLE_WINDOW_SIZE);
-			} else if (lineToDraw.contains(Constants.TURTLE_WINDOW_SIZE, Constants.TURTLE_WINDOW_SIZE)) {
-				endY = Constants.TURTLE_WINDOW_SIZE;
-				endX = Constants.TURTLE_WINDOW_SIZE;
-				nextTurtleInfo.setCoordinates(nextTurtleInfo.getX() - Constants.TURTLE_WINDOW_SIZE, nextTurtleInfo.getY() - Constants.TURTLE_WINDOW_SIZE);
-			} else if (lineToDraw.contains(Constants.TURTLE_WINDOW_SIZE, 0)) {
-				currentTurtleInfo.setY(Constants.TURTLE_WINDOW_SIZE);
-				endX = Constants.TURTLE_WINDOW_SIZE;
-				nextTurtleInfo.setCoordinates(nextTurtleInfo.getX() - Constants.TURTLE_WINDOW_SIZE, nextTurtleInfo.getY() + Constants.TURTLE_WINDOW_SIZE);
-			}  else break;
-			addLine(linesToDraw, currentTurtleInfo.getX(), currentTurtleInfo.getY(), endX, endY);
-		}
-		addLine(linesToDraw, currentTurtleInfo.getX(), currentTurtleInfo.getY(), nextTurtleInfo.getX(), nextTurtleInfo.getY());
-		return linesToDraw;
-	}
-	
-	protected List<Line> calculateLinesToDraw() {
-		List<Line> linesToDraw = new ArrayList<>();
-		if (nextTurtleInfo == null) return linesToDraw;
-		while (!turtleInBounds()) {
 			double endX = 0, endY = 0, nextX = 0, nextY = 0;
 			Line lineToDraw = new Line(currentTurtleInfo.getX(), currentTurtleInfo.getY(), nextTurtleInfo.getX(), nextTurtleInfo.getY());
 			if (lineToDraw.contains(Constants.TOP_LEFT) || lineToDraw.contains(Constants.TOP_RIGHT)) nextX = Constants.TURTLE_WINDOW_SIZE;

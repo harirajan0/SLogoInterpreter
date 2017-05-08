@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -47,6 +48,7 @@ public class SLogoView implements Observer {
 	private BorderPane myBorderPane;
 	private Scene myScene;
 	private Group myRoot;
+	private Group myStamps;
 	private CommandPromptView myCommandPrompt;
 	private VariablesView myVariablesView;
 	private TurtleWindowView myTurtleWindow;
@@ -79,6 +81,7 @@ public class SLogoView implements Observer {
 		myRoot.getChildren().addAll(myBorderPane);
 		showSelectedGraphically = false;
 		displayStage(s);
+		myStamps = new Group();
 	}
 
 	/**
@@ -247,6 +250,20 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(mySlogoData.getBackgroundColor());
 		myTurtleWindow.setToolTips();
+		updateStamps(mySlogoData.getStamps());
 	}
+	
+	private void updateStamps(Group newStamps){
+		if (newStamps.getChildren().size() < myStamps.getChildren().size()){
+			myTurtleWindow.getRoot().getChildren().removeAll(newStamps);
+			myStamps.getChildren().clear();
+		}
+		else if (newStamps.getChildren().size() > myStamps.getChildren().size()){
+			myStamps.getChildren().addAll(newStamps);
+			myTurtleWindow.getRoot().getChildren().addAll(newStamps);
+		}
+	}
+	
+	
 
 }

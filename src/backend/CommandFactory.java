@@ -9,6 +9,7 @@ import backend.commands.Arctangent;
 import backend.commands.Ask;
 import backend.commands.Back;
 import backend.commands.ClearScreen;
+import backend.commands.ClearStamps;
 import backend.commands.Cosine;
 import backend.commands.Difference;
 import backend.commands.DoTimes;
@@ -51,6 +52,7 @@ import backend.commands.SetPosition;
 import backend.commands.ShowTurtle;
 import backend.commands.Showing;
 import backend.commands.Sine;
+import backend.commands.Stamp;
 import backend.commands.Sum;
 import backend.commands.Tangent;
 import backend.commands.Tell;
@@ -126,6 +128,8 @@ public class CommandFactory {
 		case "Turtles" : return new Turtles();
 		case "Tell" : return new Tell();
 		case "Ask" : return new Ask();
+		case "Stamp" : return new Stamp();
+		case "ClearStamps" : return new ClearStamps();
 		default: 
 			throw new IllegalArgumentException(Constants.DEFAULT_RESOURCE_BUNDLE.getString("UndeclaredFunctionError")
 					+ commandString);

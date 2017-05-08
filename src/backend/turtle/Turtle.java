@@ -258,4 +258,9 @@ public class Turtle {
 				myTurtleModel.getCurrentTurtleInfo().toString();
 	}
 	
+	public int stamp(){
+		return getColorIndex();
+	}
+	
+	
 }

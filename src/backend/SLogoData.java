@@ -12,7 +12,9 @@ import backend.commands.Right;
 import backend.turtle.Turtle;
 import constants.Constants;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import languages.Language;
@@ -38,6 +40,7 @@ public class SLogoData extends Observable {
 	private List<Color> myColors;
 	private Language myLanguage;
 	private Group myRoot;
+	private Group myStamps;
 	private boolean showSelected;
 
 	/**
@@ -52,6 +55,7 @@ public class SLogoData extends Observable {
 		myColors = Constants.DEFAULT_PALLETE_COLORS;
 		myBackgroundColor = Constants.TURTLE_WINDOW_COLOR;
 		showSelected = false;
+		myStamps = new Group();
 	}
 	
 	/**
@@ -332,5 +336,35 @@ public class SLogoData extends Observable {
 	public void changeImage(Image img) {
 		for (Turtle turtle : myTurtles) if (turtle.isSelected()) turtle.changeImage(img);
 		notifyObservers();
+	}
+	
+	public Group getStamps(){
+		return myStamps;
+	}
+	
+	public int addStamp(){
+		for(Turtle turtle : myTurtles){
+			if(turtle.isSelected()){
+				ImageView tNode = turtle.getNode();
+				ImageView node = new ImageView();
+				node.setImage(tNode.getImage());
+				node.setFitWidth(tNode.getFitWidth()); node.setFitHeight(tNode.getFitHeight());
+				node.setX(tNode.getX()); node.setY(tNode.getY()); 
+				node.setRotate(tNode.getRotate());
+				myStamps.getChildren().add(node);
+			}
+		}
+		notifyObservers();
+		return myTurtles.get(0).getColorIndex();
+	}
+	
+	public int clearStamps(){
+		if(myStamps.getChildren().size() == 0){
+			notifyObservers();
+			return 0;
+		}
+		myStamps.getChildren().clear();
+		notifyObservers();
+		return 1;
 	}
 }

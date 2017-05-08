@@ -11,6 +11,7 @@ import backend.turtle.Turtle;
 import constants.Constants;
 import frontend.ExceptionAlert;
 import frontend.SLogoView;
+import frontend.TurtleImageChanger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
@@ -56,6 +57,7 @@ public class SLogoController {
 		setUpPenColorChoiceBoxHandler();
 		setUpPenThicknessSliderHandler();
 		setUpBackgroundColorPickerHandler();
+		setUpIndividualTurtleImageSelectionHandler();
 		for (int i = 0; i < mySlogoView.getPaletteColorPickers().size(); i++) setUpColorPickerEventHandlers(i);
 	}
 
@@ -148,6 +150,23 @@ public class SLogoController {
 		});
 	}
 
+	/**
+	 * 
+	 */
+	private void setUpIndividualTurtleImageSelectionHandler() {
+		mySlogoView.getIndividualTurtleImageSelectionButton().setOnAction(e -> {
+			TurtleImageChanger tic = new TurtleImageChanger(new Stage(), mySlogoData);
+			mySlogoData.addObserver(tic);
+//			FileChooser fc = new FileChooser();
+//	        fc.setTitle(Constants.IMAGE_CHOOSER_TITLE);
+//	        fc.setInitialDirectory(new File(System.getProperty("user.dir"), "./images"));
+//	        fc.getExtensionFilters().setAll(new ExtensionFilter("Images", "*.png"));
+//	        File imageFile;
+//	        if (!((imageFile = fc.showOpenDialog(null)) == null)){
+//	        	mySlogoData.changeImage(new Image(imageFile.getName()));
+//	        }
+		});
+	}
 
 	/**
 	 * 

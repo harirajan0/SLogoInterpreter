@@ -333,4 +333,14 @@ public class SLogoData extends Observable {
 		for (Turtle turtle : myTurtles) if (turtle.isSelected()) turtle.changeImage(img);
 		notifyObservers();
 	}
+	
+	/**
+	 * 
+	 * @param img The image to replace the images of the turtle at the given index
+	 */ 
+	public void changeImage(int index, Image img) {
+		if (index < 0 || index >= myTurtles.size()) return;
+		myTurtles.get(index).changeImage(img);
+		notifyObservers();
+	}
 }

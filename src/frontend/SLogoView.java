@@ -235,6 +235,11 @@ public class SLogoView implements Observer {
 		return myCommandPrompt.getTurtleImageSelectionButton();
 	}
 	
+	public Button getIndividualTurtleImageSelectionButton() {
+		/** get the button that allows us to chose a new image for individaul turtles */
+		return myCommandPrompt.getIndividualTurtleImageSelectionButton();
+	}
+	
 	@Override
 	public void update(Observable slogoData, Object arg) {
 		/** 

@@ -43,6 +43,7 @@ public class CommandPromptView {
 	private Button leftButton;
 	private Button backButton;
 	private Button myTurtleImageSelectionButton;
+	private Button myIndividualTurtleImageSelectionButton;
 	private CheckBox showSelectedTurtlesButton;
 	
 	ObservableList<String> listOfCommands;
@@ -70,10 +71,12 @@ public class CommandPromptView {
 		myExecuteButton.setMinWidth(myVBox.getPrefWidth());
 		myCommandHistory.setMinWidth(myVBox.getPrefWidth());
 		createMovingButtons();
+		myIndividualTurtleImageSelectionButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("IndividualTurtleImageSelection"));
+		myIndividualTurtleImageSelectionButton.setPrefWidth(Constants.BIG_BUTTON_WIDTH);
 		myTurtleImageSelectionButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
 		myTurtleImageSelectionButton.setPrefWidth(Constants.BIG_BUTTON_WIDTH);
 		showSelectedTurtlesButton = new CheckBox(Constants.DEFAULT_RESOURCE_BUNDLE.getString("selectedTurtlesButton"));
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers, myTurtleImageSelectionButton, showSelectedTurtlesButton);
+		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers, myTurtleImageSelectionButton, showSelectedTurtlesButton, myIndividualTurtleImageSelectionButton);
 	}
 	
 	private void createMovingButtons(){
@@ -176,6 +179,11 @@ public class CommandPromptView {
 	protected Button getTurtleImageSelectionButton() {
 		/** get the 'load new image file' button */
 		return myTurtleImageSelectionButton;
+	}
+	
+	protected Button getIndividualTurtleImageSelectionButton() {
+		/** get the 'individual turtle selection' button */
+		return myIndividualTurtleImageSelectionButton;
 	}
 	
 }

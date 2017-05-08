@@ -115,4 +115,9 @@ public class Constants {
 	public static final double SELECTED = 1;
 	public static final double NOT_SELECTED = SELECTED / 2;
 	
+	//Error
+	public static final String START_ERROR_TITLE = "View Start Error";
+	public static final String START_ERROR_HEADER = "Can't open!";
+	public static final String START_ERROR_MESSAGE = "Unable to open the selected window";
+	
 }

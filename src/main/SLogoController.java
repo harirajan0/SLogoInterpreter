@@ -4,6 +4,7 @@
 package main;
 
 import java.io.File;
+import java.util.Optional;
 
 import backend.SLogoData;
 import backend.SLogoModel;
@@ -16,6 +17,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -155,16 +157,18 @@ public class SLogoController {
 	 */
 	private void setUpIndividualTurtleImageSelectionHandler() {
 		mySlogoView.getIndividualTurtleImageSelectionButton().setOnAction(e -> {
-			TurtleImageChanger tic = new TurtleImageChanger(new Stage(), mySlogoData);
-			mySlogoData.addObserver(tic);
-//			FileChooser fc = new FileChooser();
-//	        fc.setTitle(Constants.IMAGE_CHOOSER_TITLE);
-//	        fc.setInitialDirectory(new File(System.getProperty("user.dir"), "./images"));
-//	        fc.getExtensionFilters().setAll(new ExtensionFilter("Images", "*.png"));
-//	        File imageFile;
-//	        if (!((imageFile = fc.showOpenDialog(null)) == null)){
-//	        	mySlogoData.changeImage(new Image(imageFile.getName()));
-//	        }
+			TurtleImageChanger tic;
+			try {
+				tic = new TurtleImageChanger(new Stage(), mySlogoData);
+				mySlogoData.addObserver(tic);
+			} catch (Exception e1) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle(Constants.START_ERROR_TITLE);
+				alert.setHeaderText(Constants.START_ERROR_HEADER);
+				alert.setContentText(String.format(Constants.START_ERROR_MESSAGE));
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == ButtonType.OK) alert.close();
+			}
 		});
 	}
 

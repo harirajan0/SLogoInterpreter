@@ -1,7 +1,8 @@
 SLogo Addition
 ===================
 
-###Estimation: before looking at the old code:
+##Estimation: before looking at the old code:
+
 -how long do you think it will take you to complete this new feature?
 I think it will probably take around 45mn. 
 

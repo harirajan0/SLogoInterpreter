@@ -6,7 +6,7 @@ Adding the two subclasses of command will take only a few minutes. Figuring out 
 
 ##Review
 * It took about 1 hour
-* I had to update exactly the classes I said, plus SlogoData and SlogoView. This was the quick sequence of methods that could be called from the command API to affect the frontend in the desire way.
+* I had to update exactly the classes I said, plus SlogoData and SlogoView. This was the quickest sequence of methods that could be called from the command API to affect the frontend in the desired way.
 * I did not get it right on the first try, because as I suspected, there were some frontend quirks about adding to the root that tripped me up.
 
 ##Analysis

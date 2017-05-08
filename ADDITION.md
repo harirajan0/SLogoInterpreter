@@ -12,7 +12,6 @@ Adding the two subclasses of command will take only a few minutes. Figuring out 
 ##Analysis
 * It was as I remembered. Adding new features relies as much on adding new methods into already big classes as it does on adding new classes. The backend is almost always
   satisfied with simply adding new classes but the frontend seems to always need new methods.
-* There needs to be a better use of observers or of lambda functions in order to remove the huge amount of methods in classes like SlogoData and SlogoView. There needs to be
- a better way to add frontend features without adding new methods, and I propose lambdas or observers. 
-* I still think it would hav been fairly obvious. I did not feel super familiar with the frontend code, yet I had no trouble figuring out which methods to add. I think the tradeoff
-of adding new features by adding new methods is that while you sacrifice good design/extensibility, you gain clarity. 
+* There needs to be a better use of observers or of lambda functions in order to remove the huge amount of methods in classes like SlogoData and SlogoView. 
+* I still think it would have been fairly obvious. I did not feel super familiar with the frontend code, yet I had no trouble figuring out which methods to add. I think the tradeoff
+of adding tons of methods is that while you sacrifice good design/extensibility, you gain clarity. 

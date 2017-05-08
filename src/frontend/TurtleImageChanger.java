@@ -38,7 +38,7 @@ public class TurtleImageChanger extends Application implements Observer {
 	
 	public TurtleImageChanger(Stage s, SLogoData sd) {
 		myRoot = new Group();
-		myScene = new Scene(myRoot, Constants.TURTLE_IMAGE_SELECTOR_WINDOW_HEIGHT, Constants.TURTLE_IMAGE_SELECTOR_WINDOW_WIDTH, Constants.BACKGROUND_COLOR);
+		myScene = new Scene(myRoot, Constants.TURTLE_IMAGE_SELECTOR_WINDOW_WIDTH, Constants.TURTLE_IMAGE_SELECTOR_WINDOW_HEIGHT, Constants.BACKGROUND_COLOR);
 		try {
 			start(s);
 		} catch (Exception e) {

@@ -63,8 +63,8 @@ public class Constants {
 	public static final Point2D BOTTOM_RIGHT = new Point2D(TURTLE_WINDOW_SIZE, TURTLE_WINDOW_SIZE);
 	
 	//Turtle Image Selector Constants
-	public static final int TURTLE_IMAGE_SELECTOR_WINDOW_HEIGHT = 200;
-	public static final int TURTLE_IMAGE_SELECTOR_WINDOW_WIDTH = 500;
+	public static final int TURTLE_IMAGE_SELECTOR_WINDOW_HEIGHT = 100;
+	public static final int TURTLE_IMAGE_SELECTOR_WINDOW_WIDTH = 200;
 	public static final String TURTLE_IMAGE_SELECTOR_TITLE = "Turtle Image Selector";
 	
 	//TurtleView constants

@@ -2,6 +2,7 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -13,6 +14,7 @@ import backend.turtle.Turtle;
 import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import languages.Language;
@@ -39,6 +41,7 @@ public class SLogoData extends Observable {
 	private Language myLanguage;
 	private Group myRoot;
 	private boolean showSelected;
+	private Collection<ImageView> stamps;
 
 	/**
 	 * 
@@ -333,4 +336,13 @@ public class SLogoData extends Observable {
 		for (Turtle turtle : myTurtles) if (turtle.isSelected()) turtle.changeImage(img);
 		notifyObservers();
 	}
+	
+	public void addToStampCollection(ImageView turtleImage){
+		stamps.add(turtleImage);
+	}
+	
+	public Collection<ImageView> getStampCollection(){
+		return stamps;
+	}
+	
 }

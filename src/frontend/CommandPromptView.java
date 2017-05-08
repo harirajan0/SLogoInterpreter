@@ -44,6 +44,7 @@ public class CommandPromptView {
 	private Button backButton;
 	private Button myTurtleImageSelectionButton;
 	private CheckBox showSelectedTurtlesButton;
+	private Button singleImageChange;
 	
 	ObservableList<String> listOfCommands;
 	
@@ -73,7 +74,10 @@ public class CommandPromptView {
 		myTurtleImageSelectionButton = new Button(Constants.DEFAULT_RESOURCE_BUNDLE.getString("fileLoaderLabel"));
 		myTurtleImageSelectionButton.setPrefWidth(Constants.BIG_BUTTON_WIDTH);
 		showSelectedTurtlesButton = new CheckBox(Constants.DEFAULT_RESOURCE_BUNDLE.getString("selectedTurtlesButton"));
-		myVBox.getChildren().addAll(myExecuteButton, myCommandHistory, turtleMovers, myTurtleImageSelectionButton, showSelectedTurtlesButton);
+		
+		singleImageChange= new Button("Change single turtle image"); 
+		
+		myVBox.getChildren().addAll(singleImageChange, myExecuteButton, myCommandHistory, turtleMovers, myTurtleImageSelectionButton, showSelectedTurtlesButton);
 	}
 	
 	private void createMovingButtons(){
@@ -159,6 +163,10 @@ public class CommandPromptView {
 	public Button getLeftRotate(){
 		/** get the rotate left button */
 		return leftButton;
+	}
+	
+	public Button getSingleImageChangeButton(){
+		return singleImageChange;
 	}
 	
 	

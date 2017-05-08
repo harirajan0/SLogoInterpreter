@@ -50,5 +50,8 @@ public class TurtleView {
 		myTurtleImage.setImage(img);
 	}
 
+	public ImageView getImage(){
+		return myTurtleImage;
+	}
 	
 }

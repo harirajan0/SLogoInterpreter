@@ -258,4 +258,8 @@ public class Turtle {
 				myTurtleModel.getCurrentTurtleInfo().toString();
 	}
 	
+	public TurtleView getView(){
+		return myTurtleView;
+	}
+	
 }

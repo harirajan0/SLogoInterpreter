@@ -50,6 +50,7 @@ public class SLogoView implements Observer {
 	private CommandPromptView myCommandPrompt;
 	private VariablesView myVariablesView;
 	private TurtleWindowView myTurtleWindow;
+	private TurtleImagesView myTurtleImages;
 	private MenuView myMenuBar;
 	private VBox topVBox;
 	private boolean showSelectedGraphically;
@@ -63,8 +64,10 @@ public class SLogoView implements Observer {
 	private HBox myBackgroundColorChanger;
 	private Slider myPenThicknessSlider;
 	private ScrollPane rightScrollPane;
+	private Stage myStage;
 
 	public SLogoView(Stage s) {
+		myStage=s;
 		myRoot = new Group();
 		topVBox = new VBox();
 		setUpScrollPanes();
@@ -79,6 +82,7 @@ public class SLogoView implements Observer {
 		myRoot.getChildren().addAll(myBorderPane);
 		showSelectedGraphically = false;
 		displayStage(s);
+		myTurtleImages = new TurtleImagesView(myStage, mySlogoData);
 	}
 
 	/**
@@ -160,6 +164,10 @@ public class SLogoView implements Observer {
 	public TurtleWindowView getTurtleWindow() {
 		/** get the turtle window */
 		return myTurtleWindow;
+	}
+	
+	public TurtleImagesView getTurtleImages(){
+		return myTurtleImages;
 	}
 
 	public Button getExecuteButton() {
@@ -247,6 +255,7 @@ public class SLogoView implements Observer {
 		myTurtleWindow.setTurtles(mySlogoData.getTurtles());
 		myTurtleWindow.changeBackgroundColor(mySlogoData.getBackgroundColor());
 		myTurtleWindow.setToolTips();
+
 	}
 
 }

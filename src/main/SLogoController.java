@@ -11,6 +11,7 @@ import backend.turtle.Turtle;
 import constants.Constants;
 import frontend.ExceptionAlert;
 import frontend.SLogoView;
+import frontend.TurtleImagesView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
@@ -56,8 +57,17 @@ public class SLogoController {
 		setUpPenColorChoiceBoxHandler();
 		setUpPenThicknessSliderHandler();
 		setUpBackgroundColorPickerHandler();
+		setUpSingleImageChangerHandler();
 		for (int i = 0; i < mySlogoView.getPaletteColorPickers().size(); i++) setUpColorPickerEventHandlers(i);
 	}
+
+	private void setUpSingleImageChangerHandler() {
+		mySlogoView.getCommandBox().getSingleImageChangeButton().setOnAction(e -> {
+			TurtleImagesView t = new TurtleImagesView(new Stage(), mySlogoData);
+			t.setTurtles(mySlogoData.getTurtles());
+					});
+	}
+
 
 	/**
 	 * 
